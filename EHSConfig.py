@@ -100,7 +100,10 @@ class EHSConfig():
         
         if 'silentMode' not in self.GENERAL:
            self.GENERAL['silentMode'] = True
-        
+
+        if 'protocolFile' not in self.GENERAL:
+            self.GENERAL['protocolFile'] = None
+
         if 'device' not in self.SERIAL:
             raise ConfigException(argument=self.SERIAL['device'], message="serial device config parameter is missing")
         

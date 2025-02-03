@@ -127,9 +127,21 @@ class MessageProcessor:
                     msgvalue = self.determine_value(msg['payload'], msgname)
                 except Exception as e:
                     raise MessageWarningException(argument=msg['payload'], message=f"Value of {hex(msg['message_number']):<6} couldn't be determinate, skip Message {e}")
-                logger.info(f"Message number: {hex(msg['message_number']):<6} {msgname:<50} Type: {msg['message_type']} Payload: {msgvalue}")
+                self.protocolMessage(msg, msgname, msgvalue)
             else:
                 logger.warning(f"Message not Found in NASA repository: {hex(msg['message_number']):<6} Type: {msg['message_type']} Payload: {msg['payload']}")
+
+    def protocolMessage(self, msg, msgname, msgvalue):
+        logger.info(f"Message number: {hex(msg['message_number']):<6} {msgname:<50} Type: {msg['message_type']} Payload: {msgvalue}")
+
+        if self.config.GENERAL['protocolFile'] is not None:
+            with open(self.config.GENERAL['protocolFile'], "a") as protWriter:
+                protWriter.write(f"{hex(msg['message_number']):<6},{msgname:<50},{msg['message_type']},{msgvalue}\n")
+
+        if not self.args.DRYRUN:
+            #TODO mqtt publisher here
+            pass
+
 
     def search_nasa_table(self, address):
         """
