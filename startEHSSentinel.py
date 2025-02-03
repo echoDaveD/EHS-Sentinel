@@ -68,6 +68,8 @@ async def main():
 
     if args.DUMPFILE and not args.DRYRUN:
         dumpWriter = await aiofiles.open(args.DUMPFILE, mode='w')
+    else:
+        dumpWriter = None
 
     # if Silent is true, set Silent Mode
     if config.GENERAL['silentMode']:
