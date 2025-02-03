@@ -136,7 +136,7 @@ class MessageProcessor:
 
         if self.config.GENERAL['protocolFile'] is not None:
             with open(self.config.GENERAL['protocolFile'], "a") as protWriter:
-                protWriter.write(f"{hex(msg['message_number']):<6},{msgname:<50},{msg['message_type']},{msgvalue}\n")
+                protWriter.write(f"{hex(msg['message_number']):<6},{msg['message_type']},{msgname:<50},{msgvalue}\n")
 
         if not self.args.DRYRUN:
             #TODO mqtt publisher here
