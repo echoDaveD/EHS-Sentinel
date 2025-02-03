@@ -72,15 +72,13 @@ class EHSArguments:
         if args.dryrun:
             if args.dumpfile is None:
                 raise ArgumentException(argument="--dumpfile")
-
+            else:
+                if not os.path.isfile(args.dumpfile):
+                    raise ArgumentException(argument=args.dumpfile, message="Dump File does not exist")
+            
         # Check if the config file exists
         if not os.path.isfile(args.configfile):
             raise ArgumentException(argument=args.configfile, message="Config File does not exist")
-
-        # Check if the dump file exists if set
-        if args.dumpfile:
-            if not os.path.isfile(args.dumpfile):
-                raise ArgumentException(argument=args.dumpfile, message="Dump File does not exist")
             
         self.CONFIGFILE = args.configfile
         self.DUMPFILE = args.dumpfile
