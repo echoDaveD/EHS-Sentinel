@@ -116,7 +116,7 @@ async def process_buffer(buffer, dumpWriter):
 
                     if i == packet_size-1: #buffer[i] == 0x34  or
                         hex_message = list(map(hex, message))
-                        logger.debug(f"Complete Message: {i}/{packet_size}")
+                        logger.debug(f"Complete Message: {i}/{packet_size-1}")
                         logger.debug(f"Last Byte readed: {hex(buffer[i])}")
                         logger.debug(f"message raw: {message}")
                         logger.debug(f"        hex: {hex_message}")
