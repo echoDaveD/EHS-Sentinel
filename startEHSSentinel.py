@@ -13,10 +13,6 @@ import json
 from CustomLogger import logger, setSilent
 
 version = "0.1SNAPSHOT"
-args = None
-config = None
-dumpWriter = None
-
 
 class SerialReader(asyncio.Protocol):
     """
@@ -83,12 +79,12 @@ async def main():
         async with aiofiles.open(args.DUMPFILE, mode='r') as file:
             async for line in file:
                 line = json.loads(line.strip())
-                await process_message(line)
+                await process_message(line, dumpWriter)
     else:
         # we are not in dryrun mode, so we need to read from Serial Pimort
-        await serialRead()
+        await serialRead(config, dumpWriter)
 
-async def process_buffer(buffer):
+async def process_buffer(buffer, dumpWriter):
     """
     Continuously processes a buffer of bytes to extract and handle messages.
     This function runs an infinite loop that checks the buffer for messages starting with a specific start byte (0x32).
@@ -118,7 +114,7 @@ async def process_buffer(buffer):
                         logger.debug(f"Last Byte readed: {buffer[i]}")
                         logger.debug(f"message raw: {message}")
                         logger.debug(f"        hex: {hex_message}")
-                        await process_message(message)
+                        await process_message(message, dumpWriter)
                         del buffer[0:i]
                         break
             else:
@@ -127,7 +123,7 @@ async def process_buffer(buffer):
 
         await asyncio.sleep(0.1)
 
-async def serialRead():
+async def serialRead(config, dumpWriter):
     """
     Asynchronously reads data from a serial port and processes it.
     This function opens a serial port connection using the `serial_asyncio` library,
@@ -141,7 +137,6 @@ async def serialRead():
     Raises:
         KeyboardInterrupt: If the user interrupts the process with a keyboard signal.
     """
-
     buffer = []
     loop = asyncio.get_running_loop()
 
@@ -156,7 +151,7 @@ async def serialRead():
     )
 
     # start the async buffer process
-    asyncio.create_task(process_buffer(buffer))
+    asyncio.create_task(process_buffer(buffer, dumpWriter))
 
     try:
         while True:
@@ -167,7 +162,7 @@ async def serialRead():
         if dumpWriter:
             dumpWriter.close()
 
-async def process_message(buffer):
+async def process_message(buffer, dumpWriter):
     """
     Asynchronously processes a message buffer.
     If `dumpWriter` is `None`, it attempts to process the message using `MessageProcessor`.

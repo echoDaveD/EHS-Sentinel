@@ -1,5 +1,5 @@
 general:
-  nasaRepositoryFile: data/NasaRepository.yaml
+  nasaRepositoryFile: data/NasaRepository.yml
   silentMode: True
 serial:
   device: /dev/ttyUSB0
