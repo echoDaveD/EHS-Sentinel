@@ -100,8 +100,8 @@ class MessageProcessor:
 
         packet_size = ((message[1] << 8) | message[2]) + 2
         logger.debug(f"Packet size caluclated/readed: {len(message)}/{packet_size}")
-        logger.debug(f"Processing message raw: {list(map(lambda x: f"{x:<4}", message))}")
-        logger.debug(f"Processing message hex: {list(map(lambda x: f"{hex(x):<4}", message))}")
+        logger.debug(f"Processing message raw: {list(map(lambda x: f'{x:<4}', message))}")
+        logger.debug(f"Processing message hex: {list(map(lambda x: f'{hex(x):<4}', message))}")
         sourceAdress = SoureAddressEnum(message[3])
         logger.debug(f"Source Address: {sourceAdress}")
 
@@ -160,8 +160,8 @@ class MessageProcessor:
         if depth > capacity or len(msg_rest) == 0:
             return return_list
 
-        logger.debug(f"Submessage raw: {list(map(lambda x: f"{x:<4}", msg_rest))}")
-        logger.debug(f"Submessage hex: {list(map(lambda x: f"{hex(x):<4}", msg_rest))}")
+        logger.debug(f"Submessage raw: {list(map(lambda x: f'{x:<4}', msg_rest))}")
+        logger.debug(f"Submessage hex: {list(map(lambda x: f'{hex(x):<4}', msg_rest))}")
         
         message_number = (msg_rest[0] << 8) | msg_rest[1]
         message_type = (message_number & 1536) >> 9
@@ -189,8 +189,8 @@ class MessageProcessor:
             payload = payload[:255]
 
         # convert the int list from payload to byteorder string
-        logger.debug(f"Submessage Payload raw: {list(map(lambda x: f"{x:<4}", payload))}")
-        logger.debug(f"Submessage Payload hex: {list(map(lambda x: f"{hex(x):<4}", payload))}")
+        logger.debug(f"Submessage Payload raw: {list(map(lambda x: f'{x:<4}', payload))}")
+        logger.debug(f"Submessage Payload hex: {list(map(lambda x: f'{hex(x):<4}', payload))}")
         byte_string = bytes([int(hex(x), 16) for x in payload])
         logger.debug(f"Submessage Payload packed decimal: {byte_string}")
         return_list.append({"message_number": message_number, "message_type": message_type, "payload": byte_string})
