@@ -76,7 +76,7 @@ async def main():
         async with aiofiles.open(args.DUMPFILE, mode='r') as file:
             async for line in file:
                 line = json.loads(line.strip())
-                await process_message(line, args)
+                asyncio.create_task(process_message(line, args))
     else:
         # we are not in dryrun mode, so we need to read from Serial Pimort
         await serialRead(config, args)
@@ -115,7 +115,7 @@ async def process_buffer(buffer, args):
                         logger.debug(f"Last Byte readed: {hex(buffer[i])}")
                         logger.debug(f"message raw: {message}")
                         logger.debug(f"        hex: {hex_message}")
-                        process_message(message, args)
+                        asyncio.create_task(process_message(message, args))
                         del buffer[0:i]
                         break
             else:
