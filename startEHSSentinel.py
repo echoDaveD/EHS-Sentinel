@@ -173,7 +173,7 @@ async def process_message(buffer, args):
 
     if args.DUMPFILE and not args.DRYRUN:
         async with aiofiles.open(args.DUMPFILE, "a") as dumpWriter:
-           await dumpWriter.write(f"{buffer}")
+           await dumpWriter.write(f"{buffer}\n")
     else:
         try:
             messageProcessor = MessageProcessor()
