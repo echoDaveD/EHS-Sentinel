@@ -91,7 +91,6 @@ def setSilent():
     If the current logging level is not 'DEBUG', this function will log an informational message
     indicating that silent mode is being activated and then set the logging level to ERROR.
     """
-    print(logger.level)
     if logger.level != 10:
         logger.info("Silent Mode is turning on, only Messages at Level ERROR or higher are displyed")
         logger.setLevel(logging.ERROR)
