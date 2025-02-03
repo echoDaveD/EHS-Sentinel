@@ -144,7 +144,7 @@ async def serialRead(config, dumpWriter):
 
     # open serial port
     transport, protocol = await serial_asyncio.create_serial_connection(
-        loop, lambda: SerialReader(buffer), config.SERIAL['device'], baudrate=config.SERIAL['baudrate'], parity=serial.PARITY_EVEN,
+        loop, lambda: SerialReader(buffer), config.SERIAL['device'], baudrate=config.SERIAL['baudrate'], parity=serial.PARITY_NONE,
                      stopbits=serial.STOPBITS_ONE,
                      bytesize=serial.EIGHTBITS,
                      rtscts=True,
