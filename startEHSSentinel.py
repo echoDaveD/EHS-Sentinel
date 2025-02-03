@@ -105,7 +105,7 @@ async def process_buffer(buffer, dumpWriter):
             if buffer[0] == 0x32:
                 logger.debug("Start Byte recognized")
                 packet_size = ((buffer[1] << 8) | buffer[2]) +2
-                logger.debug(f"Readed packet size: {packet_size}")
+                logger.debug(f"Readed packet size: {packet_size-1}")
                 message = []
                 message.append(buffer[0])
                 for i in range(1, 255):
