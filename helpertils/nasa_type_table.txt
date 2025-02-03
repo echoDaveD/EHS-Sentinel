@@ -1,0 +1,761 @@
+0x0000 ||  ||  ||  || 
+0x0004 ||  ||  ||  || 
+0x0007 ||  ||  ||  || 
+0x0008 ||  ||  ||  || 
+0x000A ||  ||  ||  || 
+0x000D ||  ||  ||  || 
+0x000E ||  ||  ||  || 
+0x000F ||  ||  ||  || 
+0x0010 ||  ||  ||  || 
+0x0011 ||  ||  ||  || 
+0x0012 ||  ||  ||  || 
+0x0013 ||  ||  ||  || 
+0x0014 ||  ||  ||  || 
+0x0015 ||  ||  ||  || 
+0x0016 ||  ||  ||  || 
+0x0017 ||  ||  ||  || 
+0x0018 ||  ||  ||  || 
+0x0019 ||  ||  ||  || 
+0x001A ||  ||  ||  || 
+0x001B ||  ||  ||  || 
+0x001C ||  ||  ||  || 
+0x001D ||  ||  ||  || 
+0x001E ||  ||  ||  || 
+0x001F ||  ||  ||  || 
+0x0020 ||  ||  ||  || 
+0x0021 ||  ||  ||  || 
+0x0023 ||  ||  ||  || 
+0x0025 || ENUM ||  ||  || 
+0x0202 || VAR || false ||  || 
+0x0203 ||  ||  ||  || 
+0x0204 ||  ||  ||  || 
+0x0205 ||  ||  ||  || 
+0x0206 ||  ||  ||  || 
+0x0207 || VAR || false ||  || 
+0x0208 ||  ||  ||  || 
+0x0209 ||  ||  ||  || 
+0x0210 ||  ||  ||  || 
+0x0211 || VAR || false ||  || 
+0x0213 ||  ||  ||  || 
+0x0214 ||  ||  ||  || 
+0x0217 ||  ||  ||  || 
+0x0401 || LVAR || false ||  || 
+0x0402 || LVAR || false ||  || 
+0x0403 ||  ||  ||  || 
+0x0406 ||  ||  ||  || 
+0x0407 ||  ||  ||  || 
+0x0408 || LVAR || false ||  || 
+0x0409 || LVAR || false ||  || 
+0x040A || LVAR || false ||  || 
+0x040B || LVAR || false ||  || LogicalAnd 0xFF
+0x040C || LVAR || false ||  || 
+0x040D || LVAR || false ||  || 
+0x040E || LVAR || false ||  || 
+0x040F || LVAR || false ||  || 
+0x0410 || LVAR || false ||  || 
+0x0411 || LVAR || false || Celsius || (value & 0xFFFF0000u) >> 16) / 10.0;
+0x0412 || LVAR || false || Celsius || (value & 0xFFFF0000u) >> 16) / 10.0;
+0x0413 || LVAR || false || Celsius || (value & 0xFFFF0000u) >> 16) / 10.0;
+0x0414 || LVAR || false || Celsius || (value & 0xFFFF0000u) >> 16) / 10.0;
+0x0415 || LVAR || false ||  || 
+0x0416 || LVAR || false ||  || 
+0x0417 || LVAR ||  ||  || 
+0x0418 || LVAR ||  ||  || 
+0x0419 || LVAR ||  ||  || 
+0x041B || LVAR ||  ||  || 
+0x041C ||  ||  ||  || 
+0x041D ||  ||  ||  || 
+0x041E ||  ||  ||  || 
+0x041F ||  ||  ||  || 
+0x0420 ||  ||  ||  || 
+0x0421 ||  ||  ||  || 
+0x0422 ||  ||  ||  || 
+0x0423 ||  ||  ||  || 
+0x0434 ||  ||  ||  || 
+0x0435 ||  ||  ||  || 
+0x0436 ||  ||  ||  || 
+0x0437 ||  ||  ||  || 
+0x0438 ||  ||  ||  || 
+0x0439 ||  ||  ||  || 
+0x043A ||  ||  ||  || 
+0x043B ||  ||  ||  || 
+0x043C ||  ||  ||  || 
+0x043D ||  ||  ||  || 
+0x043E ||  ||  ||  || 
+0x043F ||  ||  ||  || 
+0x0440 ||  ||  ||  || 
+0x0441 ||  ||  ||  || 
+0x0442 ||  ||  ||  || 
+0x0443 ||  ||  ||  || 
+0x0444 ||  ||  ||  || 
+0x0445 ||  ||  ||  || 
+0x0448 || LVAR || false ||  || 
+0x0600 || STR ||  ||  || 
+0x0601 || STR ||  ||  || 
+0x0602 || STR ||  ||  || 
+0x0603 || STR ||  ||  || 
+0x0604 ||  ||  ||  || 
+0x0605 || STR ||  ||  || 
+0x0607 || STR ||  ||  || null terminated string, first byte is = first Char
+0x0608 || STR ||  ||  || 
+0x060C || STR ||  ||  || 
+0x0613 ||  ||  ||  || 
+0x0619 ||  ||  ||  || 
+0x061A || STR ||  ||  || null terminated string, first byte is = byte( length of string)
+0x061C || STR ||  ||  || 
+0x061F || STR ||  ||  || 
+0x2000 ||  ||  ||  || 
+0x2001 ||  ||  ||  || 
+0x2002 ||  ||  ||  || 
+0x2003 ||  ||  ||  || 
+0x2004 || ENUM ||  ||  || 
+0x2006 ||  ||  ||  || 
+0x2007 ||  ||  ||  || 
+0x2008 ||  ||  ||  || 
+0x2009 ||  ||  ||  || 
+0x200A ||  ||  ||  || 
+0x200F || ENUM ||  ||  || 
+0x2010 || ENUM ||  ||  || 
+0x2012 || ENUM ||  ||  || 
+0x2017 ||  ||  ||  || 
+0x2018 ||  ||  ||  || 
+0x22F7 || VAR ||  ||  || 
+0x22F9 || VAR ||  ||  || 
+0x22FA || VAR ||  ||  || 
+0x22FB || VAR ||  ||  || 
+0x22FC || VAR ||  ||  || 
+0x22FD || VAR ||  ||  || 
+0x22FE || VAR ||  ||  || 
+0x22FF || VAR ||  ||  || 
+0x2400 || LVAR ||  ||  || 
+0x2401 || LVAR ||  ||  || 
+0x24FB || LVAR ||  ||  || 
+0x24FC || LVAR ||  ||  || 
+0x4000 || ENUM ||  ||  || 
+0x4001 || ENUM ||  ||  || 
+0x4002 || ENUM ||  ||  || 
+0x4003 || ENUM ||  ||  || 
+0x4004 || ENUM ||  ||  || 
+0x4006 || ENUM ||  ||  || 
+0x4007 || ENUM ||  ||  || 
+0x4008 || ENUM ||  ||  || 
+0x400F || ENUM ||  ||  || 
+0x4010 || ENUM ||  ||  || 
+0x4011 || ENUM ||  ||  || 
+0x4012 || ENUM ||  ||  || 
+0x4015 || ENUM ||  ||  || 
+0x4018 || ENUM ||  ||  || 
+0x4019 || ENUM ||  ||  || 
+0x401B || ENUM ||  ||  || 
+0x4023 || ENUM ||  ||  || 
+0x4024 || ENUM ||  ||  || 
+0x4025 ||  ||  ||  || 
+0x4027 || ENUM ||  ||  || 
+0x4028 || ENUM ||  ||  || 
+0x4029 || ENUM ||  ||  || 
+0x402A || ENUM ||  ||  || 
+0x402B || ENUM ||  ||  || 
+0x402D || ENUM ||  ||  || 
+0x402E || ENUM ||  ||  || 
+0x402F || ENUM ||  ||  || 
+0x4031 || ENUM ||  ||  || 
+0x4035 || ENUM ||  ||  || 
+0x4038 || ENUM ||  ||  || 
+0x403D ||  ||  ||  || 
+0x403E ||  ||  ||  || 
+0x403F ||  ||  ||  || 
+0x4040 ||  ||  ||  || 
+0x4041 ||  ||  ||  || 
+0x4042 ||  ||  ||  || 
+0x4043 || ENUM ||  ||  || 
+0x4045 ||  ||  ||  || 
+0x4046 || ENUM ||  ||  || 
+0x4047 || ENUM ||  ||  || 
+0x4048 || ENUM ||  ||  || 
+0x404F || ENUM ||  ||  || 
+0x4050 ||  ||  ||  || 
+0x4051 || ENUM ||  ||  || 
+0x4059 || ENUM ||  ||  || 
+0x405B ||  ||  ||  || 
+0x405C ||  ||  ||  || 
+0x405D ||  ||  ||  || 
+0x405E ||  ||  ||  || 
+0x405F || ENUM ||  ||  || 
+0x4060 || ENUM ||  ||  || 
+0x4063 ||  ||  ||  || 
+0x4064 ||  ||  ||  || 
+0x4065 || ENUM ||  ||  || 
+0x4066 || ENUM ||  ||  || 
+0x4067 || ENUM ||  ||  || 
+0x4068 || ENUM ||  ||  || 
+0x4069 || ENUM ||  ||  || 
+0x406A || ENUM ||  ||  || 
+0x406B || ENUM ||  ||  || 
+0x406C || ENUM ||  ||  || 
+0x406D || ENUM ||  ||  || 
+0x406E || ENUM ||  ||  || 
+0x406F || ENUM ||  ||  || 
+0x4070 || ENUM ||  ||  || 
+0x4073 || ENUM ||  ||  || 
+0x4074 || ENUM ||  ||  || 
+0x4076 || ENUM ||  ||  || 0 means no temp sensor, 1 means temp sensor present.
+0x4077 || ENUM ||  ||  || 
+0x407B || ENUM ||  ||  || 
+0x407D || ENUM ||  ||  || 
+0x407E || ENUM ||  ||  || 
+0x4085 || ENUM ||  ||  || 
+0x4086 || ENUM ||  ||  || 
+0x4087 || ENUM ||  ||  || 
+0x4089 || ENUM ||  ||  || 
+0x408A || ENUM ||  ||  || 
+0x4093 || ENUM ||  ||  || 
+0x4094 || ENUM ||  ||  || 
+0x4095 || ENUM ||  ||  || 
+0x4096 || ENUM ||  ||  || 
+0x4097 || ENUM ||  ||  || 
+0x4098 || ENUM ||  ||  || 
+0x4099 || ENUM ||  ||  || 
+0x409A || ENUM ||  ||  || 
+0x409B || ENUM ||  ||  || 
+0x409C || ENUM ||  ||  || 
+0x409D || ENUM ||  ||  || 
+0x409E || ENUM ||  ||  || 
+0x409F || ENUM ||  ||  || 
+0x40A0 || ENUM ||  ||  || 
+0x40A1 || ENUM ||  ||  || 
+0x40A2 || ENUM ||  ||  || 
+0x40A3 || ENUM ||  ||  || 
+0x40A4 || ENUM ||  ||  || 
+0x40A5 || ENUM ||  ||  || 
+0x40A6 || ENUM ||  ||  || 
+0x40A7 || ENUM ||  ||  || 
+0x40B1 ||  ||  ||  || 
+0x40B4 || ENUM ||  ||  || 
+0x40B5 || ENUM ||  ||  || 
+0x40BB || ENUM ||  ||  || 
+0x40BC || ENUM ||  ||  || 
+0x40BD || ENUM ||  ||  || 
+0x40C0 || ENUM ||  ||  || 
+0x40C1 || ENUM ||  ||  || 
+0x40C2 || ENUM ||  ||  || 
+0x40C3 || ENUM ||  ||  || 
+0x40C4 || ENUM ||  || [%] || 
+0x40C5 || ENUM ||  ||  || 
+0x40C6 || ENUM ||  ||  || 
+0x40C7 ||  ||  ||  || 
+0x40C8 ||  ||  ||  || 
+0x40C9 ||  ||  ||  || 
+0x40CA ||  ||  ||  || 
+0x40CB ||  ||  ||  || 
+0x40CC ||  ||  ||  || 
+0x40CD ||  ||  ||  || 
+0x40CE ||  ||  ||  || 
+0x40CF ||  ||  ||  || 
+0x40D0 ||  ||  ||  || 
+0x40D1 ||  ||  ||  || 
+0x40D2 ||  ||  ||  || 
+0x40D5 || ENUM ||  ||  || 
+0x40D6 || ENUM ||  ||  || 
+0x40E3 || ENUM ||  ||  || 
+0x40E7 || ENUM ||  ||  || 
+0x40F7 || ENUM ||  ||  || 
+0x40FB || ENUM ||  ||  || 
+0x40FC || ENUM ||  ||  || 
+0x4101 || ENUM ||  ||  || 
+0x4102 || ENUM ||  ||  || 
+0x4103 || ENUM ||  ||  || 
+0x4104 || ENUM ||  ||  || 
+0x4105 || ENUM ||  ||  || 
+0x4107 || ENUM ||  ||  || 
+0x4108 || ENUM ||  ||  || 
+0x410D || ENUM ||  ||  || 
+0x4113 || ENUM ||  ||  || 
+0x4117 || ENUM ||  ||  || 
+0x4118 || ENUM ||  ||  || 0 means no temp sensor, 1 means temp sensor present.
+0x4119 || ENUM ||  ||  || 
+0x411A || ENUM ||  ||  || 
+0x411B || ENUM ||  ||  || 
+0x411C || ENUM ||  ||  || 
+0x411D || ENUM ||  ||  || 
+0x411E || ENUM ||  ||  || 
+0x4123 || ENUM ||  ||  || 
+0x4124 || ENUM ||  ||  || 
+0x4125 || ENUM ||  ||  || 
+0x4127 || ENUM ||  ||  || 
+0x4128 || ENUM ||  ||  || 
+0x412A || ENUM ||  ||  || 
+0x412D || ENUM ||  ||  || 
+0x4147 || ENUM ||  ||  || 
+0x4149 || ENUM ||  ||  || 
+0x4201 || VAR || true || Celsius || division by 10
+0x4202 || VAR || true || Celsius || division by 10
+0x4203 || VAR || true || Celsius || division by 10
+0x4204 || VAR || true || Celsius || division by 10
+0x4205 || VAR || true || Celsius || division by 10
+0x4206 || VAR || true || Celsius || division by 10
+0x4207 || VAR || true || Celsius || subtract 55
+0x4208 ||  ||  ||  || 
+0x4209 ||  ||  ||  || 
+0x420B || VAR || true || Celsius || division by 10
+0x420C || VAR || true || Celsius || division by 10
+0x4211 || VAR || false || kW || division by 8.6
+0x4212 || VAR || false || kW || division by 8.6
+0x4213 || VAR ||  ||  || 
+0x4217 || VAR || false ||  || 
+0x4218 || VAR || false ||  || 
+0x4219 ||  ||  ||  || 
+0x421A ||  ||  ||  || 
+0x421B || VAR || false ||  || 
+0x4220 ||  ||  ||  || 
+0x4229 || VAR ||  ||  || 
+0x422A || VAR || true || Celsius || division by 10
+0x422B || VAR || true || Celsius || division by 10
+0x4235 || VAR || true || Celsius || division by 10
+0x4236 || VAR || true || Celsius || division by 10
+0x4237 || VAR || true || Celsius || division by 10
+0x4238 || VAR || true || Celsius || division by 10
+0x4239 || VAR || true || Celsius || division by 10
+0x423E || VAR ||  ||  || 
+0x4247 || VAR || true || Celsius || division by 10
+0x4248 || VAR || true || Celsius || division by 10
+0x424A || VAR || true || Celsius || division by 10
+0x424B || VAR || true || Celsius || division by 10
+0x424C || VAR || true || Celsius || division by 10
+0x424D || VAR || true || Celsius || division by 10
+0x424E || VAR || true || Celsius || division by 10
+0x424F || VAR || true || Celsius || division by 10
+0x4250 || VAR || true || Celsius || division by 10
+0x4251 || VAR || true || Celsius || division by 10
+0x4252 || VAR || true || Celsius || division by 10
+0x4253 || VAR || true || Celsius || division by 10
+0x4254 || VAR || true || Celsius || division by 10
+0x4255 || VAR || true || Celsius || division by 10
+0x4256 || VAR || true || Celsius || division by 10
+0x4257 || VAR || true || Celsius || division by 10
+0x4258 || VAR || true || Celsius || division by 10
+0x4259 || VAR || true || Celsius || division by 10
+0x425A || VAR || true || Celsius || division by 10
+0x425B || VAR || true || Celsius || division by 10
+0x425C || VAR || true || Celsius || division by 10
+0x425D || VAR || true || Celsius || division by 10
+0x425E || VAR || true || Celsius || division by 10
+0x425F || VAR || true || Celsius || division by 10
+0x4260 || VAR || true || Celsius || division by 10
+0x4261 || VAR || true || Celsius || division by 10
+0x4262 || VAR || true || Celsius || division by 10
+0x4263 || VAR || false ||  || 
+0x4264 || VAR || false ||  || 
+0x4265 || VAR || false ||  || 
+0x4266 || VAR || false ||  || 
+0x4267 || VAR || true || Celsius || division by 10
+0x4268 || VAR || true || Celsius || division by 10
+0x4269 || VAR || false ||  || 
+0x426A || VAR || true || Celsius || division by 10
+0x426B || VAR || true ||  || 
+0x426C || VAR || true ||  || division by 0.1
+0x426D || VAR || true || Celsius || division by 10
+0x426E || VAR || true || Celsius || division by 10
+0x426F || VAR || true || Celsius || division by 10
+0x4270 || VAR || true || Celsius || division by 10
+0x4271 || VAR || true || Celsius || division by 10
+0x4272 || VAR || true || Celsius || division by 10
+0x4273 || VAR || true || Celsius || division by 10
+0x4274 || VAR || true || Celsius || division by 10
+0x4275 || VAR || true || Celsius || division by 10
+0x4276 || VAR || true || Celsius || division by 10
+0x4277 || VAR || true || Celsius || division by 10
+0x4278 || VAR || true || Celsius || division by 10
+0x4279 || VAR || true || Celsius || division by 10
+0x427A || VAR || true || Celsius || division by 10
+0x427B || VAR || true || Celsius || division by 10
+0x427C || VAR || true || Celsius || division by 10
+0x427D || VAR || false ||  || 
+0x427E || VAR || false ||  || 
+0x427F || VAR || true || Celsius || division by 10
+0x4284 ||  ||  ||  || 
+0x4286 || VAR || false || Celsius || division by 10
+0x4287 || VAR || false || Celsius || division by 10
+0x4288 || VAR || false ||  || 
+0x4289 || VAR || false ||  || division by 0.1
+0x428A || VAR || false || Celsius || division by 10
+0x428C || VAR || true || Celsius || division by 10
+0x428D || VAR ||  ||  || 
+0x4290 ||  ||  ||  || 
+0x4291 ||  ||  ||  || 
+0x4292 ||  ||  ||  || 
+0x4293 ||  ||  ||  || 
+0x4294 ||  ||  ||  || 
+0x4295 ||  ||  ||  || 
+0x4296 ||  ||  ||  || 
+0x4297 || VAR || true ||  || 
+0x4298 || VAR || true ||  || 
+0x4299 ||  ||  ||  || 
+0x429A ||  ||  ||  || 
+0x429B ||  ||  ||  || 
+0x429C ||  ||  ||  || 
+0x429F || VAR || false ||  || 
+0x42A1 || VAR || false ||  || 
+0x42A3 || VAR || false ||  || 
+0x42A5 || VAR || true || Celsius || division by 10
+0x42A6 || VAR || true || Celsius || division by 10
+0x42A7 || VAR || true || Celsius || division by 10
+0x42A8 || VAR || true || Celsius || division by 10
+0x42A9 || VAR || true || Celsius || division by 10
+0x42AA || VAR || true || Celsius || division by 10
+0x42AB || VAR || true || Celsius || division by 10
+0x42AC || VAR || true || Celsius || division by 10
+0x42AD || VAR || true || Celsius || division by 10
+0x42AE || VAR || true || Celsius || division by 10
+0x42AF || VAR || true || Celsius || division by 10
+0x42B0 || VAR || true || Celsius || division by 10
+0x42B1 || VAR || false ||  || 
+0x42B2 || VAR || false ||  || 
+0x42B3 || VAR || false ||  || 
+0x42C2 || VAR || true || Celsius || division by 10
+0x42C3 || VAR || true || Celsius || division by 10
+0x42C4 || VAR || true || kgfcm2 || division by 100
+0x42C5 || VAR || true || kgfcm2 || division by 100
+0x42C9 || VAR || true || Celsius || division by 10
+0x42CA || VAR || false ||  || 
+0x42CB || VAR || false ||  || 
+0x42CC || VAR || false ||  || 
+0x42CD || VAR || true || Celsius || division by 10
+0x42CE || VAR || false ||  || division by 60 (not documented in NASA.ptc)
+0x42CF || VAR || false || Enthalpy || division by 10
+0x42D0 || VAR || false ||  || 
+0x42D1 || VAR || false ||  || 
+0x42D2 || VAR || false ||  || 
+0x42D3 || VAR || false ||  || 
+0x42D4 || VAR || true || Celsius || division by 10
+0x42D6 || VAR || true || Celsius || division by 10
+0x42D7 || VAR || true || Celsius || division by 10
+0x42D8 || VAR || true || Celsius || division by 10
+0x42D9 || VAR || true || Celsius || division by 10
+0x42DB || VAR || false || Celsius || division by 10
+0x42DC || VAR || false || Celsius || division by 10
+0x42DD || VAR || false || Celsius || division by 10
+0x42DE || VAR || false || Celsius || division by 10
+0x42E8 || VAR || false ||  || division by 10
+0x42E9 || VAR || true ||  || division by 10
+0x42ED || VAR || true ||  || 
+0x42EE || VAR || true ||  || 
+0x42EF || VAR || true ||  || 
+0x42F0 || VAR || true || Celsius || division by 10
+0x42F1 || VAR ||  ||  || 
+0x4301 || VAR ||  ||  || 
+0x4302 || VAR || false || kW || division by 8.6
+0x4401 || LVAR ||  ||  || 
+0x4405 ||  ||  ||  || 
+0x4406 ||  ||  ||  || 
+0x4407 ||  ||  ||  || 
+0x440A || LVAR || false ||  || LogicalAnd 0x00000002 + division by 2
+0x440E || LVAR ||  ||  || 
+0x440F || LVAR ||  ||  || 
+0x4415 || LVAR || false ||  || 
+0x4418 || LVAR || false ||  || 
+0x441B || LVAR || false ||  || 
+0x441F || LVAR || false ||  || 
+0x4420 || LVAR || false ||  || 
+0x4423 || LVAR ||  ||  || 
+0x4424 || LVAR ||  ||  || 
+0x4426 || LVAR || false || kW || division by 1000
+0x4427 || LVAR || false || kW || division by 1000
+0x4604 || STR ||  ||  || 
+0x4608 || STR ||  ||  || 
+0x4612 || STR ||  ||  || 
+0x4619 || STR ||  ||  || 
+0x461A || STR ||  ||  || 
+0x461C || STR ||  ||  || 
+0x461D || STR ||  ||  || 
+0x461E || STR ||  ||  || 
+0x8000 || ENUM ||  ||  || 
+0x8001 || ENUM ||  ||  || 
+0x8002 || ENUM ||  ||  || 
+0x8003 || ENUM ||  ||  || 
+0x8005 || ENUM ||  ||  || 
+0x800D || ENUM ||  ||  || 
+0x8010 || ENUM ||  ||  || 
+0x8011 || ENUM ||  ||  || 
+0x8012 || ENUM ||  ||  || 
+0x8013 || ENUM ||  ||  || 
+0x8014 || ENUM ||  ||  || 
+0x8015 ||  ||  ||  || 
+0x8016 ||  ||  ||  || 
+0x8017 || ENUM ||  ||  || 
+0x8018 || ENUM ||  ||  || 
+0x8019 || ENUM ||  ||  || 
+0x801A || ENUM ||  ||  || 
+0x801F || ENUM ||  ||  || 
+0x8020 || ENUM ||  ||  || 
+0x8021 || ENUM ||  ||  || 
+0x8022 || ENUM ||  ||  || 
+0x8023 || ENUM ||  ||  || 
+0x8024 ||  ||  ||  || 
+0x8025 || ENUM ||  ||  || 
+0x8026 || ENUM ||  ||  || 
+0x8027 || ENUM ||  ||  || 
+0x802A || ENUM ||  ||  || 
+0x8031 || ENUM ||  ||  || 
+0x8032 || ENUM ||  ||  || 
+0x8033 || ENUM ||  ||  || 
+0x8034 || ENUM ||  ||  || 
+0x8037 || ENUM ||  ||  || 
+0x803B || ENUM ||  ||  || 
+0x803C || ENUM ||  ||  || 
+0x803F || ENUM ||  ||  || 
+0x8043 || ENUM ||  ||  || 
+0x8045 || ENUM ||  ||  || 
+0x8046 || ENUM ||  ||  || 
+0x8047 || ENUM ||  ||  || 
+0x8048 || ENUM ||  ||  || 
+0x8049 || ENUM ||  ||  || 
+0x804A || ENUM ||  ||  || 
+0x804B || ENUM ||  ||  || 
+0x804C || ENUM ||  ||  || 
+0x804D || ENUM ||  ||  || 
+0x804E || ENUM ||  ||  || 
+0x804F || ENUM ||  ||  || 
+0x8050 || ENUM ||  ||  || 
+0x8051 || ENUM ||  ||  || 
+0x8052 || ENUM ||  ||  || 
+0x8053 || ENUM ||  ||  || 
+0x8054 || ENUM ||  ||  || 
+0x8055 || ENUM ||  ||  || 
+0x8058 || ENUM ||  ||  || 
+0x8059 || ENUM ||  ||  || 
+0x805A || ENUM ||  ||  || 
+0x805B || ENUM ||  ||  || 
+0x805C || ENUM ||  ||  || 
+0x805D || ENUM ||  ||  || 
+0x805E || ENUM ||  ||  || 
+0x8061 || ENUM ||  ||  || 
+0x8062 ||  ||  ||  || 
+0x8063 || ENUM ||  ||  || 
+0x8065 || ENUM ||  ||  || 
+0x8066 || ENUM ||  ||  || 
+0x8077 || ENUM ||  ||  || 
+0x8078 || ENUM ||  ||  || 
+0x8079 || ENUM ||  ||  || 
+0x807A || ENUM ||  ||  || 
+0x807B || ENUM ||  ||  || 
+0x807C || ENUM ||  ||  || 
+0x807D || ENUM ||  ||  || 
+0x807E || ENUM ||  ||  || 
+0x807F || ENUM ||  ||  || 
+0x8081 || ENUM ||  ||  || 
+0x8083 || ENUM ||  ||  || 
+0x808C || ENUM ||  ||  || 
+0x808D || ENUM ||  ||  || 
+0x808E || ENUM || false ||  || LogicalAnd 0x0F
+0x808F || ENUM ||  ||  || 
+0x8092 || ENUM || false ||  || 
+0x8099 || ENUM || false ||  || 
+0x809C || ENUM ||  ||  || 
+0x809D || ENUM ||  ||  || 
+0x809E || ENUM ||  ||  || 
+0x80A5 || ENUM ||  ||  || 
+0x80A6 || ENUM ||  ||  || 
+0x80A7 || ENUM ||  ||  || 
+0x80A8 || ENUM ||  ||  || 
+0x80A9 || ENUM ||  ||  || 
+0x80AA || ENUM ||  ||  || 
+0x80AB || ENUM ||  ||  || 
+0x80AC ||  ||  ||  || 
+0x80AE || ENUM ||  ||  || 
+0x80AF || ENUM ||  ||  || 
+0x80B1 || ENUM ||  ||  || 
+0x80B2 || ENUM ||  ||  || 
+0x80B4 || ENUM ||  ||  || 
+0x80B6 || ENUM ||  ||  || 
+0x80B8 || ENUM ||  ||  || 
+0x80B9 || ENUM ||  ||  || 
+0x80BC || ENUM ||  ||  || 
+0x80BE || ENUM ||  ||  || 
+0x80C1 || ENUM ||  ||  || 
+0x80CE || ENUM ||  ||  || 
+0x80D7 || ENUM ||  ||  || 
+0x80D8 || ENUM ||  ||  || 
+0x8200 || VAR ||  ||  || 
+0x8201 || VAR ||  ||  || 
+0x8202 || VAR || false ||  || 
+0x8204 || VAR || true || Celsius || division by 10
+0x8206 || VAR || true || kgfcm2 || division by 10
+0x8208 || VAR || true || kgfcm2 || division by 10
+0x820A || VAR || true || Celsius || division by 10
+0x820C || VAR || true || Celsius || division by 10
+0x820E || VAR || true || Celsius || division by 10
+0x8210 ||  ||  ||  || 
+0x8217 || VAR || false ||  || division by 10
+0x8218 || VAR || true || Celsius || division by 10
+0x821A || VAR || true || Celsius || division by 10
+0x821C || VAR || true || Celsius || division by 10
+0x821E || VAR || true || Celsius || division by 10
+0x8220 || VAR || true || Celsius || division by 10
+0x8222 || VAR ||  ||  || 
+0x8223 || VAR || true || Celsius || division by 10
+0x8224 || VAR || true || Celsius || division by 10
+0x8225 || VAR || true || Celsius || division by 10
+0x8226 || VAR || false ||  || 
+0x8227 || VAR ||  ||  || 
+0x8228 ||  ||  ||  || 
+0x8229 || VAR || false ||  || 
+0x822A || VAR || false ||  || 
+0x822B || VAR || false ||  || 
+0x822C || VAR || false ||  || 
+0x822D || VAR || false ||  || 
+0x822E || VAR || false ||  || 
+0x822F ||  ||  ||  || 
+0x8230 || VAR ||  ||  || 
+0x8231 || VAR ||  ||  || 
+0x8233 || VAR ||  ||  || division by 8.6 (better 8.5 ?)
+0x8234 || VAR ||  ||  || 
+0x8235 || VAR || false ||  || 
+0x8236 || VAR || false ||  || 
+0x8237 || VAR || false ||  || 
+0x8238 || VAR || false ||  || 
+0x8239 || VAR ||  ||  || 
+0x823B || VAR || false ||  || 
+0x823C || VAR || false ||  || 
+0x823D || VAR || false ||  || 
+0x823E || VAR || false ||  || 
+0x823F || VAR || false ||  || appears when using S-NET pro 2 software 
+0x8240 ||  ||  ||  || 
+0x8241 ||  ||  ||  || 
+0x8243 || VAR ||  ||  || 
+0x8244 ||  ||  ||  || 
+0x8245 ||  ||  ||  || 
+0x8247 || VAR ||  ||  || 
+0x8248 || VAR ||  ||  || 
+0x8249 || VAR ||  ||  || 
+0x824B || VAR ||  ||  || 
+0x824C || VAR ||  ||  || 
+0x824F || VAR || false ||  || division by 10
+0x8254 || VAR || true || Celsius || division by 10
+0x8255 || VAR || true || Celsius || division by 10
+0x825A || VAR || true || Celsius || division by 10
+0x825B || VAR || true || Celsius || division by 10
+0x825C || VAR || true || Celsius || division by 10
+0x825D || VAR || true || Celsius || division by 10
+0x825E || VAR || true || Celsius || division by 10
+0x825F || VAR || true || Celsius || division by 10
+0x8260 || VAR || true || Celsius || division by 10
+0x8261 || VAR || true || Celsius || division by 10
+0x8262 || VAR || true || Celsius || division by 10
+0x8263 || VAR || true || Celsius || division by 10
+0x8264 || VAR || true || Celsius || division by 10
+0x8265 || VAR || true || Celsius || division by 10
+0x8266 || VAR || true || Celsius || division by 10
+0x8267 || VAR || true || Celsius || division by 10
+0x8268 || VAR || true || Celsius || division by 10
+0x826B || VAR || true || Celsius || division by 10
+0x826C || VAR || true || Celsius || division by 10
+0x826D || VAR || false ||  || 
+0x826E || VAR || false ||  || 
+0x826F || VAR || false ||  || 
+0x8270 || VAR || false ||  || 
+0x8271 || VAR || false ||  || 
+0x8272 || VAR || false ||  || 
+0x8273 || VAR || false ||  || 
+0x8274 || VAR || false ||  || 
+0x8275 || VAR || false ||  || 
+0x8276 || VAR || false ||  || 
+0x8277 || VAR || false ||  || 
+0x8278 || VAR || false ||  || 
+0x8279 ||  ||  ||  || 
+0x827A || VAR || true || Celsius || division by 10
+0x827E ||  ||  ||  || 
+0x827F ||  ||  ||  || 
+0x8280 || VAR || true || Celsius || division by 10
+0x8281 || VAR || true || Celsius || division by 10
+0x8282 ||  ||  ||  || 
+0x8287 || VAR || false || HP || 
+0x8298 ||  ||  ||  || 
+0x829A || VAR || true || Celsius || division by 10
+0x829B ||  ||  ||  || 
+0x829C ||  ||  ||  || 
+0x829D ||  ||  ||  || 
+0x829F || VAR || true || Celsius || division by 10
+0x82A0 || VAR || true || Celsius || division by 10
+0x82A2 || VAR ||  ||  || 
+0x82A3 ||  ||  ||  || 
+0x82A4 ||  ||  ||  || 
+0x82A6 ||  ||  ||  || 
+0x82A7 ||  ||  ||  || 
+0x82A8 || VAR || true ||  || division by 8.6 = kW
+0x82A9 || VAR || true ||  || 
+0x82AF || VAR || false ||  || 
+0x82B2 || VAR ||  ||  || 
+0x82B3 ||  ||  ||  || 
+0x82B5 || VAR ||  ||  || 
+0x82B6 || VAR ||  ||  || 
+0x82B8 || VAR || true || kgfcm2 || division by 10
+0x82B9 ||  ||  ||  || 
+0x82BA ||  ||  ||  || 
+0x82BC || VAR || true ||  || 
+0x82BD || VAR || true ||  || 
+0x82BE || VAR || true || Celsius || division by 10
+0x82BF || VAR || true || Celsius || division by 10
+0x82C0 ||  ||  ||  || 
+0x82C1 ||  ||  ||  || 
+0x82C2 ||  ||  ||  || 
+0x82C3 ||  ||  ||  || 
+0x82C4 ||  ||  ||  || 
+0x82C8 || VAR || true || Celsius || division by 10
+0x82C9 || VAR || true || Celsius || division by 10
+0x82CA || VAR || false ||  || 
+0x82CB || VAR || false ||  || division by 10
+0x82CC || VAR || false ||  || division by 10
+0x82CD || VAR || false ||  || 
+0x82CE || VAR || false ||  || division by 10
+0x82CF || VAR || false ||  || 
+0x82D0 || VAR || false || RPM || division by 10
+0x82D1 || VAR ||  ||  || 
+0x82D2 || VAR || false ||  || 
+0x82D3 ||  ||  ||  || 
+0x82D4 || VAR ||  ||  || 
+0x82D5 ||  ||  ||  || 
+0x82D6 ||  ||  ||  || 
+0x82D9 || VAR ||  ||  || 
+0x82DA || VAR ||  ||  || 
+0x82DB || VAR || false ||  || 
+0x82DC || VAR ||  ||  || 
+0x82DD || VAR ||  ||  || 
+0x82DE || VAR || true || Celsius || division by 10
+0x82DF || VAR || true || Celsius || division by 10
+0x82E0 || VAR || true || Celsius || division by 10
+0x82E1 || VAR ||  ||  || 
+0x82E3 || VAR || false || kW || division by 10.0
+0x82E7 || VAR || true || Celsius || division by 10.0
+0x82E8 || VAR || false ||  || 
+0x82E9 || VAR || true || Celsius || division by 10
+0x82ED || VAR ||  ||  || 
+0x82F5 || VAR || false ||  || 
+0x82F6 || VAR ||  ||  || 
+0x82F9 || VAR || true || Celsius || division by 10
+0x82FC || VAR || true ||  || -32767 up to 32767
+0x82FD || VAR ||  ||  || 
+0x8401 || LVAR ||  ||  || 
+0x8404 || LVAR ||  ||  || 
+0x8405 || LVAR || false ||  || 
+0x8406 || LVAR || false ||  || 
+0x8408 || LVAR ||  ||  || 
+0x8409 || LVAR ||  ||  || 
+0x840B || LVAR || false ||  || 
+0x840C || LVAR || false ||  || 
+0x840E ||  ||  ||  || 
+0x8411 || LVAR ||  ||  || 
+0x8412 ||  ||  ||  || 
+0x8413 || LVAR || false || kW || division by 1000
+0x8414 || LVAR || false || kW || division by 1000
+0x8415 || LVAR ||  ||  || 
+0x8416 || LVAR ||  ||  || 
+0x8417 || LVAR ||  ||  || 
+0x841A || LVAR ||  ||  || 
+0x841F || LVAR ||  ||  || 
+0x8601 || STR ||  ||  || 
+0x8608 || STR ||  ||  || 
+0x860A || STR ||  ||  || 
+0x860C || STR ||  ||  || 
+0x860D || STR ||  ||  || 
+0x860F || STR ||  ||  || 
+0x8613 || STR ||  ||  || 

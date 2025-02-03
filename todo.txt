@@ -1,0 +1,17 @@
+MQTT Publisher:
+    - nachrichten als einfache topic verschicken
+    - nachrichten als HASS Auto Discovery Topic verschicken
+
+Config File:
+    - definierne und parametrisieren *erledigt*
+    - parameter validierung *erledigt*
+    - alle hard coded parms auf configfile auslagern *erledigt*
+    - NasaDataRepository hier als Parm abspeichern *erledigt*
+
+MessageProcessor:
+    - ls singleton ausprobieren
+    - NasaDataRepository auf den ConfigValue abändern
+
+Allgemein:
+    - requierments.txt aufbauen *erledigt*
+    - als venv zum laufen bekommen
