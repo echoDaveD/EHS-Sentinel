@@ -108,8 +108,13 @@ async def process_buffer(buffer, dumpWriter):
                 logger.debug(f"Readed packet size: {packet_size}")
                 message = []
                 message.append(buffer[0])
-                for i in range(1, 256):
-                    message.append(buffer[i])
+                for i in range(1, 255):
+                    try:
+                        message.append(buffer[i])
+                    except IndexError as e:
+                        logger.warning(f"Index {i} out of bounds for buffer with length {len(buffer)}")
+                        i-=1
+
                     if i == packet_size: #buffer[i] == 0x34  or
                         hex_message = list(map(hex, message))
                         logger.debug(f"Complete Message: {i}/{packet_size}")
@@ -142,8 +147,6 @@ async def serialRead(config, dumpWriter):
     buffer = []
     loop = asyncio.get_running_loop()
 
-    # open serial port
-    print(dir(serial))  # Check if PARITY_NONE is listed
     transport, protocol = await serial_asyncio.create_serial_connection(
         loop, lambda: SerialReader(buffer), config.SERIAL['device'], baudrate=config.SERIAL['baudrate'], parity=serial.PARITY_EVEN,
                      stopbits=serial.STOPBITS_ONE,
