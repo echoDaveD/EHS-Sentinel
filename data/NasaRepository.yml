@@ -238,7 +238,7 @@ ENUM_IN_FSV_2094:
   arithmetic: ''
   description: ''
   enum:
-    0x01: 'no'
+    0x00: 'no'
     0x01: 'one'
     0x02: 'two'
     0x03: 'three'

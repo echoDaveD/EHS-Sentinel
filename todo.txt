@@ -9,8 +9,9 @@ Config File:
     - NasaDataRepository hier als Parm abspeichern *erledigt*
 
 MessageProcessor:
-    - ls singleton ausprobieren
-    - NasaDataRepository auf den ConfigValue abändern
+    - ls singleton ausprobieren *erledigt*
+    - NasaDataRepository auf den ConfigValue abändern *erledigt*
+    - calculating generated output (NASA_OUTDOOR_TW2_TEMP - NASA_OUTDOOR_TW1_TEMP) * (VAR_IN_FLOW_SENSOR_CALC/60) * 4190
 
 Allgemein:
     - requierments.txt aufbauen *erledigt*
