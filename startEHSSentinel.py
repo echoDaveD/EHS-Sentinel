@@ -113,9 +113,8 @@ async def process_buffer(buffer, dumpWriter):
                         message.append(buffer[i])
                     except IndexError as e:
                         logger.warning(f"Index {i} out of bounds for buffer with length {len(buffer)}")
-                        i-=1
 
-                    if i == packet_size: #buffer[i] == 0x34  or
+                    if i == packet_size-1: #buffer[i] == 0x34  or
                         hex_message = list(map(hex, message))
                         logger.debug(f"Complete Message: {i}/{packet_size}")
                         logger.debug(f"Last Byte readed: {buffer[i]}")
