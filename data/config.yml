@@ -1,0 +1,14 @@
+general:
+  nasaRepositoryFile: data/NasaRepository.yaml
+  silentMode: True
+serial:
+  device: /dev/ttyUSB0
+  baudrate: 9600
+mqtt:
+  broker-url: 111.111.11.1
+  broker-port: 1883
+  client-id: ehsSentinel
+  user: 
+  password:
+  useHassFormat: false
+  topicPrefix: ehsSentinel
