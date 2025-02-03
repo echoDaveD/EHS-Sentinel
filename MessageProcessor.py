@@ -102,6 +102,7 @@ class MessageProcessor:
         logger.debug(f"Packet size caluclated/readed: {len(message)}/{packet_size}")
         logger.debug(f"Processing message raw: {list(map(lambda x: f'{x:<4}', message))}")
         logger.debug(f"Processing message hex: {list(map(lambda x: f'{hex(x):<4}', message))}")
+        logger.debug(f"Source Address rasw: {message[3]} hex: {hex(message[3])}")
         sourceAdress = SoureAddressEnum(message[3])
         logger.debug(f"Source Address: {sourceAdress}")
 
