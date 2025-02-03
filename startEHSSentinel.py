@@ -84,7 +84,12 @@ async def main():
                 await process_message(line, dumpWriter)
     else:
         # we are not in dryrun mode, so we need to read from Serial Pimort
-        await serialRead(config, dumpWriter)
+        try:
+            await serialRead(config, dumpWriter)
+        except KeyboardInterrupt:
+            logger.error("Shutting down by User Interrupt...")
+            if dumpWriter:
+                dumpWriter.close()
 
 async def process_buffer(buffer, dumpWriter):
     """
@@ -162,7 +167,7 @@ async def serialRead(config, dumpWriter):
         while True:
             await asyncio.sleep(1)
     except KeyboardInterrupt:
-        logger.info("Shutting down by User Interrupt...")
+        logger.error("Shutting down by User Interrupt...")
         transport.close()
         if dumpWriter:
             dumpWriter.close()
