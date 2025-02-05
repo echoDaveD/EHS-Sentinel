@@ -6,6 +6,7 @@ from CustomLogger import logger, setSilent
 from EHSArguments import EHSArguments
 from EHSConfig import EHSConfig
 from EHSExceptions import MessageWarningException
+from MQTTClient import MQTTClient
 from enum import Enum
 
 class SoureAddressEnum(Enum):
@@ -86,6 +87,7 @@ class MessageProcessor:
         logger.debug("init MessageProcessor")
         self.config = EHSConfig()
         self.args = EHSArguments()
+        self.mqtt = MQTTClient()
 
     def process_message(self, message):
         """
@@ -138,9 +140,7 @@ class MessageProcessor:
             with open(self.config.GENERAL['protocolFile'], "a") as protWriter:
                 protWriter.write(f"{hex(msg['message_number']):<6},{msg['message_type']},{msgname:<50},{msgvalue}\n")
 
-        if not self.args.DRYRUN:
-            #TODO mqtt publisher here
-            pass
+        self.mqtt.publishMessage(msgname, msgvalue)
 
 
     def search_nasa_table(self, address):

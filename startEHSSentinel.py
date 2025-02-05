@@ -6,8 +6,10 @@ from MessageProcessor import MessageProcessor
 from EHSArguments import EHSArguments
 from EHSConfig import EHSConfig
 from EHSExceptions import MessageWarningException
+from MQTTClient import MQTTClient
 import aiofiles
 import json
+import struct
 
 # Get the logger
 from CustomLogger import logger, setSilent
@@ -69,6 +71,14 @@ async def main():
     # if Silent is true, set Silent Mode
     if config.GENERAL['silentMode']:
         setSilent()
+
+    mqtt = MQTTClient(broker=config.MQTT['broker-url'], 
+                      port=config.MQTT['broker-port'], 
+                      topicPrefix=config.MQTT['topicPrefix'],
+                      useHassFormat=config.MQTT['useHassFormat'],
+                      client_id=config.MQTT['client-id'], 
+                      username=config.MQTT['user'], 
+                      password=config.MQTT['password'])
 
     # if dryrun then we read from dumpfile
     if args.DRYRUN:
@@ -159,6 +169,58 @@ async def serialRead(config, args):
     except KeyboardInterrupt:
         logger.error("Shutting down by User Interrupt...")
         transport.close()
+
+async def serialWrite(transport, args):
+    """
+    Asynchronously writes data to the serial port.
+    This function sends data through the serial port at regular intervals.
+    Args:
+        transport: The serial transport object.
+        args: Additional arguments.
+    Returns:
+        None
+    """
+    while True:
+        await asyncio.sleep(30)
+        # Example data to write
+        packet = bytearray([
+            0x32,  # Packet Start Byte
+            0x00, 0x12,  # Packet Size
+            0x80,  # Source Address Class JIGTester
+            0xFF,  # Source Channel
+            0x00,  # Source Address
+            0x20,  # Destination Address Class Indoor
+            0x00,  # Destination Channel
+            0x00,  # Destination Address
+            0xC0,  # Packet Information + Protocol Version + Retry Count
+            0x11,  # Packet Type [Normal = 1] + Data Type [Read = 1]
+            0xF0,  # Packet Number
+            0x01,  # Capacity (Number of Messages)
+            0x42, 0x54,  # NASA Message Number
+            0x00, 0x00  # Message Payload (placeholder for return value)
+        ])
+        
+        # Compute CRC16 for packet (excluding start and end bytes)
+        crc = calculate_crc16(packet)
+        packet.extend(struct.pack('<H', crc))  # Append CRC16 (little-endian)
+        packet.append(0x34)  # Packet End Byte
+        #transport.write(packet)
+        logger.info(f"Sent data raw: {packet}")
+        logger.info(f"Sent data hex: {hex(packet)}")
+        await asyncio.sleep(5)  # Adjust the interval as needed
+        break
+
+def calculate_crc16(data: bytes) -> int:
+    """Calculate CRC16 using the standard CRC-16-CCITT (0xFFFF) polynomial."""
+    crc = 0xFFFF
+    for byte in data:
+        crc ^= byte
+        for _ in range(8):
+            if crc & 1:
+                crc = (crc >> 1) ^ 0xA001
+            else:
+                crc >>= 1
+    return crc
 
 async def process_message(buffer, args):
     """
