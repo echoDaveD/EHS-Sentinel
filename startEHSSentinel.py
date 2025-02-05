@@ -163,6 +163,9 @@ async def serialRead(config, args):
     # start the async buffer process
     asyncio.create_task(process_buffer(buffer, args))
 
+     # start the async buffer process
+    asyncio.create_task(serialWrite(transport, args))
+
     try:
         while True:
             await asyncio.sleep(1)
