@@ -62,7 +62,7 @@ class MQTTClient:
         self.client.publish(topic, payload, qos, retain)
     
     def publishMessage(self, name, value):
-        name = f"{self.topicPrefix.replace("/", "")}/{self._normalize_name(name)}"
+        name = f"{self.topicPrefix.replace('/', '')}/{self._normalize_name(name)}"
         if self.useHassFormat:
             pass
         else:
