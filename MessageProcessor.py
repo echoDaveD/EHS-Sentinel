@@ -88,8 +88,7 @@ class MessageProcessor:
         self.config = EHSConfig()
         self.args = EHSArguments()
         self.mqtt = MQTTClient()
-        self.NASA_EHSSENTINEL_HEAT_OUTPUT = None
-        self.NASA_EHSSENTINEL_COP = None
+        self.NASA_VAL_STORE = {}
 
     def process_message(self, message):
         """
@@ -144,20 +143,22 @@ class MessageProcessor:
 
         self.mqtt.publishMessage(msgname, msgvalue)
 
-        eval(f"self.{msgname} = {msgvalue}")
+        self.NASA_VAL_STORE['msgname'] = msgvalue
+
         if msgname in ['NASA_OUTDOOR_TW2_TEMP', 'NASA_OUTDOOR_TW1_TEMP', 'VAR_IN_FLOW_SENSOR_CALC']:
-            try:
-                if self.NASA_OUTDOOR_TW2_TEMP and self.NASA_OUTDOOR_TW1_TEMP and self.VAR_IN_FLOW_SENSOR_CALC:
-                    self.protocolMessage(self, {'message_number': 0x9999, 'message_type': 1},"NASA_EHSSENTINEL_HEAT_OUTPUT", eval(f"(self.NASA_OUTDOOR_TW2_TEMP - self.NASA_OUTDOOR_TW1_TEMP) * (self.VAR_IN_FLOW_SENSOR_CALC/60) * 4190"))
-            except NameError:
-                pass
+            if all(k in self.NASA_VAL_STORE for k in ['NASA_OUTDOOR_TW2_TEMP', 'NASA_OUTDOOR_TW1_TEMP', 'VAR_IN_FLOW_SENSOR_CALC']):
+                self.protocolMessage(self, 
+                                     {'message_number': 0x9999, 'message_type': 1},
+                                     "NASA_EHSSENTINEL_HEAT_OUTPUT", 
+                                     (self.NASA_VAL_STORE['NASA_OUTDOOR_TW2_TEMP'] - self.NASA_VAL_STORE['NASA_OUTDOOR_TW1_TEMP']) * (self.NASA_VAL_STORE['VAR_IN_FLOW_SENSOR_CALC']/60) * 4190)
 
         if msgname == 'NASA_EHSSENTINEL_COP':
-            try:
-                if self.NASA_EHSSENTINEL_HEAT_OUTPUT and self.NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT:
-                    self.protocolMessage(self, {'message_number': 0x9998, 'message_type': 1}, "NASA_EHSSENTINEL_COP", eval(f"self.NASA_EHSSENTINEL_HEAT_OUTPUT / self.NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT"))
-            except NameError:
-                pass
+            if all(k in self.NASA_VAL_STORE for k in ['NASA_EHSSENTINEL_HEAT_OUTPUT', 'NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT']):
+                self.protocolMessage(self, 
+                                        {'message_number': 0x9998, 'message_type': 1}, 
+                                        "NASA_EHSSENTINEL_COP",
+                                        self.NASA_VAL_STORE['NASA_EHSSENTINEL_HEAT_OUTPUT'] / self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT'])
+
 
     def search_nasa_table(self, address):
         """
