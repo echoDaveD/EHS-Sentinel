@@ -236,7 +236,7 @@ async def serialWrite(transport, args):
         transport.write(packet)
         logger.info(f"Sent data raw: {packet}")
         logger.info(f"Sent data raw: {[hex(x) for x in packet]}")
-        break
+        
 
 def calculate_crc16(data: bytes) -> int:
     """Calculate CRC16 using the standard CRC-16-CCITT (0xFFFF) polynomial."""
