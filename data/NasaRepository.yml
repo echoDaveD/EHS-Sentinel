@@ -1162,6 +1162,7 @@ ENUM_OUT_OP_CHECK_REF_STEP:
     0x06: 'RefStep_6'
     0x07: 'RefStep_7'
     0x08: 'RefStep_8'
+    0xFF: 'off'
   signed: 'false'
   type: ENUM
   unit: ''
@@ -2983,6 +2984,8 @@ NASA_OUTDOOR_DEFROST_STEP:
     0x02: 'Defrost stage 2'
     0x03: 'Defrost stage 3'
     0x04: 'Defrost stage 4'
+    0x05: 'Defrost stage 5'
+    0x06: 'Defrost stage 6'
     0x07: 'Defrost operation end stage'
     0xFF: 'No defrost operation'
   remarks: 1 Defrost stage 1, 2 Defrost stage 2, 3 Defrost stage 3, 4 Defrost stage
