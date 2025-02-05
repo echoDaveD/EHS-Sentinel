@@ -211,6 +211,7 @@ async def serialWrite(transport, args):
         logger.info(f"Sent data raw: {packet}")
         logger.info(f"Sent data raw: {[hex(x) for x in packet]}")
         await asyncio.sleep(5)  # Adjust the interval as needed
+        break
 
 def calculate_crc16(data: bytes) -> int:
     """Calculate CRC16 using the standard CRC-16-CCITT (0xFFFF) polynomial."""
