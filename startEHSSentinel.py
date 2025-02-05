@@ -186,9 +186,19 @@ async def serialWrite(transport, args):
     while True:
         await asyncio.sleep(10)
         # Example data to write
+
+        # Reverse the addition
+        original_combined_value = 20 - 2
+
+        # Extract the original bytes
+        lbyte1 = (original_combined_value >> 8) & 0xFF
+        lbyte2 = original_combined_value & 0xFF
+
+        byte1 = (0x42 >> 8) & 0xFF
+        byte2 = 0x54 & 0xFF
         packet = bytearray([
             0x32,  # Packet Start Byte
-            0x00, 0x12,  # Packet Size
+            lbyte1, lbyte2,  # Packet Size
             0x80,  # Source Address Class JIGTester
             0xFF,  # Source Channel
             0x00,  # Source Address
@@ -199,7 +209,7 @@ async def serialWrite(transport, args):
             0x11,  # Packet Type [Normal = 1] + Data Type [Read = 1]
             0xF0,  # Packet Number
             0x01,  # Capacity (Number of Messages)
-            0x42, 0x54,  # NASA Message Number
+            byte1, byte2,  # NASA Message Number
             0x00, 0x00  # Message Payload (placeholder for return value)
         ])
         
