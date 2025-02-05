@@ -143,7 +143,7 @@ class MessageProcessor:
 
         self.mqtt.publishMessage(msgname, msgvalue)
 
-        self.NASA_VAL_STORE['msgname'] = msgvalue
+        self.NASA_VAL_STORE[msgname] = msgvalue
 
         if msgname in ['NASA_OUTDOOR_TW2_TEMP', 'NASA_OUTDOOR_TW1_TEMP', 'VAR_IN_FLOW_SENSOR_CALC']:
             if all(k in self.NASA_VAL_STORE for k in ['NASA_OUTDOOR_TW2_TEMP', 'NASA_OUTDOOR_TW1_TEMP', 'VAR_IN_FLOW_SENSOR_CALC']):
