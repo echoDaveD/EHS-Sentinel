@@ -184,7 +184,7 @@ async def serialWrite(transport, args):
         None
     """
     while True:
-        await asyncio.sleep(10)
+        await asyncio.sleep(30)
         # Example data to write
         
         packet = bytearray([
@@ -212,6 +212,30 @@ async def serialWrite(transport, args):
         logger.info(f"Sent data raw: {packet}")
         logger.info(f"Sent data raw: {[hex(x) for x in packet]}")
         await asyncio.sleep(5)  # Adjust the interval as needed
+        packet = bytearray([
+            0x32,  # Packet Start Byte
+            0x00, 0x12,  # Packet Size
+            0x80,  # Source Address Class JIGTester
+            0xFF,  # Source Channel
+            0x00,  # Source Address
+            0x20,  # Destination Address Class Indoor
+            0x00,  # Destination Channel
+            0x00,  # Destination Address
+            0xC0,  # Packet Information + Protocol Version + Retry Count
+            0x11,  # Packet Type [Normal = 1] + Data Type [Read = 1]
+            0xF0,  # Packet Number
+            0x01,  # Capacity (Number of Messages)
+            0x42, 0x56,  # NASA Message Number
+            0x00, 0x00  # Message Payload (placeholder for return value)
+        ])
+        
+        # Compute CRC16 for packet (excluding start and end bytes)
+        crc = calculate_crc16(packet)
+        packet.extend(struct.pack('<H', crc))  # Append CRC16 (little-endian)
+        packet.append(0x34)  # Packet End Byte
+        transport.write(packet)
+        logger.info(f"Sent data raw: {packet}")
+        logger.info(f"Sent data raw: {[hex(x) for x in packet]}")
         break
 
 def calculate_crc16(data: bytes) -> int:
