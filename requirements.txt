@@ -3,3 +3,4 @@ pyserial>=3.5
 pyserial-asyncio>=0.6
 PyYAML>=6.0.2
 serial>=0.0.97
+paho-mqtt>=2.1.0
