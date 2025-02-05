@@ -30,8 +30,7 @@ class SerialReader(asyncio.Protocol):
         self.buffer = buffer
 
     def data_received(self, data):
-        for byte in data:
-            self.buffer.append(byte)
+        self.buffer.extend(data)
 
 async def main():
     """
