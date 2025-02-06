@@ -199,7 +199,7 @@ async def serial_write(writer):
             0x11,  # Packet Type [Normal = 1] + Data Type [Read = 1]
             0xF0,  # Packet Number
             0x01,  # Capacity (Number of Messages)
-            0x42, 0x54,  # NASA Message Number
+            0x42, 0x56,  # NASA Message Number
             0x00, 0x00  # Message Payload (placeholder for return value)
         ])
         
