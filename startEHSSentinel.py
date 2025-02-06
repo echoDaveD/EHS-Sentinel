@@ -113,7 +113,6 @@ async def process_buffer(buffer, args):
                 logger.debug(f"Readed packet size: {packet_size-1}")
                 if len(buffer) > packet_size-1:
                     message = []
-                    message.append(buffer[0])
                     for i in range(0, len(buffer)):
                         message.append(buffer[i])
                         if i == packet_size-1: #buffer[i] == 0x34  or
