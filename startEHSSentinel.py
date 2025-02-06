@@ -168,7 +168,7 @@ async def serialRead(config, args):
 
     # Read loop
     while True:
-        data = await reader.read()  # Read up to 100 bytes
+        data = await reader.read(100)  # Read up to 100 bytes
         if data:
             buffer.append(data)
             logger.debug(f"Received: {data.decode(errors='ignore').strip()}")
