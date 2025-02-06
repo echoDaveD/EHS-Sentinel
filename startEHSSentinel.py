@@ -132,7 +132,7 @@ async def process_buffer(buffer, args):
                 logger.debug(f"Received byte not a startbyte 0x32 {buffer[0]} / {hex(buffer[0])}")
                 buffer.pop(0)
 
-        await asyncio.sleep(0.1)
+        await asyncio.sleep(0.01)
 
 async def serialRead(config, args):
     """
@@ -173,7 +173,6 @@ async def serialRead(config, args):
         if data:
             buffer.extend(data)
             logger.debug(f"Received: {[hex(x) for x in data]}")
-        await asyncio.sleep(0.5)
 
 async def serial_write(writer):
     """
