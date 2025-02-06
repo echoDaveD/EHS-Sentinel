@@ -150,29 +150,31 @@ async def serialRead(config, args):
     buffer = []
     loop = asyncio.get_running_loop()
 
-    transport, protocol = await serial_asyncio.create_serial_connection(
-        loop, lambda: SerialReader(buffer), config.SERIAL['device'], baudrate=config.SERIAL['baudrate'], parity=serial.PARITY_EVEN,
-                     stopbits=serial.STOPBITS_ONE,
-                     bytesize=serial.EIGHTBITS,
-                     rtscts=True,
-                     timeout=0
-
+    reader, writer = await serial_asyncio.open_serial_connection(
+                    loop, 
+                    config.SERIAL['device'], 
+                    baudrate=config.SERIAL['baudrate'], 
+                    parity=serial.PARITY_EVEN,
+                    stopbits=serial.STOPBITS_ONE,
+                    bytesize=serial.EIGHTBITS,
+                    rtscts=True,
+                    timeout=0
     )
 
     # start the async buffer process
-    asyncio.create_task(process_buffer(buffer, args))
+    asyncio.create_task(process_buffer(buffer, args))# start the async buffer process
+    # start the async writer process
+    asyncio.create_task(serial_write(writer))
 
-     # start the async buffer process
-    asyncio.create_task(serialWrite(transport, args))
+    # Read loop
+    while True:
+        data = await reader.read()  # Read up to 100 bytes
+        if data:
+            buffer.append(data)
+            logger.debug(f"Received: {data.decode(errors='ignore').strip()}")
+        await asyncio.sleep(0.5)
 
-    try:
-        while True:
-            await asyncio.sleep(1)
-    except KeyboardInterrupt:
-        logger.error("Shutting down by User Interrupt...")
-        transport.close()
-
-async def serialWrite(transport, args):
+async def serial_write(writer):
     """
     Asynchronously writes data to the serial port.
     This function sends data through the serial port at regular intervals.
@@ -207,34 +209,11 @@ async def serialWrite(transport, args):
         crc = calculate_crc16(packet)
         packet.extend(struct.pack('<H', crc))  # Append CRC16 (little-endian)
         packet.append(0x34)  # Packet End Byte
-        transport.write(packet)
+        writer.write(packet)
+        await writer.drain()
         logger.info(f"Sent data raw: {packet}")
         logger.info(f"Sent data raw: {[hex(x) for x in packet]}")
-        await asyncio.sleep(5)  # Adjust the interval as needed
-        packet = bytearray([
-            0x32,  # Packet Start Byte
-            0x00, 0x12,  # Packet Size
-            0x80,  # Source Address Class JIGTester
-            0xFF,  # Source Channel
-            0x00,  # Source Address
-            0x20,  # Destination Address Class Indoor
-            0x00,  # Destination Channel
-            0x00,  # Destination Address
-            0xC0,  # Packet Information + Protocol Version + Retry Count
-            0x11,  # Packet Type [Normal = 1] + Data Type [Read = 1]
-            0xF0,  # Packet Number
-            0x01,  # Capacity (Number of Messages)
-            0x42, 0x56,  # NASA Message Number
-            0x00, 0x00  # Message Payload (placeholder for return value)
-        ])
-        
-        # Compute CRC16 for packet (excluding start and end bytes)
-        crc = calculate_crc16(packet)
-        packet.extend(struct.pack('<H', crc))  # Append CRC16 (little-endian)
-        packet.append(0x34)  # Packet End Byte
-        transport.write(packet)
-        logger.info(f"Sent data raw: {packet}")
-        logger.info(f"Sent data raw: {[hex(x) for x in packet]}")
+        await asyncio.sleep(1)  # Adjust the interval as needed
         
 
 def calculate_crc16(data: bytes) -> int:
