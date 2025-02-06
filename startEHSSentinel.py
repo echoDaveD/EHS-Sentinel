@@ -213,7 +213,7 @@ async def serial_write(writer, reader):
         logger.info(f"Sent data raw: {[hex(x) for x in packet]}")
         try:
             response = await reader.readuntil(b'\x34')  # Read until 0x34
-            logger.debug(f"Response: {[hex(x) for x in responsed]}")
+            logger.debug(f"Sent Data Response: {[hex(x) for x in response]}")
         except asyncio.TimeoutError:
             logger.debug("No response received within timeout")
         await asyncio.sleep(1)  # Adjust the interval as needed
