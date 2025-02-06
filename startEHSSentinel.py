@@ -168,7 +168,7 @@ async def serialRead(config, args):
 
     # Read loop
     while True:
-        data = await reader.readuntil(b'0x34')  # Read up to 100 bytes
+        data = await reader.readuntil(b'\x34')  # Read up to 100 bytes
         if data:
             buffer.extend(data)
             logger.debug(f"Received: {[hex(x) for x in data]}")
