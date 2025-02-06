@@ -160,7 +160,7 @@ class MessageProcessor:
             if all(k in self.NASA_VAL_STORE for k in ['NASA_EHSSENTINEL_HEAT_OUTPUT', 'NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT']):
                 self.protocolMessage({'message_number': 0x9998, 'message_type': 1}, 
                                         "NASA_EHSSENTINEL_COP",
-                                        round(self.NASA_VAL_STORE['NASA_EHSSENTINEL_HEAT_OUTPUT'] / self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT'], 2))
+                                        round(self.NASA_VAL_STORE['NASA_EHSSENTINEL_HEAT_OUTPUT'] / self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT'], 2)/1000.)
 
 
     def search_nasa_table(self, address):

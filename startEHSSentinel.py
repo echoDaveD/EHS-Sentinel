@@ -10,27 +10,12 @@ from MQTTClient import MQTTClient
 import aiofiles
 import json
 import struct
+import binascii
 
 # Get the logger
 from CustomLogger import logger, setSilent
 
 version = "0.1SNAPSHOT"
-
-class SerialReader(asyncio.Protocol):
-    """
-    SerialReader is an asyncio.Protocol implementation that reads data from a serial connection and appends it to a buffer.
-    Attributes:
-        buffer (list): A list to store the received bytes.
-    Methods:
-        data_received(data):
-            Called when data is received. Appends each byte of the received data to the buffer.
-    """
-    
-    def __init__(self, buffer):
-        self.buffer = buffer
-
-    def data_received(self, data):
-        self.buffer.extend(data)
 
 async def main():
     """
@@ -167,7 +152,7 @@ async def serialRead(config, args):
 
     # Read loop
     while True:
-        data = await reader.readline()  # Read up to 100 bytes
+        data = await reader.readuntil(b'\x34')  # Read up to end of next message 0x34
         if data:
             buffer.extend(data)
             logger.debug(f"Received: {[hex(x) for x in data]}")
@@ -187,8 +172,8 @@ async def serial_write(writer, reader):
         # Example data to write
         
         packet = bytearray([
-            0x32,  # Packet Start Byte
-            0x00, 0x12,  # Packet Size
+            #0x32,  # Packet Start Byte
+            #0x00, 0x12,  # Packet Size
             0x80,  # Source Address Class JIGTester
             0xFF,  # Source Channel
             0x00,  # Source Address
@@ -202,20 +187,17 @@ async def serial_write(writer, reader):
             0x42, 0x56,  # NASA Message Number
             0x00, 0x00  # Message Payload (placeholder for return value)
         ])
-        
-        # Compute CRC16 for packet (excluding start and end bytes)
-        crc = calculate_crc16(packet)
-        packet.extend(struct.pack('<H', crc))  # Append CRC16 (little-endian)
-        packet.append(0x34)  # Packet End Byte
-        writer.write(packet)
+
+        crc=binascii.crc_hqx(packet, 0)
+        # NOTE: include length of CRC(2) and length of length field(2) in the 
+        #       total length, exclude SF/TF of total length 
+        final_packet = struct.pack(">BH", 0x32, len(packet)+2+2) + packet + struct.pack(">HB", crc, 0x34)
+        # ['0x32', '0x0', '0x12', '0x80', '0xff', '0x0', '0x20', '0x0', '0x0', '0xc0', '0x11', '0xf0', '0x1', '0x42', '0x56', '0x0', '0x0', '0xf9', '0x65', '0x34']
+
+        writer.write(final_packet)
         await writer.drain()
-        logger.info(f"Sent data raw: {packet}")
-        logger.info(f"Sent data raw: {[hex(x) for x in packet]}")
-        try:
-            response = await reader.readuntil(b'\x34')  # Read until 0x34
-            logger.debug(f"Sent Data Response: {[hex(x) for x in response]}")
-        except asyncio.TimeoutError:
-            logger.debug("No response received within timeout")
+        logger.info(f"Sent data raw: {final_packet}")
+        logger.info(f"Sent data raw: {[hex(x) for x in final_packet]}")
         await asyncio.sleep(1)  # Adjust the interval as needed
         
 
