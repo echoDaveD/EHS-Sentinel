@@ -156,7 +156,7 @@ class MessageProcessor:
                                                 * 4190
                                             ), 4))
 
-        if msgname == 'NASA_EHSSENTINEL_COP':
+        if msgname in ('NASA_EHSSENTINEL_HEAT_OUTPUT', 'NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT'):
             if all(k in self.NASA_VAL_STORE for k in ['NASA_EHSSENTINEL_HEAT_OUTPUT', 'NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT']):
                 self.protocolMessage({'message_number': 0x9998, 'message_type': 1}, 
                                         "NASA_EHSSENTINEL_COP",

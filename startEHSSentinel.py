@@ -163,7 +163,7 @@ async def serialRead(config, args):
     # start the async buffer process
     asyncio.create_task(process_buffer(buffer, args))# start the async buffer process
     # start the async writer process
-    asyncio.create_task(serial_write(writer))
+    asyncio.create_task(serial_write(writer, reader))
 
     # Read loop
     while True:
@@ -172,7 +172,7 @@ async def serialRead(config, args):
             buffer.extend(data)
             logger.debug(f"Received: {[hex(x) for x in data]}")
 
-async def serial_write(writer):
+async def serial_write(writer, reader):
     """
     Asynchronously writes data to the serial port.
     This function sends data through the serial port at regular intervals.
@@ -211,6 +211,11 @@ async def serial_write(writer):
         await writer.drain()
         logger.info(f"Sent data raw: {packet}")
         logger.info(f"Sent data raw: {[hex(x) for x in packet]}")
+        try:
+            response = await reader.readuntil(b'\x34')  # Read until 0x34
+            logger.debug(f"Response: {[hex(x) for x in responsed]}")
+        except asyncio.TimeoutError:
+            logger.debug("No response received within timeout")
         await asyncio.sleep(1)  # Adjust the interval as needed
         
 
