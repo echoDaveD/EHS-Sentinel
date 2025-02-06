@@ -106,6 +106,7 @@ async def process_buffer(buffer, args):
 
     while True:
         if buffer:
+            logger.debug(f"Buffersize: {len(buffer)}")
             if buffer[0] == 0x32:
                 logger.debug("Start Byte recognized")
                 packet_size = ((buffer[1] << 8) | buffer[2]) +2
