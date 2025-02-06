@@ -151,8 +151,8 @@ async def serialRead(config, args):
     loop = asyncio.get_running_loop()
 
     reader, writer = await serial_asyncio.open_serial_connection(
-                    loop, 
-                    config.SERIAL['device'], 
+                    loop=loop, 
+                    url=config.SERIAL['device'], 
                     baudrate=config.SERIAL['baudrate'], 
                     parity=serial.PARITY_EVEN,
                     stopbits=serial.STOPBITS_ONE,
