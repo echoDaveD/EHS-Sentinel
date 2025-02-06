@@ -168,7 +168,7 @@ async def serial_write(writer, reader):
         None
     """
     while True:
-        await asyncio.sleep(30)
+        await asyncio.sleep(5)
         # Example data to write
         
         packet = bytearray([
@@ -193,13 +193,12 @@ async def serial_write(writer, reader):
         #       total length, exclude SF/TF of total length 
         final_packet = struct.pack(">BH", 0x32, len(packet)+2+2) + packet + struct.pack(">HB", crc, 0x34)
         # ['0x32', '0x0', '0x12', '0x80', '0xff', '0x0', '0x20', '0x0', '0x0', '0xc0', '0x11', '0xf0', '0x1', '0x42', '0x56', '0x0', '0x0', '0xf9', '0x65', '0x34']
-
+        # ['0x32', '0x0', '0x12', '0x80', '0xff', '0x0', '0x20', '0x0', '0x0', '0xc0', '0x11', '0xf0', '0x1', '0x42', '0x56', '0x0', '0x0', '0x38', '0xc6', '0x34']
         writer.write(final_packet)
         await writer.drain()
         logger.info(f"Sent data raw: {final_packet}")
         logger.info(f"Sent data raw: {[hex(x) for x in final_packet]}")
         await asyncio.sleep(1)  # Adjust the interval as needed
-        
 
 def calculate_crc16(data: bytes) -> int:
     """Calculate CRC16 using the standard CRC-16-CCITT (0xFFFF) polynomial."""

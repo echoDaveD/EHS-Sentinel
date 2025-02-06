@@ -171,3 +171,5 @@ cython_debug/
 .pypirc
 /config.yml
 prot.csv
+helpertils/serial.py
+helpertils/test.py
