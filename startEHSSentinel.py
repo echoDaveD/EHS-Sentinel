@@ -111,28 +111,27 @@ async def process_buffer(buffer, args):
                 logger.debug("Start Byte recognized")
                 packet_size = ((buffer[1] << 8) | buffer[2]) +2
                 logger.debug(f"Readed packet size: {packet_size-1}")
-                message = []
-                message.append(buffer[0])
-                for i in range(1, 255):
-                    try:
+                if len(buffer) < packet_size-1:
+                    message = []
+                    message.append(buffer[0])
+                    for i in range(0, len(buffer)):
                         message.append(buffer[i])
-                    except IndexError as e:
-                        logger.warning(f"Index {i} out of bounds for buffer with length {len(buffer)}")
-
-                    if i == packet_size-1: #buffer[i] == 0x34  or
-                        hex_message = list(map(hex, message))
-                        logger.debug(f"Complete Message: {i}/{packet_size-1}")
-                        logger.debug(f"Last Byte readed: {hex(buffer[i])}")
-                        logger.debug(f"message raw: {message}")
-                        logger.debug(f"        hex: {hex_message}")
-                        await process_message(message, args)
-                        del buffer[0:i]
-                        break
+                        if i == packet_size-1: #buffer[i] == 0x34  or
+                            hex_message = list(map(hex, message))
+                            logger.debug(f"Complete Message: {i}/{packet_size-1}")
+                            logger.debug(f"Last Byte readed: {hex(buffer[i])}")
+                            logger.debug(f"message raw: {message}")
+                            logger.debug(f"        hex: {hex_message}")
+                            await process_message(message, args)
+                            del buffer[0:i]
+                            break
+                else:
+                    logger.debug(f"Buffer to small to read hole packet, wait... buffer size {len(buffer)} packet size {packet_size}")
             else:
                 logger.debug(f"Received byte not a startbyte 0x32 {buffer[0]} / {hex(buffer[0])}")
                 buffer.pop(0)
 
-        await asyncio.sleep(0.01)
+        await asyncio.sleep(0.03)
 
 async def serialRead(config, args):
     """
