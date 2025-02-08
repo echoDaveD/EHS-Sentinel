@@ -244,8 +244,9 @@ class NASAPacket:
                 or the payload size exceeds 255 bytes.
         """
 
-        if depth > capacity or len(msg_rest) == 0:
+        if depth > capacity or len(msg_rest) <= 2:
             return return_list
+        
         message_number = (msg_rest[0] << 8) | msg_rest[1]
         message_type = (message_number & 1536) >> 9
 

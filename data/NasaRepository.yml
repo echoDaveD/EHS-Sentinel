@@ -3255,7 +3255,7 @@ NASA_OUTDOOR_HEATING_PERCENT:
   unit: ''
 NASA_OUTDOOR_HIGH_PRESS:
   address: '0x8206'
-  arithmetic: (value / 10) 0.980665
+  arithmetic: (value / 10) * 0.980665
   description: High pressure
   remarks: ''
   signed: 'true'
