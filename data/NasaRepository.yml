@@ -1694,7 +1694,7 @@ NASA_COOL_SET_DISCHARGE:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_CURRENT_DISCHARGE:
   address: '0x420B'
   arithmetic: value / 10
@@ -1702,7 +1702,7 @@ NASA_CURRENT_DISCHARGE:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_CURRENT_TEMP:
   address: '0x4203'
   arithmetic: value / 10
@@ -1710,7 +1710,7 @@ NASA_CURRENT_TEMP:
   remarks: 'Room temperature for zone #1'
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_CYCLEOPTION:
   address: '0x0603'
   arithmetic: ''
@@ -1742,7 +1742,7 @@ NASA_DHW_MAX_SETTEMPLIMIT:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_DHW_MIN_SETTEMPLIMIT:
   address: '0x4253'
   arithmetic: value / 10
@@ -1750,7 +1750,7 @@ NASA_DHW_MIN_SETTEMPLIMIT:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_DHW_OPMODE:
   address: '0x4066'
   arithmetic: ''
@@ -1981,7 +1981,7 @@ NASA_EVA_IN_TEMP:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_EVA_OUT_TEMP:
   address: '0x4206'
   arithmetic: value / 10
@@ -1989,7 +1989,7 @@ NASA_EVA_OUT_TEMP:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_FANSPEED:
   address: '0x4006'
   arithmetic: ''
@@ -2064,7 +2064,7 @@ NASA_HEAT_SET_DISCHARGE:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_HUMIDITY_PERCENT:
   address: '0x4038'
   arithmetic: ''
@@ -2102,7 +2102,7 @@ NASA_INDOOR_ABLE_FUNCTION:
   unit: ''
 NASA_INDOOR_ABSOLUTE_CAPACITY:
   address: '0x4212'
-  arithmetic: value / 8.6
+  arithmetic: value / 8.5
   description: ''
   remarks: ''
   signed: 'false'
@@ -2118,7 +2118,7 @@ NASA_INDOOR_AIRCLEANFAN_CURRENT_RPM:
   unit: ''
 NASA_INDOOR_CAPACITY:
   address: '0x4211'
-  arithmetic: value / 8.6
+  arithmetic: value / 8.5
   description: Capacity
   remarks: ''
   signed: 'false'
@@ -2131,7 +2131,7 @@ NASA_INDOOR_COOL_MAX_SETTEMP_ROOM:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_INDOOR_COOL_MAX_SETTEMP_WATEROUT:
   address: '0x424A'
   arithmetic: value / 10
@@ -2139,7 +2139,7 @@ NASA_INDOOR_COOL_MAX_SETTEMP_WATEROUT:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_INDOOR_COOL_MIN_SETTEMP_ROOM:
   address: '0x424D'
   arithmetic: value / 10
@@ -2147,7 +2147,7 @@ NASA_INDOOR_COOL_MIN_SETTEMP_ROOM:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_INDOOR_COOL_MIN_SETTEMP_WATEROUT:
   address: '0x424B'
   arithmetic: value / 10
@@ -2155,7 +2155,7 @@ NASA_INDOOR_COOL_MIN_SETTEMP_WATEROUT:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_INDOOR_CURRENT_EEV2:
   address: '0x4218'
   arithmetic: ''
@@ -2198,7 +2198,7 @@ NASA_INDOOR_DHW_CURRENT_TEMP:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_INDOOR_DHW_SET_TEMP:
   address: '0x4235'
   arithmetic: value / 10
@@ -2206,7 +2206,7 @@ NASA_INDOOR_DHW_SET_TEMP:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_INDOOR_HEAT_MAX_SETTEMP_ROOM:
   address: '0x4250'
   arithmetic: value / 10
@@ -2214,7 +2214,7 @@ NASA_INDOOR_HEAT_MAX_SETTEMP_ROOM:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_INDOOR_HEAT_MAX_SETTEMP_WATEROUT:
   address: '0x424E'
   arithmetic: value / 10
@@ -2222,7 +2222,7 @@ NASA_INDOOR_HEAT_MAX_SETTEMP_WATEROUT:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_INDOOR_HEAT_MIN_SETTEMP_ROOM:
   address: '0x4251'
   arithmetic: value / 10
@@ -2230,7 +2230,7 @@ NASA_INDOOR_HEAT_MIN_SETTEMP_ROOM:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_INDOOR_HEAT_MIN_SETTEMP_WATEROUT:
   address: '0x424F'
   arithmetic: value / 10
@@ -2238,7 +2238,7 @@ NASA_INDOOR_HEAT_MIN_SETTEMP_WATEROUT:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_INDOOR_MODEL_INFORMATION:
   address: '0x4229'
   arithmetic: ''
@@ -2270,7 +2270,7 @@ NASA_INDOOR_OUTER_TEMP:
   remarks: same value as 0x8204 (sensor_airout) ?
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_INDOOR_OUT_GOING:
   address: '0x406D'
   arithmetic: ''
@@ -2319,7 +2319,7 @@ NASA_INDOOR_SETTEMP_WATEROUT:
   remarks: variable waterOutSetTemp
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_INDOOR_SETTING_MIN_MAX_TEMP:
   address: '0x4608'
   arithmetic: ''
@@ -2335,7 +2335,7 @@ NASA_INDOOR_WATER_IN_TEMP:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_INDOOR_WATER_OUT_TEMP:
   address: '0x4238'
   arithmetic: value / 10
@@ -2343,7 +2343,7 @@ NASA_INDOOR_WATER_OUT_TEMP:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_INODDR_CURRENT_EEV1:
   address: '0x4217'
   arithmetic: ''
@@ -2402,7 +2402,7 @@ NASA_LEVEL_COOL_HIGH_TEMP_LIMIT:
   remarks: ''
   signed: 'false'
   type: LVAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_LEVEL_COOL_LOW_TEMP_LIMIT:
   address: '0x0412'
   arithmetic: (value & 0xFFFF0000u) >> 16) / 10.0
@@ -2410,7 +2410,7 @@ NASA_LEVEL_COOL_LOW_TEMP_LIMIT:
   remarks: ''
   signed: 'false'
   type: LVAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_LEVEL_FANSPEED:
   address: '0x040C'
   arithmetic: ''
@@ -2426,7 +2426,7 @@ NASA_LEVEL_HEAT_HIGH_TEMP_LIMIT:
   remarks: ''
   signed: 'false'
   type: LVAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_LEVEL_HEAT_LOW_TEMP_LIMIT:
   address: '0x0414'
   arithmetic: (value & 0xFFFF0000u) >> 16) / 10.0
@@ -2434,7 +2434,7 @@ NASA_LEVEL_HEAT_LOW_TEMP_LIMIT:
   remarks: ''
   signed: 'false'
   type: LVAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_LEVEL_KEEP_ALTERNATIVE_MODE:
   address: '0x040F'
   arithmetic: ''
@@ -2506,7 +2506,7 @@ NASA_MODIFIED_CURRENT_TEMP:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_NAME:
   address: '0x0605'
   arithmetic: ''
@@ -2579,7 +2579,7 @@ NASA_OUTDOOR_ACCUM_TEMP:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_APPEARANCE_RPM:
   address: '0x82D0'
   arithmetic: value / 10
@@ -2628,7 +2628,7 @@ NASA_OUTDOOR_CBOX_TEMP:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_CCH1_STATUS:
   address: '0x8013'
   arithmetic: ''
@@ -2830,7 +2830,7 @@ NASA_OUTDOOR_COND_OUT1:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_COND_OUT2:
   address: '0x82BF'
   arithmetic: value / 10
@@ -2838,7 +2838,7 @@ NASA_OUTDOOR_COND_OUT2:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_COND_OVER_COOL:
   address: '0x82CE'
   arithmetic: value / 10
@@ -2886,6 +2886,8 @@ NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM:
   arithmetic: value / 1000
   description: Outdoor unit cumulative power consumption. Sum of modules
   remarks: value is Wh, so do div 1000
+  state_class: total_increasing
+  device_class: "measurement"
   signed: 'false'
   type: LVAR
   unit: kW
@@ -3003,7 +3005,7 @@ NASA_OUTDOOR_DISCHARGE_TEMP1:
     refrigerant as it exits the compressor and enters the condenser.
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_DISCHARGE_TEMP2:
   address: '0x820C'
   arithmetic: value / 10
@@ -3011,7 +3013,7 @@ NASA_OUTDOOR_DISCHARGE_TEMP2:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_DISCHARGE_TEMP3:
   address: '0x820E'
   arithmetic: value / 10
@@ -3019,7 +3021,7 @@ NASA_OUTDOOR_DISCHARGE_TEMP3:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_DOUBLE_TUBE:
   address: '0x821C'
   arithmetic: value / 10
@@ -3027,7 +3029,7 @@ NASA_OUTDOOR_DOUBLE_TUBE:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_DRED_LEVEL:
   address: '0x80A7'
   arithmetic: ''
@@ -3059,7 +3061,7 @@ NASA_OUTDOOR_ENGINE_WATER_TEMP:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_ERVCOUNT:
   address: '0x0208'
   arithmetic: ''
@@ -3075,7 +3077,7 @@ NASA_OUTDOOR_EVA_IN:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_EVIEEV:
   address: '0x822E'
   arithmetic: ''
@@ -3102,7 +3104,7 @@ NASA_OUTDOOR_EVI_IN:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_EVI_OUT:
   address: '0x8220'
   arithmetic: value / 10
@@ -3110,7 +3112,7 @@ NASA_OUTDOOR_EVI_OUT:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_EVI_SOL1_VALVE:
   address: '0x8022'
   arithmetic: ''
@@ -3253,12 +3255,12 @@ NASA_OUTDOOR_HEATING_PERCENT:
   unit: ''
 NASA_OUTDOOR_HIGH_PRESS:
   address: '0x8206'
-  arithmetic: value / 10
+  arithmetic: (value / 10) 0.980665
   description: High pressure
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: kgf/cm2
+  unit: bar
 NASA_OUTDOOR_HIGH_PRESS_TEMP:
   address: '0x829F'
   arithmetic: value / 10
@@ -3266,7 +3268,7 @@ NASA_OUTDOOR_HIGH_PRESS_TEMP:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_HOTGAS1:
   address: '0x8017'
   arithmetic: ''
@@ -3340,7 +3342,7 @@ NASA_OUTDOOR_IPM_TEMP1:
     and control algorithms that optimize the motor's performance.
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_IPM_TEMP2:
   address: '0x8255'
   arithmetic: value / 10
@@ -3348,7 +3350,7 @@ NASA_OUTDOOR_IPM_TEMP2:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_IPM_TEMP3:
   address: '0x82C4'
   arithmetic: ''
@@ -3397,12 +3399,12 @@ NASA_OUTDOOR_LOGICAL_DEFROST_STEP:
   unit: ''
 NASA_OUTDOOR_LOW_PRESS:
   address: '0x8208'
-  arithmetic: value / 10
+  arithmetic: (value / 10) * 0.980665
   description: low pressure
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: kgf/cm2
+  unit: bar
 NASA_OUTDOOR_LOW_PRESS_TEMP:
   address: '0x82A0'
   arithmetic: value / 10
@@ -3410,7 +3412,7 @@ NASA_OUTDOOR_LOW_PRESS_TEMP:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_MAINEEV1:
   address: '0x8229'
   arithmetic: ''
@@ -3475,12 +3477,12 @@ NASA_OUTDOOR_MCUCOUNT:
   unit: ''
 NASA_OUTDOOR_MID_PRESS:
   address: '0x82B8'
-  arithmetic: value / 10
+  arithmetic: (value / 10) * 0.980665
   description: medium pressure
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: kgf/cm2
+  unit: bar
 NASA_OUTDOOR_MODELINFORMATION:
   address: '0x860D'
   arithmetic: ''
@@ -3596,7 +3598,7 @@ NASA_OUTDOOR_OPERATION_CAPA_SUM:
     \ shows current ACTIVE Power Capacity"
   signed: ''
   type: VAR
-  unit: ''
+  unit: 'kW'
 NASA_OUTDOOR_OPERATION_MODE:
   address: '0x8003'
   arithmetic: ''
@@ -3687,7 +3689,7 @@ NASA_OUTDOOR_OUT_TEMP:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_OVER_COOL:
   address: '0x82CD'
   arithmetic: ''
@@ -3797,7 +3799,7 @@ NASA_OUTDOOR_SUCTION1_TEMP:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_SUCTION2_TEMP:
   address: '0x829A'
   arithmetic: value / 10
@@ -3805,7 +3807,7 @@ NASA_OUTDOOR_SUCTION2_TEMP:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_SUCTION_OVER_HEAT:
   address: '0x82CB'
   arithmetic: value / 10
@@ -3840,7 +3842,7 @@ NASA_OUTDOOR_TARGET_DISCHARGE:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_TEST_OP_COMPLETE:
   address: '0x8046'
   arithmetic: ''
@@ -3859,7 +3861,7 @@ NASA_OUTDOOR_TOP_SENSOR_TEMP1:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_TOP_SENSOR_TEMP2:
   address: '0x8281'
   arithmetic: value / 10
@@ -3867,7 +3869,7 @@ NASA_OUTDOOR_TOP_SENSOR_TEMP2:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_TOP_SENSOR_TEMP3:
   address: '0x8282'
   arithmetic: ''
@@ -3883,7 +3885,7 @@ NASA_OUTDOOR_TW1_TEMP:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_TW2_TEMP:
   address: '0x82E0'
   arithmetic: value / 10
@@ -3891,7 +3893,7 @@ NASA_OUTDOOR_TW2_TEMP:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_UPL_TP_COOL:
   address: '0x82D5'
   arithmetic: ''
@@ -3923,7 +3925,7 @@ NASA_OUTDOOR_WATER_TEMP:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_OUTDOOR_WATER_VALVE:
   address: '0x8026'
   arithmetic: ''
@@ -4435,7 +4437,7 @@ NASA_SET_TEMP:
     = 4247
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 NASA_SIMPIM_PASSWORD:
   address: '0x0619'
   arithmetic: ''
@@ -4703,7 +4705,7 @@ STR_OUT_REF_CHECK_INFO:
   unit: ''
 VAR_IN_CAPACITY_VENTILATION_REQUEST:
   address: '0x4302'
-  arithmetic: value / 8.6
+  arithmetic: value / 8.5
   description: ''
   remarks: ''
   signed: 'false'
@@ -4716,23 +4718,23 @@ VAR_IN_CHILLER_EXTERNAL_TEMPERATURE:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_CHILLER_PHE_IN_P:
   address: '0x42C4'
-  arithmetic: value / 100
+  arithmetic: (value / 100) * 0.980665
   description: Inlet pressure
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: kgf/cm2
+  unit: bar
 VAR_IN_CHILLER_PHE_OUT_P:
   address: '0x42C5'
-  arithmetic: value / 100
+  arithmetic: (value / 100) * 0.980665
   description: Outlet pressure
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: kgf/cm2
+  unit: bar
 VAR_IN_DUST_SENSOR_PM10_0_VALUE:
   address: '0x42D1'
   arithmetic: ''
@@ -4820,7 +4822,7 @@ VAR_IN_FSV_2011:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_2012:
   address: '0x4255'
   arithmetic: value / 10
@@ -4828,7 +4830,7 @@ VAR_IN_FSV_2012:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_2021:
   address: '0x4256'
   arithmetic: value / 10
@@ -4836,7 +4838,7 @@ VAR_IN_FSV_2021:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_2022:
   address: '0x4257'
   arithmetic: value / 10
@@ -4844,7 +4846,7 @@ VAR_IN_FSV_2022:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_2031:
   address: '0x4258'
   arithmetic: value / 10
@@ -4852,7 +4854,7 @@ VAR_IN_FSV_2031:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_2032:
   address: '0x4259'
   arithmetic: value / 10
@@ -4860,7 +4862,7 @@ VAR_IN_FSV_2032:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_2051:
   address: '0x425A'
   arithmetic: value / 10
@@ -4868,7 +4870,7 @@ VAR_IN_FSV_2051:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_2052:
   address: '0x425B'
   arithmetic: value / 10
@@ -4876,7 +4878,7 @@ VAR_IN_FSV_2052:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_2061:
   address: '0x425C'
   arithmetic: value / 10
@@ -4884,7 +4886,7 @@ VAR_IN_FSV_2061:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_2062:
   address: '0x425D'
   arithmetic: value / 10
@@ -4892,7 +4894,7 @@ VAR_IN_FSV_2062:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_2071:
   address: '0x425E'
   arithmetic: value / 10
@@ -4900,7 +4902,7 @@ VAR_IN_FSV_2071:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_2072:
   address: '0x425F'
   arithmetic: value / 10
@@ -4908,7 +4910,7 @@ VAR_IN_FSV_2072:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_3021:
   address: '0x4260'
   arithmetic: value / 10
@@ -4916,7 +4918,7 @@ VAR_IN_FSV_3021:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_3022:
   address: '0x4261'
   arithmetic: value / 10
@@ -4924,7 +4926,7 @@ VAR_IN_FSV_3022:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_3023:
   address: '0x4262'
   arithmetic: value / 10
@@ -4932,7 +4934,7 @@ VAR_IN_FSV_3023:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_3024:
   address: '0x4263'
   arithmetic: ''
@@ -4972,7 +4974,7 @@ VAR_IN_FSV_3033:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_3034:
   address: '0x4268'
   arithmetic: value / 10
@@ -4980,7 +4982,7 @@ VAR_IN_FSV_3034:
   remarks: not for EHS Mono HT Quiet
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_3043:
   address: '0x4269'
   arithmetic: ''
@@ -4996,7 +4998,7 @@ VAR_IN_FSV_3044:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_3045:
   address: '0x426B'
   arithmetic: ''
@@ -5052,7 +5054,7 @@ VAR_IN_FSV_4012:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_4013:
   address: '0x426E'
   arithmetic: value / 10
@@ -5060,7 +5062,7 @@ VAR_IN_FSV_4013:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_4014:
   address: '0x426F'
   arithmetic: value / 10
@@ -5068,7 +5070,7 @@ VAR_IN_FSV_4014:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_4024:
   address: '0x4270'
   arithmetic: value / 10
@@ -5076,7 +5078,7 @@ VAR_IN_FSV_4024:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_4025:
   address: '0x4271'
   arithmetic: value / 10
@@ -5084,7 +5086,7 @@ VAR_IN_FSV_4025:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_4033:
   address: '0x4272'
   arithmetic: value / 10
@@ -5092,7 +5094,7 @@ VAR_IN_FSV_4033:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_4042:
   address: '0x4286'
   arithmetic: value / 10
@@ -5100,7 +5102,7 @@ VAR_IN_FSV_4042:
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_4043:
   address: '0x4287'
   arithmetic: value / 10
@@ -5108,7 +5110,7 @@ VAR_IN_FSV_4043:
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_4045:
   address: '0x4288'
   arithmetic: ''
@@ -5132,7 +5134,7 @@ VAR_IN_FSV_4052:
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_5011:
   address: '0x4273'
   arithmetic: value / 10
@@ -5140,7 +5142,7 @@ VAR_IN_FSV_5011:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_5012:
   address: '0x4274'
   arithmetic: value / 10
@@ -5148,7 +5150,7 @@ VAR_IN_FSV_5012:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_5013:
   address: '0x4275'
   arithmetic: value / 10
@@ -5156,7 +5158,7 @@ VAR_IN_FSV_5013:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_5014:
   address: '0x4276'
   arithmetic: value / 10
@@ -5164,7 +5166,7 @@ VAR_IN_FSV_5014:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_5015:
   address: '0x4277'
   arithmetic: value / 10
@@ -5172,7 +5174,7 @@ VAR_IN_FSV_5015:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_5016:
   address: '0x4278'
   arithmetic: value / 10
@@ -5180,7 +5182,7 @@ VAR_IN_FSV_5016:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_5017:
   address: '0x4279'
   arithmetic: value / 10
@@ -5188,7 +5190,7 @@ VAR_IN_FSV_5017:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_5018:
   address: '0x427A'
   arithmetic: value / 10
@@ -5196,7 +5198,7 @@ VAR_IN_FSV_5018:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_5019:
   address: '0x427B'
   arithmetic: value / 10
@@ -5204,7 +5206,7 @@ VAR_IN_FSV_5019:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_5021:
   address: '0x427C'
   arithmetic: value / 10
@@ -5212,7 +5214,7 @@ VAR_IN_FSV_5021:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_5023:
   address: '0x42F0'
   arithmetic: value / 10
@@ -5220,7 +5222,7 @@ VAR_IN_FSV_5023:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_5031:
   address: '0x427D'
   arithmetic: ''
@@ -5244,7 +5246,7 @@ VAR_IN_FSV_5082:
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_5083:
   address: '0x42DC'
   arithmetic: value / 10
@@ -5252,7 +5254,7 @@ VAR_IN_FSV_5083:
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_5092:
   address: '0x42DD'
   arithmetic: value / 10
@@ -5260,7 +5262,7 @@ VAR_IN_FSV_5092:
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_FSV_5093:
   address: '0x42DE'
   arithmetic: value / 10
@@ -5268,7 +5270,7 @@ VAR_IN_FSV_5093:
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_MCC_GROUP_MAIN:
   address: '0x42B2'
   arithmetic: ''
@@ -5332,7 +5334,7 @@ VAR_IN_TEMP_ELECTRIC_HEATER_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_EVA2_IN_F:
   address: '0x42C2'
   arithmetic: value / 10
@@ -5340,7 +5342,7 @@ VAR_IN_TEMP_EVA2_IN_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_EVA2_OUT_F:
   address: '0x42C3'
   arithmetic: value / 10
@@ -5348,7 +5350,7 @@ VAR_IN_TEMP_EVA2_OUT_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_MIXING_VALVE_F:
   address: '0x428C'
   arithmetic: value / 10
@@ -5356,7 +5358,7 @@ VAR_IN_TEMP_MIXING_VALVE_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_PANEL_AIR_COOL1_F:
   address: '0x42A5'
   arithmetic: value / 10
@@ -5364,7 +5366,7 @@ VAR_IN_TEMP_PANEL_AIR_COOL1_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_PANEL_AIR_COOL2_F:
   address: '0x42A6'
   arithmetic: value / 10
@@ -5372,7 +5374,7 @@ VAR_IN_TEMP_PANEL_AIR_COOL2_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_PANEL_AIR_HEAT1_F:
   address: '0x42AB'
   arithmetic: value / 10
@@ -5380,7 +5382,7 @@ VAR_IN_TEMP_PANEL_AIR_HEAT1_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_PANEL_AIR_HEAT2_F:
   address: '0x42AC'
   arithmetic: value / 10
@@ -5388,7 +5390,7 @@ VAR_IN_TEMP_PANEL_AIR_HEAT2_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_PANEL_ROOM_COOL1_F:
   address: '0x42A7'
   arithmetic: value / 10
@@ -5396,7 +5398,7 @@ VAR_IN_TEMP_PANEL_ROOM_COOL1_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_PANEL_ROOM_COOL2_F:
   address: '0x42A8'
   arithmetic: value / 10
@@ -5404,7 +5406,7 @@ VAR_IN_TEMP_PANEL_ROOM_COOL2_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_PANEL_ROOM_HEAT1_F:
   address: '0x42AD'
   arithmetic: value / 10
@@ -5412,7 +5414,7 @@ VAR_IN_TEMP_PANEL_ROOM_HEAT1_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_PANEL_ROOM_HEAT2_F:
   address: '0x42AE'
   arithmetic: value / 10
@@ -5420,7 +5422,7 @@ VAR_IN_TEMP_PANEL_ROOM_HEAT2_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_PANEL_TARGET_COOL1_F:
   address: '0x42A9'
   arithmetic: value / 10
@@ -5428,7 +5430,7 @@ VAR_IN_TEMP_PANEL_TARGET_COOL1_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_PANEL_TARGET_COOL2_F:
   address: '0x42AA'
   arithmetic: value / 10
@@ -5436,7 +5438,7 @@ VAR_IN_TEMP_PANEL_TARGET_COOL2_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_PANEL_TARGET_HEAT1_F:
   address: '0x42AF'
   arithmetic: value / 10
@@ -5444,7 +5446,7 @@ VAR_IN_TEMP_PANEL_TARGET_HEAT1_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_PANEL_TARGET_HEAT2_F:
   address: '0x42B0'
   arithmetic: value / 10
@@ -5452,7 +5454,7 @@ VAR_IN_TEMP_PANEL_TARGET_HEAT2_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_TARGET_ZONE2_F:
   address: '0x42D6'
   arithmetic: value / 10
@@ -5460,7 +5462,7 @@ VAR_IN_TEMP_TARGET_ZONE2_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_WATER_IN2_F:
   address: '0x42CD'
   arithmetic: value / 10
@@ -5468,7 +5470,7 @@ VAR_IN_TEMP_WATER_IN2_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_WATER_LAW_F:
   address: '0x427F'
   arithmetic: value / 10
@@ -5476,7 +5478,7 @@ VAR_IN_TEMP_WATER_LAW_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_WATER_LAW_TARGET_F:
   address: '0x4248'
   arithmetic: value / 10
@@ -5484,7 +5486,7 @@ VAR_IN_TEMP_WATER_LAW_TARGET_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_WATER_OUT2_F:
   address: '0x4239'
   arithmetic: value / 10
@@ -5492,7 +5494,7 @@ VAR_IN_TEMP_WATER_OUT2_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_WATER_OUTLET_TARGET_ZONE2_F:
   address: '0x42D7'
   arithmetic: value / 10
@@ -5500,7 +5502,7 @@ VAR_IN_TEMP_WATER_OUTLET_TARGET_ZONE2_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_WATER_OUTLET_ZONE1_F:
   address: '0x42D8'
   arithmetic: value / 10
@@ -5508,7 +5510,7 @@ VAR_IN_TEMP_WATER_OUTLET_ZONE1_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_WATER_OUTLET_ZONE2_F:
   address: '0x42D9'
   arithmetic: value / 10
@@ -5516,7 +5518,7 @@ VAR_IN_TEMP_WATER_OUTLET_ZONE2_F:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_IN_TEMP_ZONE2_F:
   address: '0x42D4'
   arithmetic: value / 10
@@ -5524,7 +5526,7 @@ VAR_IN_TEMP_ZONE2_F:
   remarks: 'Room temperature for zone #2'
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_OUT_COMP_FREQ_RATE_CONTROL:
   address: '0x42F1'
   arithmetic: ''
@@ -5540,10 +5542,10 @@ VAR_OUT_CONTROL_DSH1:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_OUT_CONTROL_IDU_TOTAL_ABSCAPA:
   address: '0x82A8'
-  arithmetic: value / 8.6
+  arithmetic: value / 8.5
   description: ''
   remarks: ''
   signed: 'true'
@@ -5660,7 +5662,7 @@ VAR_OUT_MCU_SENSOR_SUBCOOLER_IN:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_OUT_MCU_SENSOR_SUBCOOLER_OUT:
   address: '0x826C'
   arithmetic: value / 10
@@ -5668,7 +5670,7 @@ VAR_OUT_MCU_SENSOR_SUBCOOLER_OUT:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_OUT_MCU_SUBCOOLER_EEV:
   address: '0x826D'
   arithmetic: ''
@@ -5692,7 +5694,7 @@ VAR_OUT_SENSOR_PFCM1:
   remarks: Min -54, Max 3000
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_OUT_SENSOR_PIPEIN1:
   address: '0x825F'
   arithmetic: value / 10
@@ -5700,7 +5702,7 @@ VAR_OUT_SENSOR_PIPEIN1:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_OUT_SENSOR_PIPEIN2:
   address: '0x8260'
   arithmetic: value / 10
@@ -5708,7 +5710,7 @@ VAR_OUT_SENSOR_PIPEIN2:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_OUT_SENSOR_PIPEIN3:
   address: '0x8261'
   arithmetic: value / 10
@@ -5716,7 +5718,7 @@ VAR_OUT_SENSOR_PIPEIN3:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_OUT_SENSOR_PIPEIN4:
   address: '0x8262'
   arithmetic: value / 10
@@ -5724,7 +5726,7 @@ VAR_OUT_SENSOR_PIPEIN4:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_OUT_SENSOR_PIPEIN5:
   address: '0x8263'
   arithmetic: value / 10
@@ -5732,7 +5734,7 @@ VAR_OUT_SENSOR_PIPEIN5:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_OUT_SENSOR_PIPEOUT1:
   address: '0x8264'
   arithmetic: value / 10
@@ -5740,7 +5742,7 @@ VAR_OUT_SENSOR_PIPEOUT1:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_OUT_SENSOR_PIPEOUT2:
   address: '0x8265'
   arithmetic: value / 10
@@ -5748,7 +5750,7 @@ VAR_OUT_SENSOR_PIPEOUT2:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_OUT_SENSOR_PIPEOUT3:
   address: '0x8266'
   arithmetic: value / 10
@@ -5756,7 +5758,7 @@ VAR_OUT_SENSOR_PIPEOUT3:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_OUT_SENSOR_PIPEOUT4:
   address: '0x8267'
   arithmetic: value / 10
@@ -5764,7 +5766,7 @@ VAR_OUT_SENSOR_PIPEOUT4:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_OUT_SENSOR_PIPEOUT5:
   address: '0x8268'
   arithmetic: value / 10
@@ -5772,7 +5774,7 @@ VAR_OUT_SENSOR_PIPEOUT5:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_OUT_SENSOR_SUCTION3_1SEC:
   address: '0x82F9'
   arithmetic: value / 10
@@ -5780,7 +5782,7 @@ VAR_OUT_SENSOR_SUCTION3_1SEC:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
 VAR_OUT_SENSOR_TOTAL_SUCTION:
   address: '0x82E7'
   arithmetic: value / 10.0
@@ -5788,4 +5790,20 @@ VAR_OUT_SENSOR_TOTAL_SUCTION:
   remarks: Min -41, Max 150
   signed: 'true'
   type: VAR
-  unit: °C
+  unit: "\u00b0C"
+NASA_EHSSENTINEL_COP:
+  address: '0x9998'
+  arithmetic: ''
+  description: Current COP
+  remarks: Custom Measurment
+  signed: 'true'
+  type: VAR
+  unit: ''
+NASA_EHSSENTINEL_HEAT_OUTPUT:
+  address: '0x9999'
+  arithmetic: ''
+  description: Current generated Heat Output
+  remarks: Custom Measurment
+  signed: 'true'
+  type: VAR
+  unit: "kW"

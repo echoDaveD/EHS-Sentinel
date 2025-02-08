@@ -82,6 +82,22 @@ class MessageProcessor:
                 logger.warning(f"Message not Found in NASA repository: {hexmsg:<6} Type: {msg.packet_message_type} Payload: {msg.packet_payload}")
 
     def protocolMessage(self, msg: NASAMessage, msgname, msgvalue):
+        """
+        Processes a protocol message by logging, writing to a protocol file, publishing via MQTT, 
+        and updating internal value store. Additionally, it calculates and processes specific 
+        derived values based on certain message names.
+        Args:
+            msg (NASAMessage): The NASA message object containing packet information.
+            msgname (str): The name of the message.
+            msgvalue (Any): The value of the message.
+        Side Effects:
+            - Logs the message details.
+            - Appends the message details to a protocol file if configured.
+            - Publishes the message via MQTT.
+            - Updates the internal NASA value store with the message value.
+            - Calculates and processes derived values for specific message names.
+        """
+
         logger.info(f"Message number: {hex(msg.packet_message):<6} {msgname:<50} Type: {msg.packet_message_type} Payload: {msgvalue}")
 
         if self.config.GENERAL['protocolFile'] is not None:
@@ -108,7 +124,6 @@ class MessageProcessor:
                 self.protocolMessage(NASAMessage(packet_message=0x9998, packet_message_type=1), 
                                         "NASA_EHSSENTINEL_COP",
                                         round((self.NASA_VAL_STORE['NASA_EHSSENTINEL_HEAT_OUTPUT'] / self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT']/1000.), 3))
-
 
     def search_nasa_table(self, address):
         """

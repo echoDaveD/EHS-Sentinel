@@ -1,7 +1,6 @@
 general:
   nasaRepositoryFile: data/NasaRepository.yml
   silentMode: True
-  protocolFile: prot.csv
 serial:
   device: /dev/ttyUSB0
   baudrate: 9600

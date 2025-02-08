@@ -168,17 +168,22 @@ class MQTTClient:
         """
         logger.debug(f"MQTT Publish Topic: {topic} payload: {payload}")
         self.client.publish(f"{topic}", payload, qos, retain)
-        time.sleep(1)
+        #time.sleep(0.1)
     
     def publish_message(self, name, value):
         """
-        Publishes a message to the MQTT broker.
+        Publishes a message to an MQTT topic.
+        This method constructs the appropriate MQTT topic based on the provided
+        name and value, and then publishes the value to that topic. If Home Assistant
+        auto-discovery is enabled, it will also handle the auto-discovery configuration.
         Args:
-            name (str): The name of the message to be published.
-            value (Any): The value of the message to be published.
-        Returns:
-            None
+            name (str): The name of the sensor or device.
+            value (int, float, bool): The value to be published. If the value is a float,
+                                      it will be rounded to 2 decimal places.
+        Raises:
+            ValueError: If the value is not of type int, float, or bool.
         """
+        
 
         newname = f"{self._normalize_name(name)}"
         
@@ -189,65 +194,92 @@ class MQTTClient:
                 if all([en.lower() in ['on', 'off'] for en in enum]):
                     sensor_type = "binary_sensor"
             topicname = f"{self.config.MQTT['homeAssistantAutoDiscoverTopic']}/{sensor_type}/{self.DEVICE_ID}_{newname.lower()}/state"
-
             if name not in self.known_topics:
                 self.auto_discover_hass(topicname, name, newname, sensor_type)
 
-           # if sensor_type == "sensor":
-           #     value = json.dumps(f"{value}"})
         else:
             topicname = f"{self.topicPrefix.replace('/', '')}/{newname}"
+        
+        if isinstance(value, (int, float)) and not isinstance(value, bool):
+            value = round(value, 2) if isinstance(value, float) and "." in f"{value}" else value
 
         self._publish(topicname, value, qos=2, retain=True)
 
     def auto_discover_hass(self, topicname, nameraw, namenorm, sensor_type):
+        """
+        Automatically discovers and configures a Home Assistant entity for the given sensor or switch.
+        Args:
+            topicname (str): The MQTT topic name.
+            nameraw (str): The raw name of the sensor or switch.
+            namenorm (str): The normalized name of the sensor or switch.
+            sensor_type (str): The type of the sensor or switch (e.g., "sensor", "switch").
+        Returns:
+            None
+        This function creates a Home Assistant discovery message for the specified sensor or switch,
+        including its configuration and device information. It publishes the configuration to the
+        MQTT broker and updates the list of known topics and devices.
+        """
 
-        device = {
-            "identifiers": [self.DEVICE_ID],
-            "name": "EHS-Sentinel",
-            "manufacturer": "Samsung",
-            "model": "EHS-Sentinel",
-            "sw_version": "1.0.0"
-        }
-
-        entity = {
-            "name": f"Samsung EHS - {namenorm}",
-            "object_id": f"{self.DEVICE_ID}_{namenorm.lower()}",
-            #"unique_id": f"{self.DEVICE_ID}_{nameraw.lower()}",
-            "state_topic": f"{topicname}"
+        entity = { namenorm: {
+                "name": f"{namenorm}",
+                "object_id": f"{self.DEVICE_ID}_{namenorm.lower()}",
+                "unique_id": f"{self.DEVICE_ID}_{nameraw.lower()}",
+                "platform": sensor_type,
+                "value_template": "{{ value }}",
+                "state_topic": f"{self.config.MQTT['homeAssistantAutoDiscoverTopic']}/{sensor_type}/{self.DEVICE_ID}_{namenorm.lower()}/state",
+            }
         }
 
         if sensor_type == "sensor":
-            entity['value_template'] = "{{ value }}"
             if len(self.config.NASA_REPO[nameraw]['unit']) > 0:
-                entity['unit_of_measurement'] = self.config.NASA_REPO[nameraw]['unit']
-                match entity['unit_of_measurement']:
-                    case '°C':
-                        entity['device_class'] = "temperature"
+                entity[namenorm]['unit_of_measurement'] = self.config.NASA_REPO[nameraw]['unit']
+                match entity[namenorm]['unit_of_measurement']:
+                    case "\u00b0C":
+                        entity[namenorm]['device_class'] = "temperature"
                     case '%':
-                        entity['device_class'] = "power_factor"
+                        entity[namenorm]['device_class'] = "power_factor"
                     case 'kW':
-                        entity['device_class'] = "power"
+                        entity[namenorm]['device_class'] = "power"
                     case 'rpm':
-                        entity['device_class'] = "speed"
-                    case 'kgf/cm2':
-                        entity['device_class'] = "pressure"
+                        entity[namenorm]['device_class'] = "speed"
+                    case 'bar':
+                        entity[namenorm]['device_class'] = "pressure"
                     case 'HP':
-                        entity['device_class'] = "power"
+                        entity[namenorm]['device_class'] = "power"
                     case _:
-                        entity['device_class'] = None
-
+                        entity[namenorm]['device_class'] = None
         else:
-            entity['payload_on'] = "ON"
-            entity['payload_off'] = "OFF"
+            entity[namenorm]['payload_on'] = "ON"
+            entity[namenorm]['payload_off'] = "OFF"
+
+        if 'state_class' in self.config.NASA_REPO[nameraw]:
+            entity[namenorm]['state_class'] = self.config.NASA_REPO[nameraw]['state_class']
         
-        entity['device'] = device
+        if 'device_class' in self.config.NASA_REPO[nameraw]:
+            entity[namenorm]['device_class'] = self.config.NASA_REPO[nameraw]['device_class']
+
+
+        device = {
+            "device": {
+                "identifiers": self.DEVICE_ID,
+                "name": "Samsung EHS",
+                "manufacturer": "Samsung",
+                "model": "Mono HQ Quiet",
+                "sw_version": "1.0.0"
+            },
+            "origin": {
+                "name": "EHS-Sentinel",
+                "support_url": "https://github.com/echoDaveD/EHS-Sentinel"
+            },
+            "components": entity,
+            "qos": 2
+        }
 
         logger.debug(f"Auto Discovery HomeAssistant Message: ")
-        logger.debug(f"{entity}")
+        logger.debug(f"{device}")
 
-        self._publish(f"{self.config.MQTT['homeAssistantAutoDiscoverTopic']}/{sensor_type}/{self.DEVICE_ID}/config",
-                      json.dumps(entity),
+        self._publish(f"{self.config.MQTT['homeAssistantAutoDiscoverTopic']}/device/{self.DEVICE_ID}/config",
+                      json.dumps(device, ensure_ascii=False),
                       qos=2, 
                       retain=True)
 
