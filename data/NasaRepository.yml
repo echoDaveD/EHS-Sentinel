@@ -11,9 +11,9 @@ ENUM_IN_2WAY_VALVE:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
+    0x00: 'OFF'
     0x01: 'CV'
-    0x03: 'Boiler'
+    0x03: 'BOILER'
   remarks: 0 Off, 2 CV, 3 Boiler
   signed: ''
   type: ENUM
@@ -25,8 +25,8 @@ ENUM_IN_3WAY_VALVE_2:
   remarks: ''
   signed: ''
   enum:
-    0x00: 'Room'
-    0x01: 'Tank'
+    0x00: 'ROOM'
+    0x01: 'TANK'
   type: ENUM
   unit: ''
 ENUM_IN_BACKUP_HEATER:
@@ -34,9 +34,9 @@ ENUM_IN_BACKUP_HEATER:
   arithmetic: ''
   description: Backup heater mode
   enum:
-    0x00: 'Off'
-    0x01: 'Step 1'
-    0x02: 'Step 2'
+    0x00: 'OFF'
+    0x01: 'STEP 1'
+    0x02: 'STEP 2'
   remarks: 0 Off, 1 Step 1, 2 Step 2
   signed: ''
   type: ENUM
@@ -46,8 +46,8 @@ ENUM_IN_BOOSTER_HEATER:
   arithmetic: ''
   description: Booster heater
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: 0 Off, 1 On
   signed: ''
   type: ENUM
@@ -57,8 +57,8 @@ ENUM_IN_CHILLER_EXT_WATER_OUT_INPUT:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -91,8 +91,8 @@ ENUM_IN_CHILLER_WATERLAW_ON_OFF:
   remarks: ''
   signed: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   type: ENUM
   unit: ''
 ENUM_IN_CHILLER_WATERLAW_SENSOR:
@@ -100,8 +100,8 @@ ENUM_IN_CHILLER_WATERLAW_SENSOR:
   arithmetic: ''
   description: DMV Chiller Option
   enum:
-    0x00: 'Outdoor'
-    0x01: 'Room'
+    0x00: 'OUTDOOR'
+    0x01: 'ROOM'
   remarks: ''
   signed: ''
   type: ENUM
@@ -111,10 +111,10 @@ ENUM_IN_CHILLLER_SETTING_SILENT_LEVEL:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'None'
-    0x01: 'Level 1'
-    0x02: 'Level 2'
-    0x03: 'Level 3'
+    0x00: 'NONE'
+    0x01: 'LEVEL 1'
+    0x02: 'LEVEL 2'
+    0x03: 'LEVEL 3'
   remarks: ''
   signed: ''
   type: ENUM
@@ -124,8 +124,8 @@ ENUM_IN_DIFFUSER_OPERATION_POWER:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -135,8 +135,8 @@ ENUM_IN_ENTER_ROOM_CONTROL_USED:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Disbale'
-    0x01: 'Enable'
+    0x00: 'DISABLE'
+    0x01: 'ENABLE'
   remarks: ''
   signed: ''
   type: ENUM
@@ -146,8 +146,8 @@ ENUM_IN_ENTHALPY_CONTROL_STATE:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -157,8 +157,8 @@ ENUM_IN_ERROR_HISTORY_CLEAR_FOR_HASS:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -168,32 +168,34 @@ ENUM_IN_FAN_MODE_REAL:
   arithmetic: ''
   description: Indoor unit current air volume
   enum:
-    0x01: 'Low'
-    0x02: 'Mid'
-    0x03: 'High'
-    0x04: 'Turbo'
-    0x0A: 'AutoLow'
-    0x0B: 'AutoMid'
-    0x0C: 'AutoHigh'
+    0x01: 'LOW'
+    0x02: 'MID'
+    0x03: 'HIGH'
+    0x04: 'TURBO'
+    0x0A: 'AUTOLOW'
+    0x0B: 'AUTOMID'
+    0x0C: 'AUTOHIGH'
     0x0D: 'UL'
     0x0E: 'LL'
     0x0F: 'HH'
-    0x10: 'Speed'
-    0x11: 'NaturalLow'
-    0x12: 'NaturalMid'
-    0x13: 'NaturalHigh'
-    0xFE: 'Off'
+    0x10: 'SPEED'
+    0x11: 'NATURALLOW'
+    0x12: 'NATURALMID'
+    0x13: 'NATURALHIGH'
+    0xFE: 'OFF'
   remarks: ''
   signed: ''
   type: ENUM
   unit: ''
-ENUM_IN_FREE_COOLING_STATE:
+enum:
+  0x00: 'OFF'
+  0x01: 'ON'
   address: '0x410D'
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -488,8 +490,8 @@ ENUM_IN_FSV_5061:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -543,8 +545,8 @@ ENUM_IN_GAS_LEVEL:
   arithmetic: ''
   description: ''
   ernum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -606,8 +608,8 @@ ENUM_IN_MTFC:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -617,8 +619,8 @@ ENUM_IN_OPERATION_POWER_ZONE1:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -640,7 +642,7 @@ ENUM_IN_PV_CONTACT_STATE:
   description: PV Control
   enum:
     0x00: 'Disable'
-    0x01: 'Enable'
+    0x01: 'ENABLE'
   remarks: ''
   signed: ''
   type: ENUM
@@ -650,8 +652,8 @@ ENUM_IN_QUIET_MODE:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -682,8 +684,8 @@ ENUM_IN_SG_READY_MODE_STATE:
   arithmetic: ''
   description: Smart Grid
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -693,7 +695,7 @@ ENUM_IN_STATE_AUTO_STATIC_PRESSURE_RUNNING:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
+    0x00: 'OFF'
     0x01: 'Complete'
     0x02: 'Running'
   remarks: ''
@@ -705,8 +707,8 @@ ENUM_IN_STATE_FLOW_CHECK:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -716,8 +718,8 @@ ENUM_IN_STATE_THERMO:
   arithmetic: ''
   description: Thermo On/Off
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: 0 Off, 1 On
   signed: ''
   type: ENUM
@@ -727,8 +729,8 @@ ENUM_IN_STATE_WATER_PUMP:
   arithmetic: ''
   description: Water pump
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: 0 Off, 1 On
   signed: ''
   type: ENUM
@@ -749,7 +751,7 @@ ENUM_IN_THERMOSTAT1:
   arithmetic: ''
   description: Hydro_ExternalThermostat
   enum:
-    0x00: 'Off'
+    0x00: 'OFF'
     0x01: 'Cool'
     0x02: 'Heat'
   remarks: 0 Off, 1 Cool, 2 Heat
@@ -761,7 +763,7 @@ ENUM_IN_THERMOSTAT2:
   arithmetic: ''
   description: Hydro_ExternalThermostat2
   enum:
-    0x00: 'Off'
+    0x00: 'OFF'
     0x01: 'Cool'
     0x02: 'Heat'
   remarks: 0 Off, 1 Cool, 2 Heat
@@ -773,8 +775,8 @@ ENUM_IN_THERMOSTAT_WATER_HEATER:
   arithmetic: ''
   description: Hydro_WaterHeaterThermostat
   enumy:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -792,8 +794,8 @@ ENUM_IN_WATER_VALVE_1_ON_OFF:
   arithmetic: ''
   description: FCU Kit
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -804,8 +806,8 @@ ENUM_IN_WATER_VALVE_2_ON_OFF:
   description: ''
   remarks: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   signed: ''
   type: ENUM
   unit: ''
@@ -850,8 +852,8 @@ ENUM_OUT_INSTALL_ODU_COUNT:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: 'false'
   type: ENUM
@@ -861,8 +863,8 @@ ENUM_OUT_LOAD_A2A_VALVE:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -872,8 +874,8 @@ ENUM_OUT_LOAD_OIL_BYPASS1:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -883,8 +885,8 @@ ENUM_OUT_LOAD_OIL_BYPASS2:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -894,8 +896,8 @@ ENUM_OUT_LOAD_PHEHEATER:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -905,8 +907,8 @@ ENUM_OUT_MCU_LOAD_COOL_A:
   arithmetic: ''
   description: MCU
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -916,8 +918,8 @@ ENUM_OUT_MCU_LOAD_COOL_B:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -927,8 +929,8 @@ ENUM_OUT_MCU_LOAD_COOL_C:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -938,8 +940,8 @@ ENUM_OUT_MCU_LOAD_COOL_D:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -949,8 +951,8 @@ ENUM_OUT_MCU_LOAD_COOL_E:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -960,8 +962,8 @@ ENUM_OUT_MCU_LOAD_COOL_F:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -971,8 +973,8 @@ ENUM_OUT_MCU_LOAD_HEAT_A:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -982,8 +984,8 @@ ENUM_OUT_MCU_LOAD_HEAT_B:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -993,8 +995,8 @@ ENUM_OUT_MCU_LOAD_HEAT_C:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -1004,8 +1006,8 @@ ENUM_OUT_MCU_LOAD_HEAT_D:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -1015,8 +1017,8 @@ ENUM_OUT_MCU_LOAD_HEAT_E:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -1026,8 +1028,8 @@ ENUM_OUT_MCU_LOAD_HEAT_F:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -1037,8 +1039,8 @@ ENUM_OUT_MCU_LOAD_LIQUID:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -1048,8 +1050,8 @@ ENUM_OUT_MCU_PORT0_INDOOR_ADDR:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -1059,8 +1061,8 @@ ENUM_OUT_MCU_PORT1_INDOOR_ADDR:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -1070,8 +1072,8 @@ ENUM_OUT_MCU_PORT2_INDOOR_ADDR:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -1081,8 +1083,8 @@ ENUM_OUT_MCU_PORT3_INDOOR_ADDR:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -1092,8 +1094,8 @@ ENUM_OUT_MCU_PORT4_INDOOR_ADDR:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -1103,8 +1105,8 @@ ENUM_OUT_MCU_PORT5_INDOOR_ADDR:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -1114,8 +1116,8 @@ ENUM_OUT_OPERATION_AUTO_INSPECT_STEP:
   arithmetic: ''
   description: Automatic check step
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -1125,7 +1127,7 @@ ENUM_OUT_OPERATION_SERVICE_OP:
   arithmetic: ''
   description: Indoor unit service operation steps
   enum:
-    0x00: 'Off'
+    0x00: 'OFF'
     0x02: 'Heating_Test_Run'
     0x03: 'Pump_Out'
     0x0D: 'Cooling_Test_Run'
@@ -1171,8 +1173,8 @@ ENUM_OUT_STATE_ACCUM_VALVE_ONOFF:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -1478,8 +1480,8 @@ NASA_AIRFLOW_LEFTRIGHT:
   arithmetic: ''
   description: Left and right wind direction settings/status
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: 0 Off, 1 On
   signed: ''
   type: ENUM
@@ -1489,8 +1491,8 @@ NASA_AIRFLOW_UPDOWN:
   arithmetic: ''
   description: Up and down wind direction setting/status
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -1532,8 +1534,8 @@ NASA_ALTERNATIVE_MODE:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: 0 Off, 9 On
   signed: ''
   type: ENUM
@@ -1663,8 +1665,8 @@ NASA_CONTROL_SILENCE:
   arithmetic: ''
   description: Silence mode
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: 0 Off, 1 On
   signed: ''
   type: ENUM
@@ -1775,8 +1777,8 @@ NASA_DHW_POWER:
   arithmetic: ''
   description: Water heater power
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: 0 Off, 1 On
   signed: ''
   type: ENUM
@@ -1786,7 +1788,7 @@ NASA_DHW_REFERENCE_TEMP:
   arithmetic: ''
   description: Hydro_ControlChoice_RoomTemp
   enum:
-    0x00: 'Room'
+    0x00: 'ROOM'
     0x01: 'Water out'
   remarks: 0 Room, 1 Water out. Variable isEhsSetTempWaterOut. See 0x4201 and 0x4247.
   signed: ''
@@ -1797,8 +1799,8 @@ NASA_DHW_VALVE:
   arithmetic: ''
   description: Hydro_3Way
   enum:
-    0x00: 'Room'
-    0x01: 'Tank'
+    0x00: 'ROOM'
+    0x01: 'TANK'
   remarks: 0 Room, 1 Tank
   signed: ''
   type: ENUM
@@ -1808,8 +1810,8 @@ NASA_DISCHARGE_TEMP_ENABLE:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: '0 Off, 1 On (rem: "DISCHAGE" is typo in NASA.ptc)'
   signed: ''
   type: ENUM
@@ -1959,8 +1961,8 @@ NASA_ERV_POWER:
   description: Ventilation operation mode
   remarks: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   signed: ''
   type: ENUM
   unit: ''
@@ -2011,8 +2013,8 @@ NASA_FILTER_WARNING:
   remarks: ''
   signed: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   type: ENUM
   unit: ''
 NASA_GATHER_INFORMATION:
@@ -2069,8 +2071,8 @@ NASA_HUMIDITY_PERCENT:
   description: ''
   remarks: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   signed: ''
   type: ENUM
   unit: ''
@@ -2185,8 +2187,8 @@ NASA_INDOOR_DEFROST_STATUS:
   remarks: 0 Off, 1 On
   signed: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   type: ENUM
   unit: ''
 NASA_INDOOR_DHW_CURRENT_TEMP:
@@ -2274,8 +2276,8 @@ NASA_INDOOR_OUT_GOING:
   arithmetic: ''
   description: Outing mode
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: 0 Off, 1 On
   signed: ''
   type: ENUM
@@ -2526,8 +2528,8 @@ NASA_OUTDOOR_4WAY2_VALVE:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -2537,8 +2539,8 @@ NASA_OUTDOOR_4WAY_VALVE:
   arithmetic: ''
   description: 4Way On/Off
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -2564,8 +2566,8 @@ NASA_OUTDOOR_ACCUM_RETURN_VALVE:
   arithmetic: ''
   description: ARV On/Off
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -2591,8 +2593,8 @@ NASA_OUTDOOR_BACKUP_OPERATION:
   arithmetic: ''
   description: Backup operation operation status On/Off
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -2602,8 +2604,8 @@ NASA_OUTDOOR_BASE_HEATER:
   arithmetic: ''
   description: Base heater On/Off state for EHS
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: 0 Off, 1 On
   signed: ''
   type: ENUM
@@ -2613,8 +2615,8 @@ NASA_OUTDOOR_CBOX_COOLING_FAN:
   arithmetic: ''
   description: DC Fan
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -2632,8 +2634,8 @@ NASA_OUTDOOR_CCH1_STATUS:
   arithmetic: ''
   description: CCH1 On/Off
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -2643,8 +2645,8 @@ NASA_OUTDOOR_CCH2_STATUS:
   arithmetic: ''
   description: CCH2 On/Off
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -2694,8 +2696,8 @@ NASA_OUTDOOR_COMP1_STATUS:
   arithmetic: ''
   description: Comp#1 On/Off
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -2737,8 +2739,8 @@ NASA_OUTDOOR_COMP2_STATUS:
   arithmetic: ''
   description: Comp#2 On/Off
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -2780,8 +2782,8 @@ NASA_OUTDOOR_COMP3_STATUS:
   arithmetic: ''
   description: Comp#3 On/Off
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -2815,8 +2817,8 @@ NASA_OUTDOOR_COM_PROTECT_OPERATIOIN:
   arithmetic: ''
   description: Compressor protection control operation status On/Off
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: 0 Off, 1 On
   signed: ''
   type: ENUM
@@ -3087,8 +3089,8 @@ NASA_OUTDOOR_EVI_BYPASS_VALVE:
   arithmetic: ''
   description: EVI ByPass On/Off
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -3114,8 +3116,8 @@ NASA_OUTDOOR_EVI_SOL1_VALVE:
   arithmetic: ''
   description: EVI Sol1 On/Off
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -3125,8 +3127,8 @@ NASA_OUTDOOR_EVI_SOL2_VALVE:
   arithmetic: ''
   description: EVI Sol2 On/Off
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -3216,8 +3218,8 @@ NASA_OUTDOOR_FLOW_SWITCH:
   arithmetic: ''
   description: Flow Switch
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -3235,8 +3237,8 @@ NASA_OUTDOOR_GAS_CHARGE:
   arithmetic: ''
   description: Hot Gas Chargin
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -3270,8 +3272,8 @@ NASA_OUTDOOR_HOTGAS1:
   arithmetic: ''
   description: HotGas1 On/Off
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -3281,8 +3283,8 @@ NASA_OUTDOOR_HOTGAS2:
   arithmetic: ''
   description: HotGas2 On/Off
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -3360,8 +3362,8 @@ NASA_OUTDOOR_LIQUID_BYPASS_VALVE:
   arithmetic: ''
   description: Liquid On/Off
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -3371,8 +3373,8 @@ NASA_OUTDOOR_LIQUID_TUBE_VALVE:
   arithmetic: ''
   description: Liquid tube
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -3457,8 +3459,8 @@ NASA_OUTDOOR_MAIN_COOL_VALVE:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -3548,8 +3550,8 @@ NASA_OUTDOOR_OD_EEV_VALVE:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -3715,8 +3717,8 @@ NASA_OUTDOOR_PUMPOUT_VALVE:
   arithmetic: ''
   description: Pump Out
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -3742,8 +3744,8 @@ NASA_OUTDOOR_SERVICEOPERATION:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -3825,8 +3827,8 @@ NASA_OUTDOOR_SYSTEM_RESET:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -3844,8 +3846,8 @@ NASA_OUTDOOR_TEST_OP_COMPLETE:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -3927,8 +3929,8 @@ NASA_OUTDOOR_WATER_VALVE:
   arithmetic: ''
   description: 2Way Valve
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -4098,8 +4100,8 @@ NASA_POWER:
   arithmetic: ''
   description: Indoor unit power on/off
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
     0x02: 'On Alternate'
   remarks: 0 Off, 1 On, 2 On
   signed: ''
@@ -4455,8 +4457,8 @@ NASA_SMART_GRID:
   arithmetic: ''
   description: Smart Grid
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -4466,8 +4468,8 @@ NASA_SOLAR_PUMP:
   arithmetic: ''
   description: Hydro_SolarPump
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -4485,8 +4487,8 @@ NASA_TRACKING_RESULT:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -4496,8 +4498,8 @@ NASA_USE_BOOSTER_HEATER:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: 0 Off, 1 On
   signed: ''
   type: ENUM
@@ -4536,8 +4538,8 @@ NASA_USE_DISCHARGE_TEMP:
   arithmetic: ''
   description: This value is a value that cannot be controlled by the upper controller.
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -4623,8 +4625,8 @@ NASA_USE_VACANCY_STATUS:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM
@@ -4634,8 +4636,8 @@ NASA_USE_WIREDREMOTE:
   arithmetic: ''
   description: ''
   enum:
-    0x00: 'Off'
-    0x01: 'On'
+    0x00: 'OFF'
+    0x01: 'ON'
   remarks: ''
   signed: ''
   type: ENUM

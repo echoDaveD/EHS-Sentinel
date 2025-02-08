@@ -60,6 +60,7 @@ class EHSArguments:
         parser.add_argument('--configfile', type=str, required=True, help='Config file path')
         parser.add_argument('--dumpfile', type=str,  required=False, help='File Path for where the Dumpfile should be written to or read from if dryrun flag is set too.')
         parser.add_argument('--dryrun', action='store_true', default=False, required=False, help='Run the script in dry run mode, data will be read from DumpFile and not MQTT Message will be sent.')
+        parser.add_argument('--clean-known-devices', action='store_true', default=False, required=False, help='Cleans the know Devices Topic on Startup.')
         parser.add_argument('-v', '--verbose', action='store_true', default=False, required=False, help='Enable verbose mode')
 
         args = parser.parse_args()
@@ -83,5 +84,6 @@ class EHSArguments:
         self.CONFIGFILE = args.configfile
         self.DUMPFILE = args.dumpfile
         self.DRYRUN = args.dryrun
+        self.CLEAN_KNOWN_DEVICES = args.clean_known_devices
 
 

@@ -11,5 +11,6 @@ mqtt:
   client-id: ehsSentinel
   user: 
   password:
-  useHassFormat: false
+  homeAssistantAutoDiscoverTopic: "hass"
+  useCamelCaseTopicNames: True
   topicPrefix: ehsSentinel

@@ -7,40 +7,9 @@ from EHSArguments import EHSArguments
 from EHSConfig import EHSConfig
 from EHSExceptions import MessageWarningException
 from MQTTClient import MQTTClient
-from enum import Enum
 
-class SoureAddressEnum(Enum):
-    """
-    Enum class representing various source addresses for the EHS-Sentinel Message Processor.
-    """
-
-    Outdoor = 0x10
-    HTU = 0x11
-    Indoor = 0x20
-    ERV = 0x30
-    Diffuser = 0x35
-    MCU = 0x38
-    RMC = 0x40
-    WiredRemote = 0x50
-    PIM = 0x58
-    SIM = 0x59
-    Peak = 0x5A
-    PowerDivider = 0x5B
-    OnOffController = 0x60
-    WiFiKit = 0x62
-    CentralController = 0x65
-    DMS = 0x6A
-    JIGTester = 0x80
-    BroadcastSelfLayer = 0xB0
-    BroadcastControlLayer = 0xB1
-    BroadcastSetLayer = 0xB2
-    BroadcastCS = 0xB3
-    BroadcastControlAndSetLayer = 0xB3
-    BroadcastModuleLayer = 0xB4
-    BroadcastCSM = 0xB7
-    BroadcastLocalLayer = 0xB8
-    BroadcastCSML = 0xBF
-    Undefined = 0xFF
+from NASAMessage import NASAMessage
+from NASAPacket import NASAPacket
 
 class MessageProcessor:
     """
@@ -90,9 +59,9 @@ class MessageProcessor:
         self.mqtt = MQTTClient()
         self.NASA_VAL_STORE = {}
 
-    def process_message(self, message):
+    def process_message(self, packet: NASAPacket):
         """
-        Processes an incoming message by verifying its structure, extracting relevant data, and logging the results.
+        Processes an incoming packet .
         Args:
             message (list): A list of integers representing the message bytes.
         Raises:
@@ -100,54 +69,32 @@ class MessageProcessor:
         Logs:
             Various debug and info logs to trace the processing steps, including packet size, raw and hex message content, source address, capacity, and extracted message details.
         """
-
-        packet_size = ((message[1] << 8) | message[2]) + 2
-        logger.debug(f"Packet size caluclated/readed: {len(message)}/{packet_size}")
-        logger.debug(f"Processing message raw: {list(map(lambda x: f'{x:<4}', message))}")
-        logger.debug(f"Processing message hex: {list(map(lambda x: f'{hex(x):<4}', message))}")
-        logger.debug(f"Source Address rasw: {message[3]} hex: {hex(message[3])}")
-        sourceAdress = SoureAddressEnum(message[3])
-        logger.debug(f"Source Address: {sourceAdress}")
-
-        # verify end byte
-        if message[-1] != 0x34:
-            logger.debug("Invalid message, missing end byte")
-            raise MessageWarningException(argument=hex(message[-1]), message="Invalid message, missing or wrong end byte")
-        
-        # verify length of message
-        if len(message) < 14:
-            raise MessageWarningException(argument=len(message), message="Invalid message, message to short")
-        
-        # Extract Capacity
-        capacity = message[12]
-        logger.debug(f"Message has a Capacity of: {capacity}/{hex(capacity)}")
-
-        list_of_messages = self.extract_messages(1, capacity, message[13:-3], [])
-        for msg in list_of_messages:
-            msgname = self.search_nasa_table(hex(msg['message_number']))
+        for msg in packet.packet_messages:
+            hexmsg = hex(msg.packet_message)
+            msgname = self.search_nasa_table(hexmsg)
             if msgname is not None:
                 try:
-                    msgvalue = self.determine_value(msg['payload'], msgname)
+                    msgvalue = self.determine_value(msg.packet_payload, msgname)
                 except Exception as e:
-                    raise MessageWarningException(argument=msg['payload'], message=f"Value of {hex(msg['message_number']):<6} couldn't be determinate, skip Message {e}")
+                    raise MessageWarningException(argument=msg['payload'], message=f"Value of {hexmsg:<6} couldn't be determinate, skip Message {e}")
                 self.protocolMessage(msg, msgname, msgvalue)
             else:
-                logger.warning(f"Message not Found in NASA repository: {hex(msg['message_number']):<6} Type: {msg['message_type']} Payload: {msg['payload']}")
+                logger.warning(f"Message not Found in NASA repository: {hexmsg:<6} Type: {msg.packet_message_type} Payload: {msg.packet_payload}")
 
-    def protocolMessage(self, msg, msgname, msgvalue):
-        logger.info(f"Message number: {hex(msg['message_number']):<6} {msgname:<50} Type: {msg['message_type']} Payload: {msgvalue}")
+    def protocolMessage(self, msg: NASAMessage, msgname, msgvalue):
+        logger.info(f"Message number: {hex(msg.packet_message):<6} {msgname:<50} Type: {msg.packet_message_type} Payload: {msgvalue}")
 
         if self.config.GENERAL['protocolFile'] is not None:
             with open(self.config.GENERAL['protocolFile'], "a") as protWriter:
-                protWriter.write(f"{hex(msg['message_number']):<6},{msg['message_type']},{msgname:<50},{msgvalue}\n")
+                protWriter.write(f"{hex(msg.packet_message):<6},{msg.packet_message_type},{msgname:<50},{msgvalue}\n")
 
-        self.mqtt.publishMessage(msgname, msgvalue)
+        self.mqtt.publish_message(msgname, msgvalue)
 
         self.NASA_VAL_STORE[msgname] = msgvalue
 
         if msgname in ['NASA_OUTDOOR_TW2_TEMP', 'NASA_OUTDOOR_TW1_TEMP', 'VAR_IN_FLOW_SENSOR_CALC']:
             if all(k in self.NASA_VAL_STORE for k in ['NASA_OUTDOOR_TW2_TEMP', 'NASA_OUTDOOR_TW1_TEMP', 'VAR_IN_FLOW_SENSOR_CALC']):
-                self.protocolMessage({'message_number': 0x9999, 'message_type': 1},
+                self.protocolMessage(NASAMessage(packet_message=0x9999, packet_message_type=1),
                                      "NASA_EHSSENTINEL_HEAT_OUTPUT", 
                                      round(
                                             (
@@ -158,9 +105,9 @@ class MessageProcessor:
 
         if msgname in ('NASA_EHSSENTINEL_HEAT_OUTPUT', 'NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT'):
             if all(k in self.NASA_VAL_STORE for k in ['NASA_EHSSENTINEL_HEAT_OUTPUT', 'NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT']):
-                self.protocolMessage({'message_number': 0x9998, 'message_type': 1}, 
+                self.protocolMessage(NASAMessage(packet_message=0x9998, packet_message_type=1), 
                                         "NASA_EHSSENTINEL_COP",
-                                        round(self.NASA_VAL_STORE['NASA_EHSSENTINEL_HEAT_OUTPUT'] / self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT'], 2)/1000.)
+                                        round((self.NASA_VAL_STORE['NASA_EHSSENTINEL_HEAT_OUTPUT'] / self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT']/1000.), 3))
 
 
     def search_nasa_table(self, address):
@@ -171,63 +118,9 @@ class MessageProcessor:
         Returns:
             str: The key associated with the given address if found, otherwise None.
         """
-
         for key, value in self.config.NASA_REPO.items():
             if value['address'].lower() == address:
                 return key
-    
-    def extract_messages(self, depth, capacity, msg_rest, return_list):
-        """
-        Recursively extracts submessages from a given message list and appends them to the return list.
-        Args:
-            depth (int): The current depth of recursion.
-            capacity (int): The maximum allowed depth of recursion.
-            msg_rest (list): The remaining message list to process.
-            return_list (list): The list to append extracted submessages to.
-        Returns:
-            list: The list of extracted submessages.
-        Raises:
-            MessageWarningException: If the submessage type is unknown or if a submessage with structure type has a capacity other than 1.
-        """
-        
-        if depth > capacity or len(msg_rest) == 0:
-            return return_list
-
-        logger.debug(f"Submessage raw: {list(map(lambda x: f'{x:<4}', msg_rest))}")
-        logger.debug(f"Submessage hex: {list(map(lambda x: f'{hex(x):<4}', msg_rest))}")
-        
-        message_number = (msg_rest[0] << 8) | msg_rest[1]
-        message_type = (message_number & 1536) >> 9
-        logger.debug(f"Submessage number: {hex(message_number)}, Type: {message_type}")
-
-        # Determine payload size based on type
-        if message_type == 0:
-            payload_size = 1
-        elif message_type == 1:
-            payload_size = 2
-        elif message_type == 2:
-            payload_size = 4
-        elif message_type == 3:
-            payload_size = len(msg_rest)
-            if capacity != 1:
-                raise MessageWarningException(argument=capacity, message="Submessage with structure type must have capacity of 1.")
-        else:
-            raise MessageWarningException(argument=message_type, message="Unknown Submessage type")
-        
-        payload = msg_rest[2:2 + payload_size]
-
-        # Check if payload exceeds 255 characters
-        if len(payload) > 255:
-            logger.warning(f"Payload for Submessage {hex(message_number)} too large at index {depth}: {len(payload)} bytes. Truncating to 100 bytes.")
-            payload = payload[:255]
-
-        # convert the int list from payload to byteorder string
-        logger.debug(f"Submessage Payload raw: {list(map(lambda x: f'{x:<4}', payload))}")
-        logger.debug(f"Submessage Payload hex: {list(map(lambda x: f'{hex(x):<4}', payload))}")
-        byte_string = bytes([int(hex(x), 16) for x in payload])
-        logger.debug(f"Submessage Payload packed decimal: {byte_string}")
-        return_list.append({"message_number": message_number, "message_type": message_type, "payload": byte_string})
-        return self.extract_messages(depth + 1, capacity, msg_rest[2 + payload_size:], return_list)
     
     def determine_value(self, rawvalue, msgname):
         """
@@ -255,7 +148,7 @@ class MessageProcessor:
         
         if self.config.NASA_REPO[msgname]['type'] == 'ENUM':
             if 'enum' in self.config.NASA_REPO[msgname]:
-                value = self.config.NASA_REPO[msgname]['enum'][int.from_bytes(rawvalue, byteorder='big')]
+                value = self.config.NASA_REPO[msgname]['enum'][int.from_bytes(rawvalue, byteorder='big')].upper()
             else:
                 value = f"Unknown enum value: {value}"
         else:

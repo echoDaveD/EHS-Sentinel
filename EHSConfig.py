@@ -116,8 +116,11 @@ class EHSConfig():
         if 'broker-port' not in self.MQTT:
             raise ConfigException(argument=self.MQTT['broker-port'], message="mqtt broker-port parameter is missing")
         
-        if 'useHassFormat' not in self.MQTT:
-           self.MQTT['useHassFormat'] = False
+        if 'homeAssistantAutoDiscoverTopic' not in self.MQTT:
+           self.MQTT['homeAssistantAutoDiscoverTopic'] = ""
+
+        if 'useCamelCaseTopicNames' not in self.MQTT:
+           self.MQTT['useCamelCaseTopicNames'] = False
         
         if 'topicPrefix' not in self.MQTT:
             self.MQTT['topicPrefix'] = "ehsSentinel"

@@ -14,24 +14,27 @@ import binascii
 
 # Get the logger
 from CustomLogger import logger, setSilent
+from NASAPacket import NASAPacket
 
 version = "0.1SNAPSHOT"
 
 async def main():
     """
-    Main function to start the EHSSentinel application.
-    This function initializes logging, reads command-line arguments and configuration,
-    and processes messages either from a dump file (in dry run mode) or from a serial port.
-    Steps:
+    Main function to start the EHS Sentinel application.
+    This function performs the following steps:
     1. Logs the startup banner and version information.
     2. Reads command-line arguments.
     3. Reads configuration settings.
-    4. If a dump file is specified and not in dry run mode, opens the dump file for writing.
-    5. If in dry run mode, reads messages from the dump file and processes them.
-    6. If not in dry run mode, reads messages from the serial port.
+    4. Connects to the MQTT broker.
+    5. Sets silent mode if specified in the configuration.
+    6. If dry run mode is enabled, reads data from a dump file and processes it.
+    7. If not in dry run mode, reads data from a serial port and processes it.
+    Args:
+        None
     Returns:
         None
     """
+
     logger.info("####################################################################################################################")
     logger.info("#                                                                                                                  #")
     logger.info("#    ######   ##  ##   #####             #####    ######  ##   ##  ########  ######  ##   ##   ######   ##         #")
@@ -52,17 +55,14 @@ async def main():
     logger.info("Reading Configuration ...")
     config = EHSConfig()
 
+    logger.info("connecting to MQTT Borker ...")
+    mqtt = MQTTClient()
+
+    await asyncio.sleep(1)
+
     # if Silent is true, set Silent Mode
     if config.GENERAL['silentMode']:
         setSilent()
-
-    mqtt = MQTTClient(broker=config.MQTT['broker-url'], 
-                      port=config.MQTT['broker-port'], 
-                      topicPrefix=config.MQTT['topicPrefix'],
-                      useHassFormat=config.MQTT['useHassFormat'],
-                      client_id=config.MQTT['client-id'], 
-                      username=config.MQTT['user'], 
-                      password=config.MQTT['password'])
 
     # if dryrun then we read from dumpfile
     if args.DRYRUN:
@@ -70,23 +70,32 @@ async def main():
         async with aiofiles.open(args.DUMPFILE, mode='r') as file:
             async for line in file:
                 line = json.loads(line.strip())
-                await process_message(line, args)
+                await process_packet(line, args)
     else:
         # we are not in dryrun mode, so we need to read from Serial Pimort
-        await serialRead(config, args)
+        await serial_read(config, args)
 
 async def process_buffer(buffer, args):
     """
-    Continuously processes a buffer of bytes to extract and handle messages.
-    This function runs an infinite loop that checks the buffer for messages starting with a specific start byte (0x32).
-    When a start byte is found, it reads the packet size from the next two bytes, constructs the message, and processes it.
-    If the start byte is not found, it removes the first byte from the buffer and continues.
+    Processes a buffer of data asynchronously, identifying and handling packets based on specific criteria.
     Args:
         buffer (list): A list of bytes representing the buffer to be processed.
+        args (Any): Additional arguments to be passed to the packet processing function.
     Notes:
-        - The function assumes that the buffer contains bytes in the correct order.
-        - The function uses asyncio.sleep(0.1) to yield control and allow other tasks to run.
-        - The function logs various debug messages to help trace the processing steps.
+        - The function continuously checks the buffer for data.
+        - If the first byte of the buffer is 0x32, it is considered a start byte.
+        - The packet size is determined by combining the second and third bytes of the buffer.
+        - If the buffer contains enough data for a complete packet, the packet is processed.
+        - If the buffer does not contain enough data, the function waits and checks again.
+        - Non-start bytes are removed from the buffer.
+        - The function sleeps for 0.03 seconds between iterations to avoid busy-waiting.
+    Logging:
+        - Logs the buffer size when data is present.
+        - Logs when the start byte is recognized.
+        - Logs the calculated packet size.
+        - Logs the complete packet and the last byte read when a packet is processed.
+        - Logs if the buffer is too small to read a complete packet.
+        - Logs if a received byte is not a start byte.
     """
 
     while True:
@@ -97,16 +106,13 @@ async def process_buffer(buffer, args):
                 packet_size = ((buffer[1] << 8) | buffer[2]) +2
                 logger.debug(f"Readed packet size: {packet_size-1}")
                 if len(buffer) > packet_size-1:
-                    message = []
+                    packet = []
                     for i in range(0, len(buffer)):
-                        message.append(buffer[i])
+                        packet.append(buffer[i])
                         if i == packet_size-1: #buffer[i] == 0x34  or
-                            hex_message = list(map(hex, message))
-                            logger.debug(f"Complete Message: {i}/{packet_size-1}")
+                            logger.debug(f"Complete Packet: {i}/{packet_size-1}")
                             logger.debug(f"Last Byte readed: {hex(buffer[i])}")
-                            logger.debug(f"message raw: {message}")
-                            logger.debug(f"        hex: {hex_message}")
-                            await process_message(message, args)
+                            await process_packet(packet, args)
                             del buffer[0:i]
                             break
                 else:
@@ -117,20 +123,27 @@ async def process_buffer(buffer, args):
 
         await asyncio.sleep(0.03)
 
-async def serialRead(config, args):
+async def serial_read(config, args):
     """
-    Asynchronously reads data from a serial port and processes it.
-    This function opens a serial port connection using the `serial_asyncio` library,
-    reads data into a buffer, and starts an asynchronous task to process the buffer.
-    It runs indefinitely until interrupted by a KeyboardInterrupt, at which point it
-    closes the serial port and any open dump writer.
+    Asynchronously reads data from a serial connection and processes it.
     Args:
-        None
-    Returns:
-        None
-    Raises:
-        KeyboardInterrupt: If the user interrupts the process with a keyboard signal.
+        config (object): Configuration object containing serial connection parameters.
+        args (object): Additional arguments for buffer processing.
+    This function establishes a serial connection using parameters from the config object,
+    reads data from the serial port until a specified delimiter (0x34) is encountered,
+    and appends the received data to a buffer. It also starts an asynchronous task to
+    process the buffer.
+    The serial connection is configured with the following parameters:
+        - Device URL: config.SERIAL['device']
+        - Baudrate: config.SERIAL['baudrate']
+        - Parity: Even
+        - Stopbits: One
+        - Bytesize: Eight
+        - RTS/CTS flow control: Enabled
+        - Timeout: 0
+    The function runs an infinite loop to continuously read data from the serial port.
     """
+
     buffer = []
     loop = asyncio.get_running_loop()
 
@@ -147,8 +160,10 @@ async def serialRead(config, args):
 
     # start the async buffer process
     asyncio.create_task(process_buffer(buffer, args))# start the async buffer process
+   
+    # TODO have to be tested and verified, please do not try it yet
     # start the async writer process
-    asyncio.create_task(serial_write(writer, reader))
+    #asyncio.create_task(serial_write(writer, reader))
 
     # Read loop
     while True:
@@ -159,6 +174,10 @@ async def serialRead(config, args):
 
 async def serial_write(writer, reader):
     """
+    
+    TODO Not used yet, only for future use...
+
+
     Asynchronously writes data to the serial port.
     This function sends data through the serial port at regular intervals.
     Args:
@@ -200,27 +219,15 @@ async def serial_write(writer, reader):
         logger.info(f"Sent data raw: {[hex(x) for x in final_packet]}")
         await asyncio.sleep(1)  # Adjust the interval as needed
 
-def calculate_crc16(data: bytes) -> int:
-    """Calculate CRC16 using the standard CRC-16-CCITT (0xFFFF) polynomial."""
-    crc = 0xFFFF
-    for byte in data:
-        crc ^= byte
-        for _ in range(8):
-            if crc & 1:
-                crc = (crc >> 1) ^ 0xA001
-            else:
-                crc >>= 1
-    return crc
-
-async def process_message(buffer, args):
+async def process_packet(buffer, args):
     """
-    Asynchronously processes a message buffer.
-    If `dumpWriter` is `None`, it attempts to process the message using `MessageProcessor`.
-    If a `MessageWarningException` is raised, it logs a warning and skips the message.
-    If any other exception is raised, it logs an error, skips the message, and logs the stack trace.
+    Asynchronously processes a packet buffer.
+    If `dumpWriter` is `None`, it attempts to process the packet using `MessageProcessor`.
+    If a `MessageWarningException` is raised, it logs a warning and skips the packet.
+    If any other exception is raised, it logs an error, skips the packet, and logs the stack trace.
     If `dumpWriter` is not `None`, it writes the buffer to `dumpWriter`.
     Args:
-        buffer (bytes): The message buffer to be processed.
+        buffer (bytes): The packet buffer to be processed.
     """
 
     if args.DUMPFILE and not args.DRYRUN:
@@ -228,13 +235,21 @@ async def process_message(buffer, args):
            await dumpWriter.write(f"{buffer}\n")
     else:
         try:
+            nasa_packet = NASAPacket()
+            nasa_packet.parse(buffer)
+            logger.debug("Packet processed: ")
+            logger.debug(f"Packet raw: {[hex(x) for x in buffer]}")
+            logger.debug(nasa_packet)
             messageProcessor = MessageProcessor()
-            messageProcessor.process_message(buffer)    
+            messageProcessor.process_message(nasa_packet)    
+        except ValueError as e:
+            logger.warning("Value Error on parsing Packet, Packet will be skipped")
+            logger.warning(f"Error processing message: {e}")
         except MessageWarningException as e:
-            logger.warning("Warnung accured, Message will be skipped")
+            logger.warning("Warnung accured, Packet will be skipped")
             logger.warning(f"Error processing message: {e}")
         except Exception as e:
-            logger.error("Error Accured, Message will be skipped")
+            logger.error("Error Accured, Packet will be skipped")
             logger.error(f"Error processing message: {e}")
             logger.error(traceback.format_exc())
 
