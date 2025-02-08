@@ -233,20 +233,19 @@ class MQTTClient:
         if sensor_type == "sensor":
             if len(self.config.NASA_REPO[nameraw]['unit']) > 0:
                 entity[namenorm]['unit_of_measurement'] = self.config.NASA_REPO[nameraw]['unit']
-                match entity[namenorm]['unit_of_measurement']:
-                    case "\u00b0C":
-                        entity[namenorm]['device_class'] = "temperature"
-                    case '%':
-                        entity[namenorm]['device_class'] = "power_factor"
-                    case 'kW':
-                        entity[namenorm]['device_class'] = "power"
-                    case 'rpm':
-                        entity[namenorm]['device_class'] = "speed"
-                    case 'bar':
-                        entity[namenorm]['device_class'] = "pressure"
-                    case 'HP':
-                        entity[namenorm]['device_class'] = "power"
-                    case _:
+                if entity[namenorm]['unit_of_measurement'] == "\u00b0C":
+                    entity[namenorm]['device_class'] = "temperature"
+                elif entity[namenorm]['unit_of_measurement'] == '%':
+                    entity[namenorm]['device_class'] = "power_factor"
+                elif entity[namenorm]['unit_of_measurement'] == 'kW':
+                    entity[namenorm]['device_class'] = "power"
+                elif entity[namenorm]['unit_of_measurement'] == 'rpm':
+                    entity[namenorm]['device_class'] = "speed"
+                elif entity[namenorm]['unit_of_measurement'] == 'bar':
+                    entity[namenorm]['device_class'] = "pressure"
+                elif entity[namenorm]['unit_of_measurement'] == 'HP':
+                    entity[namenorm]['device_class'] = "power"
+                else:
                         entity[namenorm]['device_class'] = None
         else:
             entity[namenorm]['payload_on'] = "ON"
