@@ -240,11 +240,13 @@ class MQTTClient:
                 elif entity[namenorm]['unit_of_measurement'] == 'kW':
                     entity[namenorm]['device_class'] = "power"
                 elif entity[namenorm]['unit_of_measurement'] == 'rpm':
-                    entity[namenorm]['device_class'] = "speed"
+                    entity[namenorm]['state_class'] = "measurement"
                 elif entity[namenorm]['unit_of_measurement'] == 'bar':
                     entity[namenorm]['device_class'] = "pressure"
                 elif entity[namenorm]['unit_of_measurement'] == 'HP':
                     entity[namenorm]['device_class'] = "power"
+                elif entity[namenorm]['unit_of_measurement'] == 'hz':
+                    entity[namenorm]['device_class'] = "frequency"
                 else:
                         entity[namenorm]['device_class'] = None
         else:

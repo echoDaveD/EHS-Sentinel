@@ -2115,7 +2115,7 @@ NASA_INDOOR_AIRCLEANFAN_CURRENT_RPM:
   remarks: ''
   signed: ''
   type: ''
-  unit: ''
+  unit: 'rpm'
 NASA_INDOOR_CAPACITY:
   address: '0x4211'
   arithmetic: value / 8.5
@@ -2674,7 +2674,7 @@ NASA_OUTDOOR_COMP1_ORDER_HZ:
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: ''
+  unit: 'Hz'
 NASA_OUTDOOR_COMP1_RUNNING_TIME:
   address: '0x8405'
   arithmetic: ''
@@ -2690,7 +2690,7 @@ NASA_OUTDOOR_COMP1_RUN_HZ:
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: ''
+  unit: 'Hz'
 NASA_OUTDOOR_COMP1_STATUS:
   address: '0x8010'
   arithmetic: ''
@@ -2709,7 +2709,7 @@ NASA_OUTDOOR_COMP1_TARGET_HZ:
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: ''
+  unit: 'Hz'
 NASA_OUTDOOR_COMP2_ORDER_HZ:
   address: '0x8274'
   arithmetic: ''
@@ -2717,7 +2717,7 @@ NASA_OUTDOOR_COMP2_ORDER_HZ:
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: ''
+  unit: 'Hz'
 NASA_OUTDOOR_COMP2_RUNNING_TIME:
   address: '0x8406'
   arithmetic: ''
@@ -2733,7 +2733,7 @@ NASA_OUTDOOR_COMP2_RUN_HZ:
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: ''
+  unit: 'Hz'
 NASA_OUTDOOR_COMP2_STATUS:
   address: '0x8011'
   arithmetic: ''
@@ -2752,7 +2752,7 @@ NASA_OUTDOOR_COMP2_TARGET_HZ:
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: ''
+  uunit: 'Hz'
 NASA_OUTDOOR_COMP3_ORDER_HZ:
   address: '0x82C0'
   arithmetic: ''
@@ -2760,7 +2760,7 @@ NASA_OUTDOOR_COMP3_ORDER_HZ:
   remarks: ''
   signed: ''
   type: ''
-  unit: ''
+  unit: 'Hz'
 NASA_OUTDOOR_COMP3_RUNNING_TIME:
   address: '0x840E'
   arithmetic: ''
@@ -2776,7 +2776,7 @@ NASA_OUTDOOR_COMP3_RUN_HZ:
   remarks: ''
   signed: ''
   type: ''
-  unit: ''
+  unit: 'Hz'
 NASA_OUTDOOR_COMP3_STATUS:
   address: '0x8012'
   arithmetic: ''
@@ -2795,7 +2795,7 @@ NASA_OUTDOOR_COMP3_TARGET_HZ:
   remarks: ''
   signed: ''
   type: ''
-  unit: ''
+  unit: 'Hz'
 NASA_OUTDOOR_COMPENSATE_COOL_CAPA:
   address: '0x829C'
   arithmetic: ''
@@ -3053,7 +3053,7 @@ NASA_OUTDOOR_ENGINE_RPM:
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: ''
+  unit: 'rpm'
 NASA_OUTDOOR_ENGINE_WATER_TEMP:
   address: '0x82C9'
   arithmetic: value / 10
@@ -3174,7 +3174,7 @@ NASA_OUTDOOR_FAN_IPM1_TEMP:
   remarks: ''
   signed: ''
   type: ''
-  unit: ''
+  unit: "\u00b0C"
 NASA_OUTDOOR_FAN_IPM2_TEMP:
   address: '0x82A7'
   arithmetic: ''
@@ -3182,7 +3182,7 @@ NASA_OUTDOOR_FAN_IPM2_TEMP:
   remarks: ''
   signed: ''
   type: ''
-  unit: ''
+  unit: "\u00b0C"
 NASA_OUTDOOR_FAN_RPM1:
   address: '0x823D'
   arithmetic: ''
@@ -3190,7 +3190,7 @@ NASA_OUTDOOR_FAN_RPM1:
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: ''
+  unit: 'rpm'
 NASA_OUTDOOR_FAN_RPM2:
   address: '0x823E'
   arithmetic: ''
@@ -3198,7 +3198,7 @@ NASA_OUTDOOR_FAN_RPM2:
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: ''
+  unit: 'rpm'
 NASA_OUTDOOR_FAN_STEP1:
   address: '0x8226'
   arithmetic: ''
@@ -3353,12 +3353,12 @@ NASA_OUTDOOR_IPM_TEMP2:
   unit: "\u00b0C"
 NASA_OUTDOOR_IPM_TEMP3:
   address: '0x82C4'
-  arithmetic: ''
-  description: ''
+  arithmetic: 'value / 10'
+  description: 'IPM 3 Temperartur'
   remarks: ''
   signed: ''
   type: ''
-  unit: ''
+  unit: "\u00b0C"
 NASA_OUTDOOR_LIQUID_BYPASS_VALVE:
   address: '0x8019'
   arithmetic: ''
@@ -3589,7 +3589,7 @@ NASA_OUTDOOR_OLP_TEMP:
   remarks: ''
   signed: ''
   type: VAR
-  unit: ''
+  unit: "\u00b0C"
 NASA_OUTDOOR_OPERATION_CAPA_SUM:
   address: '0x8233'
   arithmetic: value / 8.5
@@ -3823,7 +3823,7 @@ NASA_OUTDOOR_SUMPTEMP:
   remarks: ''
   signed: ''
   type: ''
-  unit: ''
+  unit: "\u00b0C"
 NASA_OUTDOOR_SYSTEM_RESET:
   address: '0x8065'
   arithmetic: ''
@@ -3872,12 +3872,12 @@ NASA_OUTDOOR_TOP_SENSOR_TEMP2:
   unit: "\u00b0C"
 NASA_OUTDOOR_TOP_SENSOR_TEMP3:
   address: '0x8282'
-  arithmetic: ''
+  arithmetic: 'value / 10'
   description: ''
   remarks: ''
   signed: ''
   type: ''
-  unit: ''
+  unit: "\u00b0C"
 NASA_OUTDOOR_TW1_TEMP:
   address: '0x82DF'
   arithmetic: value / 10
@@ -4537,7 +4537,7 @@ NASA_USE_DHW_THERMOSTAT:
   unit: ''
 NASA_USE_DISCHARGE_TEMP:
   address: '0x4019'
-  arithmetic: ''
+  arithmetic: 'value '
   description: This value is a value that cannot be controlled by the upper controller.
   enum:
     0x00: 'OFF'
@@ -4545,7 +4545,7 @@ NASA_USE_DISCHARGE_TEMP:
   remarks: ''
   signed: ''
   type: ENUM
-  unit: ''
+  unit: ""
 NASA_USE_FILTER_WARNING_TIME:
   address: '0x4024'
   arithmetic: ''
@@ -4782,7 +4782,7 @@ VAR_IN_FAN_CURRENT_RPM_SUCTION1:
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: ''
+  unit: 'rpm'
 VAR_IN_FAN_CURRENT_RPM_SUCTION2:
   address: '0x42A1'
   arithmetic: ''
@@ -4790,7 +4790,7 @@ VAR_IN_FAN_CURRENT_RPM_SUCTION2:
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: ''
+  unit: 'rpm'
 VAR_IN_FAN_CURRENT_RPM_SUCTION3:
   address: '0x42A3'
   arithmetic: ''
@@ -4798,7 +4798,7 @@ VAR_IN_FAN_CURRENT_RPM_SUCTION3:
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: ''
+  unit: 'rpm'
 VAR_IN_FLOW_SENSOR_CALC:
   address: '0x42E9'
   arithmetic: value / 10
