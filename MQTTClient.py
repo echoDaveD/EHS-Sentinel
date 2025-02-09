@@ -119,7 +119,7 @@ class MQTTClient:
             self.known_topics = msg.payload.decode().split(",")
 
         logger.info(f"HASS Status Messages {msg.topic} received: {msg.payload.decode()}")
-        if f"{self.homeAssistantAutoDiscoverTopic}/status" in msg.topic:
+        #if f"{self.homeAssistantAutoDiscoverTopic}/status" in msg.topic:
             
 
     def refresh_known_devices(self, devname):
