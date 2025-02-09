@@ -118,8 +118,9 @@ class MQTTClient:
             # Update the known devices set with the retained message
             self.known_topics = msg.payload.decode().split(",")
 
+        logger.info(f"HASS Status Messages {msg.topic} received: {msg.payload.decode()}")
         if f"{self.homeAssistantAutoDiscoverTopic}/status" in msg.topic:
-            logger.info("HASS Status Messages received: {msg.payload.decode()}")
+            
 
     def refresh_known_devices(self, devname):
         self._publish(f"{self.topicPrefix.replace('/', '')}/{self.known_devices_topic}", ",".join(self.known_topics), retain=True)
