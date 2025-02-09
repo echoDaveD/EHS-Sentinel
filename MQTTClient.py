@@ -89,6 +89,21 @@ class MQTTClient:
         logger.info("Subscribe to known devices topic")
         self.client.subscribe(f"{self.topicPrefix.replace('/', '')}/{self.known_devices_topic}", qos=1)
 
+    def subscribe_hass_status_topics(self):
+        """
+        Subscribes to the Home Assistant status topic to react to birth messages.
+        This method subscribes the MQTT client to the Home Assistant status topic
+        with a Quality of Service (QoS) level of 1. It logs an informational message
+        indicating that the subscription has been made.
+        The subscription allows the client to react to birth messages from Home Assistant,
+        which are used to signal the start of Home Assistant.
+        Returns:
+            None
+        """
+        
+        logger.info("Subscribe to HASS Status Topic to react on birthmessages")
+        self.client.subscribe(f"{self.homeAssistantAutoDiscoverTopic}/status", qos=1)
+
     def on_message(self, client, userdata, msg):
         """
         Callback function that is called when a message is received from the MQTT broker.
@@ -102,6 +117,9 @@ class MQTTClient:
         if self.known_devices_topic in msg.topic:
             # Update the known devices set with the retained message
             self.known_topics = msg.payload.decode().split(",")
+
+        if f"{self.homeAssistantAutoDiscoverTopic}/status" in msg.topic:
+            logger.info("HASS Status Messages received: {msg.payload.decode()}")
 
     def refresh_known_devices(self, devname):
         self._publish(f"{self.topicPrefix.replace('/', '')}/{self.known_devices_topic}", ",".join(self.known_topics), retain=True)
@@ -125,6 +143,7 @@ class MQTTClient:
             logger.info(f"Connected to MQTT with result code {rc}")
             if len(self.homeAssistantAutoDiscoverTopic) > 0:
                 self.subscribe_known_topics()
+                self.subscribe_hass_status_topics()
         else:
             logger.error(f"Failed to connect, return code {rc}")
 
