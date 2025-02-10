@@ -79,7 +79,7 @@ class MessageProcessor:
                     raise MessageWarningException(argument=msg['payload'], message=f"Value of {hexmsg:<6} couldn't be determinate, skip Message {e}")
                 self.protocolMessage(msg, msgname, msgvalue)
             else:
-                logger.warning(f"Message not Found in NASA repository: {hexmsg:<6} Type: {msg.packet_message_type} Payload: {msg.packet_payload}")
+                logger.debug(f"Message not Found in NASA repository: {hexmsg:<6} Type: {msg.packet_message_type} Payload: {msg.packet_payload}")
 
     def protocolMessage(self, msg: NASAMessage, msgname, msgvalue):
         """
