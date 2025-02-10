@@ -100,6 +100,6 @@ def setSilent():
     """
     if logger.level != logging.DEBUG:
         logger.info("Silent Mode is turning on, only Messages at Level ERROR or higher are displayed")
-        logger.setLevel(logging.ERROR)
+        #logger.setLevel(logging.ERROR)
         # Add the filter to suppress INFO level messages from MessageProcessor.py
         logger.addFilter(MessageProcessorFilter())
