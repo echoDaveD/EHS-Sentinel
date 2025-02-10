@@ -1,7 +1,10 @@
-import paho.mqtt.client as mqtt
-import time
-import json
 import asyncio
+import os
+import signal
+import json
+import time
+
+import gmqtt
 
 # Get the logger
 from CustomLogger import logger
@@ -10,6 +13,7 @@ from EHSConfig import EHSConfig
 
 class MQTTClient:
     _instance = None
+    STOP = asyncio.Event()
 
     DEVICE_ID = "samsung_ehssentinel"
 
@@ -60,20 +64,24 @@ class MQTTClient:
         self.broker = self.config.MQTT['broker-url']
         self.port = self.config.MQTT['broker-port']
         self.client_id = self.config.MQTT['client-id']
-        self.client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1, self.client_id)
+        self.client = gmqtt.Client(self.client_id, logger=logger)
         self.client.on_connect = self.on_connect
         self.client.on_disconnect = self.on_disconnect
         self.client.on_message = self.on_message
+        self.client.on_subscribe = self.on_subscribe
+        if self.config.MQTT['user'] and self.config.MQTT['password']:
+            self.client.set_auth_credentials(self.config.MQTT['user'], self.config.MQTT['password'])
         self.topicPrefix = self.config.MQTT['topicPrefix']
         self.homeAssistantAutoDiscoverTopic = self.config.MQTT['homeAssistantAutoDiscoverTopic']
         self.useCamelCaseTopicNames = self.config.MQTT['useCamelCaseTopicNames']
-        if self.config.MQTT['user'] and self.config.MQTT['password']:
-            self.client.username_pw_set(self.config.MQTT['user'], self.config.MQTT['password'])
-        self.client.connect(self.broker, self.port)
+
         self.initialized = True
-        self.client.loop_start()
         self.known_topics: list = list()  # Set to keep track of known topics
         self.known_devices_topic = "known/devices"  # Dedicated topic for storing known topics
+
+    async def connect(self):
+        logger.info("[MQTT] Connecting to broker...")
+        await self.client.connect(self.broker, self.port, keepalive=60, version=gmqtt.constants.MQTTv311)
 
         if self.args.CLEAN_KNOWN_DEVICES:
             self._publish(f"{self.topicPrefix.replace('/', '')}/{self.known_devices_topic}", " ", retain=True)
@@ -87,9 +95,17 @@ class MQTTClient:
             None
         """
         logger.info("Subscribe to known devices topic")
-        self.client.subscribe((f"{self.topicPrefix.replace('/', '')}/{self.known_devices_topic}", 1), (f"{self.homeAssistantAutoDiscoverTopic}/status", 1))
+        self.client.subscribe(
+            [
+                gmqtt.Subscription(f"{self.topicPrefix.replace('/', '')}/{self.known_devices_topic}", 1),
+                gmqtt.Subscription(f"{self.homeAssistantAutoDiscoverTopic}/status", 1)
+            ]
+        )
 
-    def on_message(self, client, userdata, msg):
+    def on_subscribe(self, client, mid, qos, properties):
+        logger.info('SUBSCRIBED')
+
+    def on_message(self, client, topic, payload, qos, properties):
         """
         Callback function that is called when a message is received from the MQTT broker.
         Args:
@@ -99,18 +115,18 @@ class MQTTClient:
         This function updates the known topics set with the retained message if the message topic matches the known topics topic.
         """
 
-        if self.known_devices_topic in msg.topic:
+        if self.known_devices_topic in topic:
             # Update the known devices set with the retained message
-            self.known_topics = msg.payload.decode().split(",")
+            self.known_topics = payload.decode().split(",")
 
-        logger.info(f"HASS Status Messages {msg.topic} received: {msg.payload.decode()}")
+        logger.info(f"HASS Status Messages {topic} received: {payload.decode()}")
         #if f"{self.homeAssistantAutoDiscoverTopic}/status" in msg.topic:
             
 
     def refresh_known_devices(self, devname):
         self._publish(f"{self.topicPrefix.replace('/', '')}/{self.known_devices_topic}", ",".join(self.known_topics), retain=True)
 
-    def on_connect(self, client, userdata, flags, rc):
+    def on_connect(self, client, flags, rc, properties):
         """
         Callback function for when the client receives a CONNACK response from the server.
         Args:
@@ -132,7 +148,7 @@ class MQTTClient:
         else:
             logger.error(f"Failed to connect, return code {rc}")
 
-    def on_disconnect(self, client, userdata, rc):
+    def on_disconnect(self, client, packet, exc=None):
         """
         Callback function that is called when the client disconnects from the MQTT broker.
         Args:
@@ -148,16 +164,15 @@ class MQTTClient:
             - Logs reconnection attempts and errors, and waits for 5 seconds before retrying.
         """
 
-        logger.info(f"Disconnected with result code {rc}")
-        if rc != 0:
-            logger.warning("Unexpected disconnection. Reconnecting...")
-            while True:
-                try:
-                    self.client.reconnect()
-                    break
-                except Exception as e:
-                    logger.error(f"Reconnection failed: {e}")
-                    time.sleep(5)
+        logger.info(f"Disconnected with result code ")
+        logger.warning("Unexpected disconnection. Reconnecting...")
+        while True:
+            try:
+                self.client.reconnect()
+                break
+            except Exception as e:
+                logger.error(f"Reconnection failed: {e}")
+                time.sleep(5)
 
     def _publish(self, topic, payload, qos=0, retain=False):
         """

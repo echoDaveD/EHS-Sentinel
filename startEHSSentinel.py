@@ -57,6 +57,7 @@ async def main():
 
     logger.info("connecting to MQTT Borker ...")
     mqtt = MQTTClient()
+    await mqtt.connect()
 
     await asyncio.sleep(1)
 
