@@ -63,6 +63,13 @@ class IndentFormatter(logging.Formatter):
         del rec.indent; del rec.function
         return out
     
+class MessageProcessorFilter(logging.Filter):
+    def filter(self, record):
+        # Suppress INFO level messages from MessageProcessor.py
+        if record.levelno == logging.INFO and record.pathname.endswith("MessageProcessor.py"):
+            return False
+        return True
+    
 # The following code sets up a custom logger with indentation support.
 # It creates a custom formatter, a logger instance, and a stream handler.
 # The custom formatter is set to the handler, which is then added to the logger.
@@ -91,6 +98,8 @@ def setSilent():
     If the current logging level is not 'DEBUG', this function will log an informational message
     indicating that silent mode is being activated and then set the logging level to ERROR.
     """
-    if logger.level != 10:
-        logger.info("Silent Mode is turning on, only Messages at Level ERROR or higher are displyed")
+    if logger.level != logging.DEBUG:
+        logger.info("Silent Mode is turning on, only Messages at Level ERROR or higher are displayed")
         logger.setLevel(logging.ERROR)
+        # Add the filter to suppress INFO level messages from MessageProcessor.py
+        logger.addFilter(MessageProcessorFilter())
