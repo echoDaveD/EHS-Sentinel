@@ -98,7 +98,7 @@ class MessageProcessor:
             - Calculates and processes derived values for specific message names.
         """
 
-        logger.debug(f"Message number: {hex(msg.packet_message):<6} {msgname:<50} Type: {msg.packet_message_type} Payload: {msgvalue}")
+        logger.info(f"Message number: {hex(msg.packet_message):<6} {msgname:<50} Type: {msg.packet_message_type} Payload: {msgvalue}")
 
         if self.config.GENERAL['protocolFile'] is not None:
             with open(self.config.GENERAL['protocolFile'], "a") as protWriter:
