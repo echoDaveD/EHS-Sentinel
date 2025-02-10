@@ -12,6 +12,27 @@ from EHSArguments import EHSArguments
 from EHSConfig import EHSConfig
 
 class MQTTClient:
+    """
+    MQTTClient is a singleton class that manages the connection to an MQTT broker and handles
+    publishing and subscribing to topics. It is designed to work with Home Assistant for
+    auto-discovery of devices and sensors.
+
+    Attributes:
+        _instance (MQTTClient): The single instance of the MQTTClient class.
+        STOP (asyncio.Event): Event to signal stopping the MQTT client.
+        DEVICE_ID (str): The device ID used for MQTT topics.
+        config (EHSConfig): Configuration object for the MQTT client.
+        args (EHSArguments): Arguments object for the MQTT client.
+        broker (str): URL of the MQTT broker.
+        port (int): Port of the MQTT broker.
+        client_id (str): Client ID for the MQTT client.
+        client (gmqtt.Client): MQTT client instance.
+        topicPrefix (str): Prefix for MQTT topics.
+        homeAssistantAutoDiscoverTopic (str): Topic for Home Assistant auto-discovery.
+        useCamelCaseTopicNames (bool): Flag to use camel case for topic names.
+        known_topics (list): List to keep track of known topics.
+        known_devices_topic (str): Dedicated topic for storing known topics.
+    """
     _instance = None
     STOP = asyncio.Event()
 
@@ -20,8 +41,10 @@ class MQTTClient:
     def __new__(cls, *args, **kwargs):
         """
         Create a new instance of the MQTTClient class if one does not already exist.
-        This method ensures that only one instance of the MQTTClient class is created
-        (Singleton pattern). If an instance already exists, it returns the existing instance.
+        This method ensures that the MQTTClient class follows the Singleton design pattern,
+        meaning only one instance of the class can exist at any given time. If an instance
+        already exists, it returns the existing instance. Otherwise, it creates a new instance
+        and sets the _initialized attribute to False.
         Args:
             cls (type): The class being instantiated.
             *args: Variable length argument list.
@@ -29,7 +52,7 @@ class MQTTClient:
         Returns:
             MQTTClient: The single instance of the MQTTClient class.
         """
-
+        
         if not cls._instance:
             cls._instance = super(MQTTClient, cls).__new__(cls)
             cls._instance._initialized = False
@@ -37,25 +60,28 @@ class MQTTClient:
 
     def __init__(self):
         """
-        Initializes the MQTTClient instance.
-        This method sets up the MQTT client with the configuration provided by the EHSConfig and EHSArguments classes.
-        It ensures that the client is only initialized once, sets up the MQTT broker connection, and starts the client loop.
+        Initialize the MQTTClient instance.
+        This constructor initializes the MQTT client with the configuration
+        provided by the EHSConfig and EHSArguments classes. It sets up the
+        MQTT broker connection details, client ID, and authentication credentials
+        if provided. It also assigns callback functions for various MQTT events
+        such as connect, disconnect, message, and subscribe. Additionally, it
+        initializes the topic prefix, Home Assistant auto-discover topic, and
+        topic naming convention.
         Attributes:
             config (EHSConfig): Configuration object for the MQTT client.
-            args (EHSArguments): Arguments object for the MQTT client.
+            args (EHSArguments): Argument parser object for the MQTT client.
             broker (str): URL of the MQTT broker.
-            port (int): Port of the MQTT broker.
-            client_id (str): Client ID for the MQTT client.
-            client (mqtt.Client): MQTT client instance.
+            port (int): Port number of the MQTT broker.
+            client_id (str): Client ID for the MQTT connection.
+            client (gmqtt.Client): gmqtt client instance.
             topicPrefix (str): Prefix for MQTT topics.
             homeAssistantAutoDiscoverTopic (str): Topic for Home Assistant auto-discovery.
             useCamelCaseTopicNames (bool): Flag to use camel case for topic names.
-            known_topics (set): Set to keep track of known topics.
-            known_topics_topic (str): Dedicated topic for storing known topics.
-        Raises:
-            Exception: If the MQTT client fails to connect to the broker.
+            known_topics (list): List to keep track of known topics.
+            known_devices_topic (str): Dedicated topic for storing known topics.
         """
-
+        
         if self._initialized:
             return
         self.config = EHSConfig()
@@ -80,6 +106,19 @@ class MQTTClient:
         self.known_devices_topic = "known/devices"  # Dedicated topic for storing known topics
 
     async def connect(self):
+        """
+        Asynchronously connects to the MQTT broker and optionally clears the known devices topic.
+        This method logs the connection attempt, connects to the MQTT broker using the specified
+        broker address and port, and sets the keepalive interval. If the CLEAN_KNOWN_DEVICES
+        argument is set to True, it publishes an empty message to the known devices topic to clear it.
+        Args:
+            None
+        Returns:
+            None
+        Raises:
+            Any exceptions raised by the underlying MQTT client library during connection.
+        """
+
         logger.info("[MQTT] Connecting to broker...")
         await self.client.connect(self.broker, self.port, keepalive=60, version=gmqtt.constants.MQTTv311)
 
@@ -89,11 +128,17 @@ class MQTTClient:
 
     def subscribe_known_topics(self):
         """
-        Subscribe to the known topics topic to receive updates on known topics.
-        This method subscribes to the `known_devices_topic` to keep track of known topics.
-        Returns:
-            None
+        Subscribes the MQTT client to known topics.
+        This method subscribes the MQTT client to two specific topics:
+        1. A topic for known devices, constructed using the topic prefix and known devices topic.
+        2. A status topic for Home Assistant auto-discovery.
+        The subscription QoS (Quality of Service) level for both topics is set to 1.
+        Logging:
+            Logs an informational message indicating that the client is subscribing to known devices topic.
+        Raises:
+            Any exceptions raised by the gmqtt.Subscription or self.client.subscribe methods.
         """
+        
         logger.info("Subscribe to known devices topic")
         self.client.subscribe(
             [
@@ -103,28 +148,52 @@ class MQTTClient:
         )
 
     def on_subscribe(self, client, mid, qos, properties):
-        logger.info('SUBSCRIBED')
+        """
+        Callback function that is called when the client subscribes to a topic.
+        Args:
+            client (paho.mqtt.client.Client): The client instance for this callback.
+            mid (int): The message ID for the subscribe request.
+            qos (int): The Quality of Service level for the subscription.
+            properties (paho.mqtt.properties.Properties): The properties associated with the subscription.
+        Returns:
+            None
+        """
+
+        logger.debug('SUBSCRIBED')
 
     def on_message(self, client, topic, payload, qos, properties):
         """
-        Callback function that is called when a message is received from the MQTT broker.
+        Callback function that is triggered when a message is received on a subscribed topic.
         Args:
-            client (paho.mqtt.client.Client): The client instance for this callback.
-            userdata (any): The private user data as set in Client() or userdata_set().
-            msg (paho.mqtt.client.MQTTMessage): An instance of MQTTMessage, which contains the topic and payload.
-        This function updates the known topics set with the retained message if the message topic matches the known topics topic.
+            client (paho.mqtt.client.Client): The MQTT client instance.
+            topic (str): The topic that the message was received on.
+            payload (bytes): The message payload.
+            qos (int): The quality of service level of the message.
+            properties (paho.mqtt.properties.Properties): The properties of the message.
+        Behavior:
+            - If the topic matches the known devices topic, updates the known devices set with the retained message.
+            - If the topic matches the Home Assistant auto-discover status topic, logs the status message and clears the known devices topic.
         """
-
+        
         if self.known_devices_topic in topic:
             # Update the known devices set with the retained message
-            self.known_topics = payload.decode().split(",")
+            self.known_topics = list(filter(None, [x.strip() for x in payload.decode().split(",")]))
 
         
         if f"{self.homeAssistantAutoDiscoverTopic}/status" == topic:
             logger.info(f"HASS Status Messages {topic} received: {payload.decode()}")
-            
+            self._publish(f"{self.topicPrefix.replace('/', '')}/{self.known_devices_topic}", " ", retain=True)
+            logger.info("Known Devices Topic have been cleared")            
 
     def refresh_known_devices(self, devname):
+        """
+        Refreshes the list of known devices by publishing the updated list to the MQTT topic.
+        Args:
+            devname (str): The name of the device to be refreshed.
+        Returns:
+            None
+        """
+
         self._publish(f"{self.topicPrefix.replace('/', '')}/{self.known_devices_topic}", ",".join(self.known_topics), retain=True)
 
     def on_connect(self, client, flags, rc, properties):
@@ -132,16 +201,16 @@ class MQTTClient:
         Callback function for when the client receives a CONNACK response from the server.
         Args:
             client (paho.mqtt.client.Client): The client instance for this callback.
-            userdata (any): The private user data as set in Client() or userdata_set().
             flags (dict): Response flags sent by the broker.
             rc (int): The connection result.
+            properties (paho.mqtt.properties.Properties): The properties associated with the connection.
         Returns:
             None
         Logs:
-            - Info: When the connection is successful (rc == 0).
-            - Error: When the connection fails (rc != 0).
+            - Info: When connected successfully with result code 0.
+            - Error: When failed to connect with a non-zero result code.
         """
-
+        
         if rc == 0:
             logger.info(f"Connected to MQTT with result code {rc}")
             if len(self.homeAssistantAutoDiscoverTopic) > 0:
@@ -153,18 +222,15 @@ class MQTTClient:
         """
         Callback function that is called when the client disconnects from the MQTT broker.
         Args:
-            client (paho.mqtt.client.Client): The client instance for this callback.
-            userdata (Any): The private user data as set in Client() or userdata_set().
-            rc (int): The disconnection result code. A value of 0 indicates a clean disconnection.
+            client (paho.mqtt.client.Client): The MQTT client instance that disconnected.
+            packet (paho.mqtt.client.MQTTMessage): The MQTT message packet received during disconnection.
+            exc (Exception, optional): The exception that caused the disconnection, if any. Defaults to None.
         Logs:
-            - Info level log indicating the disconnection result code.
-            - Warning level log if the disconnection was unexpected.
-            - Error level log if reconnection attempts fail.
-        Behavior:
-            - If the disconnection was unexpected (rc != 0), it attempts to reconnect indefinitely.
-            - Logs reconnection attempts and errors, and waits for 5 seconds before retrying.
+            Logs an info message indicating disconnection.
+            Logs a warning message indicating an unexpected disconnection and attempts to reconnect.
+            Logs an error message if reconnection fails and retries every 5 seconds.
         """
-
+        
         logger.info(f"Disconnected with result code ")
         logger.warning("Unexpected disconnection. Reconnecting...")
         while True:
@@ -180,12 +246,13 @@ class MQTTClient:
         Publish a message to a specified MQTT topic.
         Args:
             topic (str): The MQTT topic to publish to.
-            payload (str): The message payload to send.
+            payload (str): The message payload to publish.
             qos (int, optional): The Quality of Service level for message delivery. Defaults to 0.
             retain (bool, optional): If True, the message will be retained by the broker. Defaults to False.
         Returns:
             None
         """
+        
         logger.debug(f"MQTT Publish Topic: {topic} payload: {payload}")
         self.client.publish(f"{topic}", payload, qos, retain)
         #time.sleep(0.1)
@@ -193,18 +260,17 @@ class MQTTClient:
     def publish_message(self, name, value):
         """
         Publishes a message to an MQTT topic.
-        This method constructs the appropriate MQTT topic based on the provided
-        name and value, and then publishes the value to that topic. If Home Assistant
-        auto-discovery is enabled, it will also handle the auto-discovery configuration.
+        This method normalizes the given name, determines the appropriate MQTT topic,
+        and publishes the provided value to that topic. If Home Assistant auto-discovery
+        is enabled, it will also handle the auto-discovery configuration.
         Args:
             name (str): The name of the sensor or device.
-            value (int, float, bool): The value to be published. If the value is a float,
-                                      it will be rounded to 2 decimal places.
+            value (int, float, bool, str): The value to be published. If the value is a float,
+                                           it will be rounded to two decimal places.
         Raises:
-            ValueError: If the value is not of type int, float, or bool.
+            KeyError: If the name is not found in the NASA_REPO configuration.
         """
         
-
         newname = f"{self._normalize_name(name)}"
         
         if len(self.homeAssistantAutoDiscoverTopic) > 0:
@@ -227,19 +293,19 @@ class MQTTClient:
 
     def auto_discover_hass(self, topicname, nameraw, namenorm, sensor_type):
         """
-        Automatically discovers and configures a Home Assistant entity for the given sensor or switch.
+        Automatically discovers and configures Home Assistant entities for the MQTT client.
+        This function creates and publishes a configuration payload for Home Assistant's MQTT discovery.
+        It supports both sensor and binary sensor types, and sets appropriate attributes based on the 
+        provided sensor type and unit of measurement.
         Args:
             topicname (str): The MQTT topic name.
-            nameraw (str): The raw name of the sensor or switch.
-            namenorm (str): The normalized name of the sensor or switch.
-            sensor_type (str): The type of the sensor or switch (e.g., "sensor", "switch").
+            nameraw (str): The raw name of the sensor.
+            namenorm (str): The normalized name of the sensor.
+            sensor_type (str): The type of the sensor (e.g., "sensor" or "binary_sensor").
         Returns:
             None
-        This function creates a Home Assistant discovery message for the specified sensor or switch,
-        including its configuration and device information. It publishes the configuration to the
-        MQTT broker and updates the list of known topics and devices.
         """
-
+        
         entity = { namenorm: {
                 "name": f"{namenorm}",
                 "object_id": f"{self.DEVICE_ID}_{namenorm.lower()}",
