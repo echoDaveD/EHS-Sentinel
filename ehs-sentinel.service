@@ -1,0 +1,14 @@
+[Unit]
+Description = EHS-Sentinel Reads Serial port data from a Samsung Heatpump and published the Measurements to MQTT
+After = network.target 
+
+[Service]
+Type = simple
+ExecStart = python3 <Path of the script you want to run>
+Restart = on-failure
+SyslogIdentifier = ehsSentinel
+RestartSec = 5
+TimeoutStartSec = infinity
+ 
+[Install]
+WantedBy = multi-user.target

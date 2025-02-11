@@ -1,0 +1,5809 @@
+ENUM_AD_MULTI_TENANT_NO:
+  address: '0x0025'
+  arithmetic: ''
+  description: WiFi Kit Multi Tenant No.
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_2WAY_VALVE:
+  address: '0x408A'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'CV'
+    0x03: 'BOILER'
+  remarks: 0 Off, 2 CV, 3 Boiler
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_3WAY_VALVE_2:
+  address: '0x4113'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  enum:
+    0x00: 'ROOM'
+    0x01: 'TANK'
+  type: ENUM
+  unit: ''
+ENUM_IN_BACKUP_HEATER:
+  address: '0x406C'
+  arithmetic: ''
+  description: Backup heater mode
+  enum:
+    0x00: 'OFF'
+    0x01: 'STEP 1'
+    0x02: 'STEP 2'
+  remarks: 0 Off, 1 Step 1, 2 Step 2
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_BOOSTER_HEATER:
+  address: '0x4087'
+  arithmetic: ''
+  description: Booster heater
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: 0 Off, 1 On
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_CHILLER_EXT_WATER_OUT_INPUT:
+  address: '0x4101'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_CHILLER_SETTING_DEMAND_LEVEL:
+  address: '0x40FC'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: '100 %'
+    0x01: '95 %'
+    0x02: '90 %'
+    0x03: '85 %'
+    0x04: '80 %'
+    0x05: '75 %'
+    0x06: '70 %'
+    0x07: '65 %'
+    0x08: '60 %'
+    0x09: '55 %'
+    0x0A: '50 %'
+    0x0B: 'Not Apply'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_CHILLER_WATERLAW_ON_OFF:
+  address: '0x40F7'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  type: ENUM
+  unit: ''
+ENUM_IN_CHILLER_WATERLAW_SENSOR:
+  address: '0x40E7'
+  arithmetic: ''
+  description: DMV Chiller Option
+  enum:
+    0x00: 'OUTDOOR'
+    0x01: 'ROOM'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_CHILLLER_SETTING_SILENT_LEVEL:
+  address: '0x40FB'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'NONE'
+    0x01: 'LEVEL 1'
+    0x02: 'LEVEL 2'
+    0x03: 'LEVEL 3'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_DIFFUSER_OPERATION_POWER:
+  address: '0x4149'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_ENTER_ROOM_CONTROL_USED:
+  address: '0x40D5'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'DISABLE'
+    0x01: 'ENABLE'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_ENTHALPY_CONTROL_STATE:
+  address: '0x4105'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_ERROR_HISTORY_CLEAR_FOR_HASS:
+  address: '0x40D6'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FAN_MODE_REAL:
+  address: '0x4007'
+  arithmetic: ''
+  description: Indoor unit current air volume
+  enum:
+    0x01: 'LOW'
+    0x02: 'MID'
+    0x03: 'HIGH'
+    0x04: 'TURBO'
+    0x0A: 'AUTOLOW'
+    0x0B: 'AUTOMID'
+    0x0C: 'AUTOHIGH'
+    0x0D: 'UL'
+    0x0E: 'LL'
+    0x0F: 'HH'
+    0x10: 'SPEED'
+    0x11: 'NATURALLOW'
+    0x12: 'NATURALMID'
+    0x13: 'NATURALHIGH'
+    0xFE: 'OFF'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+enum:
+  0x00: 'OFF'
+  0x01: 'ON'
+  address: '0x410D'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_2041:
+  address: '0x4093'
+  arithmetic: ''
+  description: FSV Water Law Type Heating
+  enum:
+    0x01: 'Floor'
+    0x02: 'FCU'
+  remarks: 1 Floor, 2 FCU
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_2081:
+  address: '0x4094'
+  arithmetic: ''
+  description: FSV Water Law Type Cooling
+  enum:
+    0x01: 'Floor'
+    0x02: 'FCU'
+  remarks: 1 Floor, 2 FCU
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_2093:
+  address: '0x4127'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x01: 'one'
+    0x02: 'two'
+    0x03: 'three'
+    0x04: 'four'
+  remarks: Min = 1 Max = 4
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_2094:
+  address: '0x412A'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'no'
+    0x01: 'one'
+    0x02: 'two'
+    0x03: 'three'
+    0x04: 'four'
+  remarks: values 0="No" up to 4="4"
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_3041:
+  address: '0x4099'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'No'
+    0x01: 'Yes'
+  remarks: 0 No, 1 Yes
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_3042:
+  address: '0x409A'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'Sunday'
+    0x01: 'Monday'
+    0x02: 'Tuesday'
+    0x03: 'Wednesday'
+    0x04: 'Thursday'
+    0x05: 'Friday'
+    0x06: 'Saturday'
+    0x07: 'Everyday'
+  remarks: Sunday=0, Monday=1 .. up to 7=Everyday
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_3051:
+  address: '0x409B'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'No'
+    0x01: 'Yes'
+  remarks: 0 No, 1 Yes
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_3071:
+  address: '0x409D'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_4011:
+  address: '0x409E'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'DHW'
+    0x01: 'Heating'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_4021:
+  address: '0x409F'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'zero'
+    0x01: 'one'
+    0x02: 'two'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_4022:
+  address: '0x40A0'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'BUH_BSH_Both'
+    0x01: 'BUH'
+    0x02: 'BSH'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_4023:
+  address: '0x40A1'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'No'
+    0x01: 'Yes'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_4031:
+  address: '0x40A2'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'No'
+    0x01: 'Yes'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_4032:
+  address: '0x40A3'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'No'
+    0x01: 'Yes'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_4041:
+  address: '0x40C0'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'No'
+    0x01: 'one'
+    0x02: 'two'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_4044:
+  address: '0x40C1'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_4051:
+  address: '0x40C2'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'No'
+    0x01: 'Yes'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_4053:
+  address: '0x40C3'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'No'
+    0x01: 'Yes'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_4061:
+  address: '0x411A'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'zero'
+    0x01: 'one'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_5022:
+  address: '0x4128'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'min'
+    0x01: 'max'
+  remarks: Min = 0 Max = 1
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_5033:
+  address: '0x4107'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'A2A'
+    0x01: 'DHW'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_5041:
+  address: '0x40A4'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'No'
+    0x01: 'Yes'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_5042:
+  address: '0x40A5'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'All'
+    0x01: 'one'
+    0x02: 'two'
+    0x03: 'three'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_5043:
+  address: '0x40A6'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'Low'
+    0x01: 'High'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_5051:
+  address: '0x40A7'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'No'
+    0x01: 'Yes'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_5061:
+  address: '0x40B4'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_5081:
+  address: '0x411B'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'zero'
+    0x01: 'one'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_5091:
+  address: '0x411C'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'zero'
+    0x01: 'one'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_5094:
+  address: '0x411D'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'zero'
+    0x01: 'one'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_FSV_LOAD_SAVE:
+  address: '0x412D'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'min'
+    0x01: 'max'
+  remarks: Min = 0 Max = 1, similar name as 0x4125 in NASA.ptc
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_GAS_LEVEL:
+  address: '0x4147'
+  arithmetic: ''
+  description: ''
+  ernum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_LOUVER_HL_PART_SWING:
+  address: '0x4012'
+  arithmetic: ''
+  description: Up and down wind direction setting/status
+  enum:
+    0x00: 'Sing_Off'
+    0x01: 'LOUVER_1'
+    0x02: 'LOUVER_2'
+    0x03: 'LOUVER_1_2'
+    0x04: 'LOUVER_3'
+    0x05: 'LOUVER_1_3'
+    0x06: 'LOUVER_2_3'
+    0x07: 'LOUVER_1_2_3'
+    0x08: 'LOUVER_4'
+    0x09: 'LOUVER_1_4'
+    0x0A: 'LOUVER_2_4'
+    0x0B: 'LOUVER_1_2_4'
+    0x0C: 'LOUVER_3_4'
+    0x0D: 'LOUVER_1_3_4'
+    0x0E: 'LOUVER_2_3_4'
+    0x0F: 'Swing_On'
+    0x40: 'H_H_H'
+    0x41: 'M_H_H'
+    0x42: 'V_H_H'
+    0x44: 'H_M_H'
+    0x45: 'M_M_H'
+    0x46: 'V_M_H'
+    0x48: 'H_V_H'
+    0x49: 'M_V_H'
+    0x4A: 'V_V_H'
+    0x50: 'H_H_M'
+    0x51: 'M_H_M'
+    0x52: 'V_H_M'
+    0x54: 'H_M_M'
+    0x55: 'M_M_M'
+    0x56: 'V_M_M'
+    0x58: 'H_V_M'
+    0x59: 'M_V_M'
+    0x5A: 'V_V_M'
+    0x60: 'H_H_V'
+    0x61: 'M_H_V'
+    0x62: 'V_H_V'
+    0x64: 'H_M_V'
+    0x65: 'M_M_V'
+    0x66: 'V_M_V'
+    0x68: 'H_V_V'
+    0x69: 'M_V_V'
+    0x6A: 'V_V_V'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_MTFC:
+  address: '0x402F'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_OPERATION_POWER_ZONE1:
+  address: '0x4119'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_OPERATION_POWER_ZONE2:
+  address: '0x411E'
+  arithmetic: ''
+  description: Zone2 Normal Power
+  enum:
+    0x00: 'min'
+    0x01: 'max'
+  remarks: Min = 0 Max = 1
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_PV_CONTACT_STATE:
+  address: '0x4123'
+  arithmetic: ''
+  description: PV Control
+  enum:
+    0x00: 'Disable'
+    0x01: 'ENABLE'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_QUIET_MODE:
+  address: '0x406E'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_ROOM_TEMP_SENSOR:
+  address: '0x4076'
+  arithmetic: ''
+  enum:
+    0x00: 'Idiom_IndoorUnit'
+    0x01: 'Idiom_WiredRemocon'
+  remarks: 'It tells the room sensor is present for zone #1 (EHS Mono R290 AE050CXYBEK).'
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_ROOM_TEMP_SENSOR_ZONE2:
+  address: '0x4118'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'Idiom_IndoorUnit'
+    0x01: 'Idiom_WiredRemocon'
+  remarks: 'It tells the room sensor is present for zone #2 (EHS Mono R290 AE050CXYBEK).'
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_SG_READY_MODE_STATE:
+  address: '0x4124'
+  arithmetic: ''
+  description: Smart Grid
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_STATE_AUTO_STATIC_PRESSURE_RUNNING:
+  address: '0x40BB'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'Complete'
+    0x02: 'Running'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_STATE_FLOW_CHECK:
+  address: '0x4102'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_STATE_THERMO:
+  address: '0x4028'
+  arithmetic: ''
+  description: Thermo On/Off
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: 0 Off, 1 On
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_STATE_WATER_PUMP:
+  address: '0x4089'
+  arithmetic: ''
+  description: Water pump
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: 0 Off, 1 On
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_TDM_INDOOR_TYPE:
+  address: '0x4108'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'A2A'
+    0x01: 'A2W'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_THERMOSTAT1:
+  address: '0x4069'
+  arithmetic: ''
+  description: Hydro_ExternalThermostat
+  enum:
+    0x00: 'OFF'
+    0x01: 'Cool'
+    0x02: 'Heat'
+  remarks: 0 Off, 1 Cool, 2 Heat
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_THERMOSTAT2:
+  address: '0x406A'
+  arithmetic: ''
+  description: Hydro_ExternalThermostat2
+  enum:
+    0x00: 'OFF'
+    0x01: 'Cool'
+    0x02: 'Heat'
+  remarks: 0 Off, 1 Cool, 2 Heat
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_THERMOSTAT_WATER_HEATER:
+  address: '0x40C5'
+  arithmetic: ''
+  description: Hydro_WaterHeaterThermostat
+  enumy:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_WATERPUMP_PWM_VALUE:
+  address: '0x40C4'
+  arithmetic: ''
+  description: Water pump speed
+  remarks: "unit\xC2\_%"
+  signed: ''
+  type: ENUM
+  unit: '%'
+ENUM_IN_WATER_VALVE_1_ON_OFF:
+  address: '0x4103'
+  arithmetic: ''
+  description: FCU Kit
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_IN_WATER_VALVE_2_ON_OFF:
+  address: '0x4104'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_CHECK_REF_RESULT:
+  address: '0x809C'
+  arithmetic: ''
+  description: Refrigerant amount determination result
+  enum:
+    0x00: 'RefResult_NotInspect'
+    0x01: 'Normal_Completion'
+    0x02: 'RefResult_NotJudgment'
+    0x03: 'Unable_To_Secure_Supercooling'
+    0x04: 'RefResult_Normal'
+    0x05: 'RefResult_Insufficient'
+    0x06: 'Judgment_Not_Possible'
+    0x07: 'Temperature_Range_Exceeded'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_CONTROL_FAN_NUM:
+  address: '0x8099'
+  arithmetic: ''
+  description: Number of outdoor fans
+  remarks: ''
+  signed: 'false'
+  type: ENUM
+  unit: ''
+ENUM_OUT_EHS_WATEROUT_TYPE:
+  address: '0x80D8'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'Default'
+    0x01: '70 %'
+  remarks: "0 Default, 1 70\xC2\xB0C"
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_INSTALL_ODU_COUNT:
+  address: '0x8092'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: 'false'
+  type: ENUM
+  unit: ''
+ENUM_OUT_LOAD_A2A_VALVE:
+  address: '0x80C1'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_LOAD_OIL_BYPASS1:
+  address: '0x80B8'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_LOAD_OIL_BYPASS2:
+  address: '0x80B9'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_LOAD_PHEHEATER:
+  address: '0x80D7'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_MCU_LOAD_COOL_A:
+  address: '0x8049'
+  arithmetic: ''
+  description: MCU
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_MCU_LOAD_COOL_B:
+  address: '0x804B'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_MCU_LOAD_COOL_C:
+  address: '0x804D'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_MCU_LOAD_COOL_D:
+  address: '0x804F'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_MCU_LOAD_COOL_E:
+  address: '0x8051'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_MCU_LOAD_COOL_F:
+  address: '0x8053'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_MCU_LOAD_HEAT_A:
+  address: '0x804A'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_MCU_LOAD_HEAT_B:
+  address: '0x804C'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_MCU_LOAD_HEAT_C:
+  address: '0x804E'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_MCU_LOAD_HEAT_D:
+  address: '0x8050'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_MCU_LOAD_HEAT_E:
+  address: '0x8052'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_MCU_LOAD_HEAT_F:
+  address: '0x8054'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_MCU_LOAD_LIQUID:
+  address: '0x8055'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_MCU_PORT0_INDOOR_ADDR:
+  address: '0x8058'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_MCU_PORT1_INDOOR_ADDR:
+  address: '0x8059'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_MCU_PORT2_INDOOR_ADDR:
+  address: '0x805A'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_MCU_PORT3_INDOOR_ADDR:
+  address: '0x805B'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_MCU_PORT4_INDOOR_ADDR:
+  address: '0x805C'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_MCU_PORT5_INDOOR_ADDR:
+  address: '0x805D'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_OPERATION_AUTO_INSPECT_STEP:
+  address: '0x803C'
+  arithmetic: ''
+  description: Automatic check step
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_OPERATION_SERVICE_OP:
+  address: '0x8000'
+  arithmetic: ''
+  description: Indoor unit service operation steps
+  enum:
+    0x00: 'OFF'
+    0x02: 'Heating_Test_Run'
+    0x03: 'Pump_Out'
+    0x0D: 'Cooling_Test_Run'
+    0x0E: 'Pump_Down'
+  remarks: 2 Heating test run, 3 Pump out, 13 Cooling test run, 14 Pump down
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_OP_A2_CURRENTMODE:
+  address: '0x80BE'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'Null'
+    0x01: 'A2W'
+    0x02: 'A2A'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+ENUM_OUT_OP_CHECK_REF_STEP:
+  address: '0x808E'
+  arithmetic: value & 0x0F
+  description: Refrigerant amount level
+  remarks: This is Enum in definition. But we need operation, so just consider this
+    as variable. Min = 0, Max = 8
+  enum:
+    0x00: 'RefStep_0'
+    0x01: 'RefStep_1'
+    0x02: 'RefStep_2'
+    0x03: 'RefStep_3'
+    0x04: 'RefStep_4'
+    0x05: 'RefStep_5'
+    0x06: 'RefStep_6'
+    0x07: 'RefStep_7'
+    0x08: 'RefStep_8'
+    0xFF: 'off'
+  signed: 'false'
+  type: ENUM
+  unit: ''
+ENUM_OUT_STATE_ACCUM_VALVE_ONOFF:
+  address: '0x80B4'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+LVAR_AD_MCU_PORT_SETUP:
+  address: '0x0448'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+LVAR_IN_AUTO_STATIC_PRESSURE:
+  address: '0x4415'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+LVAR_IN_DEVICE_STAUS_HEATPUMP_BOILER:
+  address: '0x440A'
+  arithmetic: (value & 0x00000002) / 2
+  description: Switch_HyrdoFlow
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+LVAR_IN_ENTER_ROOM_CONTROL_DATA:
+  address: '0x441B'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+LVAR_IN_ETO_COOL_CONTROL_DATA:
+  address: '0x441F'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+LVAR_IN_ETO_HEAT_CONTROL_DATA:
+  address: '0x4420'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+LVAR_OUT_AUTO_INSPECT_RESULT0:
+  address: '0x840B'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+LVAR_OUT_AUTO_INSPECT_RESULT1:
+  address: '0x840C'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+NASA_ADDRESSING:
+  address: '0x2003'
+  arithmetic: ''
+  description: ''
+  remarks: seen in NASA data from EHS Mono HT Quiet
+  signed: ''
+  type: ''
+  unit: ''
+NASA_ADDRESSING_ASSIGN_CONFIRM_ADDRESS:
+  address: '0x2002'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_AHUKIT_ADDRESS:
+  address: '0x461C'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: STR
+  unit: ''
+NASA_AHUPANEL_CO2_CONTROL:
+  address: '0x40CA'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_DUTY_CONTROL:
+  address: '0x40C8'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_EA_RATE:
+  address: '0x4294'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_ENERGYMANAGE_CONTROL:
+  address: '0x40CB'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_ENTHALPY_CONTROL:
+  address: '0x40C7'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_ERROR_STATUS:
+  address: '0x40CF'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_HEATER_ONOFF_STATUS:
+  address: '0x40D0'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_MIXING_RATE:
+  address: '0x429B'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_MIXING_TEMP:
+  address: '0x429A'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_OA_DAMPER_TARGET_RATE:
+  address: '0x4291'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_OA_HUMIDITY:
+  address: '0x4296'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_OA_TEMP:
+  address: '0x4295'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_PANEL_OPTION:
+  address: '0x461D'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: STR
+  unit: ''
+NASA_AHUPANEL_POINT_STATUS:
+  address: '0x429C'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_RA_FAN_ONOFF_STATUS:
+  address: '0x40CE'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_RA_HUMIDITY:
+  address: '0x4293'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_RA_SMOKE_DECTION_STATUS:
+  address: '0x40CC'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_RA_TEMP:
+  address: '0x4292'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_SA_FAN_ONOFF_STATUS:
+  address: '0x40D1'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_SA_FAN_STATUS:
+  address: '0x40CD'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_SA_HUMIDITY:
+  address: '0x4298'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: ''
+NASA_AHUPANEL_SA_TEMP:
+  address: '0x4297'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: ''
+NASA_AHUPANEL_SMOKE_DECTION_CONTROL:
+  address: '0x40D2'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_STATIC_PRESSURE:
+  address: '0x4299'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_SUMMERNIGHT_CONTROL:
+  address: '0x40C9'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AHUPANEL_TARGET_HUMIDITY:
+  address: '0x4290'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_AIRFLOW_LEFTRIGHT:
+  address: '0x407E'
+  arithmetic: ''
+  description: Left and right wind direction settings/status
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: 0 Off, 1 On
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_AIRFLOW_UPDOWN:
+  address: '0x4011'
+  arithmetic: ''
+  description: Up and down wind direction setting/status
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_ALL_LAYER_DEVICE_COUNT:
+  address: '0x2400'
+  arithmetic: ''
+  description: ''
+  remarks: seen in NASA data from EHS Mono HT Quiet
+  signed: ''
+  type: LVAR
+  unit: ''
+NASA_ALL_POWER_CONSUMPTION_CUMULATIVE:
+  address: '0x0407'
+  arithmetic: ''
+  description: Total cumulative power consumption
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_ALL_POWER_CONSUMPTION_SET:
+  address: '0x0406'
+  arithmetic: ''
+  description: Total instantaneous power consumption
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_ALL_REMOTE_LEVEL:
+  address: '0x0409'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+NASA_ALTERNATIVE_MODE:
+  address: '0x4060'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: 0 Off, 9 On
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_CHANGE_ALL_NETWORK_STATUS:
+  address: '0x200A'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_CHANGE_CONTROL_NETWORK_STATUS:
+  address: '0x2006'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_CHANGE_LOCAL_NETWORK_STATUS:
+  address: '0x2008'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_CHANGE_MODULE_NETWORK_STATUS:
+  address: '0x2009'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_CHANGE_POLAR:
+  address: '0x2001'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_CHANGE_SET_NETWORK_STATUS:
+  address: '0x2007'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_COMMU_MICOM_BUTTON:
+  address: '0x2018'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_COMMU_MICOM_LED:
+  address: '0x2017'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_CONFIRM_ADDRESS:
+  address: '0x0401'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+NASA_CONTROL_AUTO_CLEAN:
+  address: '0x4042'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_CONTROL_DESIRED_HUMIDITY:
+  address: '0x405E'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_CONTROL_HUMIDIFICATION:
+  address: '0x4041'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_CONTROL_MDS:
+  address: '0x403F'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_CONTROL_OAINTAKE:
+  address: '0x403D'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_CONTROL_OUTER_COOL:
+  address: '0x405C'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_CONTROL_SILENCE:
+  address: '0x4046'
+  arithmetic: ''
+  description: Silence mode
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: 0 Off, 1 On
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_CONTROL_SILENCT:
+  address: '0x4050'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_CONTROL_SPI:
+  address: '0x4043'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_COOL_SET_DISCHARGE:
+  address: '0x422A'
+  arithmetic: value / 10
+  description: User limitation - Water Cooling Temperature Max.
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_CURRENT_DISCHARGE:
+  address: '0x420B'
+  arithmetic: value / 10
+  description: Indoor Discharge Temp(Duct, AHU)
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_CURRENT_TEMP:
+  address: '0x4203'
+  arithmetic: value / 10
+  description: Room Temperature
+  remarks: 'Room temperature for zone #1'
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_CYCLEOPTION:
+  address: '0x0603'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: STR
+  unit: ''
+NASA_DEMAND_SYNC_TIME:
+  address: '0x0213'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_DETECTION_TYPE:
+  address: '0x000D'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_DHW_MAX_SETTEMPLIMIT:
+  address: '0x4252'
+  arithmetic: value / 10
+  description: User limitation - Hot Water Temperature Max.
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_DHW_MIN_SETTEMPLIMIT:
+  address: '0x4253'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_DHW_OPMODE:
+  address: '0x4066'
+  arithmetic: ''
+  description: Water heater mode
+  enum:
+    0x00: 'Eco'
+    0x01: 'Standard'
+    0x02: 'Power'
+    0x03: 'Force'
+  remarks: 0 Eco, 1 Standard, 2 Power, 3 Force
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_DHW_OPMODE_SUPPORT:
+  address: '0x40B1'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_DHW_POWER:
+  address: '0x4065'
+  arithmetic: ''
+  description: Water heater power
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: 0 Off, 1 On
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_DHW_REFERENCE_TEMP:
+  address: '0x406F'
+  arithmetic: ''
+  description: Hydro_ControlChoice_RoomTemp
+  enum:
+    0x00: 'ROOM'
+    0x01: 'Water out'
+  remarks: 0 Room, 1 Water out. Variable isEhsSetTempWaterOut. See 0x4201 and 0x4247.
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_DHW_VALVE:
+  address: '0x4067'
+  arithmetic: ''
+  description: Hydro_3Way
+  enum:
+    0x00: 'ROOM'
+    0x01: 'TANK'
+  remarks: 0 Room, 1 Tank
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_DISCHARGE_TEMP_ENABLE:
+  address: '0x4070'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: '0 Off, 1 On (rem: "DISCHAGE" is typo in NASA.ptc)'
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_EEPROM_CODE:
+  address: '0x060C'
+  arithmetic: ''
+  description: OutdoorTableEEPROMDBCodeVersion
+  remarks: ''
+  signed: ''
+  type: STR
+  unit: ''
+NASA_EHS_FSV_SETTING_MIN_MAX_TEMP:
+  address: '0x461A'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: STR
+  unit: ''
+NASA_EHS_INDOOR_OPMODE:
+  address: '0x4064'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_EHS_INDOOR_POWER:
+  address: '0x4063'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_EHS_SETTING_MIN_MAX_TEMP:
+  address: '0x4619'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: STR
+  unit: ''
+NASA_ENABLEDOWNLOAD:
+  address: '0x000A'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_ENABLE_DHW:
+  address: '0x4097'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'No'
+    0x01: 'one'
+    0x02: 'two'
+  remarks: values 0="No" up to 2="2"
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_ERROR_CODE1:
+  address: '0x0202'
+  arithmetic: ''
+  description: Error code
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_ERROR_CODE2:
+  address: '0x0203'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_ERROR_CODE3:
+  address: '0x0204'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_ERROR_CODE4:
+  address: '0x0205'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_ERROR_CODE5:
+  address: '0x0206'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_ERROR_INOUT:
+  address: '0x440F'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: LVAR
+  unit: ''
+NASA_ERV_FANSPEED:
+  address: '0x4008'
+  arithmetic: ''
+  description: Indoor unit current air volume
+  enum:
+    0x00: 'Auto'
+    0x01: 'Low'
+    0x02: 'Mid'
+    0x03: 'High'
+    0x04: 'Turbo'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_ERV_OPMODE:
+  address: '0x4004'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  enum:
+    0x00: 'Normal'
+    0x01: 'HeatEx'
+    0x02: 'Bypass'
+    0x03: 'Normal_Purify'
+    0x04: 'HeatEx_Purify'
+    0x05: 'Purify'
+    0x06: 'Sleep'
+    0x07: 'Bypass_Purify'
+  type: ENUM
+  unit: ''
+NASA_ERV_POWER:
+  address: '0x4003'
+  arithmetic: ''
+  description: Ventilation operation mode
+  remarks: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_EVA_INHOLE_TEMP:
+  address: '0x4208'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_EVA_IN_TEMP:
+  address: '0x4205'
+  arithmetic: value / 10
+  description: Indoor Eva In Temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_EVA_OUT_TEMP:
+  address: '0x4206'
+  arithmetic: value / 10
+  description: Indoor Eva Out Temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_FANSPEED:
+  address: '0x4006'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_FILTER_CLEAN:
+  address: '0x4025'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_FILTER_WARNING:
+  address: '0x4027'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  type: ENUM
+  unit: ''
+NASA_GATHER_INFORMATION:
+  address: '0x0007'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_GATHER_INFORMATION_COUNT:
+  address: '0x0008'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_GROUPCONTROL_BIT1:
+  address: '0x4405'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_GROUPCONTROL_BIT2:
+  address: '0x4406'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_GROUPCONTROL_BIT3:
+  address: '0x4407'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_HEAT_SET_DISCHARGE:
+  address: '0x422B'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_HUMIDITY_PERCENT:
+  address: '0x4038'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_IM_MASTER:
+  address: '0x2000'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_IM_MASTER_NOTIFY:
+  address: '0x0000'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_INDOOR_ABLE_FUNCTION:
+  address: '0x4604'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: STR
+  unit: ''
+NASA_INDOOR_ABSOLUTE_CAPACITY:
+  address: '0x4212'
+  arithmetic: value / 8.5
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: kW
+NASA_INDOOR_AIRCLEANFAN_CURRENT_RPM:
+  address: '0x4220'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: 'rpm'
+NASA_INDOOR_CAPACITY:
+  address: '0x4211'
+  arithmetic: value / 8.5
+  description: Capacity
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: kW
+NASA_INDOOR_COOL_MAX_SETTEMP_ROOM:
+  address: '0x424C'
+  arithmetic: value / 10
+  description: User limitation - Room Cooling Temperature Max.
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_INDOOR_COOL_MAX_SETTEMP_WATEROUT:
+  address: '0x424A'
+  arithmetic: value / 10
+  description: User limitation - Water Cooling Temperature Max.
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_INDOOR_COOL_MIN_SETTEMP_ROOM:
+  address: '0x424D'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_INDOOR_COOL_MIN_SETTEMP_WATEROUT:
+  address: '0x424B'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_INDOOR_CURRENT_EEV2:
+  address: '0x4218'
+  arithmetic: ''
+  description: Current EEV2 development level
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_INDOOR_CURRENT_EEV3:
+  address: '0x4219'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_INDOOR_CURRENT_EEV4:
+  address: '0x421A'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_INDOOR_DEFROST_STATUS:
+  address: '0x402E'
+  arithmetic: ''
+  description: Defrost mode
+  remarks: 0 Off, 1 On
+  signed: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  type: ENUM
+  unit: ''
+NASA_INDOOR_DHW_CURRENT_TEMP:
+  address: '0x4237'
+  arithmetic: value / 10
+  description: DHW tank current temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_INDOOR_DHW_SET_TEMP:
+  address: '0x4235'
+  arithmetic: value / 10
+  description: DHW target temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_INDOOR_HEAT_MAX_SETTEMP_ROOM:
+  address: '0x4250'
+  arithmetic: value / 10
+  description: User limitation - Room heating Temperature Max.
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_INDOOR_HEAT_MAX_SETTEMP_WATEROUT:
+  address: '0x424E'
+  arithmetic: value / 10
+  description: User limitation - Water Heating Temperature Max.
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_INDOOR_HEAT_MIN_SETTEMP_ROOM:
+  address: '0x4251'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_INDOOR_HEAT_MIN_SETTEMP_WATEROUT:
+  address: '0x424F'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_INDOOR_MODEL_INFORMATION:
+  address: '0x4229'
+  arithmetic: ''
+  description: Indoor unit model information
+  remarks: ''
+  signed: ''
+  type: VAR
+  unit: ''
+NASA_INDOOR_OPMODE:
+  address: '0x4001'
+  arithmetic: ''
+  description: Indoor unit control mode
+  enum:
+    0x00: 'Auto'
+    0x01: 'Cool'
+    0x02: 'Dry'
+    0x03: 'Fan'
+    0x04: 'Heat'
+    0x15: 'Cool Storage'
+    0x18: 'Hot water'
+  remarks: 0 Auto, 1 Cool, 2 Dry, 3 Fan, 4 Heat, 21 Cool Storage, 24 Hot water
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_INDOOR_OUTER_TEMP:
+  address: '0x420C'
+  arithmetic: value / 10
+  description: ''
+  remarks: same value as 0x8204 (sensor_airout) ?
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_INDOOR_OUT_GOING:
+  address: '0x406D'
+  arithmetic: ''
+  description: Outing mode
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: 0 Off, 1 On
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_INDOOR_POWER_CONSUMPTION:
+  address: '0x4284'
+  arithmetic: ''
+  description: Indoor unit power consumption
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_INDOOR_REAL_OPMODE:
+  address: '0x4002'
+  arithmetic: ''
+  description: Indoor unit current operation mode
+  enum:
+    0x00: 'Auto'
+    0x01: 'Cool'
+    0x02: 'Dry'
+    0x03: 'Fan'
+    0x04: 'Heat'
+    0x0B: 'Auto Cool'
+    0x0C: 'Auto Dry'
+    0x0D: 'Auto Fan'
+    0x0E: 'Auto Heat'
+    0x15: 'Cool Storage'
+    0x18: 'Hot water'
+    0xFF: 'NULL mode'
+  remarks: 0 Auto, 1 Cool, 2 Dry, 3 Fan, 4 Heat, 11 Auto Cool, 12 Auto Dry, 13 Auto
+    Fan, 14 Auto Heat, 21 Cool Storage, 24 Hot water, 255 NULL mode
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_INDOOR_SETTEMP_WATEROUT:
+  address: '0x4247'
+  arithmetic: value / 10
+  description: Hydro_WaterOutletTargetF
+  remarks: variable waterOutSetTemp
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_INDOOR_SETTING_MIN_MAX_TEMP:
+  address: '0x4608'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: STR
+  unit: ''
+NASA_INDOOR_WATER_IN_TEMP:
+  address: '0x4236'
+  arithmetic: value / 10
+  description: Hydro_WaterIn
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_INDOOR_WATER_OUT_TEMP:
+  address: '0x4238'
+  arithmetic: value / 10
+  description: Hydro_WaterOut
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_INODDR_CURRENT_EEV1:
+  address: '0x4217'
+  arithmetic: ''
+  description: Current EEV development level
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_INSPECTION_MODE:
+  address: '0x0004'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_INSTALLOPTION2:
+  address: '0x0602'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: STR
+  unit: ''
+NASA_INSTALL_OPTION:
+  address: '0x0601'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: STR
+  unit: ''
+NASA_LAYER:
+  address: '0x200F'
+  arithmetic: ''
+  description: Enumeration Type
+  remarks: ''
+  signed: ''
+  enumy:
+    0x00: 'Control_Layer'
+    0x01: 'Set_Layer'
+  type: ENUM
+  unit: ''
+NASA_LEVEL_AIRSWING:
+  address: '0x040D'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+NASA_LEVEL_COOL_HIGH_TEMP_LIMIT:
+  address: '0x0411'
+  arithmetic: (value & 0xFFFF0000u) >> 16) / 10.0
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: "\u00b0C"
+NASA_LEVEL_COOL_LOW_TEMP_LIMIT:
+  address: '0x0412'
+  arithmetic: (value & 0xFFFF0000u) >> 16) / 10.0
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: "\u00b0C"
+NASA_LEVEL_FANSPEED:
+  address: '0x040C'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+NASA_LEVEL_HEAT_HIGH_TEMP_LIMIT:
+  address: '0x0413'
+  arithmetic: (value & 0xFFFF0000u) >> 16) / 10.0
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: "\u00b0C"
+NASA_LEVEL_HEAT_LOW_TEMP_LIMIT:
+  address: '0x0414'
+  arithmetic: (value & 0xFFFF0000u) >> 16) / 10.0
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: "\u00b0C"
+NASA_LEVEL_KEEP_ALTERNATIVE_MODE:
+  address: '0x040F'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+NASA_LEVEL_KEY_INPUT:
+  address: '0x0416'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+NASA_LEVEL_OPMODE:
+  address: '0x040B'
+  arithmetic: value & 0xFF
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+NASA_LEVEL_OPMODE_LIMIT:
+  address: '0x0410'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+NASA_LEVEL_OUT_POINT_INPUT:
+  address: '0x0415'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+NASA_LEVEL_POWER:
+  address: '0x040A'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+NASA_LEVEL_SETTEMP:
+  address: '0x040E'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+NASA_MICOM_CODE:
+  address: '0x0608'
+  arithmetic: ''
+  description: OutdoorUnitMainDBCodeVersion
+  remarks: VariableAssign Identifier="dbCode"
+  signed: ''
+  type: STR
+  unit: ''
+NASA_MODIFIED_CURRENT_TEMP:
+  address: '0x4204'
+  arithmetic: value / 10
+  description: Temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_NAME:
+  address: '0x0605'
+  arithmetic: ''
+  description: ''
+  remarks: appears when using S-NET pro 2 software
+  signed: ''
+  type: STR
+  unit: ''
+NASA_NET_ADDRESS:
+  address: '0x0210'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_4WAY2_VALVE:
+  address: '0x802A'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_4WAY_VALVE:
+  address: '0x801A'
+  arithmetic: ''
+  description: 4Way On/Off
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_ACCUMULATOR_CCH:
+  address: '0x8016'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_ACCUM_RETURN2_VALVE:
+  address: '0x80AC'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_ACCUM_RETURN_VALVE:
+  address: '0x8037'
+  arithmetic: ''
+  description: ARV On/Off
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_ACCUM_TEMP:
+  address: '0x82C8'
+  arithmetic: value / 10
+  description: Accumulator outlet temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_APPEARANCE_RPM:
+  address: '0x82D0'
+  arithmetic: value / 10
+  description: Appearance RPM
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: rpm
+NASA_OUTDOOR_BACKUP_OPERATION:
+  address: '0x80A5'
+  arithmetic: ''
+  description: Backup operation operation status On/Off
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_BASE_HEATER:
+  address: '0x80AF'
+  arithmetic: ''
+  description: Base heater On/Off state for EHS
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: 0 Off, 1 On
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_CBOX_COOLING_FAN:
+  address: '0x809E'
+  arithmetic: ''
+  description: DC Fan
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_CBOX_TEMP:
+  address: '0x82BE'
+  arithmetic: value / 10
+  description: Contor Box Temp
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_CCH1_STATUS:
+  address: '0x8013'
+  arithmetic: ''
+  description: CCH1 On/Off
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_CCH2_STATUS:
+  address: '0x8014'
+  arithmetic: ''
+  description: CCH2 On/Off
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_CCH3_STATUS:
+  address: '0x8015'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_CH_SWITCH_VALUE:
+  address: '0x80B2'
+  arithmetic: ''
+  description: ''
+  remarks: seen in NASA data from EHS Mono HT Quiet
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_COMP1_ORDER_HZ:
+  address: '0x8236'
+  arithmetic: ''
+  description: Instruction frequency 1
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: 'Hz'
+NASA_OUTDOOR_COMP1_RUNNING_TIME:
+  address: '0x8405'
+  arithmetic: ''
+  description: OutdoorTableCompressorRunningTime 1
+  remarks: hours
+  signed: 'false'
+  type: LVAR
+  unit: ''
+NASA_OUTDOOR_COMP1_RUN_HZ:
+  address: '0x8238'
+  arithmetic: ''
+  description: Current frequency 1
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: 'Hz'
+NASA_OUTDOOR_COMP1_STATUS:
+  address: '0x8010'
+  arithmetic: ''
+  description: Comp#1 On/Off
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_COMP1_TARGET_HZ:
+  address: '0x8237'
+  arithmetic: ''
+  description: Target frequency 1
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: 'Hz'
+NASA_OUTDOOR_COMP2_ORDER_HZ:
+  address: '0x8274'
+  arithmetic: ''
+  description: Instruction frequency 2
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: 'Hz'
+NASA_OUTDOOR_COMP2_RUNNING_TIME:
+  address: '0x8406'
+  arithmetic: ''
+  description: OutdoorTableCompressorRunningTime 2
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+NASA_OUTDOOR_COMP2_RUN_HZ:
+  address: '0x8276'
+  arithmetic: ''
+  description: Current frequency 2
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: 'Hz'
+NASA_OUTDOOR_COMP2_STATUS:
+  address: '0x8011'
+  arithmetic: ''
+  description: Comp#2 On/Off
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_COMP2_TARGET_HZ:
+  address: '0x8275'
+  arithmetic: ''
+  description: Target frequency 2
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  uunit: 'Hz'
+NASA_OUTDOOR_COMP3_ORDER_HZ:
+  address: '0x82C0'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: 'Hz'
+NASA_OUTDOOR_COMP3_RUNNING_TIME:
+  address: '0x840E'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_COMP3_RUN_HZ:
+  address: '0x82C2'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: 'Hz'
+NASA_OUTDOOR_COMP3_STATUS:
+  address: '0x8012'
+  arithmetic: ''
+  description: Comp#3 On/Off
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_COMP3_TARGET_HZ:
+  address: '0x82C1'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: 'Hz'
+NASA_OUTDOOR_COMPENSATE_COOL_CAPA:
+  address: '0x829C'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_COMPENSATE_HEAT_CAPA:
+  address: '0x829D'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_COM_PROTECT_OPERATIOIN:
+  address: '0x80A6'
+  arithmetic: ''
+  description: Compressor protection control operation status On/Off
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: 0 Off, 1 On
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_COND_OUT1:
+  address: '0x8218'
+  arithmetic: value / 10
+  description: Main heat exchanger outlet temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_COND_OUT2:
+  address: '0x82BF'
+  arithmetic: value / 10
+  description: Sub heat exchanger outlet temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_COND_OVER_COOL:
+  address: '0x82CE'
+  arithmetic: value / 10
+  description: Outdoor heat exchanger subcooling degree
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_CONTROL_PRIME_UNIT:
+  address: '0x823F'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_CONTROL_WATTMETER_1UNIT:
+  address: '0x8411'
+  arithmetic: ''
+  description: Instantaneous power consumption of outdoor unit. One outdoor unit.
+    Not used by the controller.
+  remarks: appears about every 135 seconds, so less often than 0x8413
+  signed: ''
+  type: LVAR
+  unit: ''
+NASA_OUTDOOR_CONTROL_WATTMETER_1UNIT_ACCUM:
+  address: '0x8412'
+  arithmetic: ''
+  description: Cumulative power consumption of outdoor unit. One outdoor unit. Not
+    used by the controller.
+  remarks: never seen in NASA data from EHS Mono HT Quiet
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT:
+  address: '0x8413'
+  arithmetic: value / 1000
+  description: Outdoor unit instantaneous power consumption. Sum of modules
+  remarks: appears about every 30 seconds, not once in a minute
+  signed: 'false'
+  type: LVAR
+  unit: kW
+NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM:
+  address: '0x8414'
+  arithmetic: value / 1000
+  description: Outdoor unit cumulative power consumption. Sum of modules
+  remarks: value is Wh, so do div 1000
+  state_class: total_increasing
+  device_class: "measurement"
+  signed: 'false'
+  type: LVAR
+  unit: kW
+NASA_OUTDOOR_CONTROL_WATTMETER_TOTAL_SUM:
+  address: '0x8415'
+  arithmetic: ''
+  description: Total (indoor + outdoor) instantaneous power consumption
+  remarks: never seen in NASA data from EHS Mono HT Quiet
+  signed: ''
+  type: LVAR
+  unit: ''
+NASA_OUTDOOR_CONTROL_WATTMETER_TOTAL_SUM_ACCUM:
+  address: '0x8416'
+  arithmetic: ''
+  description: Total (indoor + outdoor) cumulative power consumption
+  remarks: never seen in NASA data from EHS Mono HT Quiet
+  signed: ''
+  type: LVAR
+  unit: ''
+NASA_OUTDOOR_COOLONLY_MODEL:
+  address: '0x809D'
+  arithmetic: ''
+  description: ''
+  remarks: seen in NASA data from EHS Mono HT Quiet (value always = 0)
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_COOL_SUM_CAPA:
+  address: '0x8298'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_CT1:
+  address: '0x8217'
+  arithmetic: value / 10
+  description: Compressor 1 current
+  remarks: very unprecise, just 1 fractional digit
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_CT2:
+  address: '0x8277'
+  arithmetic: ''
+  description: Compressor 2 current
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_CT3:
+  address: '0x82A3'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_CT_RESTRICT_OPTION:
+  address: '0x829B'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_DCLINK1_VOLT:
+  address: '0x823B'
+  arithmetic: ''
+  description: DC Link1 (Inverter DC voltage input)
+  remarks: Min 0, Max 1000
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_DCLINK2_VOLT:
+  address: '0x82B3'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_DCLINK3_VOLT:
+  address: '0x82C3'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_DEFROST_STEP:
+  address: '0x8247'
+  arithmetic: ''
+  description: Outdoor unit defrost operation steps
+  enum:
+    0x01: 'Defrost stage 1'
+    0x02: 'Defrost stage 2'
+    0x03: 'Defrost stage 3'
+    0x04: 'Defrost stage 4'
+    0x05: 'Defrost stage 5'
+    0x06: 'Defrost stage 6'
+    0x07: 'Defrost operation end stage'
+    0xFF: 'No defrost operation'
+  remarks: 1 Defrost stage 1, 2 Defrost stage 2, 3 Defrost stage 3, 4 Defrost stage
+    4, 7 Defrost operation end stage, 255 No defrost operation
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_DISCHARGE_TEMP1:
+  address: '0x820A'
+  arithmetic: value / 10
+  description: Discharge1
+  remarks: The discharge temperature in a heat pump refers to the temperature of the
+    refrigerant as it exits the compressor and enters the condenser.
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_DISCHARGE_TEMP2:
+  address: '0x820C'
+  arithmetic: value / 10
+  description: Discharge2
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_DISCHARGE_TEMP3:
+  address: '0x820E'
+  arithmetic: value / 10
+  description: Discharge3
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_DOUBLE_TUBE:
+  address: '0x821C'
+  arithmetic: value / 10
+  description: Liquid pipe temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_DRED_LEVEL:
+  address: '0x80A7'
+  arithmetic: ''
+  description: ''
+  remarks: seen in NASA data from EHS Mono HT Quiet
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_EHSCOUNT:
+  address: '0x0209'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_ENGINE_RPM:
+  address: '0x82CF'
+  arithmetic: ''
+  description: Engine RPM
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: 'rpm'
+NASA_OUTDOOR_ENGINE_WATER_TEMP:
+  address: '0x82C9'
+  arithmetic: value / 10
+  description: Engine water temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_ERVCOUNT:
+  address: '0x0208'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_EVA_IN:
+  address: '0x82DE'
+  arithmetic: value / 10
+  description: Eva In for EHS
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_EVIEEV:
+  address: '0x822E'
+  arithmetic: ''
+  description: EVI EEV
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_EVI_BYPASS_VALVE:
+  address: '0x8021'
+  arithmetic: ''
+  description: EVI ByPass On/Off
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_EVI_IN:
+  address: '0x821E'
+  arithmetic: value / 10
+  description: EVI IN
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_EVI_OUT:
+  address: '0x8220'
+  arithmetic: value / 10
+  description: EVI OUT
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_EVI_SOL1_VALVE:
+  address: '0x8022'
+  arithmetic: ''
+  description: EVI Sol1 On/Off
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_EVI_SOL2_VALVE:
+  address: '0x8023'
+  arithmetic: ''
+  description: EVI Sol2 On/Off
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_EVI_SOL3_VALVE:
+  address: '0x8024'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_EXT_CMD_OPERATION:
+  address: '0x8081'
+  arithmetic: ''
+  description: ''
+  remarks: seen in NASA data from EHS Mono HT Quiet
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_FAN_CT1:
+  address: '0x82B9'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_FAN_CT2:
+  address: '0x82BA'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_FAN_IPM1_TEMP:
+  address: '0x82A6'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: "\u00b0C"
+NASA_OUTDOOR_FAN_IPM2_TEMP:
+  address: '0x82A7'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: "\u00b0C"
+NASA_OUTDOOR_FAN_RPM1:
+  address: '0x823D'
+  arithmetic: ''
+  description: Outdoor Fan1 RPM
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: 'rpm'
+NASA_OUTDOOR_FAN_RPM2:
+  address: '0x823E'
+  arithmetic: ''
+  description: Outdoor Fan2 RPM
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: 'rpm'
+NASA_OUTDOOR_FAN_STEP1:
+  address: '0x8226'
+  arithmetic: ''
+  description: Outdoor Fan Step
+  remarks: Min 0, Max 10000
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_FAN_STEP2:
+  address: '0x8227'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_FLOW_SWITCH:
+  address: '0x803B'
+  arithmetic: ''
+  description: Flow Switch
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_FLUX_VARIABLE_VALVE:
+  address: '0x82BD'
+  arithmetic: ''
+  description: Flow Control
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_GAS_CHARGE:
+  address: '0x8025'
+  arithmetic: ''
+  description: Hot Gas Chargin
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_HEATING_PERCENT:
+  address: '0x8231'
+  arithmetic: ''
+  description: ''
+  remarks: seen in NASA data from EHS Mono HT Quiet
+  signed: ''
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_HIGH_PRESS:
+  address: '0x8206'
+  arithmetic: (value / 10) * 0.980665
+  description: High pressure
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: bar
+NASA_OUTDOOR_HIGH_PRESS_TEMP:
+  address: '0x829F'
+  arithmetic: value / 10
+  description: High pressure saturation temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_HOTGAS1:
+  address: '0x8017'
+  arithmetic: ''
+  description: HotGas1 On/Off
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_HOTGAS2:
+  address: '0x8018'
+  arithmetic: ''
+  description: HotGas2 On/Off
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_HP:
+  address: '0x8287'
+  arithmetic: ''
+  description: Outdoor unit horsepower
+  remarks: unknown UNIT "HP"
+  signed: 'false'
+  type: VAR
+  unit: HP
+NASA_OUTDOOR_HREEV:
+  address: '0x822F'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_INDOORCOUNT:
+  address: '0x0207'
+  arithmetic: ''
+  description: Number of indoor units connected
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_INDOOR_DEFROST_STEP:
+  address: '0x8061'
+  arithmetic: ''
+  description: Indoor unit defrost operation steps
+  enum:
+    0x01: 'Defrost stage 1'
+    0x02: 'Defrost stage 2'
+    0x03: 'Defrost stage 3'
+    0x04: 'Defrost stage 4'
+    0x07: 'Defrost operation end stage'
+    0xFF: 'No defrost operation'
+  remarks: 1 Defrost stage 1, 2 Defrost stage 2, 3 Defrost stage 3, 4 Defrost stage
+    4, 7 Defrost operation end stage, 255 No defrost operation
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_IPM_TEMP1:
+  address: '0x8254'
+  arithmetic: value / 10
+  description: IPM1 Temperature
+  remarks: Min -41, Max 150. The IPM is a component within the inverter system. It
+    is responsible for converting the incoming direct current (DC) power from the
+    power supply into alternating current (AC) power that drives the compressor motor.
+    The term "intelligent" is often used because the IPM includes sophisticated electronics
+    and control algorithms that optimize the motor's performance.
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_IPM_TEMP2:
+  address: '0x8255'
+  arithmetic: value / 10
+  description: IPM2 Temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_IPM_TEMP3:
+  address: '0x82C4'
+  arithmetic: 'value / 10'
+  description: 'IPM 3 Temperartur'
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: "\u00b0C"
+NASA_OUTDOOR_LIQUID_BYPASS_VALVE:
+  address: '0x8019'
+  arithmetic: ''
+  description: Liquid On/Off
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_LIQUID_TUBE_VALVE:
+  address: '0x8034'
+  arithmetic: ''
+  description: Liquid tube
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_LOADINGTIME:
+  address: '0x8228'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_LOGICAL_DEFROST_STEP:
+  address: '0x8062'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_LOW_PRESS:
+  address: '0x8208'
+  arithmetic: (value / 10) * 0.980665
+  description: low pressure
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: bar
+NASA_OUTDOOR_LOW_PRESS_TEMP:
+  address: '0x82A0'
+  arithmetic: value / 10
+  description: Low pressure saturation temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_MAINEEV1:
+  address: '0x8229'
+  arithmetic: ''
+  description: Main EEV1
+  remarks: "An Electronic Expansion Valve, or EEV for short, is\xC2\_installed before\
+    \ the evaporator in an air handler/coil and after the condenser in a heat pump.\
+    \ It regulates the refrigerant flow rate to control superheat at the evaporator\
+    \ outlet by opening and closing."
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_MAINEEV2:
+  address: '0x822A'
+  arithmetic: ''
+  description: Main EEV2
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_MAINEEV3:
+  address: '0x822B'
+  arithmetic: ''
+  description: Main EEV3
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_MAINEEV4:
+  address: '0x822C'
+  arithmetic: ''
+  description: Main EEV4
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_MAINEEV5:
+  address: '0x822D'
+  arithmetic: ''
+  description: Main EEV5
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_MAIN_COOL_VALVE:
+  address: '0x801F'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_MCUCOUNT:
+  address: '0x0211'
+  arithmetic: ''
+  description: Number of connected MCUs
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_MID_PRESS:
+  address: '0x82B8'
+  arithmetic: (value / 10) * 0.980665
+  description: medium pressure
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: bar
+NASA_OUTDOOR_MODELINFORMATION:
+  address: '0x860D'
+  arithmetic: ''
+  description: Structure Type
+  remarks: ''
+  signed: ''
+  type: STR
+  unit: ''
+NASA_OUTDOOR_OCT1:
+  address: '0x8278'
+  arithmetic: ''
+  description: Compressor OCT1
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_OCT2:
+  address: '0x8279'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_OCT3:
+  address: '0x82A4'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_ODU_CAPA1:
+  address: '0x8240'
+  arithmetic: ''
+  description: current electric capacity of outdoor unit
+  remarks: value in percent, appears about every 140 seconds, not a reliable number
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_ODU_CAPA2:
+  address: '0x8241'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_ODU_CAPA3:
+  address: '0x827E'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_ODU_CAPA4:
+  address: '0x827F'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_OD_EEV_VALVE:
+  address: '0x8020'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_OIL_BALANCE_STEP:
+  address: '0x8245'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_OIL_BYPASS_VALVE:
+  address: '0x82CA'
+  arithmetic: ''
+  description: Oil Bypass Valve
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_OIL_RECOVERY_STEP:
+  address: '0x8244'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_OLP_TEMP:
+  address: '0x8222'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_OPERATION_CAPA_SUM:
+  address: '0x8233'
+  arithmetic: value / 8.5
+  description: ''
+  remarks: "/ 8.6 (better 8.5\xC2\_?). Does NOT show nominal Power Capacity, instead\
+    \ shows current ACTIVE Power Capacity"
+  signed: ''
+  type: VAR
+  unit: 'kW'
+NASA_OUTDOOR_OPERATION_MODE:
+  address: '0x8003'
+  arithmetic: ''
+  description: Outdoor unit cooling/heating mode
+  enum:
+    0x00: 'Undefined'
+    0x01: 'Cool'
+    0x02: 'Heat'
+    0x03: 'CoolMain'
+    0x04: 'HeatMain'
+  remarks: 0 Undefined, 1 Cool, 2 Heat, 3 CoolMain, 4 HeatMain
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_OPERATION_STATUS:
+  address: '0x8001'
+  arithmetic: ''
+  description: Outdoor Driving Mode
+  enum:
+    0x00: 'OP_STOP'
+    0x01: 'OP_SAFETY'
+    0x02: 'OP_NORMAL'
+    0x03: 'OP_BALANCE'
+    0x04: 'OP_RECOVERY'
+    0x05: 'OP_DEICE'
+    0x06: 'OP_COMPDOWN'
+    0x07: 'OP_PROHIBIT'
+    0x08: 'OP_LINEJIG'
+    0x09: 'OP_PCBJIG'
+    0x0A: 'OP_TEST'
+    0x0B: 'OP_CHARGE'
+    0x0C: 'OP_PUMPDOWN'
+    0x0D: 'OP_PUMPOUT'
+    0x0E: 'OP_VACCUM'
+    0x0F: 'OP_CALORYJIG'
+    0x10: 'OP_PUMPDOWNSTOP'
+    0x11: 'OP_SUBSTOP'
+    0x12: 'OP_CHECKPIPE'
+    0x13: 'OP_CHECKREF'
+    0x14: 'OP_FPTJIG'
+    0x15: 'OP_NONSTOP_HEAT_COOL_CHANGE'
+    0x16: 'OP_AUTO_INSPECT'
+    0x17: 'OP_ELECTRIC_DISCHARGE'
+    0x18: 'OP_SPLIT_DEICE'
+    0x19: 'OP_INVETER_CHECK'
+    0x1A: 'OP_NONSTOP_DEICE'
+    0x1B: 'OP_REM_TEST'
+    0x1C: 'OP_RATING'
+    0x1D: 'OP_PC_TEST'
+    0x1E: 'OP_PUMPDOWN_THERMOOFF'
+    0x1F: 'OP_3PHASE_TEST'
+    0x20: 'OP_SMARTINSTALL_TEST'
+    0x21: 'OP_DEICE_PERFORMANCE_TEST'
+    0x22: 'OP_INVERTER_FAN_PBA_CHECK'
+    0x23: 'OP_AUTO_PIPE_PAIRING'
+    0x24: 'OP_AUTO_CHARGE'
+  remarks: 0 OP_STOP, 1 OP_SAFETY, 2 OP_NORMAL, 3 OP_BALANCE, 4 OP_RECOVERY, 5 OP_DEICE,
+    6 OP_COMPDOWN, 7 OP_PROHIBIT, 8 OP_LINEJIG, 9 OP_PCBJIG, 10 OP_TEST, 11 OP_CHARGE,
+    12 OP_PUMPDOWN, 13 OP_PUMPOUT, 14 OP_VACCUM, 15 OP_CALORYJIG, 16 OP_PUMPDOWNSTOP,
+    17 OP_SUBSTOP, 18 OP_CHECKPIPE, 19 OP_CHECKREF, 20 OP_FPTJIG, 21 OP_NONSTOP_HEAT_COOL_CHANGE,
+    22 OP_AUTO_INSPECT, 23 OP_ELECTRIC_DISCHARGE, 24 OP_SPLIT_DEICE, 25 OP_INVETER_CHECK,
+    26 OP_NONSTOP_DEICE, 27 OP_REM_TEST, 28 OP_RATING, 29 OP_PC_TEST, 30 OP_PUMPDOWN_THERMOOFF,
+    31 OP_3PHASE_TEST, 32 OP_SMARTINSTALL_TEST, 33 OP_DEICE_PERFORMANCE_TEST, 34 OP_INVERTER_FAN_PBA_CHECK,
+    35 OP_AUTO_PIPE_PAIRING, 36 OP_AUTO_CHARGE
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_OPMODELIMIT:
+  address: '0x8066'
+  arithmetic: ''
+  description: ''
+  remarks: seen in NASA data from EHS Mono HT Quiet
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_OPMODE_OPTION:
+  address: '0x8200'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_OUT_TEMP:
+  address: '0x8204'
+  arithmetic: value / 10
+  description: Outdoor temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_OVER_COOL:
+  address: '0x82CD'
+  arithmetic: ''
+  description: Outdoor unit supercooling
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_PHASE_CURRENT:
+  address: '0x82DB'
+  arithmetic: ''
+  description: Phase current value
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_PROJECT_CODE:
+  address: '0x82BC'
+  arithmetic: ''
+  description: Project code
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_PUMPOUT_VALVE:
+  address: '0x8027'
+  arithmetic: ''
+  description: Pump Out
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_RUNNING_SUM_CAPA:
+  address: '0x8230'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_SAFETY_START:
+  address: '0x8248'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_SERVICEOPERATION:
+  address: '0x8047'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_SETUP_INFO:
+  address: '0x860F'
+  arithmetic: ''
+  description: Structure Type
+  remarks: ''
+  signed: ''
+  type: STR
+  unit: ''
+NASA_OUTDOOR_SNOW_LEVEL:
+  address: '0x82D3'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_SUBMICOM:
+  address: '0x8601'
+  arithmetic: ''
+  description: Structure Type
+  remarks: ''
+  signed: ''
+  type: STR
+  unit: ''
+NASA_OUTDOOR_SUB_COND_EEV_STEP:
+  address: '0x82D2'
+  arithmetic: ''
+  description: Sub EEV
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_SUB_COND_OVER_HEAT:
+  address: '0x82CC'
+  arithmetic: value / 10
+  description: Sub heat exchanger outlet superheat
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_SUCTION1_TEMP:
+  address: '0x821A'
+  arithmetic: value / 10
+  description: Suction temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_SUCTION2_TEMP:
+  address: '0x829A'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_SUCTION_OVER_HEAT:
+  address: '0x82CB'
+  arithmetic: value / 10
+  description: Suction superheat
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+NASA_OUTDOOR_SUMPTEMP:
+  address: '0x8210'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: "\u00b0C"
+NASA_OUTDOOR_SYSTEM_RESET:
+  address: '0x8065'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_TARGET_DISCHARGE:
+  address: '0x8223'
+  arithmetic: value / 10
+  description: Target discharge temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_TEST_OP_COMPLETE:
+  address: '0x8046'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_OUTDOOR_TOP_SENSOR_TEMP1:
+  address: '0x8280'
+  arithmetic: value / 10
+  description: Top1
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_TOP_SENSOR_TEMP2:
+  address: '0x8281'
+  arithmetic: value / 10
+  description: Top2
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_TOP_SENSOR_TEMP3:
+  address: '0x8282'
+  arithmetic: 'value / 10'
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: "\u00b0C"
+NASA_OUTDOOR_TW1_TEMP:
+  address: '0x82DF'
+  arithmetic: value / 10
+  description: Water In 1 for EHS
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_TW2_TEMP:
+  address: '0x82E0'
+  arithmetic: value / 10
+  description: Water In 2 for EHS
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_UPL_TP_COOL:
+  address: '0x82D5'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_UPL_TP_HEAT:
+  address: '0x82D6'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_OUTDOOR_VARIABLE_SETUP_INFO:
+  address: '0x8417'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: LVAR
+  unit: ''
+NASA_OUTDOOR_WATER_TEMP:
+  address: '0x825E'
+  arithmetic: value / 10
+  description: Water Temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_OUTDOOR_WATER_VALVE:
+  address: '0x8026'
+  arithmetic: ''
+  description: 2Way Valve
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_PBAOPTION:
+  address: '0x0604'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_PEAK_CONTROL_PERIOD:
+  address: '0x0010'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_PEAK_CURRENT_DEMAND:
+  address: '0x0444'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_PEAK_CURRENT_TARGET_DEMAND:
+  address: '0x0437'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_PEAK_FORCAST_DEMAND:
+  address: '0x0438'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_PEAK_LEVEL:
+  address: '0x000E'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_PEAK_MODE:
+  address: '0x000F'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_PEAK_RATIO_CURRENT:
+  address: '0x0434'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_PEAK_RATIO_POTENTIAL:
+  address: '0x0435'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_PEAK_REAL_VALUE:
+  address: '0x0445'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_PEAK_SYNC_TIME:
+  address: '0x0443'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_PEAK_TARGET_DEMAND:
+  address: '0x0214'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_PEAK_TARGET_POWER:
+  address: '0x043A'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_PEAK_TOP_DEMAND:
+  address: '0x0439'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_PEAK_TOTAL_POWER:
+  address: '0x0436'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_PNP:
+  address: '0x2004'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_PNP_CONFIRM_ADDRESS:
+  address: '0x0417'
+  arithmetic: ''
+  description: PNP only
+  remarks: ''
+  signed: ''
+  type: LVAR
+  unit: ''
+NASA_PNP_NET_ADDRESS:
+  address: '0x0217'
+  arithmetic: ''
+  description: PNP only
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_PNP_RANDOM_ADDRESS:
+  address: '0x0418'
+  arithmetic: ''
+  description: PNP only
+  remarks: ''
+  signed: ''
+  type: LVAR
+  unit: ''
+NASA_PNP_SETUP_ADDRESS:
+  address: '0x0419'
+  arithmetic: ''
+  description: PNP only
+  remarks: ''
+  signed: ''
+  type: LVAR
+  unit: ''
+NASA_POWER:
+  address: '0x4000'
+  arithmetic: ''
+  description: Indoor unit power on/off
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+    0x02: 'On Alternate'
+  remarks: 0 Off, 1 On, 2 On
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_POWER_CHANNEL1_ELECTRIC_VALUE:
+  address: '0x041C'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL1_PULSEVALUE:
+  address: '0x043B'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL1_TYPE:
+  address: '0x0012'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL1_USED:
+  address: '0x001A'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL2_ELECTRIC_VALUE:
+  address: '0x041D'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL2_PULSEVALUE:
+  address: '0x043C'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL2_TYPE:
+  address: '0x0013'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL2_USED:
+  address: '0x001B'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL3_ELECTRIC_VALUE:
+  address: '0x041E'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL3_PULSEVALUE:
+  address: '0x043D'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL3_TYPE:
+  address: '0x0014'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL3_USED:
+  address: '0x001C'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL4_ELECTRIC_VALUE:
+  address: '0x041F'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL4_PULSEVALUE:
+  address: '0x043E'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL4_TYPE:
+  address: '0x0015'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL4_USED:
+  address: '0x001D'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL5_ELECTRIC_VALUE:
+  address: '0x0420'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL5_PULSEVALUE:
+  address: '0x043F'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL5_TYPE:
+  address: '0x0016'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL5_USED:
+  address: '0x001E'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL6_ELECTRIC_VALUE:
+  address: '0x0421'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL6_PULSEVALUE:
+  address: '0x0440'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL6_TYPE:
+  address: '0x0017'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL6_USED:
+  address: '0x001F'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL7_ELECTRIC_VALUE:
+  address: '0x0422'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL7_PULSEVALUE:
+  address: '0x0441'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL7_TYPE:
+  address: '0x0018'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL7_USED:
+  address: '0x0020'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL8_ELECTRIC_VALUE:
+  address: '0x0423'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL8_PULSEVALUE:
+  address: '0x0442'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL8_TYPE:
+  address: '0x0019'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_CHANNEL8_USED:
+  address: '0x0021'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_POWER_MANUFACTURE:
+  address: '0x0011'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_PRODUCT_MODEL_NAME:
+  address: '0x061A'
+  arithmetic: ''
+  description: ''
+  remarks: appears when using S-NET pro 2 software
+  signed: ''
+  type: STR
+  unit: ''
+NASA_PRODUCT_OPTION:
+  address: '0x0600'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: STR
+  unit: ''
+NASA_RANDOM_ADDRESS:
+  address: '0x0403'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_RMCADDRESS:
+  address: '0x0402'
+  arithmetic: ''
+  description: ''
+  remarks: LogicalAnd 0xFF
+  signed: 'false'
+  type: LVAR
+  unit: ''
+NASA_SERIAL_NO:
+  address: '0x0607'
+  arithmetic: ''
+  description: OutdoorTableSerialNumber
+  remarks: ''
+  signed: ''
+  type: STR
+  unit: ''
+NASA_SETUP_ADDRESS:
+  address: '0x0408'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+NASA_SET_DISCHARGE:
+  address: '0x4209'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_SET_TEMP:
+  address: '0x4201'
+  arithmetic: value / 10
+  description: Indoor unit set temperature
+  remarks: if isEhsSetTempWaterOut (406F) ==1 , use value of variable waterOutSetTemp
+    = 4247
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_SIMPIM_PASSWORD:
+  address: '0x0619'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_SIMPIM_SYNC_DATETIME:
+  address: '0x0613'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_SMART_GRID:
+  address: '0x406B'
+  arithmetic: ''
+  description: Smart Grid
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_SOLAR_PUMP:
+  address: '0x4068'
+  arithmetic: ''
+  description: Hydro_SolarPump
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_STANDBY_MODE:
+  address: '0x0023'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_TRACKING_RESULT:
+  address: '0x2010'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_USE_BOOSTER_HEATER:
+  address: '0x4098'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: 0 Off, 1 On
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_USE_CENTUAL_CONTROL:
+  address: '0x401B'
+  arithmetic: ''
+  description: Income from InstallOption information.
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_USE_DESIRED_HUMIDITY:
+  address: '0x405D'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_USE_DHW_THERMOSTAT:
+  address: '0x409C'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'No'
+    0x01: 'one'
+    0x02: 'two'
+    0x03: 'three'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_USE_DISCHARGE_TEMP:
+  address: '0x4019'
+  arithmetic: 'value '
+  description: This value is a value that cannot be controlled by the upper controller.
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ""
+NASA_USE_FILTER_WARNING_TIME:
+  address: '0x4024'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_USE_HUMIDIFICATION:
+  address: '0x4040'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_USE_MDS:
+  address: '0x403E'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_USE_OUTER_COOL:
+  address: '0x405B'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_USE_SILENCE:
+  address: '0x4045'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ''
+  unit: ''
+NASA_USE_SPI:
+  address: '0x4023'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_USE_THERMOSTAT1:
+  address: '0x4095'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'No'
+    0x01: 'one'
+    0x02: 'two'
+    0x03: 'three'
+    0x04: 'four'
+  remarks: values 0="No" up to 4="4"
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_USE_THERMOSTAT2:
+  address: '0x4096'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'No'
+    0x01: 'one'
+    0x02: 'two'
+    0x03: 'three'
+    0x04: 'four'
+  remarks: values 0="No" up to 4="4"
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_USE_VACANCY_STATUS:
+  address: '0x40BD'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_USE_WIREDREMOTE:
+  address: '0x4018'
+  arithmetic: ''
+  description: ''
+  enum:
+    0x00: 'OFF'
+    0x01: 'ON'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+NASA_VACANCY_SETTING:
+  address: '0x4418'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: LVAR
+  unit: ''
+NASA_VACANCY_STATUS:
+  address: '0x40BC'
+  arithmetic: ''
+  description: Vacancy control
+  enum:
+    0x00: 'Unoccupied'
+    0x01: 'Occupied'
+  remarks: ''
+  signed: ''
+  type: ENUM
+  unit: ''
+STR_AD_ID_MODEL_NAME:
+  address: '0x061F'
+  arithmetic: ''
+  description: Model Name
+  remarks: appears when using S-NET pro 2 software
+  signed: ''
+  type: STR
+  unit: ''
+STR_AD_PRODUCT_MAC_ADDRESS:
+  address: '0x061C'
+  arithmetic: ''
+  description: WiFi Kit MAC Address
+  remarks: ''
+  signed: ''
+  type: STR
+  unit: ''
+STR_IN_ERROR_HISTORY_FOR_HASS:
+  address: '0x461E'
+  arithmetic: ''
+  description: Structure Type
+  remarks: ''
+  signed: ''
+  type: STR
+  unit: ''
+STR_OUT_BASE_OPTION:
+  address: '0x860A'
+  arithmetic: ''
+  description: Structure Type
+  remarks: ''
+  signed: ''
+  type: STR
+  unit: ''
+STR_OUT_REF_CHECK_INFO:
+  address: '0x8613'
+  arithmetic: ''
+  description: Structure Type
+  remarks: ''
+  signed: ''
+  type: STR
+  unit: ''
+VAR_IN_CAPACITY_VENTILATION_REQUEST:
+  address: '0x4302'
+  arithmetic: value / 8.5
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: kW
+VAR_IN_CHILLER_EXTERNAL_TEMPERATURE:
+  address: '0x42C9'
+  arithmetic: value / 10
+  description: External sensor-Room temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_CHILLER_PHE_IN_P:
+  address: '0x42C4'
+  arithmetic: (value / 100) * 0.980665
+  description: Inlet pressure
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: bar
+VAR_IN_CHILLER_PHE_OUT_P:
+  address: '0x42C5'
+  arithmetic: (value / 100) * 0.980665
+  description: Outlet pressure
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: bar
+VAR_IN_DUST_SENSOR_PM10_0_VALUE:
+  address: '0x42D1'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_DUST_SENSOR_PM1_0_VALUE:
+  address: '0x42D3'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_DUST_SENSOR_PM2_5_VALUE:
+  address: '0x42D2'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_ENTHALPY_SENSOR_OUTPUT:
+  address: '0x42CF'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: H
+VAR_IN_EXT_VARIABLE_DAMPER_OUTPUT:
+  address: '0x42D0'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_FAN_CURRENT_RPM_SUCTION1:
+  address: '0x429F'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: 'rpm'
+VAR_IN_FAN_CURRENT_RPM_SUCTION2:
+  address: '0x42A1'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: 'rpm'
+VAR_IN_FAN_CURRENT_RPM_SUCTION3:
+  address: '0x42A3'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: 'rpm'
+VAR_IN_FLOW_SENSOR_CALC:
+  address: '0x42E9'
+  arithmetic: value / 10
+  description: Flow Sensor
+  remarks: value appears about every 90 seconds
+  signed: 'true'
+  type: VAR
+  unit: ''
+VAR_IN_FLOW_SENSOR_VOLTAGE:
+  address: '0x42E8'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_FSV_2011:
+  address: '0x4254'
+  arithmetic: value / 10
+  description: Water Law Auto heating ambient temperature - Max.
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_2012:
+  address: '0x4255'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_2021:
+  address: '0x4256'
+  arithmetic: value / 10
+  description: Water Law (WL1-Floor) Temperature auto heating - Max.
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_2022:
+  address: '0x4257'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_2031:
+  address: '0x4258'
+  arithmetic: value / 10
+  description: Water Law (WL2-FCU) Temperature auto heating - Max.
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_2032:
+  address: '0x4259'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_2051:
+  address: '0x425A'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_2052:
+  address: '0x425B'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_2061:
+  address: '0x425C'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_2062:
+  address: '0x425D'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_2071:
+  address: '0x425E'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_2072:
+  address: '0x425F'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_3021:
+  address: '0x4260'
+  arithmetic: value / 10
+  description: DHW Heating mode - Max.
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_3022:
+  address: '0x4261'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_3023:
+  address: '0x4262'
+  arithmetic: value / 10
+  description: DHW Heating mode - Start
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_3024:
+  address: '0x4263'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_FSV_3025:
+  address: '0x4264'
+  arithmetic: ''
+  description: DHW Heating mode - DHW operation time
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_FSV_3026:
+  address: '0x4265'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_FSV_3032:
+  address: '0x4266'
+  arithmetic: ''
+  description: DHW Booster heater - Delayed time
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_FSV_3033:
+  address: '0x4267'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_3034:
+  address: '0x4268'
+  arithmetic: value / 10
+  description: ''
+  remarks: not for EHS Mono HT Quiet
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_3043:
+  address: '0x4269'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_FSV_3044:
+  address: '0x426A'
+  arithmetic: value / 10
+  description: Desinfection - Target temp.
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_3045:
+  address: '0x426B'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: ''
+VAR_IN_FSV_3046:
+  address: '0x42CE'
+  arithmetic: value / 60
+  description: DHW Desinfection - Max. operation time
+  remarks: NASA Value is [minutes], not [hours]
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_FSV_3052:
+  address: '0x426C'
+  arithmetic: value / 0.1
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: ''
+VAR_IN_FSV_3081:
+  address: '0x42ED'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: ''
+VAR_IN_FSV_3082:
+  address: '0x42EE'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: ''
+VAR_IN_FSV_3083:
+  address: '0x42EF'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: ''
+VAR_IN_FSV_4012:
+  address: '0x426D'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_4013:
+  address: '0x426E'
+  arithmetic: value / 10
+  description: Heating mode - Heating Off
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_4014:
+  address: '0x426F'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_4024:
+  address: '0x4270'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_4025:
+  address: '0x4271'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_4033:
+  address: '0x4272'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_4042:
+  address: '0x4286'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_4043:
+  address: '0x4287'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_4045:
+  address: '0x4288'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_FSV_4046:
+  address: '0x4289'
+  arithmetic: value / 0.1
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_FSV_4052:
+  address: '0x428A'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_5011:
+  address: '0x4273'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_5012:
+  address: '0x4274'
+  arithmetic: value / 10
+  description: Outing mode - Room Temperature of cooling Mode
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_5013:
+  address: '0x4275'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_5014:
+  address: '0x4276'
+  arithmetic: value / 10
+  description: Outing mode- Indoor heating temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_5015:
+  address: '0x4277'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_5016:
+  address: '0x4278'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_5017:
+  address: '0x4279'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_5018:
+  address: '0x427A'
+  arithmetic: value / 10
+  description: Outing mode - Temperature of auto heating WL2 water
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_5019:
+  address: '0x427B'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_5021:
+  address: '0x427C'
+  arithmetic: value / 10
+  description: Economic DHW mode - Temperature of hot water Tank
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_5023:
+  address: '0x42F0'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_5031:
+  address: '0x427D'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_FSV_5032:
+  address: '0x427E'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_FSV_5082:
+  address: '0x42DB'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_5083:
+  address: '0x42DC'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_5092:
+  address: '0x42DD'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_FSV_5093:
+  address: '0x42DE'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_MCC_GROUP_MAIN:
+  address: '0x42B2'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_MCC_GROUP_MODULE_ADDRESS:
+  address: '0x42B1'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_MCC_MODULE_MAIN:
+  address: '0x42B3'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_MODULATING_FAN:
+  address: '0x42CC'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_MODULATING_VALVE_1:
+  address: '0x42CA'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_MODULATING_VALVE_2:
+  address: '0x42CB'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_SENSOR_CO2_PPM:
+  address: '0x421B'
+  arithmetic: ''
+  description: CO2 sensor detection ppm
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_IN_TEMP_ELECTRIC_HEATER_F:
+  address: '0x4207'
+  arithmetic: subtract 55
+  description: Electric heater temperature value
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_EVA2_IN_F:
+  address: '0x42C2'
+  arithmetic: value / 10
+  description: Indoor Eva2 In temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_EVA2_OUT_F:
+  address: '0x42C3'
+  arithmetic: value / 10
+  description: Indoor Eva2 Out Temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_MIXING_VALVE_F:
+  address: '0x428C'
+  arithmetic: value / 10
+  description: Hydro_MixingValve
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_PANEL_AIR_COOL1_F:
+  address: '0x42A5'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_PANEL_AIR_COOL2_F:
+  address: '0x42A6'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_PANEL_AIR_HEAT1_F:
+  address: '0x42AB'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_PANEL_AIR_HEAT2_F:
+  address: '0x42AC'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_PANEL_ROOM_COOL1_F:
+  address: '0x42A7'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_PANEL_ROOM_COOL2_F:
+  address: '0x42A8'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_PANEL_ROOM_HEAT1_F:
+  address: '0x42AD'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_PANEL_ROOM_HEAT2_F:
+  address: '0x42AE'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_PANEL_TARGET_COOL1_F:
+  address: '0x42A9'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_PANEL_TARGET_COOL2_F:
+  address: '0x42AA'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_PANEL_TARGET_HEAT1_F:
+  address: '0x42AF'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_PANEL_TARGET_HEAT2_F:
+  address: '0x42B0'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_TARGET_ZONE2_F:
+  address: '0x42D6'
+  arithmetic: value / 10
+  description: Zone2 Room Set Temp.
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_WATER_IN2_F:
+  address: '0x42CD'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_WATER_LAW_F:
+  address: '0x427F'
+  arithmetic: value / 10
+  description: Hydro_WaterLawTargetF
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_WATER_LAW_TARGET_F:
+  address: '0x4248'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_WATER_OUT2_F:
+  address: '0x4239'
+  arithmetic: value / 10
+  description: Hydro_HeaterOut
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_WATER_OUTLET_TARGET_ZONE2_F:
+  address: '0x42D7'
+  arithmetic: value / 10
+  description: Water Outlet2 Set Temp.
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_WATER_OUTLET_ZONE1_F:
+  address: '0x42D8'
+  arithmetic: value / 10
+  description: Zone1 WaterOut Temp
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_WATER_OUTLET_ZONE2_F:
+  address: '0x42D9'
+  arithmetic: value / 10
+  description: Zone2 WaterOut Temp
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_IN_TEMP_ZONE2_F:
+  address: '0x42D4'
+  arithmetic: value / 10
+  description: Idiom_RoomTemp_Zone2
+  remarks: 'Room temperature for zone #2'
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_OUT_COMP_FREQ_RATE_CONTROL:
+  address: '0x42F1'
+  arithmetic: ''
+  description: ''
+  remarks: undocumented, taken from Pyton code
+  signed: ''
+  type: VAR
+  unit: ''
+VAR_OUT_CONTROL_DSH1:
+  address: '0x827A'
+  arithmetic: value / 10
+  description: Just for EHS HTU
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_OUT_CONTROL_IDU_TOTAL_ABSCAPA:
+  address: '0x82A8'
+  arithmetic: value / 8.5
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: ''
+VAR_OUT_CONTROL_REFRIGERANTS_VOLUME:
+  address: '0x824F'
+  arithmetic: value / 10
+  description: Refrigerant amount
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_OUT_ERROR_CODE:
+  address: '0x8235'
+  arithmetic: ''
+  description: HTU error code
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_OUT_HIGH_OVERLOAD_DETECT:
+  address: '0x82F5'
+  arithmetic: ''
+  description: PFCM#1 element temperature
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_OUT_INSTALL_COMP_NUM:
+  address: '0x8202'
+  arithmetic: ''
+  description: Number of outdoor unit compressors
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_OUT_INSTALL_COND_SIZE:
+  address: '0x82AF'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_OUT_LOAD_EVI_SOL_EEV:
+  address: '0x82FC'
+  arithmetic: ''
+  description: EVI SOL EEV
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: ''
+VAR_OUT_LOAD_MCU_HR_BYPASS_EEV:
+  address: '0x82E8'
+  arithmetic: ''
+  description: MCU HR Bypass EEV opening diagram
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_OUT_MCU_CHANGE_OVER_EEV1:
+  address: '0x826E'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_OUT_MCU_CHANGE_OVER_EEV2:
+  address: '0x826F'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_OUT_MCU_CHANGE_OVER_EEV3:
+  address: '0x8270'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_OUT_MCU_CHANGE_OVER_EEV4:
+  address: '0x8271'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_OUT_MCU_CHANGE_OVER_EEV5:
+  address: '0x8272'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_OUT_MCU_CHANGE_OVER_EEV6:
+  address: '0x8273'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_OUT_MCU_SENSOR_SUBCOOLER_IN:
+  address: '0x826B'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_OUT_MCU_SENSOR_SUBCOOLER_OUT:
+  address: '0x826C'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_OUT_MCU_SUBCOOLER_EEV:
+  address: '0x826D'
+  arithmetic: ''
+  description: ''
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: ''
+VAR_OUT_PRODUCT_OPTION_CAPA:
+  address: '0x82E3'
+  arithmetic: value / 10.0
+  description: Outdoor unit product option capacity (based on 0.1Kw) for EHS
+  remarks: ''
+  signed: 'false'
+  type: VAR
+  unit: kW
+VAR_OUT_SENSOR_PFCM1:
+  address: '0x82E9'
+  arithmetic: value / 10
+  description: PFCM#1 element temperature
+  remarks: Min -54, Max 3000
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_OUT_SENSOR_PIPEIN1:
+  address: '0x825F'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_OUT_SENSOR_PIPEIN2:
+  address: '0x8260'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_OUT_SENSOR_PIPEIN3:
+  address: '0x8261'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_OUT_SENSOR_PIPEIN4:
+  address: '0x8262'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_OUT_SENSOR_PIPEIN5:
+  address: '0x8263'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_OUT_SENSOR_PIPEOUT1:
+  address: '0x8264'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_OUT_SENSOR_PIPEOUT2:
+  address: '0x8265'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_OUT_SENSOR_PIPEOUT3:
+  address: '0x8266'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_OUT_SENSOR_PIPEOUT4:
+  address: '0x8267'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_OUT_SENSOR_PIPEOUT5:
+  address: '0x8268'
+  arithmetic: value / 10
+  description: ''
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_OUT_SENSOR_SUCTION3_1SEC:
+  address: '0x82F9'
+  arithmetic: value / 10
+  description: Suction3 temperature
+  remarks: ''
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+VAR_OUT_SENSOR_TOTAL_SUCTION:
+  address: '0x82E7'
+  arithmetic: value / 10.0
+  description: Total Suction Sensor
+  remarks: Min -41, Max 150
+  signed: 'true'
+  type: VAR
+  unit: "\u00b0C"
+NASA_EHSSENTINEL_COP:
+  address: '0x9998'
+  arithmetic: ''
+  description: Current COP
+  remarks: Custom Measurment
+  signed: 'true'
+  type: VAR
+  unit: ''
+NASA_EHSSENTINEL_HEAT_OUTPUT:
+  address: '0x9999'
+  arithmetic: ''
+  description: Current generated Heat Output
+  remarks: Custom Measurment
+  signed: 'true'
+  type: VAR
+  unit: "kW"
