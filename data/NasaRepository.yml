@@ -787,7 +787,7 @@ ENUM_IN_WATERPUMP_PWM_VALUE:
   description: Water pump speed
   remarks: "unit\xC2\_%"
   signed: ''
-  type: ENUM
+  type: VAR
   unit: '%'
 ENUM_IN_WATER_VALVE_1_ON_OFF:
   address: '0x4103'

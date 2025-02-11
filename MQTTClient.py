@@ -322,7 +322,7 @@ class MQTTClient:
                 if entity[namenorm]['unit_of_measurement'] == "\u00b0C":
                     entity[namenorm]['device_class'] = "temperature"
                 elif entity[namenorm]['unit_of_measurement'] == '%':
-                    entity[namenorm]['device_class'] = "power_factor"
+                    entity[namenorm]['state_class'] = "measurement"
                 elif entity[namenorm]['unit_of_measurement'] == 'kW':
                     entity[namenorm]['device_class'] = "power"
                 elif entity[namenorm]['unit_of_measurement'] == 'rpm':
