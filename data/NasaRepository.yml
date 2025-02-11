@@ -2887,9 +2887,10 @@ NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM:
   description: Outdoor unit cumulative power consumption. Sum of modules
   remarks: value is Wh, so do div 1000
   state_class: total_increasing
+  device_class: measurement
   signed: 'false'
   type: LVAR
-  unit: kW
+  unit: kWh
 NASA_OUTDOOR_CONTROL_WATTMETER_TOTAL_SUM:
   address: '0x8415'
   arithmetic: ''
