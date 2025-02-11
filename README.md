@@ -19,13 +19,40 @@ In addition, a few data points are generated from others, such as COP and Heat O
 4. Start the Application:
     `python3 startEHSSentinel.py --configfile config.yml`
 
-## Virtual Environment
-
-...
-
 ## Systemd Service
 
-..
+1. Just clone the repository
+    `git clone https://github.com/echoDaveD/EHS-Sentinel`
+2. Install the requierments
+    `pip install -r requirements.txt`
+3. Copy the `data/config.yml` and provide your Configuration
+4. Change to ehs-sentinel.service file as followed:
+
+   `ExecStart = python3 <Path of the script you want to run>` <- provide here to path to your folder where startEHSSentinel.py is
+
+   sample: `ExecStart = python3 /root/EHS-Sentinel/startEHSSentinel.py --configfile /root/EHS-Sentinel/config.yml`
+
+5. Change your `config.yml` to absolut paths:
+   `nasaRepositoryFile: /root/EHS-Sentinel/data/NasaRepository.yml`
+
+6. Copy the service File to your systemd folder:
+  `cp ehs-sentinel.service /etc/systemd/system`
+
+7. Enable the new service
+  `systemctl enable ehs-sentinel`
+
+8. Reload deamon
+  `systemctl daemon-reload`
+
+9. Start the Service
+  `systemctl start ehs-sentinel`
+
+10. check if anything is fine 
+  `systemctl status ehs-sentinel`
+
+11. If your want to check the journal logs
+  `journalctl | grep ehsSentinel`
+
 
 # Configuration
 

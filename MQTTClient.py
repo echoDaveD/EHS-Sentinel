@@ -289,7 +289,7 @@ class MQTTClient:
         if isinstance(value, (int, float)) and not isinstance(value, bool):
             value = round(value, 2) if isinstance(value, float) and "." in f"{value}" else value
 
-        self._publish(topicname, value, qos=2, retain=True)
+        self._publish(topicname, value, qos=2, retain=False)
 
     def auto_discover_hass(self, topicname, nameraw, namenorm, sensor_type):
         """
