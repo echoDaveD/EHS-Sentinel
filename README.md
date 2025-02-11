@@ -7,6 +7,12 @@ Since extending these was often too difficult, I have written a script here whic
 
 In addition, a few data points are generated from others, such as COP and Heat Output.
 
+# Prerequisites
+
+You need an MQTT Broker.
+For Homeassistant you need the MQTT Plugin there with enabled Auto Discovery with Discovery Topic Prefix and Birth-Messages on Discovery Topic Prefix with subtopic "status" with text "online".
+EHS-Sentinel subscribes <hass_discovery_prefix>/status Topic and if it receive an "online", then it cleans his intern known-devices topic and send the Auto Discovery Config again for any Measurment for Home Assistant.
+
 # Installation
 
 ## Simple
