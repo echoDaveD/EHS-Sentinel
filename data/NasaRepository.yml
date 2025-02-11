@@ -5796,7 +5796,7 @@ NASA_EHSSENTINEL_COP:
   arithmetic: ''
   description: Current COP
   remarks: Custom Measurment
-  device_class: "measurement"
+  state_class: measurement
   signed: 'true'
   type: VAR
   unit: ''
@@ -5805,7 +5805,7 @@ NASA_EHSSENTINEL_HEAT_OUTPUT:
   arithmetic: ''
   description: Current generated Heat Output
   remarks: Custom Measurment
-  device_class: "measurement"
+  state_class: measurement
   signed: 'true'
   type: VAR
   unit: "kW"
