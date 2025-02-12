@@ -259,9 +259,9 @@ class NASAPacket:
         elif message_type == 3:
             payload_size = len(msg_rest)
             if capacity != 1:
-                raise ValueError(message="Message with structure type must have capacity of 1.")
+                raise ValueError("Message with structure type must have capacity of 1.")
         else:
-            raise ValueError(message=f"Mssage type unknown: {message_type}")
+            raise ValueError(f"Mssage type unknown: {message_type}")
         
         payload = msg_rest[2:2 + payload_size]
         if len(payload) > 255:
