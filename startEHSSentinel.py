@@ -16,7 +16,7 @@ import binascii
 from CustomLogger import logger, setSilent
 from NASAPacket import NASAPacket
 
-version = "0.0.1Beta"
+version = "0.1.0 Stable"
 
 async def main():
     """
