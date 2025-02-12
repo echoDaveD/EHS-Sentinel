@@ -787,7 +787,7 @@ ENUM_IN_WATERPUMP_PWM_VALUE:
   description: Water pump speed
   remarks: "unit\xC2\_%"
   signed: ''
-  type: ENUM
+  type: VAR
   unit: '%'
 ENUM_IN_WATER_VALVE_1_ON_OFF:
   address: '0x4103'
@@ -2887,10 +2887,10 @@ NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM:
   description: Outdoor unit cumulative power consumption. Sum of modules
   remarks: value is Wh, so do div 1000
   state_class: total_increasing
-  device_class: "measurement"
+  device_class: energy
   signed: 'false'
   type: LVAR
-  unit: kW
+  unit: kWh
 NASA_OUTDOOR_CONTROL_WATTMETER_TOTAL_SUM:
   address: '0x8415'
   arithmetic: ''
@@ -5796,6 +5796,7 @@ NASA_EHSSENTINEL_COP:
   arithmetic: ''
   description: Current COP
   remarks: Custom Measurment
+  state_class: measurement
   signed: 'true'
   type: VAR
   unit: ''
@@ -5804,6 +5805,7 @@ NASA_EHSSENTINEL_HEAT_OUTPUT:
   arithmetic: ''
   description: Current generated Heat Output
   remarks: Custom Measurment
+  state_class: measurement
   signed: 'true'
   type: VAR
   unit: "kW"

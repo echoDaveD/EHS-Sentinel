@@ -60,6 +60,65 @@ EHS-Sentinel subscribes <hass_discovery_prefix>/status Topic and if it receive a
   `journalctl | grep ehsSentinel`
 
 
+## Venv Installation (recommendet)
+
+In general, it is recommended to work with a virtual environment (venvs) in python to be independent of other projects.
+Some Distributions like debian 12 dont allow to use system wide pip package installation, so you have to use venv.
+
+1. Just clone the repository
+    `git clone https://github.com/echoDaveD/EHS-Sentinel`
+
+2. Install python venv
+  `apt install python3.11-venv` <- modify your python verison here
+
+3. Create Python venv
+  `python3 -m venv EHS-Sentinel`
+
+4. change diractory
+   `cd EHS-Sentinel`
+
+5. activate venv
+  `source bin/activate`
+
+6. Install the requierments
+    `pip install -r requirements.txt`
+
+7. Copy the `data/config.yml` and provide your Configuration
+
+8. get path of venv python executable
+  `which python3` <- copy the output
+
+9. Change to ehs-sentinel.service file as followed:
+
+   `ExecStart = <path to python3> <Path of the script you want to run>` <- provide here to path to your folder where startEHSSentinel.py is
+
+   sample: `ExecStart = /root/EHS-Sentinel/bin/python3 /root/EHS-Sentinel/startEHSSentinel.py --configfile /root/EHS-Sentinel/config.yml`
+
+10. Change your `config.yml` to absolut paths:
+   `nasaRepositoryFile: /root/EHS-Sentinel/data/NasaRepository.yml`
+
+11. Deactivate venv
+  `dactivate`
+
+12. Copy the service File to your systemd folder:
+  `cp ehs-sentinel.service /etc/systemd/system`
+
+13. Enable the new service
+  `systemctl enable ehs-sentinel`
+
+14. Reload deamon
+  `systemctl daemon-reload`
+
+15. Start the Service
+  `systemctl start ehs-sentinel`
+
+16. check if anything is fine 
+  `systemctl status ehs-sentinel`
+
+17. If your want to check the journal logs
+  `journalctl | grep ehsSentinel`
+
+
 # Configuration
 
 
