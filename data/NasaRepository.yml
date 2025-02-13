@@ -2991,6 +2991,8 @@ NASA_OUTDOOR_DEFROST_STEP:
     0x05: 'Defrost stage 5'
     0x06: 'Defrost stage 6'
     0x07: 'Defrost operation end stage'
+    0x08: 'Defrost stage 8'
+    0x09: 'Defrost stage 9'
     0xFF: 'No defrost operation'
   remarks: 1 Defrost stage 1, 2 Defrost stage 2, 3 Defrost stage 3, 4 Defrost stage
     4, 7 Defrost operation end stage, 255 No defrost operation
@@ -5808,4 +5810,4 @@ NASA_EHSSENTINEL_HEAT_OUTPUT:
   state_class: measurement
   signed: 'true'
   type: VAR
-  unit: "kW"
+  unit: "W"

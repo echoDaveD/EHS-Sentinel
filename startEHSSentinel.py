@@ -100,11 +100,18 @@ async def process_buffer(buffer, args):
     """
 
     if buffer:
-        logger.debug("Start Byte recognized")
-        for i in range(0, len(buffer)):
-            if buffer[i] == 0x32:
-                asyncio.create_task(process_packet(buffer[i:], args))
-                break
+        if (len(buffer) > 14):
+            for i in range(0, len(buffer)):
+                if buffer[i] == 0x32:
+                    if (len(buffer[i:]) > 14):
+                        asyncio.create_task(process_packet(buffer[i:], args))
+                    else:
+                        logger.debug(f"Buffermessages to short for NASA {len(buffer)}")
+                    break
+        else:
+            logger.debug(f"Buffer to short for NASA {len(buffer)}")
+            
+        
 
 async def print_running_tasks():
     """
