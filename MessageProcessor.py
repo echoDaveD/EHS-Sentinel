@@ -111,8 +111,8 @@ class MessageProcessor:
         if msgname in ['NASA_OUTDOOR_TW2_TEMP', 'NASA_OUTDOOR_TW1_TEMP', 'VAR_IN_FLOW_SENSOR_CALC']:
             if all(k in self.NASA_VAL_STORE for k in ['NASA_OUTDOOR_TW2_TEMP', 'NASA_OUTDOOR_TW1_TEMP', 'VAR_IN_FLOW_SENSOR_CALC']):
                 self.protocolMessage(NASAMessage(packet_message=0x9999, packet_message_type=1),
-                                     "NASA_EHSSENTINEL_HEAT_OUTPUT", 
-                                     round(
+                                    "NASA_EHSSENTINEL_HEAT_OUTPUT", 
+                                    round(
                                             (
                                                 (self.NASA_VAL_STORE['NASA_OUTDOOR_TW2_TEMP'] - self.NASA_VAL_STORE['NASA_OUTDOOR_TW1_TEMP']) * 
                                                 (self.NASA_VAL_STORE['VAR_IN_FLOW_SENSOR_CALC']/60) 
@@ -121,9 +121,10 @@ class MessageProcessor:
 
         if msgname in ('NASA_EHSSENTINEL_HEAT_OUTPUT', 'NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT'):
             if all(k in self.NASA_VAL_STORE for k in ['NASA_EHSSENTINEL_HEAT_OUTPUT', 'NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT']):
-                self.protocolMessage(NASAMessage(packet_message=0x9998, packet_message_type=1), 
-                                        "NASA_EHSSENTINEL_COP",
-                                        round((self.NASA_VAL_STORE['NASA_EHSSENTINEL_HEAT_OUTPUT'] / self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT']/1000.), 3))
+                if (self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT'] > 0):
+                    self.protocolMessage(NASAMessage(packet_message=0x9998, packet_message_type=1), 
+                                            "NASA_EHSSENTINEL_COP",
+                                            round((self.NASA_VAL_STORE['NASA_EHSSENTINEL_HEAT_OUTPUT'] / self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT']/1000.), 3))
 
     def search_nasa_table(self, address):
         """

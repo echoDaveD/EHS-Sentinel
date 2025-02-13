@@ -110,17 +110,6 @@ async def process_buffer(buffer, args):
                     break
         else:
             logger.debug(f"Buffer to short for NASA {len(buffer)}")
-            
-        
-
-async def print_running_tasks():
-    """
-    Prints the number of currently running tasks in the event loop.
-    """
-    while True:
-        tasks = [task for task in asyncio.all_tasks() if not task.done()]
-        logger.info(f"Number of running tasks: {len(tasks)}")
-        await asyncio.sleep(60)
 
 async def serial_read(config, args):
     """
@@ -256,7 +245,6 @@ async def process_packet(buffer, args):
 if __name__ == "__main__":
     try:
         loop = asyncio.get_event_loop()
-        loop.create_task(print_running_tasks())
         loop.run_until_complete(main())
     except RuntimeError as e:
         logger.error(f"Runtime error: {e}")
