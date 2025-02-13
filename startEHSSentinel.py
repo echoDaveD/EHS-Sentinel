@@ -113,7 +113,7 @@ async def print_running_tasks():
     while True:
         tasks = [task for task in asyncio.all_tasks() if not task.done()]
         logger.info(f"Number of running tasks: {len(tasks)}")
-        await asyncio.sleep(5)
+        await asyncio.sleep(60)
 
 async def serial_read(config, args):
     """
