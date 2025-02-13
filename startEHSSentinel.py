@@ -115,7 +115,8 @@ async def process_buffer(buffer, args):
                         if i == packet_size-1: #buffer[i] == 0x34  or
                             logger.debug(f"Complete Packet: {i}/{packet_size-1}")
                             logger.debug(f"Last Byte readed: {hex(buffer[i])}")
-                            await process_packet(packet, args)
+                            await asyncio.create_task(process_packet(packet, args))
+                            #await process_packet(packet, args)
                             del buffer[0:i]
                             break
                 else:
@@ -124,7 +125,7 @@ async def process_buffer(buffer, args):
                 logger.debug(f"Received byte not a startbyte 0x32 {buffer[0]} / {hex(buffer[0])}")
                 buffer.pop(0)
 
-        await asyncio.sleep(0.03)
+        await asyncio.sleep(0.01)
 
 async def serial_read(config, args):
     """

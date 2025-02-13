@@ -76,7 +76,7 @@ class MessageProcessor:
                 try:
                     msgvalue = self.determine_value(msg.packet_payload, msgname)
                 except Exception as e:
-                    raise MessageWarningException(argument=msg.packet_payload, message=f"Value of {hexmsg} couldn't be determinate, skip Message {e}")
+                    raise MessageWarningException(argument=f"{msg.packet_payload}/{hex(msg.packet_payload)}", message=f"Value of {hexmsg} couldn't be determinate, skip Message {e}")
                 self.protocolMessage(msg, msgname, msgvalue)
             else:
                 logger.debug(f"Message not Found in NASA repository: {hexmsg:<6} Type: {msg.packet_message_type} Payload: {msg.packet_payload}")
