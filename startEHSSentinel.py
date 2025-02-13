@@ -234,9 +234,11 @@ async def process_packet(buffer, args):
         except ValueError as e:
             logger.warning("Value Error on parsing Packet, Packet will be skipped")
             logger.warning(f"Error processing message: {e}")
+            logger.warning(f"Complete Packet: {[hex(x) for x in buffer]}")
         except MessageWarningException as e:
             logger.warning("Warnung accured, Packet will be skipped")
             logger.warning(f"Error processing message: {e}")
+            logger.warning(f"Complete Packet: {[hex(x) for x in buffer]}")
         except Exception as e:
             logger.error("Error Accured, Packet will be skipped")
             logger.error(f"Error processing message: {e}")
