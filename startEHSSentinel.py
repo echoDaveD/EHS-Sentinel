@@ -99,33 +99,21 @@ async def process_buffer(buffer, args):
         - Logs if a received byte is not a start byte.
     """
 
+    if buffer:
+        logger.debug("Start Byte recognized")
+        for i in range(0, len(buffer)):
+            if buffer[i] == 0x32:
+                asyncio.create_task(process_packet(buffer[i:], args))
+                break
+
+async def print_running_tasks():
+    """
+    Prints the number of currently running tasks in the event loop.
+    """
     while True:
-        if buffer:
-            if len(buffer) > 2000:
-                logger.warning(f"Buffer is very Large..... {len(buffer)}")
-
-            if buffer[0] == 0x32:
-                logger.debug("Start Byte recognized")
-                packet_size = ((buffer[1] << 8) | buffer[2]) +2
-                logger.debug(f"Readed packet size: {packet_size-1}")
-                if len(buffer) > packet_size-1:
-                    packet = []
-                    for i in range(0, len(buffer)):
-                        packet.append(buffer[i])
-                        if i == packet_size-1: #buffer[i] == 0x34  or
-                            logger.debug(f"Complete Packet: {i}/{packet_size-1}")
-                            logger.debug(f"Last Byte readed: {hex(buffer[i])}")
-                            asyncio.create_task(process_packet(packet, args))
-                            #await process_packet(packet, args)
-                            del buffer[0:i]
-                            break
-                else:
-                    logger.debug(f"Buffer to small to read hole packet, wait... buffer size {len(buffer)} packet size {packet_size}")
-            else:
-                logger.debug(f"Received byte not a startbyte 0x32 {buffer[0]} / {hex(buffer[0])}")
-                buffer.pop(0)
-
-        await asyncio.sleep(0.01)
+        tasks = [task for task in asyncio.all_tasks() if not task.done()]
+        logger.info(f"Number of running tasks: {len(tasks)}")
+        await asyncio.sleep(5)
 
 async def serial_read(config, args):
     """
@@ -163,7 +151,7 @@ async def serial_read(config, args):
     )
 
     # start the async buffer process
-    asyncio.create_task(process_buffer(buffer, args))# start the async buffer process
+    #asyncio.create_task(process_buffer(buffer, args))# start the async buffer process
    
     # TODO have to be tested and verified, please do not try it yet
     # start the async writer process
@@ -173,7 +161,8 @@ async def serial_read(config, args):
     while True:
         data = await reader.readuntil(b'\x34')  # Read up to end of next message 0x34
         if data:
-            buffer.extend(data)
+            asyncio.create_task(process_buffer(data, args))
+            #buffer.extend(data)
             logger.debug(f"Received: {[hex(x) for x in data]}")
 
 async def serial_write(writer, reader):
@@ -258,4 +247,9 @@ async def process_packet(buffer, args):
             logger.error(traceback.format_exc())
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        loop = asyncio.get_event_loop()
+        loop.create_task(print_running_tasks())
+        loop.run_until_complete(main())
+    except RuntimeError as e:
+        logger.error(f"Runtime error: {e}")
