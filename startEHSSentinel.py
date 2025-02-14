@@ -155,7 +155,7 @@ async def serial_read(config, args):
    
     # TODO have to be tested and verified, please do not try it yet
     # start the async writer process
-    asyncio.create_task(serial_write(writer, reader))
+    #asyncio.create_task(serial_write(writer, reader))
 
     # Read loop
     while True:
