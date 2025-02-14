@@ -90,7 +90,7 @@ class MQTTClient:
         self.broker = self.config.MQTT['broker-url']
         self.port = self.config.MQTT['broker-port']
         self.client_id = self.config.MQTT['client-id']
-        self.client = gmqtt.Client(self.client_id, logger=logger)
+        self.client = gmqtt.Client(self.client_id)
         self.client.on_connect = self.on_connect
         self.client.on_disconnect = self.on_disconnect
         self.client.on_message = self.on_message
@@ -182,8 +182,9 @@ class MQTTClient:
         
         if f"{self.homeAssistantAutoDiscoverTopic}/status" == topic:
             logger.info(f"HASS Status Messages {topic} received: {payload.decode()}")
-            self._publish(f"{self.topicPrefix.replace('/', '')}/{self.known_devices_topic}", " ", retain=True)
-            logger.info("Known Devices Topic have been cleared")            
+            if payload.decode() == "online":
+                self._publish(f"{self.topicPrefix.replace('/', '')}/{self.known_devices_topic}", " ", retain=True)
+                logger.info("Known Devices Topic have been cleared")            
 
     def refresh_known_devices(self, devname):
         """

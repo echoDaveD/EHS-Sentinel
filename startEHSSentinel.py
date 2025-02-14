@@ -5,7 +5,7 @@ import traceback
 from MessageProcessor import MessageProcessor
 from EHSArguments import EHSArguments
 from EHSConfig import EHSConfig
-from EHSExceptions import MessageWarningException
+from EHSExceptions import MessageWarningException, MessageCapacityStructureWarning
 from MQTTClient import MQTTClient
 import aiofiles
 import json
@@ -70,7 +70,11 @@ async def main():
         logger.info(f"DRYRUN detected, reading from dumpfile {args.DUMPFILE}")
         async with aiofiles.open(args.DUMPFILE, mode='r') as file:
             async for line in file:
-                line = json.loads(line.strip())
+                try:
+                    line = json.loads(line.strip()) # for [12, 234, 456 ,67]
+                except:
+                    line = line.strip().replace("'", "").replace("[", "").replace("]", "").split(", ") # for ['0x1', '0x2' ..]
+                    line = [int(value, 16) for value in line]
                 await process_packet(line, args)
     else:
         # we are not in dryrun mode, so we need to read from Serial Pimort
@@ -99,33 +103,17 @@ async def process_buffer(buffer, args):
         - Logs if a received byte is not a start byte.
     """
 
-    while True:
-        if buffer:
-            if len(buffer) > 2000:
-                logger.warning(f"Buffer is very Large..... {len(buffer)}")
-
-            if buffer[0] == 0x32:
-                logger.debug("Start Byte recognized")
-                packet_size = ((buffer[1] << 8) | buffer[2]) +2
-                logger.debug(f"Readed packet size: {packet_size-1}")
-                if len(buffer) > packet_size-1:
-                    packet = []
-                    for i in range(0, len(buffer)):
-                        packet.append(buffer[i])
-                        if i == packet_size-1: #buffer[i] == 0x34  or
-                            logger.debug(f"Complete Packet: {i}/{packet_size-1}")
-                            logger.debug(f"Last Byte readed: {hex(buffer[i])}")
-                            asyncio.create_task(process_packet(packet, args))
-                            #await process_packet(packet, args)
-                            del buffer[0:i]
-                            break
-                else:
-                    logger.debug(f"Buffer to small to read hole packet, wait... buffer size {len(buffer)} packet size {packet_size}")
-            else:
-                logger.debug(f"Received byte not a startbyte 0x32 {buffer[0]} / {hex(buffer[0])}")
-                buffer.pop(0)
-
-        await asyncio.sleep(0.01)
+    if buffer:
+        if (len(buffer) > 14):
+            for i in range(0, len(buffer)):
+                if buffer[i] == 0x32:
+                    if (len(buffer[i:]) > 14):
+                        asyncio.create_task(process_packet(buffer[i:], args))
+                    else:
+                        logger.debug(f"Buffermessages to short for NASA {len(buffer)}")
+                    break
+        else:
+            logger.debug(f"Buffer to short for NASA {len(buffer)}")
 
 async def serial_read(config, args):
     """
@@ -163,7 +151,7 @@ async def serial_read(config, args):
     )
 
     # start the async buffer process
-    asyncio.create_task(process_buffer(buffer, args))# start the async buffer process
+    #asyncio.create_task(process_buffer(buffer, args))# start the async buffer process
    
     # TODO have to be tested and verified, please do not try it yet
     # start the async writer process
@@ -173,7 +161,8 @@ async def serial_read(config, args):
     while True:
         data = await reader.readuntil(b'\x34')  # Read up to end of next message 0x34
         if data:
-            buffer.extend(data)
+            asyncio.create_task(process_buffer(data, args))
+            #buffer.extend(data)
             logger.debug(f"Received: {[hex(x) for x in data]}")
 
 async def serial_write(writer, reader):
@@ -249,13 +238,23 @@ async def process_packet(buffer, args):
         except ValueError as e:
             logger.warning("Value Error on parsing Packet, Packet will be skipped")
             logger.warning(f"Error processing message: {e}")
+            logger.warning(f"Complete Packet: {[hex(x) for x in buffer]}")
+        except MessageCapacityStructureWarning as e:
+            logger.debug("Warnung accured, Packet will be skipped")
+            logger.debug(f"Error processing message: {e}")
+            logger.debug(f"Complete Packet: {[hex(x) for x in buffer]}")
         except MessageWarningException as e:
             logger.warning("Warnung accured, Packet will be skipped")
             logger.warning(f"Error processing message: {e}")
+            logger.warning(f"Complete Packet: {[hex(x) for x in buffer]}")
         except Exception as e:
             logger.error("Error Accured, Packet will be skipped")
             logger.error(f"Error processing message: {e}")
             logger.error(traceback.format_exc())
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(main())
+    except RuntimeError as e:
+        logger.error(f"Runtime error: {e}")
