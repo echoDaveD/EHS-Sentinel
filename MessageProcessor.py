@@ -110,14 +110,18 @@ class MessageProcessor:
 
         if msgname in ['NASA_OUTDOOR_TW2_TEMP', 'NASA_OUTDOOR_TW1_TEMP', 'VAR_IN_FLOW_SENSOR_CALC']:
             if all(k in self.NASA_VAL_STORE for k in ['NASA_OUTDOOR_TW2_TEMP', 'NASA_OUTDOOR_TW1_TEMP', 'VAR_IN_FLOW_SENSOR_CALC']):
-                self.protocolMessage(NASAMessage(packet_message=0x9999, packet_message_type=1),
-                                    "NASA_EHSSENTINEL_HEAT_OUTPUT", 
-                                    round(
-                                            (
-                                                (self.NASA_VAL_STORE['NASA_OUTDOOR_TW2_TEMP'] - self.NASA_VAL_STORE['NASA_OUTDOOR_TW1_TEMP']) * 
-                                                (self.NASA_VAL_STORE['VAR_IN_FLOW_SENSOR_CALC']/60) 
-                                                * 4190
-                                            ), 4))
+                value = round(
+                    (
+                        (self.NASA_VAL_STORE['NASA_OUTDOOR_TW2_TEMP'] - self.NASA_VAL_STORE['NASA_OUTDOOR_TW1_TEMP']) * 
+                        (self.NASA_VAL_STORE['VAR_IN_FLOW_SENSOR_CALC']/60) 
+                        * 4190
+                    ), 4
+                )
+                if (value < 15000 and value > 0): # only if heater output between 0 und 15000 W
+                    self.protocolMessage(NASAMessage(packet_message=0x9999, packet_message_type=1),
+                                        "NASA_EHSSENTINEL_HEAT_OUTPUT", 
+                                        value
+                                        )
 
         if msgname in ('NASA_EHSSENTINEL_HEAT_OUTPUT', 'NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT'):
             if all(k in self.NASA_VAL_STORE for k in ['NASA_EHSSENTINEL_HEAT_OUTPUT', 'NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT']):

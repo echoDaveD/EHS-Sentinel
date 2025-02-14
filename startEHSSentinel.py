@@ -147,7 +147,7 @@ async def serial_connection(config, args):
                     stopbits=serial.STOPBITS_ONE,
                     bytesize=serial.EIGHTBITS,
                     rtscts=True,
-                    timeout=0
+                    timeout=1
     )
 
     await asyncio.gather(
