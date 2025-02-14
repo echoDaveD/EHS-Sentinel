@@ -143,7 +143,7 @@ async def serial_read(config, args):
                     loop=loop, 
                     url=config.SERIAL['device'], 
                     baudrate=config.SERIAL['baudrate'], 
-                    parity=serial.PARITY_EVEN,
+                    parity=serial.PARITY_NONE,
                     stopbits=serial.STOPBITS_ONE,
                     bytesize=serial.EIGHTBITS,
                     rtscts=True,
