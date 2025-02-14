@@ -155,7 +155,7 @@ async def serial_read(config, args):
    
     # TODO have to be tested and verified, please do not try it yet
     # start the async writer process
-    #asyncio.create_task(serial_write(writer, reader))
+    asyncio.create_task(serial_write(writer, reader))
 
     # Read loop
     while True:
@@ -208,8 +208,8 @@ async def serial_write(writer, reader):
         # ['0x32', '0x0', '0x12', '0x80', '0xff', '0x0', '0x20', '0x0', '0x0', '0xc0', '0x11', '0xf0', '0x1', '0x42', '0x56', '0x0', '0x0', '0x38', '0xc6', '0x34']
         writer.write(final_packet)
         await writer.drain()
-        logger.debug(f"Sent data raw: {final_packet}")
-        logger.debug(f"Sent data raw: {[hex(x) for x in final_packet]}")
+        logger.info(f"Sent data raw: {final_packet}")
+        logger.info(f"Sent data raw: {[hex(x) for x in final_packet]}")
         await asyncio.sleep(1)  # Adjust the interval as needed
 
 async def process_packet(buffer, args):
