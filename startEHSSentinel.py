@@ -152,7 +152,7 @@ async def serial_connection(config, args):
 
     await asyncio.gather(
             serial_read(reader, args),
-            serial_write(writer, args),
+            #serial_write(writer, args),
         )
 
 
