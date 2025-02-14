@@ -78,7 +78,7 @@ async def main():
                 await process_packet(line, args)
     else:
         # we are not in dryrun mode, so we need to read from Serial Pimort
-        await serial_read(config, args)
+        await serial_connection(config, args)
 
 async def process_buffer(buffer, args):
     """
@@ -115,7 +115,7 @@ async def process_buffer(buffer, args):
         else:
             logger.debug(f"Buffer to short for NASA {len(buffer)}")
 
-async def serial_read(config, args):
+async def serial_connection(config, args):
     """
     Asynchronously reads data from a serial connection and processes it.
     Args:
@@ -150,22 +150,25 @@ async def serial_read(config, args):
                     timeout=0
     )
 
-    # start the async buffer process
-    #asyncio.create_task(process_buffer(buffer, args))# start the async buffer process
-   
-    # TODO have to be tested and verified, please do not try it yet
-    # start the async writer process
-    #asyncio.create_task(serial_write(writer, reader))
+    await asyncio.gather(
+            serial_read(reader, args),
+            serial_write(writer, args),
+        )
 
-    # Read loop
+
+async def serial_read(reader, args):
     while True:
         data = await reader.readuntil(b'\x34')  # Read up to end of next message 0x34
         if data:
             asyncio.create_task(process_buffer(data, args))
             #buffer.extend(data)
+            logger.debug(f"Received: {data}")
+            logger.debug(f"Received: {data!r}")
             logger.debug(f"Received: {[hex(x) for x in data]}")
 
-async def serial_write(writer, reader):
+        await asyncio.sleep(0.1)  # Yield control to other tasks
+
+async def serial_write(writer, args):
     """
     
     TODO Not used yet, only for future use...
@@ -209,8 +212,10 @@ async def serial_write(writer, reader):
         writer.write(final_packet)
         await writer.drain()
         logger.info(f"Sent data raw: {final_packet}")
+        logger.info(f"Sent data raw: {final_packet!r}")
         logger.info(f"Sent data raw: {[hex(x) for x in final_packet]}")
-        await asyncio.sleep(1)  # Adjust the interval as needed
+
+        await asyncio.sleep(0.1)  # Yield control to other tasks
 
 async def process_packet(buffer, args):
     """
