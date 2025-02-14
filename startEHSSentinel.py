@@ -5,7 +5,7 @@ import traceback
 from MessageProcessor import MessageProcessor
 from EHSArguments import EHSArguments
 from EHSConfig import EHSConfig
-from EHSExceptions import MessageWarningException
+from EHSExceptions import MessageWarningException, MessageCapacityStructureWarning
 from MQTTClient import MQTTClient
 import aiofiles
 import json
@@ -70,7 +70,11 @@ async def main():
         logger.info(f"DRYRUN detected, reading from dumpfile {args.DUMPFILE}")
         async with aiofiles.open(args.DUMPFILE, mode='r') as file:
             async for line in file:
-                line = json.loads(line.strip())
+                try:
+                    line = json.loads(line.strip()) # for [12, 234, 456 ,67]
+                except:
+                    line = line.strip().replace("'", "").replace("[", "").replace("]", "").split(", ") # for ['0x1', '0x2' ..]
+                    line = [int(value, 16) for value in line]
                 await process_packet(line, args)
     else:
         # we are not in dryrun mode, so we need to read from Serial Pimort
@@ -235,6 +239,10 @@ async def process_packet(buffer, args):
             logger.warning("Value Error on parsing Packet, Packet will be skipped")
             logger.warning(f"Error processing message: {e}")
             logger.warning(f"Complete Packet: {[hex(x) for x in buffer]}")
+        except MessageCapacityStructureWarning as e:
+            logger.debug("Warnung accured, Packet will be skipped")
+            logger.debug(f"Error processing message: {e}")
+            logger.debug(f"Complete Packet: {[hex(x) for x in buffer]}")
         except MessageWarningException as e:
             logger.warning("Warnung accured, Packet will be skipped")
             logger.warning(f"Error processing message: {e}")
