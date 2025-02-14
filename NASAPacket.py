@@ -1,5 +1,6 @@
 from enum import Enum
 from NASAMessage import NASAMessage
+from EHSExceptions import MessageCapacityStructureWarning
 
 class AddressClassEnum(Enum):
     """
@@ -259,7 +260,7 @@ class NASAPacket:
         elif message_type == 3:
             payload_size = len(msg_rest)
             if capacity != 1:
-                raise ValueError("Message with structure type must have capacity of 1.")
+                raise MessageCapacityStructureWarning("Message with structure type must have capacity of 1.")
         else:
             raise ValueError(f"Mssage type unknown: {message_type}")
         

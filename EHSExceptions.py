@@ -47,7 +47,7 @@ class ArgumentException(EHSException):
     def __str__(self):
         return f'{self.argument} -> {self.message}'
 
-class InvalidMessageTypeException(EHSException):
+class MessageCapacityStructureWarning(EHSException):
     """Exception raised for invalid message types.
 
     Attributes:
@@ -55,10 +55,9 @@ class InvalidMessageTypeException(EHSException):
         message -- explanation of the error
     """
 
-    def __init__(self, message_type, message="Invalid message type provided"):
-        self.message_type = message_type
+    def __init__(self, message="Invalid message type provided"):
         self.message = message
         super().__init__(self.message)
 
     def __str__(self):
-        return f'{self.message_type} -> {self.message}'
+        return f'{self.message}'
