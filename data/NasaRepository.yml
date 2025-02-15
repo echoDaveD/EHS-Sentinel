@@ -205,6 +205,7 @@ ENUM_IN_FSV_2041:
   arithmetic: ''
   description: FSV Water Law Type Heating
   enum:
+    0x00: 'Unknown'
     0x01: 'Floor'
     0x02: 'FCU'
   remarks: 1 Floor, 2 FCU
