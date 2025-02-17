@@ -102,8 +102,8 @@ class MQTTClient:
         self.useCamelCaseTopicNames = self.config.MQTT['useCamelCaseTopicNames']
 
         self.initialized = True
-        self.hass_configured = "no"
-        self.hass_configured_topic = "hass/configured"  # Dedicated topic for storing known topics
+        self.known_topics: list = list()  # Set to keep track of known topics
+        self.known_devices_topic = "known/devices"  # Dedicated topic for storing known topics
 
     async def connect(self):
         """
@@ -123,7 +123,8 @@ class MQTTClient:
         await self.client.connect(self.broker, self.port, keepalive=60, version=gmqtt.constants.MQTTv311)
 
         if self.args.CLEAN_KNOWN_DEVICES:
-            self.auto_discover_hass()
+            self._publish(f"{self.topicPrefix.replace('/', '')}/{self.known_devices_topic}", " ", retain=True)
+            logger.info("Known Devices Topic have been cleared")
 
     def subscribe_known_topics(self):
         """
@@ -141,7 +142,7 @@ class MQTTClient:
         logger.info("Subscribe to known devices topic")
         self.client.subscribe(
             [
-                gmqtt.Subscription(f"{self.topicPrefix.replace('/', '')}/{self.hass_configured_topic}", 1),
+                gmqtt.Subscription(f"{self.topicPrefix.replace('/', '')}/{self.known_devices_topic}", 1),
                 gmqtt.Subscription(f"{self.homeAssistantAutoDiscoverTopic}/status", 1)
             ]
         )
@@ -174,9 +175,9 @@ class MQTTClient:
             - If the topic matches the Home Assistant auto-discover status topic, logs the status message and clears the known devices topic.
         """
         
-        if self.hass_configured_topic in topic:
+        if self.known_devices_topic in topic:
             # Update the known devices set with the retained message
-            self.hass_configured = payload.decode()
+            self.known_topics = list(filter(None, [x.strip() for x in payload.decode().split(",")]))
 
         
         if f"{self.homeAssistantAutoDiscoverTopic}/status" == topic:
@@ -245,6 +246,17 @@ class MQTTClient:
         logger.debug(f"MQTT Publish Topic: {topic} payload: {payload}")
         self.client.publish(f"{topic}", payload, qos, retain)
         #time.sleep(0.1)
+
+    def refresh_known_devices(self, devname):
+        """
+        Refreshes the list of known devices by publishing the updated list to the MQTT topic.
+        Args:
+            devname (str): The name of the device to be refreshed.
+        Returns:
+            None
+        """
+
+        self._publish(f"{self.topicPrefix.replace('/', '')}/{self.known_devices_topic}", ",".join(self.known_topics), retain=True)
     
     def publish_message(self, name, value):
         """
@@ -264,7 +276,7 @@ class MQTTClient:
         
         if len(self.homeAssistantAutoDiscoverTopic) > 0:
 
-            if self.hass_configured != "yes":
+            if name not in self.known_topics:
                 self.auto_discover_hass()
 
             sensor_type = "sensor"
@@ -273,7 +285,9 @@ class MQTTClient:
                 if all([en.lower() in ['on', 'off'] for en in enum]):
                     sensor_type = "binary_sensor"
             topicname = f"{self.config.MQTT['homeAssistantAutoDiscoverTopic']}/{sensor_type}/{self.DEVICE_ID}_{newname.lower()}/state"
-           
+
+            self.known_topics.append(name)
+            self.refresh_known_devices(name)
         else:
             topicname = f"{self.topicPrefix.replace('/', '')}/{newname}"
         
@@ -301,52 +315,56 @@ class MQTTClient:
         
         for nasa in self.config.NASA_REPO:
             namenorm = self._normalize_name(nasa)
-            sensor_type = "sensor"
-            if 'enum' in self.config.NASA_REPO[nasa]:
-                enum = [*self.config.NASA_REPO[nasa]['enum'].values()]
-                if all([en.lower() in ['on', 'off'] for en in enum]):
-                    sensor_type = "binary_sensor"
 
-            entities[namenorm] = {
-                    "name": f"{namenorm}",""
-                    "object_id": f"{self.DEVICE_ID}_{namenorm.lower()}",
-                    "unique_id": f"{self.DEVICE_ID}_{nasa.lower()}",
-                    "platform": sensor_type,
-                    "expire_after": 300,
-                    #"value_template": "{{ value }}",
-                    "enabled_by_default": False,
-                    "value_template": "{{ value if value is defined and value | length > 0 else 'unavailable' }}",
-                    "state_topic": f"{self.config.MQTT['homeAssistantAutoDiscoverTopic']}/{sensor_type}/{self.DEVICE_ID}_{namenorm.lower()}/state",
-                }
-
-            if sensor_type == "sensor":
-                if len(self.config.NASA_REPO[nasa]['unit']) > 0:
-                    entities[namenorm]['unit_of_measurement'] = self.config.NASA_REPO[nasa]['unit']
-                    if entities[namenorm]['unit_of_measurement'] == "\u00b0C":
-                        entities[namenorm]['device_class'] = "temperature"
-                    elif entities[namenorm]['unit_of_measurement'] == '%':
-                        entities[namenorm]['state_class'] = "measurement"
-                    elif entities[namenorm]['unit_of_measurement'] == 'kW':
-                        entities[namenorm]['device_class'] = "power"
-                    elif entities[namenorm]['unit_of_measurement'] == 'rpm':
-                        entities[namenorm]['state_class'] = "measurement"
-                    elif entities[namenorm]['unit_of_measurement'] == 'bar':
-                        entities[namenorm]['device_class'] = "pressure"
-                    elif entities[namenorm]['unit_of_measurement'] == 'HP':
-                        entities[namenorm]['device_class'] = "power"
-                    elif entities[namenorm]['unit_of_measurement'] == 'hz':
-                        entities[namenorm]['device_class'] = "frequency"
-                    else:
-                        entities[namenorm]['device_class'] = None
+            if nasa not in self.known_topics:
+                entities[namenorm] = {}
             else:
-                entities[namenorm]['payload_on'] = "ON"
-                entities[namenorm]['payload_off'] = "OFF"
+                sensor_type = "sensor"
+                if 'enum' in self.config.NASA_REPO[nasa]:
+                    enum = [*self.config.NASA_REPO[nasa]['enum'].values()]
+                    if all([en.lower() in ['on', 'off'] for en in enum]):
+                        sensor_type = "binary_sensor"
 
-            if 'state_class' in self.config.NASA_REPO[nasa]:
-                entities[namenorm]['state_class'] = self.config.NASA_REPO[nasa]['state_class']
-            
-            if 'device_class' in self.config.NASA_REPO[nasa]:
-                entities[namenorm]['device_class'] = self.config.NASA_REPO[nasa]['device_class']
+                entities[namenorm] = {
+                        "name": f"{namenorm}",""
+                        "object_id": f"{self.DEVICE_ID}_{namenorm.lower()}",
+                        "unique_id": f"{self.DEVICE_ID}_{nasa.lower()}",
+                        "platform": sensor_type,
+                        "expire_after": 60,
+                        #"value_template": "{{ value }}",
+                        "enabled_by_default": False,
+                        "value_template": "{{ value if value | length > 0 else 'unavailable' }}",
+                        "state_topic": f"{self.config.MQTT['homeAssistantAutoDiscoverTopic']}/{sensor_type}/{self.DEVICE_ID}_{namenorm.lower()}/state",
+                    }
+
+                if sensor_type == "sensor":
+                    if len(self.config.NASA_REPO[nasa]['unit']) > 0:
+                        entities[namenorm]['unit_of_measurement'] = self.config.NASA_REPO[nasa]['unit']
+                        if entities[namenorm]['unit_of_measurement'] == "\u00b0C":
+                            entities[namenorm]['device_class'] = "temperature"
+                        elif entities[namenorm]['unit_of_measurement'] == '%':
+                            entities[namenorm]['state_class'] = "measurement"
+                        elif entities[namenorm]['unit_of_measurement'] == 'kW':
+                            entities[namenorm]['device_class'] = "power"
+                        elif entities[namenorm]['unit_of_measurement'] == 'rpm':
+                            entities[namenorm]['state_class'] = "measurement"
+                        elif entities[namenorm]['unit_of_measurement'] == 'bar':
+                            entities[namenorm]['device_class'] = "pressure"
+                        elif entities[namenorm]['unit_of_measurement'] == 'HP':
+                            entities[namenorm]['device_class'] = "power"
+                        elif entities[namenorm]['unit_of_measurement'] == 'hz':
+                            entities[namenorm]['device_class'] = "frequency"
+                        else:
+                            entities[namenorm]['device_class'] = None
+                else:
+                    entities[namenorm]['payload_on'] = "ON"
+                    entities[namenorm]['payload_off'] = "OFF"
+
+                if 'state_class' in self.config.NASA_REPO[nasa]:
+                    entities[namenorm]['state_class'] = self.config.NASA_REPO[nasa]['state_class']
+                
+                if 'device_class' in self.config.NASA_REPO[nasa]:
+                    entities[namenorm]['device_class'] = self.config.NASA_REPO[nasa]['device_class']
 
 
         device = {
