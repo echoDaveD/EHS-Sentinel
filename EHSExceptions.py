@@ -46,8 +46,8 @@ class ArgumentException(EHSException):
 
     def __str__(self):
         return f'{self.argument} -> {self.message}'
-
-class MessageCapacityStructureWarning(EHSException):
+    
+class SkipInvalidPacketException(EHSException):
     """Exception raised for invalid message types.
 
     Attributes:

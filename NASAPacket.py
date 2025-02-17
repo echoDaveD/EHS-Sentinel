@@ -1,6 +1,6 @@
 from enum import Enum
 from NASAMessage import NASAMessage
-from EHSExceptions import MessageCapacityStructureWarning
+from EHSExceptions import SkipInvalidPacketException
 import binascii
 
 class AddressClassEnum(Enum):
@@ -212,14 +212,20 @@ class NASAPacket:
         if len(packet) < 14:
             raise ValueError("Data too short to be a valid NASAPacket")
         
-        crc_checkusm=binascii.crc_hqx(packet[3:-3], 0)
+        crc_checkusm=binascii.crc_hqx(bytearray(packet[3:-3]), 0)
 
         self.packet_start = packet[0]
         self.packet_size = ((packet[1] << 8) | packet[2])
-        self.packet_source_address_class = AddressClassEnum(packet[3])
+        try:
+            self.packet_source_address_class = AddressClassEnum(packet[3])
+        except ValueError as e:
+            raise SkipInvalidPacketException(f"Source Adress Class out of enum {packet[3]}")
         self.packet_source_channel = packet[4]
         self.packet_source_address = packet[5]
-        self.packet_dest_address_class = AddressClassEnum(packet[6])
+        try:
+            self.packet_dest_address_class = AddressClassEnum(packet[6])
+        except ValueError as e:
+            raise SkipInvalidPacketException(f"Destination Adress Class out of enum {packet[6]}")
         self.packet_dest_channel = packet[7]
         self.packet_dest_address = packet[8]
         self.packet_information = (int(packet[9]) & 128) >> 7 == 1
@@ -234,7 +240,7 @@ class NASAPacket:
         self.packet_messages = self._extract_messages(0, self.packet_capacity, packet[13:-3], [])
 
         if crc_checkusm != self.packet_crc16:
-            raise ValueError(f"Checksum for package could not be validatet calculated: {crc_checkusm} in packet: {self.packet_crc16}: packet:{self}")
+            raise SkipInvalidPacketException(f"Checksum for package could not be validatet calculated: {crc_checkusm} in packet: {self.packet_crc16}: packet:{self}")
 
     def _extract_messages(self, depth: int, capacity: int, msg_rest: bytearray, return_list: list):
         """
@@ -266,7 +272,7 @@ class NASAPacket:
         elif message_type == 3:
             payload_size = len(msg_rest)
             if capacity != 1:
-                raise MessageCapacityStructureWarning("Message with structure type must have capacity of 1.")
+                raise SkipInvalidPacketException("Message with structure type must have capacity of 1.")
         else:
             raise ValueError(f"Mssage type unknown: {message_type}")
         

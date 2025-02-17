@@ -5,7 +5,7 @@ import traceback
 from MessageProcessor import MessageProcessor
 from EHSArguments import EHSArguments
 from EHSConfig import EHSConfig
-from EHSExceptions import MessageWarningException, MessageCapacityStructureWarning
+from EHSExceptions import MessageWarningException, SkipInvalidPacketException
 from MQTTClient import MQTTClient
 import aiofiles
 import json
@@ -246,7 +246,7 @@ async def process_packet(buffer, args):
             logger.warning("Value Error on parsing Packet, Packet will be skipped")
             logger.warning(f"Error processing message: {e}")
             logger.warning(f"Complete Packet: {[hex(x) for x in buffer]}")
-        except MessageCapacityStructureWarning as e:
+        except SkipInvalidPacketException as e:
             logger.debug("Warnung accured, Packet will be skipped")
             logger.debug(f"Error processing message: {e}")
             logger.debug(f"Complete Packet: {[hex(x) for x in buffer]}")
