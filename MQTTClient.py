@@ -183,8 +183,8 @@ class MQTTClient:
         if f"{self.homeAssistantAutoDiscoverTopic}/status" == topic:
             logger.info(f"HASS Status Messages {topic} received: {payload.decode()}")
             if payload.decode() == "online":
-                self.auto_discover_hass()
-                logger.info("HASS Auto Discovery Config Messsage have beend resend")            
+                self._publish(f"{self.topicPrefix.replace('/', '')}/{self.known_devices_topic}", " ", retain=True)
+                logger.info("Known Devices Topic have been cleared")          
 
     def on_connect(self, client, flags, rc, properties):
         """
@@ -278,6 +278,8 @@ class MQTTClient:
 
             if name not in self.known_topics:
                 self.auto_discover_hass()
+                self.known_topics.append(name)
+                self.refresh_known_devices(name)
 
             sensor_type = "sensor"
             if 'enum' in self.config.NASA_REPO[name]:
@@ -285,9 +287,6 @@ class MQTTClient:
                 if all([en.lower() in ['on', 'off'] for en in enum]):
                     sensor_type = "binary_sensor"
             topicname = f"{self.config.MQTT['homeAssistantAutoDiscoverTopic']}/{sensor_type}/{self.DEVICE_ID}_{newname.lower()}/state"
-
-            self.known_topics.append(name)
-            self.refresh_known_devices(name)
         else:
             topicname = f"{self.topicPrefix.replace('/', '')}/{newname}"
         
@@ -330,9 +329,8 @@ class MQTTClient:
                         "object_id": f"{self.DEVICE_ID}_{namenorm.lower()}",
                         "unique_id": f"{self.DEVICE_ID}_{nasa.lower()}",
                         "platform": sensor_type,
-                        "expire_after": 60,
+                        "expire_after": 300,
                         #"value_template": "{{ value }}",
-                        "enabled_by_default": False,
                         "value_template": "{{ value if value | length > 0 else 'unavailable' }}",
                         "state_topic": f"{self.config.MQTT['homeAssistantAutoDiscoverTopic']}/{sensor_type}/{self.DEVICE_ID}_{namenorm.lower()}/state",
                     }
