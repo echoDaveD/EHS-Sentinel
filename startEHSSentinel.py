@@ -152,7 +152,7 @@ async def serial_connection(config, args):
 
     await asyncio.gather(
             serial_read(reader, args),
-            #serial_write(writer, args),
+            #serial_write(writer, reader, args),
         )
 
 
@@ -168,7 +168,7 @@ async def serial_read(reader, args):
 
         await asyncio.sleep(0.1)  # Yield control to other tasks
 
-async def serial_write(writer, args):
+async def serial_write(writer:asyncio.StreamWriter, reader: asyncio.StreamReader, args):
     """
     
     TODO Not used yet, only for future use...
@@ -183,9 +183,11 @@ async def serial_write(writer, args):
         None
     """
     while True:
-        await asyncio.sleep(5)
+        await asyncio.sleep(1)
         # Example data to write
         
+        packet_ovj = NASAPacket()
+
         packet = bytearray([
             #0x32,  # Packet Start Byte
             #0x00, 0x12,  # Packet Size
@@ -214,8 +216,8 @@ async def serial_write(writer, args):
         logger.info(f"Sent data raw: {final_packet}")
         logger.info(f"Sent data raw: {final_packet!r}")
         logger.info(f"Sent data raw: {[hex(x) for x in final_packet]}")
-
         await asyncio.sleep(0.1)  # Yield control to other tasks
+        break
 
 async def process_packet(buffer, args):
     """

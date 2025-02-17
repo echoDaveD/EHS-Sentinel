@@ -1,6 +1,7 @@
 from enum import Enum
 from NASAMessage import NASAMessage
 from EHSExceptions import MessageCapacityStructureWarning
+import binascii
 
 class AddressClassEnum(Enum):
     """
@@ -210,6 +211,8 @@ class NASAPacket:
         self._packet_raw = packet
         if len(packet) < 14:
             raise ValueError("Data too short to be a valid NASAPacket")
+        
+        crc_checkusm=binascii.crc_hqx(packet[3:-3], 0)
 
         self.packet_start = packet[0]
         self.packet_size = ((packet[1] << 8) | packet[2])
@@ -229,6 +232,9 @@ class NASAPacket:
         self.packet_crc16 = ((packet[-3] << 8) | packet[-2]) + 2
         self.packet_end = packet[-1]
         self.packet_messages = self._extract_messages(0, self.packet_capacity, packet[13:-3], [])
+
+        if crc_checkusm != self.packet_crc16:
+            raise ValueError(f"Checksum for package could not be validatet calculated: {crc_checkusm} in packet: {self.packet_crc16}: packet:{self}")
 
     def _extract_messages(self, depth: int, capacity: int, msg_rest: bytearray, return_list: list):
         """
@@ -303,6 +309,83 @@ class NASAPacket:
 
     def __repr__(self):
         return self.__str__()
+    
+
+    # Setter methods
+    def set_packet_source_address_class(self, value: AddressClassEnum):
+        self.packet_source_address_class = value
+
+    def set_packet_source_channel(self, value: int):
+        self.packet_source_channel = value
+
+    def set_packet_source_address(self, value: int):
+        self.packet_source_address = value
+
+    def set_packet_dest_address_class(self, value: AddressClassEnum):
+        self.packet_dest_address_class = value
+
+    def set_packet_dest_channel(self, value: int):
+        self.packet_dest_channel = value
+
+    def set_packet_dest_address(self, value: int):
+        self.packet_dest_address = value
+
+    def set_packet_information(self, value: bool):
+        self.packet_information = value
+
+    def set_packet_version(self, value: int):
+        self.packet_version = value
+
+    def set_packet_retry_count(self, value: int):
+        self.packet_retry_count = value
+
+    def set_packet_type(self, value: PacketType):
+        self.packet_type = value
+
+    def set_packet_data_type(self, value: DataType):
+        self.packet_data_type = value
+
+    def set_packet_number(self, value: int):
+        self.packet_number = value
+
+    def set_packet_capacity(self, value: int):
+        self.packet_capacity = value
+
+    def set_packet_messages(self, value: list[NASAMessage]):
+        self.packet_messages = value
+
+    def to_raw(self) -> bytearray:
+        """
+        Converts the NASAPacket object back to its raw byte representation.
+        Returns:
+            bytearray: The raw byte representation of the packet.
+        """
+        packet = bytearray(14 + len(self.packet_messages) * 2)  # Adjust size as needed
+        packet[0] = 0x32
+        packet[1] = (self.packet_size >> 8) & 0xFF
+        packet[2] = self.packet_size & 0xFF
+        packet[3] = self.packet_source_address_class.value
+        packet[4] = self.packet_source_channel
+        packet[5] = self.packet_source_address
+        packet[6] = self.packet_dest_address_class.value
+        packet[7] = self.packet_dest_channel
+        packet[8] = self.packet_dest_address
+        packet[9] = (self.packet_information << 7) | (self.packet_version << 5) | (self.packet_retry_count << 3)
+        packet[10] = (self.packet_type.value << 4) | self.packet_data_type.value
+        packet[11] = self.packet_number
+        packet[12] = self.packet_capacity
+        # Add messages to the packet
+        index = 13
+        for msg in self.packet_messages:
+            packet[index:index + 2] = msg.to_bytes()
+            index += 2
+        packet[-3] = (self.packet_crc16 >> 8) & 0xFF
+        packet[-2] = self.packet_crc16 & 0xFF
+        packet[-1] = 0x34
+        #crc=binascii.crc_hqx(packet, 0)
+        #final_packet = struct.pack(">BH", 0x32, len(packet)+2+2) + packet + struct.pack(">HB", crc, 0x34)
+        return packet
+
 # Example usage:
 # packet = NASAPacket()
 # packet.parse(bytearray([0x01, 0x02, 0x03, 0x04, 0x05, 0x06]))
