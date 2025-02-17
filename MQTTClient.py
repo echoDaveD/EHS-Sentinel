@@ -315,13 +315,15 @@ class MQTTClient:
         for nasa in self.config.NASA_REPO:
             namenorm = self._normalize_name(nasa)
 
-            if nasa in self.known_topics:
-                sensor_type = "sensor"
-                if 'enum' in self.config.NASA_REPO[nasa]:
-                    enum = [*self.config.NASA_REPO[nasa]['enum'].values()]
-                    if all([en.lower() in ['on', 'off'] for en in enum]):
-                        sensor_type = "binary_sensor"
+            sensor_type = "sensor"
+            if 'enum' in self.config.NASA_REPO[nasa]:
+                enum = [*self.config.NASA_REPO[nasa]['enum'].values()]
+                if all([en.lower() in ['on', 'off'] for en in enum]):
+                    sensor_type = "binary_sensor"
 
+            if nasa not in self.known_topics:
+                entities[namenorm] = {"platform": sensor_type}
+            else:
                 entities[namenorm] = {
                         "name": f"{namenorm}",""
                         "object_id": f"{self.DEVICE_ID}_{namenorm.lower()}",
