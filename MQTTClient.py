@@ -315,7 +315,7 @@ class MQTTClient:
         for nasa in self.config.NASA_REPO:
             namenorm = self._normalize_name(nasa)
 
-            if nasa not in self.known_topics:
+            if nasa in self.known_topics:
                 sensor_type = "sensor"
                 if 'enum' in self.config.NASA_REPO[nasa]:
                     enum = [*self.config.NASA_REPO[nasa]['enum'].values()]
