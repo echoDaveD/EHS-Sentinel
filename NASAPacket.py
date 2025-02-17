@@ -229,7 +229,7 @@ class NASAPacket:
         self.packet_data_type = DataType(int(packet[10]) & 15)
         self.packet_number = packet[11]
         self.packet_capacity = packet[12]
-        self.packet_crc16 = ((packet[-3] << 8) | packet[-2]) + 2
+        self.packet_crc16 = ((packet[-3] << 8) | packet[-2]) # + 2
         self.packet_end = packet[-1]
         self.packet_messages = self._extract_messages(0, self.packet_capacity, packet[13:-3], [])
 
