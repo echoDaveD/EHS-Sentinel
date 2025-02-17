@@ -389,9 +389,6 @@ class MQTTClient:
                       qos=2, 
                       retain=True)
 
-        self.hass_configured = "yes"
-        self._publish(f"{self.topicPrefix.replace('/', '')}/{self.hass_configured_topic}", "yes", qos=2, retain=True)
-
 
     def _normalize_name(self, name):
         """
