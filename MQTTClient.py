@@ -300,7 +300,6 @@ class MQTTClient:
         entities = {}
         
         for nasa in self.config.NASA_REPO:
-            print(nasa)
             namenorm = self._normalize_name(nasa)
             sensor_type = "sensor"
             if 'enum' in self.config.NASA_REPO[nasa]:
