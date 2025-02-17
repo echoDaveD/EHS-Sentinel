@@ -297,7 +297,7 @@ class MQTTClient:
             None
         """
 
-        entities = []
+        entities = {}
         
         for nasa in self.config.NASA_REPO:
             print(nasa)
@@ -308,7 +308,7 @@ class MQTTClient:
                 if all([en.lower() in ['on', 'off'] for en in enum]):
                     sensor_type = "binary_sensor"
 
-            entity = { namenorm: {
+            entities = { namenorm: {
                     "name": f"{namenorm}",""
                     "object_id": f"{self.DEVICE_ID}_{namenorm.lower()}",
                     "unique_id": f"{self.DEVICE_ID}_{nasa.lower()}",
@@ -322,34 +322,32 @@ class MQTTClient:
 
             if sensor_type == "sensor":
                 if len(self.config.NASA_REPO[nasa]['unit']) > 0:
-                    entity[namenorm]['unit_of_measurement'] = self.config.NASA_REPO[nasa]['unit']
-                    if entity[namenorm]['unit_of_measurement'] == "\u00b0C":
-                        entity[namenorm]['device_class'] = "temperature"
-                    elif entity[namenorm]['unit_of_measurement'] == '%':
-                        entity[namenorm]['state_class'] = "measurement"
-                    elif entity[namenorm]['unit_of_measurement'] == 'kW':
-                        entity[namenorm]['device_class'] = "power"
-                    elif entity[namenorm]['unit_of_measurement'] == 'rpm':
-                        entity[namenorm]['state_class'] = "measurement"
-                    elif entity[namenorm]['unit_of_measurement'] == 'bar':
-                        entity[namenorm]['device_class'] = "pressure"
-                    elif entity[namenorm]['unit_of_measurement'] == 'HP':
-                        entity[namenorm]['device_class'] = "power"
-                    elif entity[namenorm]['unit_of_measurement'] == 'hz':
-                        entity[namenorm]['device_class'] = "frequency"
+                    entities[namenorm]['unit_of_measurement'] = self.config.NASA_REPO[nasa]['unit']
+                    if entities[namenorm]['unit_of_measurement'] == "\u00b0C":
+                        entities[namenorm]['device_class'] = "temperature"
+                    elif entities[namenorm]['unit_of_measurement'] == '%':
+                        entities[namenorm]['state_class'] = "measurement"
+                    elif entities[namenorm]['unit_of_measurement'] == 'kW':
+                        entities[namenorm]['device_class'] = "power"
+                    elif entities[namenorm]['unit_of_measurement'] == 'rpm':
+                        entities[namenorm]['state_class'] = "measurement"
+                    elif entities[namenorm]['unit_of_measurement'] == 'bar':
+                        entities[namenorm]['device_class'] = "pressure"
+                    elif entities[namenorm]['unit_of_measurement'] == 'HP':
+                        entities[namenorm]['device_class'] = "power"
+                    elif entities[namenorm]['unit_of_measurement'] == 'hz':
+                        entities[namenorm]['device_class'] = "frequency"
                     else:
-                            entity[namenorm]['device_class'] = None
+                        entities[namenorm]['device_class'] = None
             else:
-                entity[namenorm]['payload_on'] = "ON"
-                entity[namenorm]['payload_off'] = "OFF"
+                entities[namenorm]['payload_on'] = "ON"
+                entities[namenorm]['payload_off'] = "OFF"
 
             if 'state_class' in self.config.NASA_REPO[nasa]:
-                entity[namenorm]['state_class'] = self.config.NASA_REPO[nasa]['state_class']
+                entities[namenorm]['state_class'] = self.config.NASA_REPO[nasa]['state_class']
             
             if 'device_class' in self.config.NASA_REPO[nasa]:
-                entity[namenorm]['device_class'] = self.config.NASA_REPO[nasa]['device_class']
-
-            entities.append(entity)
+                entities[namenorm]['device_class'] = self.config.NASA_REPO[nasa]['device_class']
 
 
         device = {
