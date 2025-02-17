@@ -313,7 +313,7 @@ class MQTTClient:
                     "object_id": f"{self.DEVICE_ID}_{namenorm.lower()}",
                     "unique_id": f"{self.DEVICE_ID}_{nasa.lower()}",
                     "platform": sensor_type,
-                    #"expire_after": 300,
+                    "expire_after": 300,
                     #"value_template": "{{ value }}",
                     "value_template": "{{ value if value is defined and value | length > 0 else 'unavailable' }}",
                     "state_topic": f"{self.config.MQTT['homeAssistantAutoDiscoverTopic']}/{sensor_type}/{self.DEVICE_ID}_{namenorm.lower()}/state",
