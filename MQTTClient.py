@@ -308,7 +308,7 @@ class MQTTClient:
                 if all([en.lower() in ['on', 'off'] for en in enum]):
                     sensor_type = "binary_sensor"
 
-            entities = { namenorm: {
+            entities[namenorm] = {
                     "name": f"{namenorm}",""
                     "object_id": f"{self.DEVICE_ID}_{namenorm.lower()}",
                     "unique_id": f"{self.DEVICE_ID}_{nasa.lower()}",
@@ -318,7 +318,6 @@ class MQTTClient:
                     "value_template": "{{ value if value is defined and value | length > 0 else 'unavailable' }}",
                     "state_topic": f"{self.config.MQTT['homeAssistantAutoDiscoverTopic']}/{sensor_type}/{self.DEVICE_ID}_{namenorm.lower()}/state",
                 }
-            }
 
             if sensor_type == "sensor":
                 if len(self.config.NASA_REPO[nasa]['unit']) > 0:
