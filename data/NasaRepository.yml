@@ -2753,7 +2753,7 @@ NASA_OUTDOOR_COMP2_TARGET_HZ:
   remarks: ''
   signed: 'false'
   type: VAR
-  uunit: 'Hz'
+  unit: 'Hz'
 NASA_OUTDOOR_COMP3_ORDER_HZ:
   address: '0x82C0'
   arithmetic: ''
