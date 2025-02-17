@@ -212,7 +212,7 @@ class NASAPacket:
         if len(packet) < 14:
             raise ValueError("Data too short to be a valid NASAPacket")
         
-        crc_checkusm=binascii.crc_hqx(packet[3:-2], 0)
+        crc_checkusm=binascii.crc_hqx(packet[2:-3], 0)
 
         self.packet_start = packet[0]
         self.packet_size = ((packet[1] << 8) | packet[2])
