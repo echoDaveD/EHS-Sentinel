@@ -241,7 +241,7 @@ class NASAPacket:
         self.packet_messages = self._extract_messages(0, self.packet_capacity, packet[13:-3], [])
 
         if crc_checkusm != self.packet_crc16:
-            raise SkipInvalidPacketException(f"Checksum for package could not be validatet calculated: {crc_checkusm} in packet: {self.packet_crc16}: packet:{self}")
+            raise SkipInvalidPacketException(f"Checksum for package could not be validated. Calculated: {crc_checkusm} in packet: {self.packet_crc16}: packet:{self}")
 
     def _extract_messages(self, depth: int, capacity: int, msg_rest: bytearray, return_list: list):
         """
