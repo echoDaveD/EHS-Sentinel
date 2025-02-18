@@ -210,7 +210,6 @@ class NASAPacket:
         """
 
         self._packet_raw = packet
-        print(packet)
         if len(packet) < 14:
             raise ValueError("Data too short to be a valid NASAPacket")
         
