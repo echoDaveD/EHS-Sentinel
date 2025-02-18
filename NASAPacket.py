@@ -2,6 +2,7 @@ from enum import Enum
 from NASAMessage import NASAMessage
 from EHSExceptions import SkipInvalidPacketException
 import binascii
+import struct 
 
 class AddressClassEnum(Enum):
     """
@@ -209,6 +210,7 @@ class NASAPacket:
         """
 
         self._packet_raw = packet
+        print(packet)
         if len(packet) < 14:
             raise ValueError("Data too short to be a valid NASAPacket")
         
@@ -316,7 +318,6 @@ class NASAPacket:
     def __repr__(self):
         return self.__str__()
     
-
     # Setter methods
     def set_packet_source_address_class(self, value: AddressClassEnum):
         self.packet_source_address_class = value
@@ -354,9 +355,6 @@ class NASAPacket:
     def set_packet_number(self, value: int):
         self.packet_number = value
 
-    def set_packet_capacity(self, value: int):
-        self.packet_capacity = value
-
     def set_packet_messages(self, value: list[NASAMessage]):
         self.packet_messages = value
 
@@ -366,31 +364,36 @@ class NASAPacket:
         Returns:
             bytearray: The raw byte representation of the packet.
         """
-        packet = bytearray(14 + len(self.packet_messages) * 2)  # Adjust size as needed
-        packet[0] = 0x32
+        self.packet_start = 50
+        self.packet_end = 52
+        
+
+        packet = bytearray()
+        packet.append(int(self.packet_start))
+        packet.append(0)
+        packet.append(0)
+        packet.append(self.packet_source_address_class.value)
+        packet.append(self.packet_source_channel)
+        packet.append(self.packet_source_address)
+        packet.append(self.packet_dest_address_class.value)
+        packet.append(self.packet_dest_channel)
+        packet.append(self.packet_dest_address)
+        packet.append((self.packet_information << 7) | (self.packet_version << 5) | (self.packet_retry_count << 3))
+        packet.append((self.packet_type.value << 4) | self.packet_data_type.value)
+        packet.append(self.packet_number)
+        packet.append(len(self.packet_messages))
+        # Add messages to the packet
+        for msg in self.packet_messages:
+            for msg_pack in msg.to_raw():
+                packet.append(msg_pack)
+        self.packet_capacity = len(self.packet_messages)
+        self.packet_size = len(packet[1:])+2
         packet[1] = (self.packet_size >> 8) & 0xFF
         packet[2] = self.packet_size & 0xFF
-        packet[3] = self.packet_source_address_class.value
-        packet[4] = self.packet_source_channel
-        packet[5] = self.packet_source_address
-        packet[6] = self.packet_dest_address_class.value
-        packet[7] = self.packet_dest_channel
-        packet[8] = self.packet_dest_address
-        packet[9] = (self.packet_information << 7) | (self.packet_version << 5) | (self.packet_retry_count << 3)
-        packet[10] = (self.packet_type.value << 4) | self.packet_data_type.value
-        packet[11] = self.packet_number
-        packet[12] = self.packet_capacity
-        # Add messages to the packet
-        index = 13
-        for msg in self.packet_messages:
-            packet[index:index + 2] = msg.to_bytes()
-            index += 2
-        packet[-3] = (self.packet_crc16 >> 8) & 0xFF
-        packet[-2] = self.packet_crc16 & 0xFF
-        packet[-1] = 0x34
-        #crc=binascii.crc_hqx(packet, 0)
-        #final_packet = struct.pack(">BH", 0x32, len(packet)+2+2) + packet + struct.pack(">HB", crc, 0x34)
-        return packet
+        self.packet_crc16=binascii.crc_hqx(packet[3:], 0)
+        final_packet = struct.pack(">BH", packet[0], len(packet[1:])+2) + packet[3:] + struct.pack(">HB", self.packet_crc16, 0x34)
+
+        return final_packet
 
 # Example usage:
 # packet = NASAPacket()
