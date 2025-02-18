@@ -3296,12 +3296,12 @@ NASA_OUTDOOR_HOTGAS2:
   unit: ''
 NASA_OUTDOOR_HP:
   address: '0x8287'
-  arithmetic: ''
-  description: Outdoor unit horsepower
+  arithmetic: 'value * 0.7457'
+  description: Outdoor unit horsepower (in kw)
   remarks: unknown UNIT "HP"
   signed: 'false'
   type: VAR
-  unit: HP
+  unit: kw
 NASA_OUTDOOR_HREEV:
   address: '0x822F'
   arithmetic: ''
