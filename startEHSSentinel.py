@@ -263,6 +263,7 @@ async def serial_write(writer:asyncio.StreamWriter, reader: asyncio.StreamReader
         logger.info(f"Sent data raw: {final_packet}")
         logger.info(f"Sent data raw: {decoded_nasa}")
         logger.info(f"Sent data raw: {[hex(x) for x in final_packet]}")
+        logger.info(f"Sent data raw: {[x for x in final_packet]}")
 
 async def process_packet(buffer, args):
     """
