@@ -211,7 +211,6 @@ async def serial_write(writer:asyncio.StreamWriter, reader: asyncio.StreamReader
         logger.info(f"Sent data raw: {final_packet}")
         logger.info(f"Sent data raw: {decoded_nasa}")
         logger.info(f"Sent data raw: {[hex(x) for x in final_packet]}")
-        await asyncio.sleep(0.1)  # Yield control to other tasks
 
 async def process_packet(buffer, args):
     """
