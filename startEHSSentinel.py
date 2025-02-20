@@ -199,7 +199,7 @@ async def serial_write(writer:asyncio.StreamWriter, reader: asyncio.StreamReader
         decoded_nasa.set_packet_retry_count(0)
         decoded_nasa.set_packet_type(PacketType.Normal)
         decoded_nasa.set_packet_data_type(DataType.Read)
-        decoded_nasa.set_packet_number(1)
+        decoded_nasa.set_packet_number(3)
         tmp_msg = NASAMessage()
         tmp_msg.set_packet_message(0x4256)
         tmp_msg.set_packet_message_type(1)
