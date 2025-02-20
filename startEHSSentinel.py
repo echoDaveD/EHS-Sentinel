@@ -14,7 +14,7 @@ import binascii
 
 # Get the logger
 from CustomLogger import logger, setSilent
-from NASAPacket import NASAPacket
+from NASAPacket import NASAPacket, AddressClassEnum
 
 version = "0.1.0 Stable"
 
@@ -240,8 +240,16 @@ async def process_packet(buffer, args):
             logger.debug("Packet processed: ")
             logger.debug(f"Packet raw: {[hex(x) for x in buffer]}")
             logger.debug(nasa_packet)
-            messageProcessor = MessageProcessor()
-            messageProcessor.process_message(nasa_packet)    
+            if any(msg.packet_message == 0x4094 for msg in  nasa_packet.packet_messages):
+                logger.error("PACKET 0x4094!!!")
+                logger.error(nasa_packet)
+                
+            if nasa_packet.set_packet_dest_address_class in (AddressClassEnum.Outdoor, AddressClassEnum.Indoor):
+                messageProcessor = MessageProcessor()
+                messageProcessor.process_message(nasa_packet)    
+            else:
+                logger.warning("Message not From Indoor or Outdoor") 
+                logger.warning(nasa_packet)
         except ValueError as e:
             logger.warning("Value Error on parsing Packet, Packet will be skipped")
             logger.warning(f"Error processing message: {e}")
