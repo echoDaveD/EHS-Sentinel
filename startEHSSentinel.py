@@ -243,8 +243,8 @@ async def process_packet(buffer, args):
             if any(msg.packet_message == 0x4094 for msg in  nasa_packet.packet_messages):
                 logger.error("PACKET 0x4094!!!")
                 logger.error(nasa_packet)
-                
-            if nasa_packet.set_packet_dest_address_class in (AddressClassEnum.Outdoor, AddressClassEnum.Indoor):
+
+            if nasa_packet.packet_source_address_class in (AddressClassEnum.Outdoor, AddressClassEnum.Indoor):
                 messageProcessor = MessageProcessor()
                 messageProcessor.process_message(nasa_packet)    
             else:
