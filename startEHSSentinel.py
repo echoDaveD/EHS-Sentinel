@@ -14,7 +14,8 @@ import binascii
 
 # Get the logger
 from CustomLogger import logger, setSilent
-from NASAPacket import NASAPacket, AddressClassEnum
+from NASAPacket import NASAPacket, AddressClassEnum, PacketType, DataType
+from NASAMessage import NASAMessage
 
 version = "0.1.0 Stable"
 
@@ -152,7 +153,7 @@ async def serial_connection(config, args):
 
     await asyncio.gather(
             serial_read(reader, args),
-            #serial_write(writer, reader, args),
+            serial_write(writer, reader, args),
         )
 
 
@@ -183,41 +184,34 @@ async def serial_write(writer:asyncio.StreamWriter, reader: asyncio.StreamReader
         None
     """
     while True:
-        await asyncio.sleep(1)
+        await asyncio.sleep(5)
         # Example data to write
         
-        packet_ovj = NASAPacket()
-
-        packet = bytearray([
-            #0x32,  # Packet Start Byte
-            #0x00, 0x12,  # Packet Size
-            0x80,  # Source Address Class JIGTester
-            0xFF,  # Source Channel
-            0x00,  # Source Address
-            0x20,  # Destination Address Class Indoor
-            0x00,  # Destination Channel
-            0x00,  # Destination Address
-            0xC0,  # Packet Information + Protocol Version + Retry Count
-            0x11,  # Packet Type [Normal = 1] + Data Type [Read = 1]
-            0xF0,  # Packet Number
-            0x01,  # Capacity (Number of Messages)
-            0x42, 0x56,  # NASA Message Number
-            0x00, 0x00  # Message Payload (placeholder for return value)
-        ])
-
-        crc=binascii.crc_hqx(packet, 0)
-        # NOTE: include length of CRC(2) and length of length field(2) in the 
-        #       total length, exclude SF/TF of total length 
-        final_packet = struct.pack(">BH", 0x32, len(packet)+2+2) + packet + struct.pack(">HB", crc, 0x34)
-        # ['0x32', '0x0', '0x12', '0x80', '0xff', '0x0', '0x20', '0x0', '0x0', '0xc0', '0x11', '0xf0', '0x1', '0x42', '0x56', '0x0', '0x0', '0xf9', '0x65', '0x34']
-        # ['0x32', '0x0', '0x12', '0x80', '0xff', '0x0', '0x20', '0x0', '0x0', '0xc0', '0x11', '0xf0', '0x1', '0x42', '0x56', '0x0', '0x0', '0x38', '0xc6', '0x34']
+        decoded_nasa = NASAPacket()
+        decoded_nasa.set_packet_source_address_class(AddressClassEnum.JIGTester)
+        decoded_nasa.set_packet_source_channel(0)
+        decoded_nasa.set_packet_source_address(144)
+        decoded_nasa.set_packet_dest_address_class(AddressClassEnum.BroadcastSetLayer)
+        decoded_nasa.set_packet_dest_channel(0)
+        decoded_nasa.set_packet_dest_address(32)
+        decoded_nasa.set_packet_information(True)
+        decoded_nasa.set_packet_version(2)
+        decoded_nasa.set_packet_retry_count(0)
+        decoded_nasa.set_packet_type(PacketType.Normal)
+        decoded_nasa.set_packet_data_type(DataType.Read)
+        decoded_nasa.set_packet_number(1)
+        tmp_msg = NASAMessage()
+        tmp_msg.set_packet_message(0x4094)
+        tmp_msg.set_packet_message_type(0)
+        tmp_msg.set_packet_payload([0])
+        decoded_nasa.set_packet_messages([tmp_msg])
+        final_packet = decoded_nasa.to_raw()
         writer.write(final_packet)
         await writer.drain()
         logger.info(f"Sent data raw: {final_packet}")
-        logger.info(f"Sent data raw: {final_packet!r}")
+        logger.info(f"Sent data raw: {decoded_nasa}")
         logger.info(f"Sent data raw: {[hex(x) for x in final_packet]}")
         await asyncio.sleep(0.1)  # Yield control to other tasks
-        break
 
 async def process_packet(buffer, args):
     """
