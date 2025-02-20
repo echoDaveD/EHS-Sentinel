@@ -188,7 +188,7 @@ async def serial_write(writer:asyncio.StreamWriter, reader: asyncio.StreamReader
         # Example data to write
         
         decoded_nasa = NASAPacket()
-        decoded_nasa.set_packet_source_address_class(AddressClassEnum.JIGTester)
+        decoded_nasa.set_packet_source_address_class(AddressClassEnum.WiFiKit)
         decoded_nasa.set_packet_source_channel(0)
         decoded_nasa.set_packet_source_address(144)
         decoded_nasa.set_packet_dest_address_class(AddressClassEnum.BroadcastSetLayer)
