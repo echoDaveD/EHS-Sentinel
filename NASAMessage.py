@@ -92,7 +92,7 @@ class NASAMessage:
     def __str__(self):
         return (
             f"NASAMessage(\n"
-            f"    packet_message={self.packet_message} ({hex(self.packet_message)}),\n"
+            f"    packet_message={self.packet_message} ({hex(self.packet_message)}) ({[x for x in bytearray(self.packet_message.to_bytes(2))]}),\n"
             f"    packet_message_type={self.packet_message_type} ({hex(self.packet_message_type)}),\n"
             f"    packet_payload={self.packet_payload} ({self.packet_payload.hex()}) ({[int(x) for x in self.packet_payload]})\n"
             f")"
