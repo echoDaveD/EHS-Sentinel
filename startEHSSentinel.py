@@ -153,7 +153,7 @@ async def serial_connection(config, args):
 
     await asyncio.gather(
             serial_read(reader, args),
-            serial_write(writer, reader, args),
+            #serial_write(writer, reader, args),
         )
 
 
@@ -288,6 +288,8 @@ async def process_packet(buffer, args):
             if any(msg.packet_message == 0x4094 for msg in  nasa_packet.packet_messages):
                 logger.error("PACKET 0x4094!!!")
                 logger.error(nasa_packet)
+                logger.error(f"Packet int: {[x for x in buffer]}")
+                logger.error(f"Packet hex: {[hex(x) for x in buffer]}")
 
             if nasa_packet.packet_source_address_class in (AddressClassEnum.Outdoor, AddressClassEnum.Indoor):
                 messageProcessor = MessageProcessor()
@@ -295,6 +297,8 @@ async def process_packet(buffer, args):
             else:
                 logger.warning("Message not From Indoor or Outdoor") 
                 logger.warning(nasa_packet)
+                logger.warning(f"Packet int: {[x for x in buffer]}")
+                logger.warning(f"Packet hex: {[hex(x) for x in buffer]}")
         except ValueError as e:
             logger.warning("Value Error on parsing Packet, Packet will be skipped")
             logger.warning(f"Error processing message: {e}")

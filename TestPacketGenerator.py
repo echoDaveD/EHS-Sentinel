@@ -5,7 +5,8 @@ import NASAMessage
 
 encode_raw = "[50, 0, 17, 16, 0, 0, 176, 0, 255, 192, 20, 143, 1, 128, 49, 0, 157, 7, 52]"
 encode_raw = "[50, 0, 60, 16, 0, 0, 176, 0, 255, 192, 20, 196, 13, 2, 2, 255, 255, 4, 16, 0, 0, 0, 0, 4, 27, 0, 32, 255, 255, 128, 0, 0, 128, 5, 255, 128, 23, 0, 128, 25, 0, 128, 26, 0, 128, 33, 1, 128, 50, 255, 128, 51, 0, 128, 60, 0, 128, 69, 0, 240, 94, 52]"
-
+encode_raw = "[50, 0, 56, 98, 0, 144, 178, 0, 32, 192, 17, 3, 11, 64, 147, 0, 64, 148, 0, 66, 115, 0, 0, 66, 116, 0, 0, 66, 117, 0, 0, 66, 118, 0, 0, 66, 119, 0, 0, 66, 120, 0, 0, 66, 121, 0, 0, 66, 122, 0, 0, 66, 123, 0, 0, 221, 200, 52]"
+encode_raw = "['0x32', '0x0', '0x30', '0x62', '0x0', '0x90', '0xb2', '0x0', '0x20', '0xc0', '0x11', '0x3', '0xb', '0x40', '0x93', '0x0', '0x40', '0x94', '0x0', '0x42', '0x73', '0x0', '0x0', '0x42', '0x74', '0x0', '0x42', '0x75', '0x0', '0x42', '0x76', '0x0', '0x42', '0x77', '0x0', '0x42', '0x78', '0x0', '0x42', '0x79', '0x0', '0x42', '0x7a', '0x0', '0x42', '0x7b', '0x0', '0xb3', '0x9f', '0x34']"
 try:
     encode_bytearray = json.loads(encode_raw.strip()) # for [12, 234, 456 ,67]
 except:
@@ -15,6 +16,7 @@ except:
 
 print(f"encode raw: {bytearray(encode_bytearray)}")
 print(f"encode bytearray: {encode_bytearray}")
+print(f"encode bytearray length: {len(encode_bytearray)}")
 
 encoded_nasa = NASAPacket.NASAPacket()
 encoded_nasa.parse(encode_bytearray)
