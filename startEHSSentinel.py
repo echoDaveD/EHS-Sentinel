@@ -153,7 +153,7 @@ async def serial_connection(config, args):
 
     await asyncio.gather(
             serial_read(reader, args),
-            #serial_write(writer, reader, args),
+            serial_write(writer, reader, args),
         )
 
 
@@ -184,7 +184,7 @@ async def serial_write(writer:asyncio.StreamWriter, reader: asyncio.StreamReader
         None
     """
     while True:
-        await asyncio.sleep(5)
+        await asyncio.sleep(120)
         # Example data to write
         
         decoded_nasa = NASAPacket()
