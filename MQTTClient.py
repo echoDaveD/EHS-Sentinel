@@ -230,7 +230,8 @@ class MQTTClient:
         then concatenates it with the known_devices_topic. It publishes the known topics as a comma-separated
         string to this constructed topic with the retain flag set to True.
         """
-        
+        self.known_topics.append(devname)
+        logger.info(f"Device added no. {len(self.known_topics):<3}:  {devname} ")
         self._publish(f"{self.topicPrefix.replace('/', '')}/{self.known_devices_topic}", ",".join(self.known_topics), retain=True)
     
     def publish_message(self, name, value):
@@ -253,7 +254,6 @@ class MQTTClient:
 
             if name not in self.known_topics:
                 self.auto_discover_hass()
-                self.known_topics.append(name)
                 self.refresh_known_devices(name)
 
             sensor_type = "sensor"
