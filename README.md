@@ -257,8 +257,10 @@ if you want to see how many uniquie Messages have been collected in the Dumpfile
 ### v0.2.0 - 2025-02-18
 - Changed MQTT Auto Discovery Config Message from single Entitiy to all Entities at once, known devices are fully configured, not known empty (marked to delete)
 - NASAPacket and NASAMessage are now bidirectional, can decode and encode Packets
-- Added crc16 Checksum check for any Packet to reduce incorrect value changes 
-- Folling warnings moved to SkipInvalidPacketException and from warning to debug log level to reduce Logentries
+- Improved data quality
+  - Added crc16 Checksum check for any Packet to reduce incorrect value changes 
+  - Only Packets from outdoor/Indoor Units are processed
+- Folliowng warnings moved to SkipInvalidPacketException and from warning to debug log level to reduce log entries
   - Source Adress Class out of enum
   - Destination Adress Class out of enum
   - Checksum for package could not be validatet calculated
