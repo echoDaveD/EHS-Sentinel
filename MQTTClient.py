@@ -163,6 +163,8 @@ class MQTTClient:
             if payload.decode() == "online":
                 self._publish(f"{self.topicPrefix.replace('/', '')}/{self.known_devices_topic}", " ", retain=True)
                 logger.info("Known Devices Topic have been cleared")          
+                self.auto_discover_hass(clear=True)
+                logger.info("All configuration from HASS has been resetet") 
 
     def on_connect(self, client, flags, rc, properties):
         """
@@ -270,7 +272,7 @@ class MQTTClient:
 
         self._publish(topicname, value, qos=2, retain=False)
 
-    def auto_discover_hass(self):
+    def auto_discover_hass(self, clear=False):
         """
         Automatically discovers and configures Home Assistant entities based on the NASA_REPO configuration.
         This function iterates through the NASA_REPO configuration to create and configure entities for Home Assistant.
@@ -304,48 +306,48 @@ class MQTTClient:
                 if all([en.lower() in ['on', 'off'] for en in enum]):
                     sensor_type = "binary_sensor"
 
-            if nasa not in self.known_topics:
+            if clear:
                 entities[namenorm] = {"platform": sensor_type}
             else:
-                entities[namenorm] = {
-                        "name": f"{namenorm}",""
-                        "object_id": f"{self.DEVICE_ID}_{namenorm.lower()}",
-                        "unique_id": f"{self.DEVICE_ID}_{nasa.lower()}",
-                        "platform": sensor_type,
-                        #"value_template": "{{ value }}",
-                        "value_template": "{{ value if value | length > 0 else 'unavailable' }}",
-                        "state_topic": f"{self.config.MQTT['homeAssistantAutoDiscoverTopic']}/{sensor_type}/{self.DEVICE_ID}_{namenorm.lower()}/state",
-                    }
+                if nasa in self.known_topics:
+                    entities[namenorm] = {
+                            "name": f"{namenorm}",""
+                            "object_id": f"{self.DEVICE_ID}_{namenorm.lower()}",
+                            "unique_id": f"{self.DEVICE_ID}_{nasa.lower()}",
+                            "platform": sensor_type,
+                            "value_template": "{{ value }}",
+                            #"value_template": "{{ value if value | length > 0 else 'unavailable' }}",
+                            "state_topic": f"{self.config.MQTT['homeAssistantAutoDiscoverTopic']}/{sensor_type}/{self.DEVICE_ID}_{namenorm.lower()}/state",
+                        }
 
-                if sensor_type == "sensor":
-                    if len(self.config.NASA_REPO[nasa]['unit']) > 0:
-                        entities[namenorm]['unit_of_measurement'] = self.config.NASA_REPO[nasa]['unit']
-                        if entities[namenorm]['unit_of_measurement'] == "\u00b0C":
-                            entities[namenorm]['device_class'] = "temperature"
-                        elif entities[namenorm]['unit_of_measurement'] == '%':
-                            entities[namenorm]['state_class'] = "measurement"
-                        elif entities[namenorm]['unit_of_measurement'] == 'kW':
-                            entities[namenorm]['device_class'] = "power"
-                        elif entities[namenorm]['unit_of_measurement'] == 'rpm':
-                            entities[namenorm]['state_class'] = "measurement"
-                        elif entities[namenorm]['unit_of_measurement'] == 'bar':
-                            entities[namenorm]['device_class'] = "pressure"
-                        elif entities[namenorm]['unit_of_measurement'] == 'HP':
-                            entities[namenorm]['device_class'] = "power"
-                        elif entities[namenorm]['unit_of_measurement'] == 'hz':
-                            entities[namenorm]['device_class'] = "frequency"
-                        else:
-                            entities[namenorm]['device_class'] = None
-                else:
-                    entities[namenorm]['payload_on'] = "ON"
-                    entities[namenorm]['payload_off'] = "OFF"
+                    if sensor_type == "sensor":
+                        if len(self.config.NASA_REPO[nasa]['unit']) > 0:
+                            entities[namenorm]['unit_of_measurement'] = self.config.NASA_REPO[nasa]['unit']
+                            if entities[namenorm]['unit_of_measurement'] == "\u00b0C":
+                                entities[namenorm]['device_class'] = "temperature"
+                            elif entities[namenorm]['unit_of_measurement'] == '%':
+                                entities[namenorm]['state_class'] = "measurement"
+                            elif entities[namenorm]['unit_of_measurement'] == 'kW':
+                                entities[namenorm]['device_class'] = "power"
+                            elif entities[namenorm]['unit_of_measurement'] == 'rpm':
+                                entities[namenorm]['state_class'] = "measurement"
+                            elif entities[namenorm]['unit_of_measurement'] == 'bar':
+                                entities[namenorm]['device_class'] = "pressure"
+                            elif entities[namenorm]['unit_of_measurement'] == 'HP':
+                                entities[namenorm]['device_class'] = "power"
+                            elif entities[namenorm]['unit_of_measurement'] == 'hz':
+                                entities[namenorm]['device_class'] = "frequency"
+                            else:
+                                entities[namenorm]['device_class'] = None
+                    else:
+                        entities[namenorm]['payload_on'] = "ON"
+                        entities[namenorm]['payload_off'] = "OFF"
 
-                if 'state_class' in self.config.NASA_REPO[nasa]:
-                    entities[namenorm]['state_class'] = self.config.NASA_REPO[nasa]['state_class']
-                
-                if 'device_class' in self.config.NASA_REPO[nasa]:
-                    entities[namenorm]['device_class'] = self.config.NASA_REPO[nasa]['device_class']
-
+                    if 'state_class' in self.config.NASA_REPO[nasa]:
+                        entities[namenorm]['state_class'] = self.config.NASA_REPO[nasa]['state_class']
+                    
+                    if 'device_class' in self.config.NASA_REPO[nasa]:
+                        entities[namenorm]['device_class'] = self.config.NASA_REPO[nasa]['device_class']
 
         device = {
             "device": {
