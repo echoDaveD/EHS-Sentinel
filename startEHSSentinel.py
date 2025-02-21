@@ -300,10 +300,10 @@ async def process_packet(buffer, args):
                 nasa_packet.packet_data_type == DataType.Notification:
                 pass
             else:
-                logger.warning("Message not From Indoor or Outdoor") 
-                logger.warning(nasa_packet)
-                logger.warning(f"Packet int: {[x for x in buffer]}")
-                logger.warning(f"Packet hex: {[hex(x) for x in buffer]}")
+                logger.debug("Message not From Indoor or Outdoor") 
+                logger.debug(nasa_packet)
+                logger.debug(f"Packet int: {[x for x in buffer]}")
+                logger.debug(f"Packet hex: {[hex(x) for x in buffer]}")
         except ValueError as e:
             logger.warning("Value Error on parsing Packet, Packet will be skipped")
             logger.warning(f"Error processing message: {e}")
