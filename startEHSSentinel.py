@@ -286,12 +286,6 @@ async def process_packet(buffer, args):
             logger.debug("Packet processed: ")
             logger.debug(f"Packet raw: {[hex(x) for x in buffer]}")
             logger.debug(nasa_packet)
-            if any(msg.packet_message == 0x4094 for msg in  nasa_packet.packet_messages):
-                logger.error("PACKET 0x4094!!!")
-                logger.error(nasa_packet)
-                logger.error(f"Packet int: {[x for x in buffer]}")
-                logger.error(f"Packet hex: {[hex(x) for x in buffer]}")
-
             if nasa_packet.packet_source_address_class in (AddressClassEnum.Outdoor, AddressClassEnum.Indoor):
                 messageProcessor = MessageProcessor()
                 messageProcessor.process_message(nasa_packet)    
