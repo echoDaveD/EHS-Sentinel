@@ -295,6 +295,10 @@ async def process_packet(buffer, args):
             if nasa_packet.packet_source_address_class in (AddressClassEnum.Outdoor, AddressClassEnum.Indoor):
                 messageProcessor = MessageProcessor()
                 messageProcessor.process_message(nasa_packet)    
+            elif nasa_packet.packet_source_address_class == AddressClassEnum.WiFiKit and \
+                nasa_packet.packet_dest_address_class == AddressClassEnum.BroadcastSelfLayer and \
+                nasa_packet.packet_data_type == DataType.Notification:
+                pass
             else:
                 logger.warning("Message not From Indoor or Outdoor") 
                 logger.warning(nasa_packet)
