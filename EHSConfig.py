@@ -151,5 +151,7 @@ class EHSConfig():
         if 'proccessedMessage' not in self.LOGGING:
             self.LOGGING['proccessedMessage'] = False
 
-        logger.info(f"Logging Config: {self.LOGGING}")
+        logger.info(f"Logging Config:")
+        for key, value in self.LOGGING.items():
+            logger.info(f"    {key}: {value}")
         
