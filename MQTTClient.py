@@ -233,7 +233,10 @@ class MQTTClient:
         string to this constructed topic with the retain flag set to True.
         """
         self.known_topics.append(devname)
-        logger.info(f"Device added no. {len(self.known_topics):<3}:  {devname} ")
+        if self.config.LOGGING['deviceAdded']:
+            logger.info(f"Device added no. {len(self.known_topics):<3}:  {devname} ")
+        else:
+            logger.debug(f"Device added no. {len(self.known_topics):<3}:  {devname} ")
         self._publish(f"{self.topicPrefix.replace('/', '')}/{self.known_devices_topic}", ",".join(self.known_topics), retain=True)
     
     def publish_message(self, name, value):

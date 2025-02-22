@@ -174,6 +174,15 @@ The `config.yml` file contains configuration settings for the EHS-Sentinel proje
 - **protocolFile**: Path to the protocol file. (not set in Sample config.yml)
   - Example: `prot.csv`
 
+### Logging Settings
+
+- **deviceAdded**: Set to true will log when new device is added to known Devices (and discover to HASS).
+  - Default: `True`
+- **messageNotFound**: Set to true will log when a received message was not found in NasaRepository
+  - Default: `False`
+- **packetNotFromIndoorOutdoor**: Set to true will log when a message not from Indoor/Outdoor unit was received
+  - Example: `False`
+
 ### Serial Connection Settings
 
 - **device**: The serial device URL.
@@ -207,6 +216,10 @@ general:
   nasaRepositoryFile: data/NasaRepository.yml
   silentMode: False
   protocolFile: prot.csv
+logging:
+  deviceAdded: true
+  messageNotFound: False
+  packetNotFromIndoorOutdoor: False
 serial:
   device: /dev/ttyUSB0
   baudrate: 9600
@@ -260,11 +273,15 @@ if you want to see how many uniquie Messages have been collected in the Dumpfile
 - Improved data quality
   - Added crc16 Checksum check for any Packet to reduce incorrect value changes 
   - Only Packets from outdoor/Indoor Units are processed
-- Folliowng warnings moved to SkipInvalidPacketException and from warning to debug log level to reduce log entries
+- Folloiwng warnings moved to SkipInvalidPacketException and from warning to debug log level to reduce log entries
   - Source Adress Class out of enum
   - Destination Adress Class out of enum
   - Checksum for package could not be validatet calculated
   - Message with structure type must have capacity of 1.
+- added new logging config property to allow to turn on/off additional info log entries
+ - deviceAdded set to true (default) will log when new device is added to known Devices (and discover to HASS)
+ - messageNotFound set to true (false is default) will log when a received message was not found in NasaRepository
+ - packetNotFromIndoorOutdoor set to true (false is default) will log when a message not from Indoor/Outdoor unit was received
 - Added new Measurements
   - 0x4423 LVAR_IN_MINUTES_SINCE_INSTALLATION 
   - 0x4424 LVAR_IN_MINUTES_ACTIVE

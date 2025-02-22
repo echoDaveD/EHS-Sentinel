@@ -76,12 +76,12 @@ async def main():
                 except:
                     line = line.strip().replace("'", "").replace("[", "").replace("]", "").split(", ") # for ['0x1', '0x2' ..]
                     line = [int(value, 16) for value in line]
-                await process_packet(line, args)
+                await process_packet(line, args, config)
     else:
         # we are not in dryrun mode, so we need to read from Serial Pimort
         await serial_connection(config, args)
 
-async def process_buffer(buffer, args):
+async def process_buffer(buffer, args, config):
     """
     Processes a buffer of data asynchronously, identifying and handling packets based on specific criteria.
     Args:
@@ -109,7 +109,7 @@ async def process_buffer(buffer, args):
             for i in range(0, len(buffer)):
                 if buffer[i] == 0x32:
                     if (len(buffer[i:]) > 14):
-                        asyncio.create_task(process_packet(buffer[i:], args))
+                        asyncio.create_task(process_packet(buffer[i:], args, config))
                     else:
                         logger.debug(f"Buffermessages to short for NASA {len(buffer)}")
                     break
@@ -152,16 +152,16 @@ async def serial_connection(config, args):
     )
 
     await asyncio.gather(
-            serial_read(reader, args),
+            serial_read(reader, args, config),
             #serial_write(writer, reader, args),
         )
 
 
-async def serial_read(reader, args):
+async def serial_read(reader, args, config):
     while True:
         data = await reader.readuntil(b'\x34')  # Read up to end of next message 0x34
         if data:
-            asyncio.create_task(process_buffer(data, args))
+            asyncio.create_task(process_buffer(data, args, config))
             #buffer.extend(data)
             logger.debug(f"Received: {data}")
             logger.debug(f"Received: {data!r}")
@@ -265,7 +265,7 @@ async def serial_write(writer:asyncio.StreamWriter, reader: asyncio.StreamReader
         logger.info(f"Sent data raw: {[hex(x) for x in final_packet]}")
         logger.info(f"Sent data raw: {[x for x in final_packet]}")
 
-async def process_packet(buffer, args):
+async def process_packet(buffer, args, config):
     """
     Asynchronously processes a packet buffer.
     If `dumpWriter` is `None`, it attempts to process the packet using `MessageProcessor`.
@@ -294,10 +294,16 @@ async def process_packet(buffer, args):
                 nasa_packet.packet_data_type == DataType.Notification:
                 pass
             else:
-                logger.debug("Message not From Indoor or Outdoor") 
-                logger.debug(nasa_packet)
-                logger.debug(f"Packet int: {[x for x in buffer]}")
-                logger.debug(f"Packet hex: {[hex(x) for x in buffer]}")
+                if config.LOGGING['packetNotFromIndoorOutdoor']:
+                    logger.info("Message not From Indoor or Outdoor") 
+                    logger.info(nasa_packet)
+                    logger.info(f"Packet int: {[x for x in buffer]}")
+                    logger.info(f"Packet hex: {[hex(x) for x in buffer]}")
+                else:
+                    logger.debug("Message not From Indoor or Outdoor") 
+                    logger.debug(nasa_packet)
+                    logger.debug(f"Packet int: {[x for x in buffer]}")
+                    logger.debug(f"Packet hex: {[hex(x) for x in buffer]}")
         except ValueError as e:
             logger.warning("Value Error on parsing Packet, Packet will be skipped")
             logger.warning(f"Error processing message: {e}")

@@ -26,6 +26,7 @@ class EHSConfig():
     GENERAL = None
     SERIAL = None
     NASA_REPO = None
+    LOGGING = None
 
     def __new__(cls, *args, **kwargs):
         """
@@ -77,6 +78,7 @@ class EHSConfig():
             self.MQTT = config.get('mqtt')
             self.GENERAL = config.get('general')
             self.SERIAL = config.get('serial')
+            self.LOGGING = config.get('logging')
             logger.debug(f"Configuration loaded: {config}")
 
         self.validate()
@@ -133,3 +135,15 @@ class EHSConfig():
         
         if 'password' not in self.MQTT and 'user' in self.MQTT:
             raise ConfigException(argument=self.SERIAL['device'], message="mqtt password parameter is missing")
+        
+        if 'messageNotFound' not in self.LOGGING:
+            self.LOGGING['messageNotFound'] = False
+
+        if 'messageNotFound' not in self.LOGGING:
+            self.LOGGING['messageNotFound'] = False
+
+        if 'deviceAdded' not in self.LOGGING:
+            self.LOGGING['deviceAdded'] = False
+
+        if 'packetNotFromIndoorOutdoor' not in self.LOGGING:
+            self.LOGGING['packetNotFromIndoorOutdoor'] = False
