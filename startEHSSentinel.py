@@ -62,10 +62,6 @@ async def main():
 
     await asyncio.sleep(1)
 
-    # if Silent is true, set Silent Mode
-    if config.GENERAL['silentMode']:
-        setSilent()
-
     # if dryrun then we read from dumpfile
     if args.DRYRUN:
         logger.info(f"DRYRUN detected, reading from dumpfile {args.DUMPFILE}")

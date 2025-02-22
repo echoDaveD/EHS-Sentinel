@@ -102,9 +102,6 @@ class EHSConfig():
                 self.NASA_REPO = yaml.safe_load(file)
         else:
             raise ConfigException(argument=self.GENERAL['nasaRepositoryFile'], message="NASA Respository File is missing")
-        
-        if 'silentMode' not in self.GENERAL:
-           self.GENERAL['silentMode'] = True
 
         if 'protocolFile' not in self.GENERAL:
             self.GENERAL['protocolFile'] = None
@@ -153,4 +150,6 @@ class EHSConfig():
 
         if 'proccessedMessage' not in self.LOGGING:
             self.LOGGING['proccessedMessage'] = False
+
+        logger.info(f"Logging Config: {self.LOGGING}")
         
