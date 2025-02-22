@@ -287,6 +287,7 @@ if you want to see how many uniquie Messages have been collected in the Dumpfile
   - 0x4424 LVAR_IN_MINUTES_ACTIVE
   - 0x4426 LVAR_IN_GENERATED_POWER_LAST_MINUTE
   - 0x4427 LVAR_IN_TOTAL_GENERATED_POWER
+  - 0x0997 NASA_EHSSENTINEL_TOTAL_COP = LVAR_IN_TOTAL_GENERATED_POWER / NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM
 - NASA Repository, measurements enums completed
   - ENUM_IN_FSV_3041: enum edited
   - ENUM_IN_FSV_3071: enum edited

@@ -5846,6 +5846,15 @@ VAR_OUT_SENSOR_TOTAL_SUCTION:
   signed: 'true'
   type: VAR
   unit: "\u00b0C"
+NASA_EHSSENTINEL_TOTAL_COP:
+  address: '0x9997'
+  arithmetic: ''
+  description: Total COP of lifetime
+  remarks: Custom Measurment
+  state_class: measurement
+  signed: 'true'
+  type: VAR
+  unit: ''
 NASA_EHSSENTINEL_COP:
   address: '0x9998'
   arithmetic: ''
