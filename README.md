@@ -267,7 +267,7 @@ if you want to see how many uniquie Messages have been collected in the Dumpfile
 
 # Changelog
 
-### v0.2.0 - 2025-02-18
+### v0.2.0 - 2025-02-22
 - Changed MQTT Auto Discovery Config Message from single Entitiy to all Entities at once, known devices are fully configured, not known empty (marked to delete)
 - NASAPacket and NASAMessage are now bidirectional, can decode and encode Packets
 - Improved data quality
