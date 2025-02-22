@@ -156,7 +156,7 @@ class MQTTClient:
         if self.known_devices_topic in topic:
             # Update the known devices set with the retained message
             self.known_topics = list(filter(None, [x.strip() for x in payload.decode().split(",")]))
-            
+            print(properties)
             if self.config.LOGGING['deviceAdded']:
                 logger.info(f"Loaded devices from known devices Topic:")
 
