@@ -280,10 +280,10 @@ if you want to see how many uniquie Messages have been collected in the Dumpfile
   - Message with structure type must have capacity of 1.
 - removed silentMNode config property (new logging section is replacing its functionality but more granular)
 - added new logging config property to allow to turn on/off additional info log entries
- - deviceAdded set to true (default) will log when new device is added to known Devices (and discover to HASS)
- - messageNotFound set to true (false is default) will log when a received message was not found in NasaRepository
- - packetNotFromIndoorOutdoor set to true (false is default) will log when a message not from Indoor/Outdoor unit was received
- - proccessedMessage set to true(false is default) prints out a summary of which massage was processed and its value
+  - deviceAdded set to true (default) will log when new device is added to known Devices (and discover to HASS)
+  - messageNotFound set to true (false is default) will log when a received message was not found in NasaRepository
+  - packetNotFromIndoorOutdoor set to true (false is default) will log when a message not from Indoor/Outdoor unit was received
+  - proccessedMessage set to true(false is default) prints out a summary of which massage was processed and its value
 - Added new Measurements
   - 0x4423 LVAR_IN_MINUTES_SINCE_INSTALLATION 
   - 0x4424 LVAR_IN_MINUTES_ACTIVE
