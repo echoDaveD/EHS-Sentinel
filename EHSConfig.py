@@ -78,7 +78,11 @@ class EHSConfig():
             self.MQTT = config.get('mqtt')
             self.GENERAL = config.get('general')
             self.SERIAL = config.get('serial')
-            self.LOGGING = config.get('logging')
+            if 'logging' in config:
+                self.LOGGING = config.get('logging')
+            else:
+                self.LOGGING = {}
+            logger.debug(f"Configuration loaded: {config}")
 
         self.validate()
 
