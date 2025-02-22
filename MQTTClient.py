@@ -159,12 +159,13 @@ class MQTTClient:
             
             if self.config.LOGGING['deviceAdded']:
                 logger.info(f"Loaded devices from known devices Topic:")
-                for devname in self.known_topics:
-                    logger.info(f"Device no. {len(self.known_topics):<3}:  {devname} ")
+
+                for idx, devname in enumerate(self.known_topics, start=1):
+                    logger.info(f"Device no. {idx:<3}:  {devname} ")
             else:
                 logger.debug(f"Loaded devices from known devices Topic:")
-                for devname in self.known_topics:
-                    logger.debug(f"Device added no. {len(self.known_topics):<3}:  {devname} ")
+                for idx, devname in enumerate(self.known_topics):
+                    logger.debug(f"Device added no. {idx:<3}:  {devname} ")
 
         if f"{self.homeAssistantAutoDiscoverTopic}/status" == topic:
             logger.info(f"HASS Status Messages {topic} received: {payload.decode()}")
