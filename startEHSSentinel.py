@@ -13,7 +13,7 @@ import struct
 import binascii
 
 # Get the logger
-from CustomLogger import logger, setSilent
+from CustomLogger import logger
 from NASAPacket import NASAPacket, AddressClassEnum, PacketType, DataType
 from NASAMessage import NASAMessage
 
