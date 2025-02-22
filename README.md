@@ -265,6 +265,11 @@ if you want to see how many uniquie Messages have been collected in the Dumpfile
   - Destination Adress Class out of enum
   - Checksum for package could not be validatet calculated
   - Message with structure type must have capacity of 1.
+- Added new Measurements
+  - 0x4423 LVAR_IN_MINUTES_SINCE_INSTALLATION 
+  - 0x4424 LVAR_IN_MINUTES_ACTIVE
+  - 0x4426 LVAR_IN_GENERATED_POWER_LAST_MINUTE
+  - 0x4427 LVAR_IN_TOTAL_GENERATED_POWER
 - NASA Repository, measurements enums completed
   - ENUM_IN_FSV_3041: enum edited
   - ENUM_IN_FSV_3071: enum edited

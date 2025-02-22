@@ -1241,6 +1241,45 @@ LVAR_IN_ETO_HEAT_CONTROL_DATA:
   signed: 'false'
   type: LVAR
   unit: ''
+LVAR_IN_MINUTES_SINCE_INSTALLATION:
+  address: '0x4423'
+  arithmetic: ''
+  description: Minutes since installation
+  remarks: 
+  state_class: total_increasing
+  device_class: duration
+  signed: 'false'
+  type: LVAR
+  unit: 'min'
+LVAR_IN_MINUTES_ACTIVE:
+  address: '0x4424'
+  arithmetic: ''
+  description: Minutes active
+  remarks: 
+  state_class: total_increasing
+  device_class: duration
+  signed: 'false'
+  type: LVAR
+  unit: 'min'
+LVAR_IN_GENERATED_POWER_LAST_MINUTE:
+  address: '0x4426'
+  arithmetic: value / 1000
+  description: Generated power last minute
+  remarks: value is kWh, so do div 1000
+  device_class: energy
+  signed: 'false'
+  type: LVAR
+  unit: kWh
+LVAR_IN_TOTAL_GENERATED_POWER:
+  address: '0x4427'
+  arithmetic: value / 1000
+  description: Total generated power
+  remarks: value is kWh, so do div 1000
+  state_class: total_increasing
+  device_class: energy
+  signed: 'false'
+  type: LVAR
+  unit: kWh
 LVAR_OUT_AUTO_INSPECT_RESULT0:
   address: '0x840B'
   arithmetic: ''
