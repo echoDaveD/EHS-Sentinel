@@ -131,16 +131,23 @@ class MessageProcessor:
         if msgname in ('NASA_EHSSENTINEL_HEAT_OUTPUT', 'NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT'):
             if all(k in self.NASA_VAL_STORE for k in ['NASA_EHSSENTINEL_HEAT_OUTPUT', 'NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT']):
                 if (self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT'] > 0):
-                    self.protocolMessage(NASAMessage(packet_message=0x9998, packet_message_type=1), 
-                                            "NASA_EHSSENTINEL_COP",
-                                            round((self.NASA_VAL_STORE['NASA_EHSSENTINEL_HEAT_OUTPUT'] / self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT']/1000.), 3))
+                    value = round((self.NASA_VAL_STORE['NASA_EHSSENTINEL_HEAT_OUTPUT'] / self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT']/1000.), 3)
+                    if (value < 20 and value > 0):
+                        self.protocolMessage(NASAMessage(packet_message=0x9998, packet_message_type=1), 
+                                                "NASA_EHSSENTINEL_COP",
+                                                value
+                                                )
                     
         if msgname in ('NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM', 'LVAR_IN_TOTAL_GENERATED_POWER'):
             if all(k in self.NASA_VAL_STORE for k in ['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM', 'LVAR_IN_TOTAL_GENERATED_POWER']):
                 if (self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM'] > 0):
-                    self.protocolMessage(NASAMessage(packet_message=0x9997, packet_message_type=1), 
-                                            "NASA_EHSSENTINEL_TOTAL_COP",
-                                            round(self.NASA_VAL_STORE['LVAR_IN_TOTAL_GENERATED_POWER'] / self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM'], 3))
+                    value = round(self.NASA_VAL_STORE['LVAR_IN_TOTAL_GENERATED_POWER'] / self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM'], 3)
+
+                    if (value < 20 and value > 0):
+                        self.protocolMessage(NASAMessage(packet_message=0x9997, packet_message_type=1), 
+                                                "NASA_EHSSENTINEL_TOTAL_COP",
+                                                value
+                                                )
 
     def search_nasa_table(self, address):
         """
