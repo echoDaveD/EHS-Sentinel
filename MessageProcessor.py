@@ -2,7 +2,7 @@ import asyncio
 import logging
 import traceback
 import yaml
-from CustomLogger import logger, setSilent
+from CustomLogger import logger
 from EHSArguments import EHSArguments
 from EHSConfig import EHSConfig
 from EHSExceptions import MessageWarningException
@@ -53,7 +53,6 @@ class MessageProcessor:
         if self._initialized:
             return
         self._initialized = True
-        logger.debug("init MessageProcessor")
         self.config = EHSConfig()
         self.args = EHSArguments()
         self.mqtt = MQTTClient()
@@ -79,7 +78,10 @@ class MessageProcessor:
                     raise MessageWarningException(argument=f"{msg.packet_payload}/{[hex(x) for x in msg.packet_payload]}", message=f"Value of {hexmsg} couldn't be determinate, skip Message {e}")
                 self.protocolMessage(msg, msgname, msgvalue)
             else:
-                logger.debug(f"Message not Found in NASA repository: {hexmsg:<6} Type: {msg.packet_message_type} Payload: {msg.packet_payload}")
+                if self.config.LOGGING['messageNotFound']:
+                    logger.info(f"Message not Found in NASA repository: {hexmsg:<6} Type: {msg.packet_message_type} Payload: {msg.packet_payload}")
+                else:
+                    logger.debug(f"Message not Found in NASA repository: {hexmsg:<6} Type: {msg.packet_message_type} Payload: {msg.packet_payload}")
 
     def protocolMessage(self, msg: NASAMessage, msgname, msgvalue):
         """
@@ -98,7 +100,10 @@ class MessageProcessor:
             - Calculates and processes derived values for specific message names.
         """
 
-        logger.info(f"Message number: {hex(msg.packet_message):<6} {msgname:<50} Type: {msg.packet_message_type} Payload: {msgvalue}")
+        if self.config.LOGGING['proccessedMessage']:
+            logger.info(f"Message number: {hex(msg.packet_message):<6} {msgname:<50} Type: {msg.packet_message_type} Payload: {msgvalue}")
+        else:
+            logger.debug(f"Message number: {hex(msg.packet_message):<6} {msgname:<50} Type: {msg.packet_message_type} Payload: {msgvalue}")
 
         if self.config.GENERAL['protocolFile'] is not None:
             with open(self.config.GENERAL['protocolFile'], "a") as protWriter:
@@ -110,14 +115,18 @@ class MessageProcessor:
 
         if msgname in ['NASA_OUTDOOR_TW2_TEMP', 'NASA_OUTDOOR_TW1_TEMP', 'VAR_IN_FLOW_SENSOR_CALC']:
             if all(k in self.NASA_VAL_STORE for k in ['NASA_OUTDOOR_TW2_TEMP', 'NASA_OUTDOOR_TW1_TEMP', 'VAR_IN_FLOW_SENSOR_CALC']):
-                self.protocolMessage(NASAMessage(packet_message=0x9999, packet_message_type=1),
-                                    "NASA_EHSSENTINEL_HEAT_OUTPUT", 
-                                    round(
-                                            (
-                                                (self.NASA_VAL_STORE['NASA_OUTDOOR_TW2_TEMP'] - self.NASA_VAL_STORE['NASA_OUTDOOR_TW1_TEMP']) * 
-                                                (self.NASA_VAL_STORE['VAR_IN_FLOW_SENSOR_CALC']/60) 
-                                                * 4190
-                                            ), 4))
+                value = round(
+                    abs(
+                        (self.NASA_VAL_STORE['NASA_OUTDOOR_TW2_TEMP'] - self.NASA_VAL_STORE['NASA_OUTDOOR_TW1_TEMP']) * 
+                        (self.NASA_VAL_STORE['VAR_IN_FLOW_SENSOR_CALC']/60) 
+                        * 4190
+                    ) , 4
+                )
+                if (value < 15000 and value > 0): # only if heater output between 0 und 15000 W
+                    self.protocolMessage(NASAMessage(packet_message=0x9999, packet_message_type=1),
+                                        "NASA_EHSSENTINEL_HEAT_OUTPUT", 
+                                        value
+                                        )
 
         if msgname in ('NASA_EHSSENTINEL_HEAT_OUTPUT', 'NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT'):
             if all(k in self.NASA_VAL_STORE for k in ['NASA_EHSSENTINEL_HEAT_OUTPUT', 'NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT']):
@@ -125,6 +134,13 @@ class MessageProcessor:
                     self.protocolMessage(NASAMessage(packet_message=0x9998, packet_message_type=1), 
                                             "NASA_EHSSENTINEL_COP",
                                             round((self.NASA_VAL_STORE['NASA_EHSSENTINEL_HEAT_OUTPUT'] / self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT']/1000.), 3))
+                    
+        if msgname in ('NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM', 'LVAR_IN_TOTAL_GENERATED_POWER'):
+            if all(k in self.NASA_VAL_STORE for k in ['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM', 'LVAR_IN_TOTAL_GENERATED_POWER']):
+                if (self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM'] > 0):
+                    self.protocolMessage(NASAMessage(packet_message=0x9997, packet_message_type=1), 
+                                            "NASA_EHSSENTINEL_TOTAL_COP",
+                                            round(self.NASA_VAL_STORE['LVAR_IN_TOTAL_GENERATED_POWER'] / self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM'], 3))
 
     def search_nasa_table(self, address):
         """
@@ -157,7 +173,7 @@ class MessageProcessor:
             try:
                 value = eval(arithmetic)
             except Exception as e:
-                logger.warning(f"Arithmetic Function couldn't been applied, using raw value: arithmetic = {arithmetic} {e}")
+                logger.warning(f"Arithmetic Function couldn't been applied for Message {msgname}, using raw value: arithmetic = {arithmetic} {e}")
                 value = packed_value
         else:
             value = packed_value

@@ -203,8 +203,9 @@ enum:
 ENUM_IN_FSV_2041:
   address: '0x4093'
   arithmetic: ''
-  description: FSV Water Law Type Heating
+  description: Heating - Heating WL Selection WL Type
   enum:
+    0x00: 'Unknown'
     0x01: 'Floor'
     0x02: 'FCU'
   remarks: 1 Floor, 2 FCU
@@ -214,8 +215,9 @@ ENUM_IN_FSV_2041:
 ENUM_IN_FSV_2081:
   address: '0x4094'
   arithmetic: ''
-  description: FSV Water Law Type Cooling
+  description: Cooling - Cooling WL Selection WL Type
   enum:
+    0x00: 'Unknown'
     0x01: 'Floor'
     0x02: 'FCU'
   remarks: 1 Floor, 2 FCU
@@ -225,12 +227,12 @@ ENUM_IN_FSV_2081:
 ENUM_IN_FSV_2093:
   address: '0x4127'
   arithmetic: ''
-  description: ''
+  description: Remote Controller - Remote Controller Room Temp. Control
   enum:
-    0x01: 'one'
-    0x02: 'two'
-    0x03: 'three'
-    0x04: 'four'
+    0x01: 'Off (1min delay) by Room Sensor'
+    0x02: 'Off (1min delay) by Room Sensor or WL'
+    0x03: 'On'
+    0x04: 'Repeat 3min On/7min Off by Room Sensor or WL'
   remarks: Min = 1 Max = 4
   signed: ''
   type: ENUM
@@ -245,6 +247,7 @@ ENUM_IN_FSV_2094:
     0x02: 'two'
     0x03: 'three'
     0x04: 'four'
+    0xFF: 'off'
   remarks: values 0="No" up to 4="4"
   signed: ''
   type: ENUM
@@ -252,10 +255,10 @@ ENUM_IN_FSV_2094:
 ENUM_IN_FSV_3041:
   address: '0x4099'
   arithmetic: ''
-  description: ''
+  description: DHW - Disinfection Application
   enum:
-    0x00: 'No'
-    0x01: 'Yes'
+    0x00: 'Off'
+    0x01: 'on'
   remarks: 0 No, 1 Yes
   signed: ''
   type: ENUM
@@ -263,7 +266,7 @@ ENUM_IN_FSV_3041:
 ENUM_IN_FSV_3042:
   address: '0x409A'
   arithmetic: ''
-  description: ''
+  description: DHW - Disinfection Interval
   enum:
     0x00: 'Sunday'
     0x01: 'Monday'
@@ -280,7 +283,7 @@ ENUM_IN_FSV_3042:
 ENUM_IN_FSV_3051:
   address: '0x409B'
   arithmetic: ''
-  description: ''
+  description: DHW - Forced DHW Operation Timer OFF Function
   enum:
     0x00: 'No'
     0x01: 'Yes'
@@ -291,7 +294,10 @@ ENUM_IN_FSV_3051:
 ENUM_IN_FSV_3071:
   address: '0x409D'
   arithmetic: ''
-  description: ''
+  description: DHW - Direction of  3Way Valve DHW Tank
+  enum:
+    0x00: 'Room'
+    0x01: 'Tank'
   remarks: ''
   signed: ''
   type: ENUM
@@ -299,7 +305,7 @@ ENUM_IN_FSV_3071:
 ENUM_IN_FSV_4011:
   address: '0x409E'
   arithmetic: ''
-  description: ''
+  description: Heating - Heat Pump Heating/ DHW Priority
   enum:
     0x00: 'DHW'
     0x01: 'Heating'
@@ -310,11 +316,11 @@ ENUM_IN_FSV_4011:
 ENUM_IN_FSV_4021:
   address: '0x409F'
   arithmetic: ''
-  description: ''
+  description: Heating - Backup Heater Application
   enum:
-    0x00: 'zero'
-    0x01: 'one'
-    0x02: 'two'
+    0x00: 'No'
+    0x01: '2 Step BUH1+BUH2'
+    0x02: '1 Step BUH2'
   remarks: ''
   signed: ''
   type: ENUM
@@ -322,7 +328,7 @@ ENUM_IN_FSV_4021:
 ENUM_IN_FSV_4022:
   address: '0x40A0'
   arithmetic: ''
-  description: ''
+  description: Heating - Backup Heater BUH/BSH Priority
   enum:
     0x00: 'BUH_BSH_Both'
     0x01: 'BUH'
@@ -334,7 +340,7 @@ ENUM_IN_FSV_4022:
 ENUM_IN_FSV_4023:
   address: '0x40A1'
   arithmetic: ''
-  description: ''
+  description: Heating - Backup Heater Cold Weather Compensation
   enum:
     0x00: 'No'
     0x01: 'Yes'
@@ -345,7 +351,7 @@ ENUM_IN_FSV_4023:
 ENUM_IN_FSV_4031:
   address: '0x40A2'
   arithmetic: ''
-  description: ''
+  description: Heating - Backup Boiler Application
   enum:
     0x00: 'No'
     0x01: 'Yes'
@@ -356,7 +362,7 @@ ENUM_IN_FSV_4031:
 ENUM_IN_FSV_4032:
   address: '0x40A3'
   arithmetic: ''
-  description: ''
+  description: Heating - Backup Boiler Priority
   enum:
     0x00: 'No'
     0x01: 'Yes'
@@ -367,11 +373,11 @@ ENUM_IN_FSV_4032:
 ENUM_IN_FSV_4041:
   address: '0x40C0'
   arithmetic: ''
-  description: ''
+  description: Heating - Mixing Valve Application
   enum:
     0x00: 'No'
-    0x01: 'one'
-    0x02: 'two'
+    0x01: 'FSV_TARGET_DELTA'
+    0x02: 'WL'
   remarks: ''
   signed: ''
   type: ENUM
@@ -379,7 +385,13 @@ ENUM_IN_FSV_4041:
 ENUM_IN_FSV_4044:
   address: '0x40C1'
   arithmetic: ''
-  description: ''
+  description: Heating - Mixing Valve Control Factor
+  enum:
+    0x01: '1'
+    0x02: '2'
+    0x03: '3'
+    0x04: '4'
+    0x05: '5'
   remarks: ''
   signed: ''
   type: ENUM
@@ -387,10 +399,11 @@ ENUM_IN_FSV_4044:
 ENUM_IN_FSV_4051:
   address: '0x40C2'
   arithmetic: ''
-  description: ''
+  description: Heating - Inverter Pump Application
   enum:
     0x00: 'No'
-    0x01: 'Yes'
+    0x01: '100%'
+    0x02: '70%'
   remarks: ''
   signed: ''
   type: ENUM
@@ -398,10 +411,11 @@ ENUM_IN_FSV_4051:
 ENUM_IN_FSV_4053:
   address: '0x40C3'
   arithmetic: ''
-  description: ''
+  description: Heating - Inverter Pump Control Factor
   enum:
-    0x00: 'No'
-    0x01: 'Yes'
+    0x01: '1'
+    0x02: '2'
+    0x03: '3'
   remarks: ''
   signed: ''
   type: ENUM
@@ -409,10 +423,10 @@ ENUM_IN_FSV_4053:
 ENUM_IN_FSV_4061:
   address: '0x411A'
   arithmetic: ''
-  description: ''
+  description: Heating - Zone Control Application
   enum:
-    0x00: 'zero'
-    0x01: 'one'
+    0x00: 'No'
+    0x01: 'Yes'
   remarks: ''
   signed: ''
   type: ENUM
@@ -420,10 +434,10 @@ ENUM_IN_FSV_4061:
 ENUM_IN_FSV_5022:
   address: '0x4128'
   arithmetic: ''
-  description: ''
+  description: DHW Saving - DHW Saving Mode 
   enum:
-    0x00: 'min'
-    0x01: 'max'
+    0x00: 'ON'
+    0x01: 'OFF'
   remarks: Min = 0 Max = 1
   signed: ''
   type: ENUM
@@ -442,7 +456,7 @@ ENUM_IN_FSV_5033:
 ENUM_IN_FSV_5041:
   address: '0x40A4'
   arithmetic: ''
-  description: ''
+  description: Power Peak Control - Application
   enum:
     0x00: 'No'
     0x01: 'Yes'
@@ -453,12 +467,12 @@ ENUM_IN_FSV_5041:
 ENUM_IN_FSV_5042:
   address: '0x40A5'
   arithmetic: ''
-  description: ''
+  description: Power Peak Control - Select Forced Off Parts
   enum:
-    0x00: 'All'
-    0x01: 'one'
-    0x02: 'two'
-    0x03: 'three'
+    0x00: 'COMP_PER_BUH_OFF_BSH_PER'
+    0x01: 'COMP_PER_BUH_OFF_BSH_OFF'
+    0x02: 'COMP_OFF_BUH_OFF_BSH_PER'
+    0x03: 'COMP_OFF_BUH_OFF_BSH_OFF'
   remarks: ''
   signed: ''
   type: ENUM
@@ -466,7 +480,7 @@ ENUM_IN_FSV_5042:
 ENUM_IN_FSV_5043:
   address: '0x40A6'
   arithmetic: ''
-  description: ''
+  description: Power Peak Control - Using Input Voltage
   enum:
     0x00: 'Low'
     0x01: 'High'
@@ -477,10 +491,10 @@ ENUM_IN_FSV_5043:
 ENUM_IN_FSV_5051:
   address: '0x40A7'
   arithmetic: ''
-  description: ''
+  description: Frequency Ratio Control
   enum:
-    0x00: 'No'
-    0x01: 'Yes'
+    0x00: 'Disable'
+    0x01: 'Use'
   remarks: ''
   signed: ''
   type: ENUM
@@ -499,10 +513,10 @@ ENUM_IN_FSV_5061:
 ENUM_IN_FSV_5081:
   address: '0x411B'
   arithmetic: ''
-  description: ''
+  description: PV Control - Application
   enum:
-    0x00: 'zero'
-    0x01: 'one'
+    0x00: 'No'
+    0x01: 'Yes'
   remarks: ''
   signed: ''
   type: ENUM
@@ -510,10 +524,10 @@ ENUM_IN_FSV_5081:
 ENUM_IN_FSV_5091:
   address: '0x411C'
   arithmetic: ''
-  description: ''
+  description: Smart Grid Control - Application
   enum:
-    0x00: 'zero'
-    0x01: 'one'
+    0x00: 'No'
+    0x01: 'Yes'
   remarks: ''
   signed: ''
   type: ENUM
@@ -521,10 +535,10 @@ ENUM_IN_FSV_5091:
 ENUM_IN_FSV_5094:
   address: '0x411D'
   arithmetic: ''
-  description: ''
+  description: Smart Grid Control - DHW Mode 
   enum:
-    0x00: 'zero'
-    0x01: 'one'
+    0x00: '55° by HP'
+    0x01: '70° by HP and BSH'
   remarks: ''
   signed: ''
   type: ENUM
@@ -1227,6 +1241,45 @@ LVAR_IN_ETO_HEAT_CONTROL_DATA:
   signed: 'false'
   type: LVAR
   unit: ''
+LVAR_IN_MINUTES_SINCE_INSTALLATION:
+  address: '0x4423'
+  arithmetic: ''
+  description: Minutes since installation
+  remarks: 
+  state_class: total_increasing
+  device_class: duration
+  signed: 'false'
+  type: LVAR
+  unit: 'min'
+LVAR_IN_MINUTES_ACTIVE:
+  address: '0x4424'
+  arithmetic: ''
+  description: Minutes active
+  remarks: 
+  state_class: total_increasing
+  device_class: duration
+  signed: 'false'
+  type: LVAR
+  unit: 'min'
+LVAR_IN_GENERATED_POWER_LAST_MINUTE:
+  address: '0x4426'
+  arithmetic: value / 1000
+  description: Generated power last minute
+  remarks: value is kWh, so do div 1000
+  device_class: energy
+  signed: 'false'
+  type: LVAR
+  unit: kWh
+LVAR_IN_TOTAL_GENERATED_POWER:
+  address: '0x4427'
+  arithmetic: value / 1000
+  description: Total generated power
+  remarks: value is kWh, so do div 1000
+  state_class: total_increasing
+  device_class: energy
+  signed: 'false'
+  type: LVAR
+  unit: kWh
 LVAR_OUT_AUTO_INSPECT_RESULT0:
   address: '0x840B'
   arithmetic: ''
@@ -2752,7 +2805,7 @@ NASA_OUTDOOR_COMP2_TARGET_HZ:
   remarks: ''
   signed: 'false'
   type: VAR
-  uunit: 'Hz'
+  unit: 'Hz'
 NASA_OUTDOOR_COMP3_ORDER_HZ:
   address: '0x82C0'
   arithmetic: ''
@@ -3295,12 +3348,12 @@ NASA_OUTDOOR_HOTGAS2:
   unit: ''
 NASA_OUTDOOR_HP:
   address: '0x8287'
-  arithmetic: ''
-  description: Outdoor unit horsepower
+  arithmetic: 'value * 0.7457'
+  description: Outdoor unit horsepower (in kw)
   remarks: unknown UNIT "HP"
   signed: 'false'
   type: VAR
-  unit: HP
+  unit: kw
 NASA_OUTDOOR_HREEV:
   address: '0x822F'
   arithmetic: ''
@@ -4820,7 +4873,7 @@ VAR_IN_FLOW_SENSOR_VOLTAGE:
 VAR_IN_FSV_2011:
   address: '0x4254'
   arithmetic: value / 10
-  description: Water Law Auto heating ambient temperature - Max.
+  description: Heating - Outdoor Temp. for WL Max.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -4828,7 +4881,7 @@ VAR_IN_FSV_2011:
 VAR_IN_FSV_2012:
   address: '0x4255'
   arithmetic: value / 10
-  description: ''
+  description: Heating - Outdoor Temp. for WL Min.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -4836,7 +4889,7 @@ VAR_IN_FSV_2012:
 VAR_IN_FSV_2021:
   address: '0x4256'
   arithmetic: value / 10
-  description: Water Law (WL1-Floor) Temperature auto heating - Max.
+  description: Heating - Water out Temp. UFH Max.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -4844,7 +4897,7 @@ VAR_IN_FSV_2021:
 VAR_IN_FSV_2022:
   address: '0x4257'
   arithmetic: value / 10
-  description: ''
+  description: Heating - Water out Temp. UFH Min.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -4852,7 +4905,7 @@ VAR_IN_FSV_2022:
 VAR_IN_FSV_2031:
   address: '0x4258'
   arithmetic: value / 10
-  description: Water Law (WL2-FCU) Temperature auto heating - Max.
+  description: Heating - Water out Temp. FCU Max.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -4860,7 +4913,7 @@ VAR_IN_FSV_2031:
 VAR_IN_FSV_2032:
   address: '0x4259'
   arithmetic: value / 10
-  description: ''
+  description: Heating - Water out Temp. FCU Min.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -4868,7 +4921,7 @@ VAR_IN_FSV_2032:
 VAR_IN_FSV_2051:
   address: '0x425A'
   arithmetic: value / 10
-  description: ''
+  description: Cooling - Outdoor Temp. for WL Max.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -4876,7 +4929,7 @@ VAR_IN_FSV_2051:
 VAR_IN_FSV_2052:
   address: '0x425B'
   arithmetic: value / 10
-  description: ''
+  description: Cooling - Outdoor Temp. for WL Min.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -4884,7 +4937,7 @@ VAR_IN_FSV_2052:
 VAR_IN_FSV_2061:
   address: '0x425C'
   arithmetic: value / 10
-  description: ''
+  description: Cooling - Water out Temp. UFH Max.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -4892,7 +4945,7 @@ VAR_IN_FSV_2061:
 VAR_IN_FSV_2062:
   address: '0x425D'
   arithmetic: value / 10
-  description: ''
+  description: Cooling - Water out Temp. UFH Min.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -4900,7 +4953,7 @@ VAR_IN_FSV_2062:
 VAR_IN_FSV_2071:
   address: '0x425E'
   arithmetic: value / 10
-  description: ''
+  description: Cooling - Water out Temp. FCU Max.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -4908,7 +4961,7 @@ VAR_IN_FSV_2071:
 VAR_IN_FSV_2072:
   address: '0x425F'
   arithmetic: value / 10
-  description: ''
+  description: Cooling - Water out Temp. FCU Min.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -4916,7 +4969,7 @@ VAR_IN_FSV_2072:
 VAR_IN_FSV_3021:
   address: '0x4260'
   arithmetic: value / 10
-  description: DHW Heating mode - Max.
+  description: DHW - Heat Pump Max. temp.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -4924,7 +4977,7 @@ VAR_IN_FSV_3021:
 VAR_IN_FSV_3022:
   address: '0x4261'
   arithmetic: value / 10
-  description: ''
+  description: DHW - Heat Pump Stop
   remarks: ''
   signed: 'true'
   type: VAR
@@ -4932,7 +4985,7 @@ VAR_IN_FSV_3022:
 VAR_IN_FSV_3023:
   address: '0x4262'
   arithmetic: value / 10
-  description: DHW Heating mode - Start
+  description: DHW - Heat Pump Start
   remarks: ''
   signed: 'true'
   type: VAR
@@ -4940,7 +4993,7 @@ VAR_IN_FSV_3023:
 VAR_IN_FSV_3024:
   address: '0x4263'
   arithmetic: ''
-  description: ''
+  description: DHW - Heat Pump Min. Space heating operation time
   remarks: ''
   signed: 'false'
   type: VAR
@@ -4948,7 +5001,7 @@ VAR_IN_FSV_3024:
 VAR_IN_FSV_3025:
   address: '0x4264'
   arithmetic: ''
-  description: DHW Heating mode - DHW operation time
+  description: DHW - Heat Pump Max. DHW operation time
   remarks: ''
   signed: 'false'
   type: VAR
@@ -4956,7 +5009,7 @@ VAR_IN_FSV_3025:
 VAR_IN_FSV_3026:
   address: '0x4265'
   arithmetic: ''
-  description: ''
+  description: DHW - Heat Pump Max. Space heating operation time
   remarks: ''
   signed: 'false'
   type: VAR
@@ -4964,7 +5017,7 @@ VAR_IN_FSV_3026:
 VAR_IN_FSV_3032:
   address: '0x4266'
   arithmetic: ''
-  description: DHW Booster heater - Delayed time
+  description: DHW - Booster Heat Delay Time
   remarks: ''
   signed: 'false'
   type: VAR
@@ -4972,7 +5025,7 @@ VAR_IN_FSV_3032:
 VAR_IN_FSV_3033:
   address: '0x4267'
   arithmetic: value / 10
-  description: ''
+  description: DHW - Booster Heat Overshoot
   remarks: ''
   signed: 'true'
   type: VAR
@@ -4988,7 +5041,7 @@ VAR_IN_FSV_3034:
 VAR_IN_FSV_3043:
   address: '0x4269'
   arithmetic: ''
-  description: ''
+  description: DHW - Disinfection Start Time
   remarks: ''
   signed: 'false'
   type: VAR
@@ -4996,7 +5049,7 @@ VAR_IN_FSV_3043:
 VAR_IN_FSV_3044:
   address: '0x426A'
   arithmetic: value / 10
-  description: Desinfection - Target temp.
+  description: DHW - Disinfection Target Temp.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5004,7 +5057,7 @@ VAR_IN_FSV_3044:
 VAR_IN_FSV_3045:
   address: '0x426B'
   arithmetic: ''
-  description: ''
+  description: DHW - Disinfection Duration
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5012,7 +5065,7 @@ VAR_IN_FSV_3045:
 VAR_IN_FSV_3046:
   address: '0x42CE'
   arithmetic: value / 60
-  description: DHW Desinfection - Max. operation time
+  description: DHW - Disinfection Max time
   remarks: NASA Value is [minutes], not [hours]
   signed: 'false'
   type: VAR
@@ -5020,7 +5073,7 @@ VAR_IN_FSV_3046:
 VAR_IN_FSV_3052:
   address: '0x426C'
   arithmetic: value / 0.1
-  description: ''
+  description: DHW - Forced DHW Operation Time Duration
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5028,7 +5081,7 @@ VAR_IN_FSV_3052:
 VAR_IN_FSV_3081:
   address: '0x42ED'
   arithmetic: ''
-  description: ''
+  description: DHW - Energy Metering BUH 1 step capacity
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5036,7 +5089,7 @@ VAR_IN_FSV_3081:
 VAR_IN_FSV_3082:
   address: '0x42EE'
   arithmetic: ''
-  description: ''
+  description: DHW - Energy Metering BUH 2 step capacity
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5044,7 +5097,7 @@ VAR_IN_FSV_3082:
 VAR_IN_FSV_3083:
   address: '0x42EF'
   arithmetic: ''
-  description: ''
+  description: DHW - Energy Metering BSH capacity
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5052,7 +5105,7 @@ VAR_IN_FSV_3083:
 VAR_IN_FSV_4012:
   address: '0x426D'
   arithmetic: value / 10
-  description: ''
+  description: Heating - Heat Pump Outdoor Temp. for Priority
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5060,7 +5113,7 @@ VAR_IN_FSV_4012:
 VAR_IN_FSV_4013:
   address: '0x426E'
   arithmetic: value / 10
-  description: Heating mode - Heating Off
+  description: Heating - Heat Pump Outdoor Heat OFF
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5076,7 +5129,7 @@ VAR_IN_FSV_4014:
 VAR_IN_FSV_4024:
   address: '0x4270'
   arithmetic: value / 10
-  description: ''
+  description: Heating - Backup Heater Threshold Temp.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5084,7 +5137,7 @@ VAR_IN_FSV_4024:
 VAR_IN_FSV_4025:
   address: '0x4271'
   arithmetic: value / 10
-  description: ''
+  description: Heating - Backup Heater Defrost Backup Temp.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5092,7 +5145,7 @@ VAR_IN_FSV_4025:
 VAR_IN_FSV_4033:
   address: '0x4272'
   arithmetic: value / 10
-  description: ''
+  description: Heating - Backup Boiler Threshold Temp.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5100,7 +5153,7 @@ VAR_IN_FSV_4033:
 VAR_IN_FSV_4042:
   address: '0x4286'
   arithmetic: value / 10
-  description: ''
+  description: Heating - Mixing Valve Target Delta Heating
   remarks: ''
   signed: 'false'
   type: VAR
@@ -5108,7 +5161,7 @@ VAR_IN_FSV_4042:
 VAR_IN_FSV_4043:
   address: '0x4287'
   arithmetic: value / 10
-  description: ''
+  description: Heating - Mixing Valve Target Delta Cooling
   remarks: ''
   signed: 'false'
   type: VAR
@@ -5116,7 +5169,7 @@ VAR_IN_FSV_4043:
 VAR_IN_FSV_4045:
   address: '0x4288'
   arithmetic: ''
-  description: ''
+  description: Heating - Mixing Valve Control Interval
   remarks: ''
   signed: 'false'
   type: VAR
@@ -5124,7 +5177,7 @@ VAR_IN_FSV_4045:
 VAR_IN_FSV_4046:
   address: '0x4289'
   arithmetic: value / 0.1
-  description: ''
+  description: Heating - Mixing Valve Running Time
   remarks: ''
   signed: 'false'
   type: VAR
@@ -5132,7 +5185,7 @@ VAR_IN_FSV_4046:
 VAR_IN_FSV_4052:
   address: '0x428A'
   arithmetic: value / 10
-  description: ''
+  description: Heating - Inverter Pump Target Delta
   remarks: ''
   signed: 'false'
   type: VAR
@@ -5140,7 +5193,7 @@ VAR_IN_FSV_4052:
 VAR_IN_FSV_5011:
   address: '0x4273'
   arithmetic: value / 10
-  description: ''
+  description: Outing Mode - Water Out Temp. for Cooling
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5148,7 +5201,7 @@ VAR_IN_FSV_5011:
 VAR_IN_FSV_5012:
   address: '0x4274'
   arithmetic: value / 10
-  description: Outing mode - Room Temperature of cooling Mode
+  description: Outing mode - Room Temp. for Cooling
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5156,7 +5209,7 @@ VAR_IN_FSV_5012:
 VAR_IN_FSV_5013:
   address: '0x4275'
   arithmetic: value / 10
-  description: ''
+  description: Outing mode - Water Out Temp. for Heating
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5164,7 +5217,7 @@ VAR_IN_FSV_5013:
 VAR_IN_FSV_5014:
   address: '0x4276'
   arithmetic: value / 10
-  description: Outing mode- Indoor heating temperature
+  description: Outing mode - Room Temp. for Heating
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5172,7 +5225,7 @@ VAR_IN_FSV_5014:
 VAR_IN_FSV_5015:
   address: '0x4277'
   arithmetic: value / 10
-  description: ''
+  description: Outing mode - Auto Cooling WL1 Temp.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5180,7 +5233,7 @@ VAR_IN_FSV_5015:
 VAR_IN_FSV_5016:
   address: '0x4278'
   arithmetic: value / 10
-  description: ''
+  description: Outing mode - Auto Cooling WL2 Temp.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5188,7 +5241,7 @@ VAR_IN_FSV_5016:
 VAR_IN_FSV_5017:
   address: '0x4279'
   arithmetic: value / 10
-  description: ''
+  description: Outing mode - Auto Heating WL1 Temp
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5196,7 +5249,7 @@ VAR_IN_FSV_5017:
 VAR_IN_FSV_5018:
   address: '0x427A'
   arithmetic: value / 10
-  description: Outing mode - Temperature of auto heating WL2 water
+  description: Outing mode - Auto Heating WL2 Temp
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5204,7 +5257,7 @@ VAR_IN_FSV_5018:
 VAR_IN_FSV_5019:
   address: '0x427B'
   arithmetic: value / 10
-  description: ''
+  description: Outing mode - Target Tank Temp
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5212,7 +5265,7 @@ VAR_IN_FSV_5019:
 VAR_IN_FSV_5021:
   address: '0x427C'
   arithmetic: value / 10
-  description: Economic DHW mode - Temperature of hot water Tank
+  description: DHW Saving - DHW Saving Temp.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5220,7 +5273,7 @@ VAR_IN_FSV_5021:
 VAR_IN_FSV_5023:
   address: '0x42F0'
   arithmetic: value / 10
-  description: ''
+  description: DHW Saving - DHW Saving Thermo on Temp.
   remarks: ''
   signed: 'true'
   type: VAR
@@ -5244,7 +5297,7 @@ VAR_IN_FSV_5032:
 VAR_IN_FSV_5082:
   address: '0x42DB'
   arithmetic: value / 10
-  description: ''
+  description: PV Control - Setting Temp. Shift Value (Cool)
   remarks: ''
   signed: 'false'
   type: VAR
@@ -5252,7 +5305,7 @@ VAR_IN_FSV_5082:
 VAR_IN_FSV_5083:
   address: '0x42DC'
   arithmetic: value / 10
-  description: ''
+  description: PV Control - Setting Temp. Shift Value (Heat)
   remarks: ''
   signed: 'false'
   type: VAR
@@ -5260,7 +5313,7 @@ VAR_IN_FSV_5083:
 VAR_IN_FSV_5092:
   address: '0x42DD'
   arithmetic: value / 10
-  description: ''
+  description: Smart Grid Control - Setting Temp. Shift Value (Heat)
   remarks: ''
   signed: 'false'
   type: VAR
@@ -5268,7 +5321,7 @@ VAR_IN_FSV_5092:
 VAR_IN_FSV_5093:
   address: '0x42DE'
   arithmetic: value / 10
-  description: ''
+  description: Smart Grid Control - Setting Temp. Shift Value (DHW)
   remarks: ''
   signed: 'false'
   type: VAR
@@ -5793,6 +5846,15 @@ VAR_OUT_SENSOR_TOTAL_SUCTION:
   signed: 'true'
   type: VAR
   unit: "\u00b0C"
+NASA_EHSSENTINEL_TOTAL_COP:
+  address: '0x9997'
+  arithmetic: ''
+  description: Total COP of lifetime
+  remarks: Custom Measurment
+  state_class: measurement
+  signed: 'true'
+  type: VAR
+  unit: ''
 NASA_EHSSENTINEL_COP:
   address: '0x9998'
   arithmetic: ''

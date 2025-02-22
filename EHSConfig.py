@@ -26,6 +26,7 @@ class EHSConfig():
     GENERAL = None
     SERIAL = None
     NASA_REPO = None
+    LOGGING = {}
 
     def __new__(cls, *args, **kwargs):
         """
@@ -77,6 +78,10 @@ class EHSConfig():
             self.MQTT = config.get('mqtt')
             self.GENERAL = config.get('general')
             self.SERIAL = config.get('serial')
+            if 'logging' in config:
+                self.LOGGING = config.get('logging')
+            else:
+                self.LOGGING = {}
             logger.debug(f"Configuration loaded: {config}")
 
         self.validate()
@@ -97,9 +102,6 @@ class EHSConfig():
                 self.NASA_REPO = yaml.safe_load(file)
         else:
             raise ConfigException(argument=self.GENERAL['nasaRepositoryFile'], message="NASA Respository File is missing")
-        
-        if 'silentMode' not in self.GENERAL:
-           self.GENERAL['silentMode'] = True
 
         if 'protocolFile' not in self.GENERAL:
             self.GENERAL['protocolFile'] = None
@@ -133,3 +135,23 @@ class EHSConfig():
         
         if 'password' not in self.MQTT and 'user' in self.MQTT:
             raise ConfigException(argument=self.SERIAL['device'], message="mqtt password parameter is missing")
+        
+        if 'messageNotFound' not in self.LOGGING:
+            self.LOGGING['messageNotFound'] = False
+
+        if 'messageNotFound' not in self.LOGGING:
+            self.LOGGING['messageNotFound'] = False
+
+        if 'deviceAdded' not in self.LOGGING:
+            self.LOGGING['deviceAdded'] = True
+
+        if 'packetNotFromIndoorOutdoor' not in self.LOGGING:
+            self.LOGGING['packetNotFromIndoorOutdoor'] = False
+
+        if 'proccessedMessage' not in self.LOGGING:
+            self.LOGGING['proccessedMessage'] = False
+
+        logger.info(f"Logging Config:")
+        for key, value in self.LOGGING.items():
+            logger.info(f"    {key}: {value}")
+        

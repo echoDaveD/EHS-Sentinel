@@ -1,6 +1,10 @@
 general:
   nasaRepositoryFile: data/NasaRepository.yml
-  silentMode: True
+logging:
+  deviceAdded: True
+  messageNotFound: False
+  packetNotFromIndoorOutdoor: False
+  proccessedMessage: False
 serial:
   device: /dev/ttyUSB0
   baudrate: 9600
