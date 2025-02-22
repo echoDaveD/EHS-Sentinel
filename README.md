@@ -267,6 +267,9 @@ if you want to see how many uniquie Messages have been collected in the Dumpfile
 
 # Changelog
 
+### v0.2.1 - 2025-02-22
+- limit NASA_EHSSENTINEL_COP and NASA_EHSSENTINEL_TOTAL_COP to values between 0 and 20 
+
 ### v0.2.0 - 2025-02-22
 - improved MQTT Auto Discovery Config Messages 
 - NASAPacket and NASAMessage are now bidirectional, can decode and encode Packets
