@@ -53,7 +53,6 @@ class MessageProcessor:
         if self._initialized:
             return
         self._initialized = True
-        logger.debug("init MessageProcessor")
         self.config = EHSConfig()
         self.args = EHSArguments()
         self.mqtt = MQTTClient()
@@ -101,7 +100,10 @@ class MessageProcessor:
             - Calculates and processes derived values for specific message names.
         """
 
-        logger.info(f"Message number: {hex(msg.packet_message):<6} {msgname:<50} Type: {msg.packet_message_type} Payload: {msgvalue}")
+        if self.config.LOGGING['proccessedMessage']:
+            logger.info(f"Message number: {hex(msg.packet_message):<6} {msgname:<50} Type: {msg.packet_message_type} Payload: {msgvalue}")
+        else:
+            logger.debug(f"Message number: {hex(msg.packet_message):<6} {msgname:<50} Type: {msg.packet_message_type} Payload: {msgvalue}")
 
         if self.config.GENERAL['protocolFile'] is not None:
             with open(self.config.GENERAL['protocolFile'], "a") as protWriter:
@@ -171,7 +173,7 @@ class MessageProcessor:
             try:
                 value = eval(arithmetic)
             except Exception as e:
-                logger.warning(f"Arithmetic Function couldn't been applied, using raw value: arithmetic = {arithmetic} {e}")
+                logger.warning(f"Arithmetic Function couldn't been applied for Message {msgname}, using raw value: arithmetic = {arithmetic} {e}")
                 value = packed_value
         else:
             value = packed_value

@@ -169,8 +169,6 @@ The `config.yml` file contains configuration settings for the EHS-Sentinel proje
 
 - **nasaRepositoryFile**: Path to the NASA repository file.
   - Default: `data/NasaRepository.yml`
-- **silentMode**: Boolean flag to enable or disable silent mode. In Silent Mode only Logmessages above WARNING are printed out (for production use to not spam your systemlog)
-  - Default: `True`
 - **protocolFile**: Path to the protocol file. (not set in Sample config.yml)
   - Example: `prot.csv`
 
@@ -181,7 +179,9 @@ The `config.yml` file contains configuration settings for the EHS-Sentinel proje
 - **messageNotFound**: Set to true will log when a received message was not found in NasaRepository
   - Default: `False`
 - **packetNotFromIndoorOutdoor**: Set to true will log when a message not from Indoor/Outdoor unit was received
-  - Example: `False`
+  - Default: `False`
+- **proccessedMessage**: set to true, prints out a summary of which massage was processed and its value
+  - Default: `False`
 
 ### Serial Connection Settings
 
@@ -214,12 +214,12 @@ The `config.yml` file contains configuration settings for the EHS-Sentinel proje
 ```yaml
 general:
   nasaRepositoryFile: data/NasaRepository.yml
-  silentMode: False
   protocolFile: prot.csv
 logging:
   deviceAdded: true
   messageNotFound: False
   packetNotFromIndoorOutdoor: False
+  proccessedMessage: False
 serial:
   device: /dev/ttyUSB0
   baudrate: 9600
@@ -278,10 +278,12 @@ if you want to see how many uniquie Messages have been collected in the Dumpfile
   - Destination Adress Class out of enum
   - Checksum for package could not be validatet calculated
   - Message with structure type must have capacity of 1.
+- removed silentMNode config property (new logging section is replacing its functionality but more granular)
 - added new logging config property to allow to turn on/off additional info log entries
  - deviceAdded set to true (default) will log when new device is added to known Devices (and discover to HASS)
  - messageNotFound set to true (false is default) will log when a received message was not found in NasaRepository
  - packetNotFromIndoorOutdoor set to true (false is default) will log when a message not from Indoor/Outdoor unit was received
+ - proccessedMessage set to true(false is default) prints out a summary of which massage was processed and its value
 - Added new Measurements
   - 0x4423 LVAR_IN_MINUTES_SINCE_INSTALLATION 
   - 0x4424 LVAR_IN_MINUTES_ACTIVE

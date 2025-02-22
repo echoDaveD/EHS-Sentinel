@@ -146,7 +146,11 @@ class EHSConfig():
             self.LOGGING['messageNotFound'] = False
 
         if 'deviceAdded' not in self.LOGGING:
-            self.LOGGING['deviceAdded'] = False
+            self.LOGGING['deviceAdded'] = True
 
         if 'packetNotFromIndoorOutdoor' not in self.LOGGING:
             self.LOGGING['packetNotFromIndoorOutdoor'] = False
+
+        if 'proccessedMessage' not in self.LOGGING:
+            self.LOGGING['proccessedMessage'] = False
+        
