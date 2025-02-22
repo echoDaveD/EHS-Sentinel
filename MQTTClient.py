@@ -156,8 +156,16 @@ class MQTTClient:
         if self.known_devices_topic in topic:
             # Update the known devices set with the retained message
             self.known_topics = list(filter(None, [x.strip() for x in payload.decode().split(",")]))
+            
+            if self.config.LOGGING['deviceAdded']:
+                logger.info(f"Loaded devices from known devices Topic:")
+                for devname in self.known_topics:
+                    logger.info(f"Device no. {len(self.known_topics):<3}:  {devname} ")
+            else:
+                logger.debug(f"Loaded devices from known devices Topic:")
+                for devname in self.known_topics:
+                    logger.debug(f"Device added no. {len(self.known_topics):<3}:  {devname} ")
 
-        
         if f"{self.homeAssistantAutoDiscoverTopic}/status" == topic:
             logger.info(f"HASS Status Messages {topic} received: {payload.decode()}")
             if payload.decode() == "online":
