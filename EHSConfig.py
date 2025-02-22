@@ -26,7 +26,7 @@ class EHSConfig():
     GENERAL = None
     SERIAL = None
     NASA_REPO = None
-    LOGGING = None
+    LOGGING = {}
 
     def __new__(cls, *args, **kwargs):
         """
@@ -79,7 +79,6 @@ class EHSConfig():
             self.GENERAL = config.get('general')
             self.SERIAL = config.get('serial')
             self.LOGGING = config.get('logging')
-            logger.debug(f"Configuration loaded: {config}")
 
         self.validate()
 
