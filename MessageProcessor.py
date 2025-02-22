@@ -2,7 +2,7 @@ import asyncio
 import logging
 import traceback
 import yaml
-from CustomLogger import logger, setSilent
+from CustomLogger import logger
 from EHSArguments import EHSArguments
 from EHSConfig import EHSConfig
 from EHSExceptions import MessageWarningException

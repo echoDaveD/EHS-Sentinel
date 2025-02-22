@@ -27,9 +27,8 @@ async def main():
     2. Reads command-line arguments.
     3. Reads configuration settings.
     4. Connects to the MQTT broker.
-    5. Sets silent mode if specified in the configuration.
-    6. If dry run mode is enabled, reads data from a dump file and processes it.
-    7. If not in dry run mode, reads data from a serial port and processes it.
+    5. If dry run mode is enabled, reads data from a dump file and processes it.
+    6. If not in dry run mode, reads data from a serial port and processes it.
     Args:
         None
     Returns:
