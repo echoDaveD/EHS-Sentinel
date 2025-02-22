@@ -216,7 +216,7 @@ general:
   nasaRepositoryFile: data/NasaRepository.yml
   protocolFile: prot.csv
 logging:
-  deviceAdded: true
+  deviceAdded: True
   messageNotFound: False
   packetNotFromIndoorOutdoor: False
   proccessedMessage: False

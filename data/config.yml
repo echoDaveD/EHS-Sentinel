@@ -1,7 +1,7 @@
 general:
   nasaRepositoryFile: data/NasaRepository.yml
 logging:
-  deviceAdded: true
+  deviceAdded: True
   messageNotFound: False
   packetNotFromIndoorOutdoor: False
   proccessedMessage: False
