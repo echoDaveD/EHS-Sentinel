@@ -184,11 +184,20 @@ The `config.yml` file contains configuration settings for the EHS-Sentinel proje
   - Default: `False`
 
 ### Serial Connection Settings
+cannot be defined with TCP parm...
 
 - **device**: The serial device URL.
   - Example: `/dev/ttyUSB0`
 - **baudrate**: The baud rate for the serial connection.
   - Example: `9600`
+
+### TCP Settings
+cannot be defined with SERIAL parm...
+
+- **ip**: The ip of rs485 to ETH Adapter.
+  - Example: `168.192.2.200`
+- **port**: The port of rs485 to ETH Adapter.
+  - Example: `4196`
 
 ### MQTT Broker Settings
 
@@ -214,15 +223,18 @@ The `config.yml` file contains configuration settings for the EHS-Sentinel proje
 ```yaml
 general:
   nasaRepositoryFile: data/NasaRepository.yml
-  protocolFile: prot.csv
+#  protocolFile: prot.csv
 logging:
   deviceAdded: True
   messageNotFound: False
   packetNotFromIndoorOutdoor: False
   proccessedMessage: False
-serial:
-  device: /dev/ttyUSB0
-  baudrate: 9600
+#serial:
+#  device: /dev/ttyUSB0
+#  baudrate: 9600
+tcp:
+  ip: 168.192.2.200
+  port: 4196
 mqtt:
   broker-url: 123.45.6.69
   broker-port: 1883
@@ -266,6 +278,9 @@ if you want to see how many uniquie Messages have been collected in the Dumpfile
 
 
 # Changelog
+
+### v0.2.2 - 2025-02-24
+- Support for rs485 to ETH Adapter, tcp options instead of serial port are possible now
 
 ### v0.2.1 - 2025-02-22
 - limit NASA_EHSSENTINEL_COP and NASA_EHSSENTINEL_TOTAL_COP to values between 0 and 20 
