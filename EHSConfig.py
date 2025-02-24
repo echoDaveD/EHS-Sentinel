@@ -25,6 +25,7 @@ class EHSConfig():
     MQTT = None
     GENERAL = None
     SERIAL = None
+    TCP = None
     NASA_REPO = None
     LOGGING = {}
 
@@ -77,7 +78,13 @@ class EHSConfig():
             config = yaml.safe_load(file)
             self.MQTT = config.get('mqtt')
             self.GENERAL = config.get('general')
-            self.SERIAL = config.get('serial')
+
+            if 'tcp' in config:
+                self.TCP = config.get('tcp')
+
+            if 'serial' in config:
+                self.SERIAL = config.get('serial')
+
             if 'logging' in config:
                 self.LOGGING = config.get('logging')
             else:
@@ -106,11 +113,25 @@ class EHSConfig():
         if 'protocolFile' not in self.GENERAL:
             self.GENERAL['protocolFile'] = None
 
-        if 'device' not in self.SERIAL:
-            raise ConfigException(argument=self.SERIAL['device'], message="serial device config parameter is missing")
-        
-        if 'baudrate' not in self.SERIAL:
-            raise ConfigException(argument=self.SERIAL['baudrate'], message="serial baudrate config parameter is missing")
+        if self.SERIAL is None and self.TCP is None:
+            raise ConfigException(argument="", message="define tcp or serial config parms")
+
+        if self.SERIAL is not None and self.TCP is not None:
+            raise ConfigException(argument="", message="you cannot define tcp and serial please define only one")
+
+        if self.SERIAL is not None:
+            if 'device' not in self.SERIAL:
+                raise ConfigException(argument=self.SERIAL['device'], message="serial device config parameter is missing")
+            
+            if 'baudrate' not in self.SERIAL:
+                raise ConfigException(argument=self.SERIAL['baudrate'], message="serial baudrate config parameter is missing")
+            
+        if self.TCP is not None:
+            if 'ip' not in self.TCP:
+                raise ConfigException(argument=self.TCP['ip'], message="tcp ip config parameter is missing")
+            
+            if 'port' not in self.TCP:
+                raise ConfigException(argument=self.TCP['port'], message="tcp port config parameter is missing")
         
         if 'broker-url' not in self.MQTT:
             raise ConfigException(argument=self.MQTT['broker-url'], message="mqtt broker-url config parameter is missing")

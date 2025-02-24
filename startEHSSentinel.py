@@ -115,36 +115,31 @@ async def serial_connection(config, args):
     """
     Asynchronously reads data from a serial connection and processes it.
     Args:
-        config (object): Configuration object containing serial connection parameters.
+        config (object): Configuration object containing serial or tcp connection parameters.
         args (object): Additional arguments for buffer processing.
-    This function establishes a serial connection using parameters from the config object,
-    reads data from the serial port until a specified delimiter (0x34) is encountered,
+    This function establishes a serial or tcp connection using parameters from the config object,
+    reads data from the serial port or tcp port until a specified delimiter (0x34) is encountered,
     and appends the received data to a buffer. It also starts an asynchronous task to
     process the buffer.
-    The serial connection is configured with the following parameters:
-        - Device URL: config.SERIAL['device']
-        - Baudrate: config.SERIAL['baudrate']
-        - Parity: Even
-        - Stopbits: One
-        - Bytesize: Eight
-        - RTS/CTS flow control: Enabled
-        - Timeout: 0
-    The function runs an infinite loop to continuously read data from the serial port.
+    The function runs an infinite loop to continuously read data from the serial port/tcp port.
     """
 
     buffer = []
     loop = asyncio.get_running_loop()
 
-    reader, writer = await serial_asyncio.open_serial_connection(
-                    loop=loop, 
-                    url=config.SERIAL['device'], 
-                    baudrate=config.SERIAL['baudrate'], 
-                    parity=serial.PARITY_EVEN,
-                    stopbits=serial.STOPBITS_ONE,
-                    bytesize=serial.EIGHTBITS,
-                    rtscts=True,
-                    timeout=1
-    )
+    if config.TCP is not None:
+        reader, writer = await asyncio.open_connection(config.TCP['ip'], config.TCP['port'])
+    else:
+        reader, writer = await serial_asyncio.open_serial_connection(
+                        loop=loop, 
+                        url=config.SERIAL['device'], 
+                        baudrate=config.SERIAL['baudrate'], 
+                        parity=serial.PARITY_EVEN,
+                        stopbits=serial.STOPBITS_ONE,
+                        bytesize=serial.EIGHTBITS,
+                        rtscts=True,
+                        timeout=1
+        )
 
     await asyncio.gather(
             serial_read(reader, args, config),
