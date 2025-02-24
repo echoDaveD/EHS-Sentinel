@@ -173,3 +173,4 @@ cython_debug/
 prot.csv
 helpertils/serial.py
 helpertils/test.py
+helpertils/socker.py
