@@ -17,7 +17,7 @@ from CustomLogger import logger
 from NASAPacket import NASAPacket, AddressClassEnum, PacketType, DataType
 from NASAMessage import NASAMessage
 
-version = "0.2.1 Stable"
+version = "0.2.2 Stable"
 
 async def main():
     """
