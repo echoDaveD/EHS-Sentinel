@@ -391,7 +391,6 @@ class NASAPacket:
         packet[2] = self.packet_size & 0xFF
         self.packet_crc16=binascii.crc_hqx(packet[3:], 0)
         final_packet = struct.pack(">BH", packet[0], len(packet[1:])+2) + packet[3:] + struct.pack(">HB", self.packet_crc16, 0x34)
-        print([x for x in final_packet])
         return final_packet
 
 # Example usage:

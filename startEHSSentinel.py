@@ -9,15 +9,14 @@ from EHSExceptions import MessageWarningException, SkipInvalidPacketException
 from MQTTClient import MQTTClient
 import aiofiles
 import json
-import struct
-import binascii
+import random
 
 # Get the logger
 from CustomLogger import logger
 from NASAPacket import NASAPacket, AddressClassEnum, PacketType, DataType
 from NASAMessage import NASAMessage
 
-version = "0.2.2 Stable"
+version = "0.3.0 Stable"
 
 async def main():
     """
@@ -143,7 +142,7 @@ async def serial_connection(config, args):
 
     await asyncio.gather(
             serial_read(reader, args, config),
-            #serial_write(writer, reader, args),
+            serial_write(writer, reader, args, config),
         )
 
 
@@ -159,9 +158,8 @@ async def serial_read(reader, args, config):
 
         await asyncio.sleep(0.1)  # Yield control to other tasks
 
-async def serial_write(writer:asyncio.StreamWriter, reader: asyncio.StreamReader, args):
+async def serial_write(writer:asyncio.StreamWriter, reader: asyncio.StreamReader, args, config):
     """
-    
     TODO Not used yet, only for future use...
 
 
@@ -173,87 +171,64 @@ async def serial_write(writer:asyncio.StreamWriter, reader: asyncio.StreamReader
     Returns:
         None
     """
+
+    for poller in config.POLLING['fetch_interval']:
+        if poller['enable']:
+            await asyncio.sleep(3)
+            asyncio.create_task(make_default_request_packet(writer=writer, config=config, poller=poller))
+
+async def make_default_request_packet(writer, config, poller):
+    logger.info(f"Setting up Poller {poller['name']} every {poller['schedule']} seconds")
+    message_list = []
+    for message in config.POLLING['groups'][poller['name']]:
+        tmp_msg = NASAMessage()
+        tmp_msg.set_packet_message(int(config.NASA_REPO[message]['address'], 16))
+        if config.NASA_REPO[message]['type'] == 'ENUM':
+            tmp_msg.set_packet_message_type(0)
+            tmp_msg.set_packet_payload([0])
+        elif config.NASA_REPO[message]['type'] == 'VAR':
+            tmp_msg.set_packet_message_type(1)
+            tmp_msg.set_packet_payload([0, 0])
+        elif config.NASA_REPO[message]['type'] == 'LVAR':
+            tmp_msg.set_packet_message_type(2)
+            tmp_msg.set_packet_payload([0, 0, 0, 0])
+        else:
+            logger.warning(f"Unknown Type for {message} type: {config.NASA_REPO[message]['type']}")
+            break
+        message_list.append(tmp_msg)
+
     while True:
-        await asyncio.sleep(5)
-        # Example data to write
-        
-        decoded_nasa = NASAPacket()
-        decoded_nasa.set_packet_source_address_class(AddressClassEnum.WiFiKit)
-        decoded_nasa.set_packet_source_channel(0)
-        decoded_nasa.set_packet_source_address(144)
-        decoded_nasa.set_packet_dest_address_class(AddressClassEnum.BroadcastSetLayer)
-        decoded_nasa.set_packet_dest_channel(0)
-        decoded_nasa.set_packet_dest_address(32)
-        decoded_nasa.set_packet_information(True)
-        decoded_nasa.set_packet_version(2)
-        decoded_nasa.set_packet_retry_count(0)
-        decoded_nasa.set_packet_type(PacketType.Normal)
-        decoded_nasa.set_packet_data_type(DataType.Read)
-        decoded_nasa.set_packet_number(3)
-        lst = []
-        tmp_msg = NASAMessage()
-        tmp_msg.set_packet_message(0x4093)
-        tmp_msg.set_packet_message_type(0)
-        tmp_msg.set_packet_payload([0])
-        lst.append(tmp_msg)
-        tmp_msg = NASAMessage()
-        tmp_msg.set_packet_message(0x4094)
-        tmp_msg.set_packet_message_type(0)
-        tmp_msg.set_packet_payload([0])
-        lst.append(tmp_msg)
-        tmp_msg = NASAMessage()
-        tmp_msg.set_packet_message(0x4273)
-        tmp_msg.set_packet_message_type(1)
-        tmp_msg.set_packet_payload([0, 0])
-        lst.append(tmp_msg)
-        tmp_msg = NASAMessage()
-        tmp_msg.set_packet_message(0x4274)
-        tmp_msg.set_packet_message_type(1)
-        tmp_msg.set_packet_payload([0, 0])
-        lst.append(tmp_msg)
-        tmp_msg = NASAMessage()
-        tmp_msg.set_packet_message(0x4275)
-        tmp_msg.set_packet_message_type(1)
-        tmp_msg.set_packet_payload([0, 0])
-        lst.append(tmp_msg)
-        tmp_msg = NASAMessage()
-        tmp_msg.set_packet_message(0x4276)
-        tmp_msg.set_packet_message_type(1)
-        tmp_msg.set_packet_payload([0, 0])
-        lst.append(tmp_msg)
-        tmp_msg = NASAMessage()
-        tmp_msg.set_packet_message(0x4277)
-        tmp_msg.set_packet_message_type(1)
-        tmp_msg.set_packet_payload([0, 0])
-        lst.append(tmp_msg)
-        tmp_msg = NASAMessage()
-        tmp_msg.set_packet_message(0x4278)
-        tmp_msg.set_packet_message_type(1)
-        tmp_msg.set_packet_payload([0, 0])
-        lst.append(tmp_msg)
-        tmp_msg = NASAMessage()
-        tmp_msg.set_packet_message(0x4279)
-        tmp_msg.set_packet_message_type(1)
-        tmp_msg.set_packet_payload([0, 0])
-        lst.append(tmp_msg)
-        tmp_msg = NASAMessage()
-        tmp_msg.set_packet_message(0x427a)
-        tmp_msg.set_packet_message_type(1)
-        tmp_msg.set_packet_payload([0, 0])
-        lst.append(tmp_msg)
-        tmp_msg = NASAMessage()
-        tmp_msg.set_packet_message(0x427b)
-        tmp_msg.set_packet_message_type(1)
-        tmp_msg.set_packet_payload([0, 0])
-        lst.append(tmp_msg)
-        decoded_nasa.set_packet_messages(lst)
-        final_packet = decoded_nasa.to_raw()
-        writer.write(final_packet)
-        await writer.drain()
-        logger.info(f"Sent data raw: {final_packet}")
-        logger.info(f"Sent data raw: {decoded_nasa}")
-        logger.info(f"Sent data raw: {[hex(x) for x in final_packet]}")
-        logger.info(f"Sent data raw: {[x for x in final_packet]}")
+        chunk_size = 10
+        chunks = [message_list[i:i + chunk_size] for i in range(0, len(message_list), chunk_size)]
+        for chunk in chunks:
+            await asyncio.sleep(1)
+            nasa_msg = NASAPacket()
+            nasa_msg.set_packet_source_address_class(AddressClassEnum.WiFiKit)
+            nasa_msg.set_packet_source_channel(0)
+            nasa_msg.set_packet_source_address(144)
+            nasa_msg.set_packet_dest_address_class(AddressClassEnum.BroadcastSetLayer)
+            nasa_msg.set_packet_dest_channel(0)
+            nasa_msg.set_packet_dest_address(32)
+            nasa_msg.set_packet_information(True)
+            nasa_msg.set_packet_version(2)
+            nasa_msg.set_packet_retry_count(0)
+            nasa_msg.set_packet_type(PacketType.Normal)
+            nasa_msg.set_packet_data_type(DataType.Read)
+            nasa_msg.set_packet_number(len(chunk))
+            nasa_msg.set_packet_messages(chunk)
+            final_packet = nasa_msg.to_raw()
+            writer.write(final_packet)
+            await writer.drain()
+            if config.LOGGING['pollerMessage']:
+                logger.info(f"Polling following raw: {[hex(x) for x in final_packet]}")
+                logger.info(f"Polling following NASAPacket: {nasa_msg}")
+            else:
+                logger.debug(f"Sent data raw: {final_packet}")
+                logger.debug(f"Sent data raw: {nasa_msg}")
+                logger.debug(f"Sent data raw: {[hex(x) for x in final_packet]}")
+                logger.debug(f"Sent data raw: {[x for x in final_packet]}")
+
+        await asyncio.sleep(poller['schedule'])
 
 async def process_packet(buffer, args, config):
     """

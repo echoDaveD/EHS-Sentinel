@@ -1788,7 +1788,7 @@ NASA_DETECTION_TYPE:
   signed: ''
   type: ''
   unit: ''
-NASA_DHW_MAX_SETTEMPLIMIT:
+VAR_IN_FSV_1051:
   address: '0x4252'
   arithmetic: value / 10
   description: User limitation - Hot Water Temperature Max.
@@ -1796,7 +1796,7 @@ NASA_DHW_MAX_SETTEMPLIMIT:
   signed: 'true'
   type: VAR
   unit: "\u00b0C"
-NASA_DHW_MIN_SETTEMPLIMIT:
+VAR_IN_FSV_1052:
   address: '0x4253'
   arithmetic: value / 10
   description: ''
@@ -1917,7 +1917,7 @@ NASA_ENABLEDOWNLOAD:
   signed: ''
   type: ''
   unit: ''
-NASA_ENABLE_DHW:
+ENUM_IN_FSV_3011:
   address: '0x4097'
   arithmetic: ''
   description: ''
@@ -2177,7 +2177,7 @@ NASA_INDOOR_CAPACITY:
   signed: 'false'
   type: VAR
   unit: kW
-NASA_INDOOR_COOL_MAX_SETTEMP_ROOM:
+VAR_IN_FSV_1021:
   address: '0x424C'
   arithmetic: value / 10
   description: User limitation - Room Cooling Temperature Max.
@@ -2185,7 +2185,7 @@ NASA_INDOOR_COOL_MAX_SETTEMP_ROOM:
   signed: 'true'
   type: VAR
   unit: "\u00b0C"
-NASA_INDOOR_COOL_MAX_SETTEMP_WATEROUT:
+VAR_IN_FSV_1011:
   address: '0x424A'
   arithmetic: value / 10
   description: User limitation - Water Cooling Temperature Max.
@@ -2193,7 +2193,7 @@ NASA_INDOOR_COOL_MAX_SETTEMP_WATEROUT:
   signed: 'true'
   type: VAR
   unit: "\u00b0C"
-NASA_INDOOR_COOL_MIN_SETTEMP_ROOM:
+VAR_IN_FSV_1022:
   address: '0x424D'
   arithmetic: value / 10
   description: ''
@@ -2201,7 +2201,7 @@ NASA_INDOOR_COOL_MIN_SETTEMP_ROOM:
   signed: 'true'
   type: VAR
   unit: "\u00b0C"
-NASA_INDOOR_COOL_MIN_SETTEMP_WATEROUT:
+VAR_IN_FSV_1012:
   address: '0x424B'
   arithmetic: value / 10
   description: ''
@@ -2260,7 +2260,7 @@ NASA_INDOOR_DHW_SET_TEMP:
   signed: 'true'
   type: VAR
   unit: "\u00b0C"
-NASA_INDOOR_HEAT_MAX_SETTEMP_ROOM:
+VAR_IN_FSV_1041:
   address: '0x4250'
   arithmetic: value / 10
   description: User limitation - Room heating Temperature Max.
@@ -2268,7 +2268,7 @@ NASA_INDOOR_HEAT_MAX_SETTEMP_ROOM:
   signed: 'true'
   type: VAR
   unit: "\u00b0C"
-NASA_INDOOR_HEAT_MAX_SETTEMP_WATEROUT:
+VAR_IN_FSV_1031:
   address: '0x424E'
   arithmetic: value / 10
   description: User limitation - Water Heating Temperature Max.
@@ -2276,7 +2276,7 @@ NASA_INDOOR_HEAT_MAX_SETTEMP_WATEROUT:
   signed: 'true'
   type: VAR
   unit: "\u00b0C"
-NASA_INDOOR_HEAT_MIN_SETTEMP_ROOM:
+VAR_IN_FSV_1042:
   address: '0x4251'
   arithmetic: value / 10
   description: ''
@@ -2284,7 +2284,7 @@ NASA_INDOOR_HEAT_MIN_SETTEMP_ROOM:
   signed: 'true'
   type: VAR
   unit: "\u00b0C"
-NASA_INDOOR_HEAT_MIN_SETTEMP_WATEROUT:
+VAR_IN_FSV_1032:
   address: '0x424F'
   arithmetic: value / 10
   description: ''
@@ -4550,7 +4550,7 @@ NASA_TRACKING_RESULT:
   signed: ''
   type: ENUM
   unit: ''
-NASA_USE_BOOSTER_HEATER:
+ENUM_IN_FSV_3031:
   address: '0x4098'
   arithmetic: ''
   description: ''
@@ -4577,7 +4577,7 @@ NASA_USE_DESIRED_HUMIDITY:
   signed: ''
   type: ''
   unit: ''
-NASA_USE_DHW_THERMOSTAT:
+ENUM_IN_FSV_3061:
   address: '0x409C'
   arithmetic: ''
   description: ''
@@ -4649,7 +4649,7 @@ NASA_USE_SPI:
   signed: ''
   type: ENUM
   unit: ''
-NASA_USE_THERMOSTAT1:
+ENUM_IN_FSV_2091:
   address: '0x4095'
   arithmetic: ''
   description: ''
@@ -4663,7 +4663,7 @@ NASA_USE_THERMOSTAT1:
   signed: ''
   type: ENUM
   unit: ''
-NASA_USE_THERMOSTAT2:
+ENUM_IN_FSV_2092:
   address: '0x4096'
   arithmetic: ''
   description: ''
