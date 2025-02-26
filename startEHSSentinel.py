@@ -171,11 +171,11 @@ async def serial_write(writer:asyncio.StreamWriter, reader: asyncio.StreamReader
     Returns:
         None
     """
-
-    for poller in config.POLLING['fetch_interval']:
-        if poller['enable']:
-            await asyncio.sleep(3)
-            asyncio.create_task(make_default_request_packet(writer=writer, config=config, poller=poller))
+    if config.POLLING is not None:
+        for poller in config.POLLING['fetch_interval']:
+            if poller['enable']:
+                await asyncio.sleep(3)
+                asyncio.create_task(make_default_request_packet(writer=writer, config=config, poller=poller))
 
 async def make_default_request_packet(writer, config, poller):
     logger.info(f"Setting up Poller {poller['name']} every {poller['schedule']} seconds")
