@@ -4995,34 +4995,38 @@ VAR_IN_FSV_3024:
   address: '0x4263'
   arithmetic: ''
   description: DHW - Heat Pump Min. Space heating operation time
+  device_class: duration
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: ''
+  unit: 'min'
 VAR_IN_FSV_3025:
   address: '0x4264'
   arithmetic: ''
   description: DHW - Heat Pump Max. DHW operation time
+  device_class: duration
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: ''
+  unit: 'min'
 VAR_IN_FSV_3026:
   address: '0x4265'
   arithmetic: ''
   description: DHW - Heat Pump Max. Space heating operation time
+  device_class: duration
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: ''
+  unit: 'h'
 VAR_IN_FSV_3032:
   address: '0x4266'
   arithmetic: ''
   description: DHW - Booster Heat Delay Time
+  device_class: duration
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: ''
+  unit: 'min'
 VAR_IN_FSV_3033:
   address: '0x4267'
   arithmetic: value / 10

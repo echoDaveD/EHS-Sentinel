@@ -119,8 +119,19 @@ Some Distributions like debian 12 dont allow to use system wide pip package inst
   `journalctl | grep ehsSentinel`
 
 
-# Configuration
+# Home Assistant Dashboard
 
+There is a rudimentary dasdboard for Homeassistant, this can be found at: [ressources/dashboard.yaml](ressources/dashboard.yaml)
+
+If you have good ideas and want to extend this feel free to create an issue or pull request, thanks!
+
+![alt text](ressources/images/dashboard1.png)
+
+![alt text](ressources/images/dashboard2.png)
+
+![alt text](ressources/images/dashboard3.png)
+
+# Configuration
 
 ## Command-Line Arguments
 
@@ -182,6 +193,8 @@ The `config.yml` file contains configuration settings for the EHS-Sentinel proje
   - Default: `False`
 - **proccessedMessage**: set to true, prints out a summary of which massage was processed and its value
   - Default: `False`
+- **pollerMessage**: set to true, prints out detailed poller NASAPackets
+  - Default: `False`
 
 ### Serial Connection Settings
 cannot be defined with TCP parm...
@@ -218,6 +231,30 @@ cannot be defined with SERIAL parm...
 - **topicPrefix**: The prefix to use for MQTT topics. (Is used when homeassistant is not set or empty)
   - Example: `ehsSentinel`
 
+### Poller Configuration
+Experience has shown that the write function (required for poller) only works with a rts486 to ETH adapter, with a USB adapter no value could be written successfully so far.
+
+With the Poller Configuration, values can be actively polled cyclically from the Samsung. All FSV values are already predefined in the sample Config. The pollers only need to be enabled. 
+
+The data points are defined in the groups section, the group is then enabled in the fetch_interval and the schedule is entered (10h, 10m, 10s are valid units).
+
+- **fetch_interval**: The ip of rs485 to ETH Adapter.
+  - Example: `168.192.2.200`
+
+    ***name***: Name of the Group from groups section
+    - Example: `fsv10xx`
+
+    ***enabled***: True or False, true to enable this poller
+    - Example: `True`
+
+    ***schedule***: Time of often teh Values should be polled, be carefully do not poll to often. Valid units are `h` for hours, `m` for minutes and `s` for seconds
+    - Example: `10h`
+
+- **groups**: A list of groups, the with the Measurements to be polled, name can be freely assigned.
+  - Example: `fsv10xx`
+
+    ***fsv10xx***: A list wiht Measurements name, can be taken from the NASARepository
+
 ### Example Configuration
 
 ```yaml
@@ -229,6 +266,7 @@ logging:
   messageNotFound: False
   packetNotFromIndoorOutdoor: False
   proccessedMessage: False
+  pollerMessage: False
 #serial:
 #  device: /dev/ttyUSB0
 #  baudrate: 9600
@@ -244,6 +282,15 @@ mqtt:
   homeAssistantAutoDiscoverTopic: "homeassistant"
   useCamelCaseTopicNames: True
   topicPrefix: ehsSentinel
+polling:
+  fetch_interval: 
+    - name: fsv10xx
+      enable: false
+      schedule: 30m
+  groups:
+    fsv10xx:
+      - VAR_IN_FSV_1011
+      - VAR_IN_FSV_1012
 ```
 
 # Debugging
@@ -280,6 +327,10 @@ if you want to see how many uniquie Messages have been collected in the Dumpfile
 # Changelog
 
 ### v0.3.0 - 2025-02-24
+- Added poller functionality
+  - fetch_intervals and groups can be defined in the config file
+  - default group and pollers are in the sampelconfig,
+- added a homeassistant dashboard.yaml with default Dashboard
 - Rename some Measurements:
  - NASA_INDOOR_COOL_MAX_SETTEMP_WATEROUT -> VAR_IN_FSV_1011
  - NASA_INDOOR_COOL_MIN_SETTEMP_WATEROUT -> VAR_IN_FSV_1012

@@ -25,19 +25,19 @@ polling:
   fetch_interval: 
     - name: fsv10xx
       enable: false
-      schedule: 1m
+      schedule: 30m
     - name: fsv20xx
       enable: false
-      schedule: 1m
+      schedule: 30m
     - name: fsv30xx
       enable: false
-      schedule: 1m
+      schedule: 30m
     - name: fsv40xx
       enable: false
-      schedule: 1m
+      schedule: 30m
     - name: fsv50xx
       enable: false
-      schedule: 1m
+      schedule: 30m
   groups:
     fsv10xx:
       - VAR_IN_FSV_1011
