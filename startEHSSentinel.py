@@ -229,6 +229,7 @@ async def make_default_request_packet(writer, config, poller):
                 logger.debug(f"Sent data raw: {[x for x in final_packet]}")
 
         await asyncio.sleep(poller['schedule'])
+        logger.info(f"Refresh Poller {poller['name']}")
 
 async def process_packet(buffer, args, config):
     """

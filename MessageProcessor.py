@@ -21,6 +21,7 @@ class MessageProcessor:
     """
 
     _instance = None
+    tmpdict = {}
 
     def __new__(cls, *args, **kwargs):
         """
@@ -78,10 +79,11 @@ class MessageProcessor:
                     raise MessageWarningException(argument=f"{msg.packet_payload}/{[hex(x) for x in msg.packet_payload]}", message=f"Value of {hexmsg} couldn't be determinate, skip Message {e}")
                 self.protocolMessage(msg, msgname, msgvalue)
             else:
+                packedval = int.from_bytes(msg.packet_payload, byteorder='big', signed=True)
                 if self.config.LOGGING['messageNotFound']:
-                    logger.info(f"Message not Found in NASA repository: {hexmsg:<6} Type: {msg.packet_message_type} Payload: {msg.packet_payload}")
+                    logger.info(f"Message not Found in NASA repository: {hexmsg:<6} Type: {msg.packet_message_type} Payload: {msg.packet_payload} = {packedval}")
                 else:
-                    logger.debug(f"Message not Found in NASA repository: {hexmsg:<6} Type: {msg.packet_message_type} Payload: {msg.packet_payload}")
+                    logger.debug(f"Message not Found in NASA repository: {hexmsg:<6} Type: {msg.packet_message_type} Payload: {msg.packet_payload} = {packedval}")
 
     def protocolMessage(self, msg: NASAMessage, msgname, msgvalue):
         """

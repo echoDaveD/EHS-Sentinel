@@ -537,8 +537,8 @@ ENUM_IN_FSV_5094:
   arithmetic: ''
   description: Smart Grid Control - DHW Mode 
   enum:
-    0x00: '55° by HP'
-    0x01: '70° by HP and BSH'
+    0x00: "55\u00b0 by HP"
+    0x01: "70\u00b0 by HP and BSH"
   remarks: ''
   signed: ''
   type: ENUM
@@ -655,8 +655,9 @@ ENUM_IN_PV_CONTACT_STATE:
   arithmetic: ''
   description: PV Control
   enum:
-    0x00: 'Disable'
-    0x01: 'ENABLE'
+    0x00: 'OFF'
+    0x01: 'ON'
+    0xFF: 'DISABLED'
   remarks: ''
   signed: ''
   type: ENUM
@@ -5042,10 +5043,11 @@ VAR_IN_FSV_3043:
   address: '0x4269'
   arithmetic: ''
   description: DHW - Disinfection Start Time
+  device_class: duration
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: ''
+  unit: 'h'
 VAR_IN_FSV_3044:
   address: '0x426A'
   arithmetic: value / 10
@@ -5058,26 +5060,29 @@ VAR_IN_FSV_3045:
   address: '0x426B'
   arithmetic: ''
   description: DHW - Disinfection Duration
+  device_class: duration
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: ''
+  unit: 'min'
 VAR_IN_FSV_3046:
   address: '0x42CE'
   arithmetic: value / 60
   description: DHW - Disinfection Max time
   remarks: NASA Value is [minutes], not [hours]
+  device_class: duration
   signed: 'false'
   type: VAR
-  unit: ''
+  unit: 'h'
 VAR_IN_FSV_3052:
   address: '0x426C'
   arithmetic: value / 0.1
   description: DHW - Forced DHW Operation Time Duration
+  device_class: duration
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: ''
+  unit: 'min'
 VAR_IN_FSV_3081:
   address: '0x42ED'
   arithmetic: ''
@@ -5085,7 +5090,7 @@ VAR_IN_FSV_3081:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: ''
+  unit: 'kW'
 VAR_IN_FSV_3082:
   address: '0x42EE'
   arithmetic: ''
@@ -5093,7 +5098,7 @@ VAR_IN_FSV_3082:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: ''
+  unit: 'kW'
 VAR_IN_FSV_3083:
   address: '0x42EF'
   arithmetic: ''
@@ -5101,7 +5106,7 @@ VAR_IN_FSV_3083:
   remarks: ''
   signed: 'true'
   type: VAR
-  unit: ''
+  unit: 'kW'
 VAR_IN_FSV_4012:
   address: '0x426D'
   arithmetic: value / 10
@@ -5170,18 +5175,20 @@ VAR_IN_FSV_4045:
   address: '0x4288'
   arithmetic: ''
   description: Heating - Mixing Valve Control Interval
+  device_class: duration
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: ''
+  unit: 'min'
 VAR_IN_FSV_4046:
   address: '0x4289'
   arithmetic: value / 0.1
   description: Heating - Mixing Valve Running Time
+  device_class: duration
   remarks: ''
   signed: 'false'
   type: VAR
-  unit: ''
+  unit: 's'
 VAR_IN_FSV_4052:
   address: '0x428A'
   arithmetic: value / 10
