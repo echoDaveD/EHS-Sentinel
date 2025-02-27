@@ -232,6 +232,12 @@ cannot be defined with SERIAL parm...
   - Example: `ehsSentinel`
 
 ### Poller Configuration
+  > [!CAUTION]  
+  > This functionality requires that EHS-Sentinel actively communicates with
+  > the  Samsung EHS, so EHS-Sentinel intervenes here in the Modbus data 
+  > traffic between the components (it sends its own messages). 
+  > The activation of this functionality is exclusively at your own risk. 
+  > I assume no liability for any damage caused.
 Experience has shown that the write function (required for poller) only works with a rts486 to ETH adapter, with a USB adapter no value could be written successfully so far.
 
 With the Poller Configuration, values can be actively polled cyclically from the Samsung. All FSV values are already predefined in the sample Config. The pollers only need to be enabled. 
@@ -327,10 +333,24 @@ if you want to see how many uniquie Messages have been collected in the Dumpfile
 # Changelog
 
 ### v0.3.0 - 2025-02-24
-- Added poller functionality
+- Added poller functionality. EHS-Sentinel can now actively request values via Modbus
   - fetch_intervals and groups can be defined in the config file
-  - default group and pollers are in the sampelconfig,
+  - default group and pollers are in the sampelconfig
+
+  > [!CAUTION]  
+  > This functionality requires that EHS-Sentinel actively communicates with
+  > the  Samsung EHS, so EHS-Sentinel intervenes here in the Modbus data 
+  > traffic between the components (it sends its own messages). 
+  > The activation of this functionality is exclusively at your own risk. 
+  > I assume no liability for any damage caused.
+
 - added a homeassistant dashboard.yaml with default Dashboard
+- make HASS MQTT Entities expire after 1 day without any state update: "expire_after": 86400
+- edited Measurement
+  - ENUM_IN_FSV_5061 add enums
+  - ENUM_IN_FSV_5094 correct enum values
+  - ENUM_IN_PV_CONTACT_STATE correct enum values
+  - added units for multiple Measurements
 - Rename some Measurements:
   - NASA_INDOOR_COOL_MAX_SETTEMP_WATEROUT -> VAR_IN_FSV_1011
   - NASA_INDOOR_COOL_MIN_SETTEMP_WATEROUT -> VAR_IN_FSV_1012
