@@ -502,10 +502,15 @@ ENUM_IN_FSV_5051:
 ENUM_IN_FSV_5061:
   address: '0x40B4'
   arithmetic: ''
-  description: ''
+  description: 'Ratio of hot water supply compare to heating'
   enum:
-    0x00: 'OFF'
-    0x01: 'ON'
+    0x01: "1"
+    0x02: "2"
+    0x03: "3"
+    0x04: "4"
+    0x05: "5"
+    0x06: "6"
+    0x07: "7"
   remarks: ''
   signed: ''
   type: ENUM
