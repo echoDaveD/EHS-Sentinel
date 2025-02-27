@@ -270,6 +270,8 @@ class MQTTClient:
                 self.auto_discover_hass(name)
                 self.refresh_known_devices(name)
 
+                time.sleep(1)
+
             sensor_type = "sensor"
             if 'enum' in self.config.NASA_REPO[name]:
                 enum = [*self.config.NASA_REPO[name]['enum'].values()]
@@ -339,6 +341,7 @@ class MQTTClient:
                 "object_id": f"{self.DEVICE_ID}_{namenorm.lower()}",
                 "unique_id": f"{self.DEVICE_ID}_{name.lower()}",
                 "platform": sensor_type,
+                #"expire_after": 86400,  # 1 day (24h * 60m * 60s)
                 "value_template": "{{ value }}",
                 #"value_template": "{{ value if value | length > 0 else 'unavailable' }}",
                 "state_topic": f"{self.config.MQTT['homeAssistantAutoDiscoverTopic']}/{sensor_type}/{self.DEVICE_ID}_{namenorm.lower()}/state",

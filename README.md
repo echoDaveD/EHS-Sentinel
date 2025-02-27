@@ -119,8 +119,19 @@ Some Distributions like debian 12 dont allow to use system wide pip package inst
   `journalctl | grep ehsSentinel`
 
 
-# Configuration
+# Home Assistant Dashboard
 
+There is a rudimentary dasdboard for Homeassistant, this can be found at: [ressources/dashboard.yaml](ressources/dashboard.yaml)
+
+If you have good ideas and want to extend this feel free to create an issue or pull request, thanks!
+
+![alt text](ressources/images/dashboard1.png)
+
+![alt text](ressources/images/dashboard2.png)
+
+![alt text](ressources/images/dashboard3.png)
+
+# Configuration
 
 ## Command-Line Arguments
 
@@ -182,6 +193,8 @@ The `config.yml` file contains configuration settings for the EHS-Sentinel proje
   - Default: `False`
 - **proccessedMessage**: set to true, prints out a summary of which massage was processed and its value
   - Default: `False`
+- **pollerMessage**: set to true, prints out detailed poller NASAPackets
+  - Default: `False`
 
 ### Serial Connection Settings
 cannot be defined with TCP parm...
@@ -218,6 +231,37 @@ cannot be defined with SERIAL parm...
 - **topicPrefix**: The prefix to use for MQTT topics. (Is used when homeassistant is not set or empty)
   - Example: `ehsSentinel`
 
+### Poller Configuration
+  > [!CAUTION]  
+  > This functionality requires that EHS-Sentinel actively communicates with
+  > the  Samsung EHS, so EHS-Sentinel intervenes here in the Modbus data 
+  > traffic between the components (it sends its own messages). 
+  > The activation of this functionality is exclusively at your own risk. 
+  > I assume no liability for any damage caused.
+
+Experience has shown that the write function (required for poller) only works with a rts486 to ETH adapter, with a USB adapter no value could be written successfully so far.
+
+With the Poller Configuration, values can be actively polled cyclically from the Samsung. All FSV values are already predefined in the sample Config. The pollers only need to be enabled. 
+
+The data points are defined in the groups section, the group is then enabled in the fetch_interval and the schedule is entered (10h, 10m, 10s are valid units).
+
+- **fetch_interval**: The ip of rs485 to ETH Adapter.
+  - Example: `168.192.2.200`
+
+    ***name***: Name of the Group from groups section
+    - Example: `fsv10xx`
+
+    ***enabled***: True or False, true to enable this poller
+    - Example: `True`
+
+    ***schedule***: Time of often teh Values should be polled, be carefully do not poll to often. Valid units are `h` for hours, `m` for minutes and `s` for seconds
+    - Example: `10h`
+
+- **groups**: A list of groups, the with the Measurements to be polled, name can be freely assigned.
+  - Example: `fsv10xx`
+
+    ***fsv10xx***: A list wiht Measurements name, can be taken from the NASARepository
+
 ### Example Configuration
 
 ```yaml
@@ -229,6 +273,7 @@ logging:
   messageNotFound: False
   packetNotFromIndoorOutdoor: False
   proccessedMessage: False
+  pollerMessage: False
 #serial:
 #  device: /dev/ttyUSB0
 #  baudrate: 9600
@@ -244,6 +289,15 @@ mqtt:
   homeAssistantAutoDiscoverTopic: "homeassistant"
   useCamelCaseTopicNames: True
   topicPrefix: ehsSentinel
+polling:
+  fetch_interval: 
+    - name: fsv10xx
+      enable: false
+      schedule: 30m
+  groups:
+    fsv10xx:
+      - VAR_IN_FSV_1011
+      - VAR_IN_FSV_1012
 ```
 
 # Debugging
@@ -278,6 +332,41 @@ if you want to see how many uniquie Messages have been collected in the Dumpfile
 
 
 # Changelog
+
+### v0.3.0 - 2025-02-27
+- Added poller functionality. EHS-Sentinel can now actively request values via Modbus
+  - fetch_intervals and groups can be defined in the config file
+  - default group and pollers are in the sampelconfig
+
+  > [!CAUTION]  
+  > This functionality requires that EHS-Sentinel actively communicates with
+  > the  Samsung EHS, so EHS-Sentinel intervenes here in the Modbus data 
+  > traffic between the components (it sends its own messages). 
+  > The activation of this functionality is exclusively at your own risk. 
+  > I assume no liability for any damage caused.
+
+- added a homeassistant dashboard.yaml with default Dashboard
+- edited Measurement
+  - ENUM_IN_FSV_5061 add enums
+  - ENUM_IN_FSV_5094 correct enum values
+  - ENUM_IN_PV_CONTACT_STATE correct enum values
+  - added units for multiple Measurements
+- Rename some Measurements:
+  - NASA_INDOOR_COOL_MAX_SETTEMP_WATEROUT -> VAR_IN_FSV_1011
+  - NASA_INDOOR_COOL_MIN_SETTEMP_WATEROUT -> VAR_IN_FSV_1012
+  - NASA_INDOOR_COOL_MAX_SETTEMP_ROOM -> VAR_IN_FSV_1021
+  - NASA_INDOOR_COOL_MIN_SETTEMP_ROOM -> VAR_IN_FSV_1022
+  - NASA_INDOOR_HEAT_MAX_SETTEMP_WATEROUT -> VAR_IN_FSV_1031
+  - NASA_INDOOR_HEAT_MIN_SETTEMP_WATEROUT -> VAR_IN_FSV_1032
+  - NASA_INDOOR_HEAT_MAX_SETTEMP_ROOM -> VAR_IN_FSV_1041
+  - NASA_INDOOR_HEAT_MIN_SETTEMP_ROOM -> VAR_IN_FSV_1042
+  - NASA_DHW_MAX_SETTEMPLIMIT -> VAR_IN_FSV_1051
+  - NASA_DHW_MIN_SETTEMPLIMIT -> VAR_IN_FSV_1052
+  - NASA_USE_DHW_THERMOSTAT -> ENUM_IN_FSV_3061
+  - NASA_USE_BOOSTER_HEATER -> ENUM_IN_FSV_3031
+  - NASA_ENABLE_DHW -> ENUM_IN_FSV_3011
+  - NASA_USE_THERMOSTAT!1 -> ENUM_IN_FSV_2091
+  - NASA_USE_THERMOSTAT2 -> ENUM_IN_FSV_2092
 
 ### v0.2.2 - 2025-02-24
 - Support for rs485 to ETH Adapter, tcp options instead of serial port are possible now

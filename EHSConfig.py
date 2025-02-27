@@ -2,6 +2,7 @@ from EHSExceptions import ConfigException
 from EHSArguments import EHSArguments
 import yaml
 import os
+import re
 
 from CustomLogger import logger
 
@@ -28,6 +29,7 @@ class EHSConfig():
     TCP = None
     NASA_REPO = None
     LOGGING = {}
+    POLLING = None
 
     def __new__(cls, *args, **kwargs):
         """
@@ -89,10 +91,39 @@ class EHSConfig():
                 self.LOGGING = config.get('logging')
             else:
                 self.LOGGING = {}
+
+            if 'polling' in config:
+                self.POLLING = config.get('polling')
+
             logger.debug(f"Configuration loaded: {config}")
+            
 
         self.validate()
-
+    
+    def parse_time_string(self, time_str: str) -> int:
+        """
+        Parses a time string like '10m' or '10s' and converts it to seconds.
+        
+        Supported formats:
+        - '10m' for 10 minutes
+        - '10s' for 10 seconds
+        
+        Returns:
+        - Equivalent time in seconds as an integer.
+        """
+        match = re.match(r'^(\d+)([smh])$', time_str.strip(), re.IGNORECASE)
+        if not match:
+            raise ValueError("Invalid time format. Use '10s', '10m', or '10h'.")
+        
+        value, unit = int(match.group(1)), match.group(2).lower()
+        
+        conversion_factors = {
+            's': 1,   # seconds
+            'm': 60,  # minutes
+            'h': 3600 # hours
+        }
+    
+        return value * conversion_factors[unit]
 
     def validate(self):
         """
@@ -132,7 +163,29 @@ class EHSConfig():
             
             if 'port' not in self.TCP:
                 raise ConfigException(argument=self.TCP['port'], message="tcp port config parameter is missing")
-        
+            
+        if self.POLLING is not None:
+            if 'fetch_interval' not in self.POLLING:
+                raise ConfigException(argument='', message="fetch_interval in polling parameter is missing")
+            
+            if 'groups' not in self.POLLING:
+                raise ConfigException(argument='', message="groups in polling parameter is missing")
+            
+            if 'fetch_interval' in self.POLLING and 'groups' in self.POLLING:
+                for poller in self.POLLING['fetch_interval']:
+                    if poller['name'] not in self.POLLING['groups']:
+                        raise ConfigException(argument=poller['name'], message="Groupname from fetch_interval not defined in groups: ")
+                    if 'schedule' in poller:
+                        try:
+                            poller['schedule'] = self.parse_time_string(poller['schedule'])
+                        except ValueError as e:
+                            raise ConfigException(argument=poller['schedule'], message="schedule value from fetch_interval couldn't be validated, use format 10s, 10m or 10h")
+                
+                for group in self.POLLING['groups']:
+                    for ele in self.POLLING['groups'][group]:
+                        if ele not in self.NASA_REPO:
+                            raise ConfigException(argument=ele, message="Element from group not in NASA Repository")
+             
         if 'broker-url' not in self.MQTT:
             raise ConfigException(argument=self.MQTT['broker-url'], message="mqtt broker-url config parameter is missing")
         
@@ -171,6 +224,9 @@ class EHSConfig():
 
         if 'proccessedMessage' not in self.LOGGING:
             self.LOGGING['proccessedMessage'] = False
+
+        if 'pollerMessage' not in self.LOGGING:
+            self.LOGGING['pollerMessage'] = False
 
         logger.info(f"Logging Config:")
         for key, value in self.LOGGING.items():
