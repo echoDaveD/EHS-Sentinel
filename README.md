@@ -238,6 +238,7 @@ cannot be defined with SERIAL parm...
   > traffic between the components (it sends its own messages). 
   > The activation of this functionality is exclusively at your own risk. 
   > I assume no liability for any damage caused.
+  
 Experience has shown that the write function (required for poller) only works with a rts486 to ETH adapter, with a USB adapter no value could be written successfully so far.
 
 With the Poller Configuration, values can be actively polled cyclically from the Samsung. All FSV values are already predefined in the sample Config. The pollers only need to be enabled. 
