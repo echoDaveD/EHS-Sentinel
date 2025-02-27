@@ -3,6 +3,7 @@ from NASAMessage import NASAMessage
 from EHSExceptions import SkipInvalidPacketException
 import binascii
 import struct 
+from CustomLogger import logger
 
 class AddressClassEnum(Enum):
     """
@@ -272,7 +273,7 @@ class NASAPacket:
             payload_size = 4
         elif message_type == 3:
             payload_size = len(msg_rest)  
-            print(f"Message {hex(message_number)} paylaod: {msg_rest[2:2 + payload_size]} / {[hex(x) for x in msg_rest[2:2 + payload_size]]}")
+            logger.info(f"Message {hex(message_number)} paylaod: {msg_rest[2:2 + payload_size]} / {[hex(x) for x in msg_rest[2:2 + payload_size]]}")
             if capacity != 1:
                 raise SkipInvalidPacketException("Message with structure type must have capacity of 1.")
         else:
