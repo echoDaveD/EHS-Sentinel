@@ -271,7 +271,7 @@ class NASAPacket:
         elif message_type == 2:
             payload_size = 4
         elif message_type == 3:
-            payload_size = len(msg_rest)-3
+            payload_size = len(msg_rest)
             if capacity != 1:
                 raise SkipInvalidPacketException("Message with structure type must have capacity of 1.")
         else:
