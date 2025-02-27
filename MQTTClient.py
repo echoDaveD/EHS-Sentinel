@@ -270,6 +270,8 @@ class MQTTClient:
                 self.auto_discover_hass(name)
                 self.refresh_known_devices(name)
 
+                time.sleep(1)
+
             sensor_type = "sensor"
             if 'enum' in self.config.NASA_REPO[name]:
                 enum = [*self.config.NASA_REPO[name]['enum'].values()]
