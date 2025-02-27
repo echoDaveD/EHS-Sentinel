@@ -333,7 +333,7 @@ if you want to see how many uniquie Messages have been collected in the Dumpfile
 
 # Changelog
 
-### v0.3.0 - 2025-02-24
+### v0.3.0 - 2025-02-27
 - Added poller functionality. EHS-Sentinel can now actively request values via Modbus
   - fetch_intervals and groups can be defined in the config file
   - default group and pollers are in the sampelconfig
