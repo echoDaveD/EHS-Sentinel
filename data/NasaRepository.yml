@@ -796,7 +796,7 @@ ENUM_IN_FSV_5061:
       - '6'
       - '7'
       type: select
-    writable: false
+    writable: true
   type: ENUM
 ENUM_IN_FSV_5081:
   address: '0x411B'
