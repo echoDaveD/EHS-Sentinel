@@ -6241,6 +6241,7 @@ VAR_IN_FLOW_SENSOR_VOLTAGE:
     platform:
       type: number
       mode: slider
+    unit: V
     writable: false
   signed: false
   type: VAR
