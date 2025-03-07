@@ -1,4 +1,13 @@
 import json
+
+import os
+import sys
+import inspect
+
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0, parentdir) 
+
 import NASAPacket
 import NASAMessage
 
@@ -8,6 +17,7 @@ encode_raw = "[50, 0, 60, 16, 0, 0, 176, 0, 255, 192, 20, 196, 13, 2, 2, 255, 25
 encode_raw = "[50, 0, 56, 98, 0, 144, 178, 0, 32, 192, 17, 3, 11, 64, 147, 0, 64, 148, 0, 66, 115, 0, 0, 66, 116, 0, 0, 66, 117, 0, 0, 66, 118, 0, 0, 66, 119, 0, 0, 66, 120, 0, 0, 66, 121, 0, 0, 66, 122, 0, 0, 66, 123, 0, 0, 221, 200, 52]"
 encode_raw = "[50, 0, 56, 98, 0, 144, 178, 0, 32, 192, 17, 240, 11, 64, 147, 0, 64, 148, 0, 66, 115, 0, 0, 66, 116, 0, 0, 66, 117, 0, 0, 66, 118, 0, 0, 66, 119, 0, 0, 66, 120, 0, 0, 66, 121, 0, 0, 66, 122, 0, 0, 66, 123, 0, 0, 76, 33, 52]"
 #encode_raw ="[50, 0, 48, 98, 0, 144, 178, 0, 32, 192, 17, 240, 11, 64, 147, 0, 64, 148, 0, 66, 115, 0, 0, 66, 116, 0, 66, 117, 0, 66, 118, 0, 66, 119, 0, 66, 120, 0, 66, 121, 0, 66, 122, 0, 66, 123, 0, 7, 180, 52]"
+encode_raw = "['0x32', '0x00', '0x1A', '0x80', '0xFF', '0x00', '0x20', '0x00', '0x00', '0xC0', '0x11', '0xB0', '0x01', '0x06', '0x07', '0x00', '0x00', '0x00', '0x00', '0x00', '0x00', '0x00', '0x00', '0x00', '0x00', '0xBD', '0xBC', '0x34']"
 try:
     encode_bytearray = json.loads(encode_raw.strip()) # for [12, 234, 456 ,67]
 except:
@@ -23,10 +33,10 @@ encoded_nasa = NASAPacket.NASAPacket()
 encoded_nasa.parse(encode_bytearray)
 
 print(f"encode NASA Object: {encoded_nasa}")
-
+exit()
 # time to reverse that thing!
 decoded_nasa = NASAPacket.NASAPacket()
-decoded_nasa.set_packet_source_address_class(NASAPacket.AddressClassEnum.Outdoor)
+decoded_nasa.set_packet_source_address_class(NASAPacket.AddressClassEnum.JIGTester)
 decoded_nasa.set_packet_source_channel(0)
 decoded_nasa.set_packet_source_address(0)
 decoded_nasa.set_packet_dest_address_class(NASAPacket.AddressClassEnum.BroadcastSelfLayer)

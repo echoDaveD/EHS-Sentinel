@@ -30,29 +30,10 @@ class IndentFormatter(logging.Formatter):
 
 
     def __init__( self, fmt=None, datefmt=None ):
-        """
-        Initializes the CustomLogger instance.
-        Args:
-            fmt (str, optional): The format string for the log messages. Defaults to None.
-            datefmt (str, optional): The format string for the date in log messages. Defaults to None.
-        Attributes:
-            baseline (int): The baseline stack depth when the logger is initialized.
-        """
         logging.Formatter.__init__(self, fmt, datefmt)
         self.baseline = len(inspect.stack())
 
     def format( self, rec ):
-        """
-        Formats the log record by adding indentation and function name.
-        This method customizes the log record by adding an indentation level
-        based on the current stack depth and includes the name of the function
-        from which the log call was made. It then uses the base Formatter class
-        to format the record and returns the formatted string.
-        Args:
-            rec (logging.LogRecord): The log record to be formatted.
-        Returns:
-            str: The formatted log record string.
-        """
         log_fmt = self.FORMATS.get(rec.levelno)
         formatter = logging.Formatter(log_fmt)
 
@@ -76,11 +57,5 @@ logger.addHandler(handler)
 logger.setLevel(logging.INFO)
 
 def setDebugMode():
-    """
-    Set the logging level to DEBUG and log a message indicating that debug mode is enabled.
-    This function sets the logging level of the logger to DEBUG, which means that all messages
-    at the DEBUG level and above will be logged. It also logs a debug message to indicate that
-    debug mode has been activated.
-    """
     logger.setLevel(logging.DEBUG)
     logger.debug("Debug mode is on...")

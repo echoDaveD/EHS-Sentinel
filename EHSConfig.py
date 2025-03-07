@@ -11,15 +11,6 @@ class EHSConfig():
     Singleton class to handle the configuration for the EHS Sentinel application.
     This class reads configuration parameters from a YAML file and validates them.
     It ensures that only one instance of the configuration exists throughout the application.
-    Attributes:
-        MQTT (dict): Configuration parameters for MQTT.
-        GENERAL (dict): General configuration parameters.
-        SERIAL (dict): Configuration parameters for serial communication.
-        NASA_REPO (dict): Configuration parameters for NASA repository.
-    Methods:
-        __new__(cls, *args, **kwargs): Ensures only one instance of the class is created.
-        __init__(self, *args, **kwargs): Initializes the configuration by reading and validating the YAML file.
-        validate(self): Validates the configuration parameters.
     """
 
     _instance = None
@@ -32,42 +23,12 @@ class EHSConfig():
     POLLING = None
 
     def __new__(cls, *args, **kwargs):
-        """
-        Create a new instance of the EHSConfig class if one does not already exist.
-        This method ensures that only one instance of the EHSConfig class is created
-        (singleton pattern). If an instance already exists, it returns the existing instance.
-        Args:
-            cls: The class being instantiated.
-            *args: Variable length argument list.
-            **kwargs: Arbitrary keyword arguments.
-        Returns:
-            EHSConfig: The single instance of the EHSConfig class.
-        """
-
         if not cls._instance:
             cls._instance = super(EHSConfig, cls).__new__(cls, *args, **kwargs)
             cls._instance._initialized = False
         return cls._instance
 
     def __init__(self, *args, **kwargs):
-        """
-        Initialize the EHSConfig instance.
-        This method initializes the EHSConfig instance by loading configuration
-        settings from a YAML file specified in the EHSArguments. It ensures that
-        the initialization process is only performed once by checking the 
-        _initialized attribute. If the instance is already initialized, the method 
-        returns immediately. Otherwise, it proceeds to load the configuration and 
-        validate it.
-        Args:
-            *args: Variable length argument list.
-            **kwargs: Arbitrary keyword arguments.
-        Attributes:
-            args (EHSArguments): An instance of EHSArguments containing the 
-                                 configuration file path.
-            MQTT (dict): MQTT configuration settings loaded from the YAML file.
-            GENERAL (dict): General configuration settings loaded from the YAML file.
-            SERIAL (dict): Serial configuration settings loaded from the YAML file.
-        """
         if self._initialized:
             return
         self._initialized = True
@@ -101,16 +62,6 @@ class EHSConfig():
         self.validate()
     
     def parse_time_string(self, time_str: str) -> int:
-        """
-        Parses a time string like '10m' or '10s' and converts it to seconds.
-        
-        Supported formats:
-        - '10m' for 10 minutes
-        - '10s' for 10 seconds
-        
-        Returns:
-        - Equivalent time in seconds as an integer.
-        """
         match = re.match(r'^(\d+)([smh])$', time_str.strip(), re.IGNORECASE)
         if not match:
             raise ValueError("Invalid time format. Use '10s', '10m', or '10h'.")
@@ -126,15 +77,6 @@ class EHSConfig():
         return value * conversion_factors[unit]
 
     def validate(self):
-        """
-        Validates the configuration parameters for the EHS Sentinel application.
-        This method checks the presence and validity of various configuration parameters
-        such as NASA repository file, serial device, baudrate, MQTT broker URL, broker port,
-        and MQTT credentials. It raises a ConfigException if any required parameter is missing
-        or invalid. Additionally, it sets default values for optional parameters if they are not provided.
-        Raises:
-            ConfigException: If any required configuration parameter is missing or invalid.
-        """
         if os.path.isfile(self.GENERAL['nasaRepositoryFile']):
              with open(self.GENERAL['nasaRepositoryFile'], mode='r') as file:
                 self.NASA_REPO = yaml.safe_load(file)
@@ -143,6 +85,9 @@ class EHSConfig():
 
         if 'protocolFile' not in self.GENERAL:
             self.GENERAL['protocolFile'] = None
+
+        if 'allowControl' not in self.GENERAL:
+            self.GENERAL['allowControl'] = False
 
         if self.SERIAL is None and self.TCP is None:
             raise ConfigException(argument="", message="define tcp or serial config parms")
@@ -213,8 +158,8 @@ class EHSConfig():
         if 'messageNotFound' not in self.LOGGING:
             self.LOGGING['messageNotFound'] = False
 
-        if 'messageNotFound' not in self.LOGGING:
-            self.LOGGING['messageNotFound'] = False
+        if 'invalidPacket' not in self.LOGGING:
+            self.LOGGING['invalidPacket'] = False
 
         if 'deviceAdded' not in self.LOGGING:
             self.LOGGING['deviceAdded'] = True
@@ -227,6 +172,9 @@ class EHSConfig():
 
         if 'pollerMessage' not in self.LOGGING:
             self.LOGGING['pollerMessage'] = False
+
+        if 'controlMessage' not in self.LOGGING:
+            self.LOGGING['controlMessage'] = False
 
         logger.info(f"Logging Config:")
         for key, value in self.LOGGING.items():

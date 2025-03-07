@@ -24,34 +24,12 @@ class EHSArguments:
     _instance = None
 
     def __new__(cls, *args, **kwargs):
-        """
-        Create and return a new instance of the class, ensuring that only one instance exists (singleton pattern).
-        This method overrides the default behavior of object creation to implement the singleton pattern. 
-        It checks if an instance of the class already exists; if not, it creates a new instance and marks it as uninitialized.
-        Args:
-            *args: Variable length argument list.
-            **kwargs: Arbitrary keyword arguments.
-        Returns:
-            EHSArguments: The singleton instance of the EHSArguments class.
-        """
-
         if not cls._instance:
             cls._instance = super(EHSArguments, cls).__new__(cls, *args, **kwargs)
             cls._instance._initialized = False
         return cls._instance
 
     def __init__(self):
-        """
-        Initializes the EHSArguments class, parses command-line arguments, and sets up configuration.
-        This method performs the following steps:
-        1. Checks if the class has already been initialized to prevent re-initialization.
-        2. Sets up an argument parser to handle command-line arguments.
-        3. Parses the command-line arguments and validates them.
-        4. Checks if the specified config file and dump file exist.
-        5. Sets the class attributes based on the parsed arguments.
-        Raises:
-            ArgumentException: If the required arguments are not provided or if the specified files do not exist.
-        """
         if self._initialized:
             return
         self._initialized = True
