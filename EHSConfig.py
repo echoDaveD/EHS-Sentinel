@@ -21,6 +21,7 @@ class EHSConfig():
     NASA_REPO = None
     LOGGING = {}
     POLLING = None
+    NASA_VAL_STORE = {}
 
     def __new__(cls, *args, **kwargs):
         if not cls._instance:

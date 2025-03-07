@@ -24,7 +24,6 @@ class MessageProcessor:
         self.config = EHSConfig()
         self.args = EHSArguments()
         self.mqtt = MQTTClient()
-        self.NASA_VAL_STORE = {}
 
     async def process_message(self, packet: NASAPacket):
         for msg in packet.packet_messages:
@@ -56,40 +55,40 @@ class MessageProcessor:
 
         await self.mqtt.publish_message(msgname, msgvalue)
 
-        self.NASA_VAL_STORE[msgname] = msgvalue
+        self.config.NASA_VAL_STORE[msgname] = msgvalue
 
         if msgname in ['NASA_OUTDOOR_TW2_TEMP', 'NASA_OUTDOOR_TW1_TEMP', 'VAR_IN_FLOW_SENSOR_CALC']:
-            if all(k in self.NASA_VAL_STORE for k in ['NASA_OUTDOOR_TW2_TEMP', 'NASA_OUTDOOR_TW1_TEMP', 'VAR_IN_FLOW_SENSOR_CALC']):
+            if all(k in self.config.NASA_VAL_STORE for k in ['NASA_OUTDOOR_TW2_TEMP', 'NASA_OUTDOOR_TW1_TEMP', 'VAR_IN_FLOW_SENSOR_CALC']):
                 value = round(
                     abs(
-                        (self.NASA_VAL_STORE['NASA_OUTDOOR_TW2_TEMP'] - self.NASA_VAL_STORE['NASA_OUTDOOR_TW1_TEMP']) * 
-                        (self.NASA_VAL_STORE['VAR_IN_FLOW_SENSOR_CALC']/60) 
+                        (self.config.NASA_VAL_STORE['NASA_OUTDOOR_TW2_TEMP'] - self.config.NASA_VAL_STORE['NASA_OUTDOOR_TW1_TEMP']) * 
+                        (self.config.NASA_VAL_STORE['VAR_IN_FLOW_SENSOR_CALC']/60) 
                         * 4190
                     ) , 4
                 )
                 if (value < 15000 and value > 0): # only if heater output between 0 und 15000 W
-                    await self.protocolMessage(NASAMessage(packet_message=0x9999, packet_message_type=1, packet_payload=0x00),
+                    await self.protocolMessage(NASAMessage(packet_message=0x9999, packet_message_type=1, packet_payload=[0]),
                                         "NASA_EHSSENTINEL_HEAT_OUTPUT", 
                                         value
                                         )
 
         if msgname in ('NASA_EHSSENTINEL_HEAT_OUTPUT', 'NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT'):
-            if all(k in self.NASA_VAL_STORE for k in ['NASA_EHSSENTINEL_HEAT_OUTPUT', 'NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT']):
-                if (self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT'] > 0):
-                    value = round((self.NASA_VAL_STORE['NASA_EHSSENTINEL_HEAT_OUTPUT'] / self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT']/1000.), 3)
+            if all(k in self.config.NASA_VAL_STORE for k in ['NASA_EHSSENTINEL_HEAT_OUTPUT', 'NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT']):
+                if (self.config.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT'] > 0):
+                    value = round((self.config.NASA_VAL_STORE['NASA_EHSSENTINEL_HEAT_OUTPUT'] / self.config.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT']/1000.), 3)
                     if (value < 20 and value > 0):
-                        await self.protocolMessage(NASAMessage(packet_message=0x9998, packet_message_type=1, packet_payload=0x00), 
+                        await self.protocolMessage(NASAMessage(packet_message=0x9998, packet_message_type=1, packet_payload=[0]), 
                                                 "NASA_EHSSENTINEL_COP",
                                                 value
                                                 )
                     
         if msgname in ('NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM', 'LVAR_IN_TOTAL_GENERATED_POWER'):
-            if all(k in self.NASA_VAL_STORE for k in ['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM', 'LVAR_IN_TOTAL_GENERATED_POWER']):
-                if (self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM'] > 0):
-                    value = round(self.NASA_VAL_STORE['LVAR_IN_TOTAL_GENERATED_POWER'] / self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM'], 3)
+            if all(k in self.config.NASA_VAL_STORE for k in ['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM', 'LVAR_IN_TOTAL_GENERATED_POWER']):
+                if (self.config.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM'] > 0):
+                    value = round(self.config.NASA_VAL_STORE['LVAR_IN_TOTAL_GENERATED_POWER'] / self.config.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM'], 3)
 
                     if (value < 20 and value > 0):
-                        await self.protocolMessage(NASAMessage(packet_message=0x9997, packet_message_type=1, packet_payload=0x00), 
+                        await self.protocolMessage(NASAMessage(packet_message=0x9997, packet_message_type=1, packet_payload=[0]), 
                                                 "NASA_EHSSENTINEL_TOTAL_COP",
                                                 value
                                                 )
