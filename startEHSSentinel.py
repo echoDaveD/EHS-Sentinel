@@ -161,6 +161,9 @@ async def serial_read(reader: asyncio.StreamReader, args, config):
 async def serial_write(writer:asyncio.StreamWriter, config):
     producer = MessageProducer(writer=writer)
 
+    # Wait 20s befor initial polling
+    await asyncio.sleep(20)
+
     if config.POLLING is not None:
         for poller in config.POLLING['fetch_interval']:
             if poller['enable']:
