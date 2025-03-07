@@ -68,7 +68,7 @@ class MessageProcessor:
                     ) , 4
                 )
                 if (value < 15000 and value > 0): # only if heater output between 0 und 15000 W
-                    await self.protocolMessage(NASAMessage(packet_message=0x9999, packet_message_type=1),
+                    await self.protocolMessage(NASAMessage(packet_message=0x9999, packet_message_type=1, packet_payload=0x00),
                                         "NASA_EHSSENTINEL_HEAT_OUTPUT", 
                                         value
                                         )
@@ -78,7 +78,7 @@ class MessageProcessor:
                 if (self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT'] > 0):
                     value = round((self.NASA_VAL_STORE['NASA_EHSSENTINEL_HEAT_OUTPUT'] / self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT']/1000.), 3)
                     if (value < 20 and value > 0):
-                        await self.protocolMessage(NASAMessage(packet_message=0x9998, packet_message_type=1), 
+                        await self.protocolMessage(NASAMessage(packet_message=0x9998, packet_message_type=1, packet_payload=0x00), 
                                                 "NASA_EHSSENTINEL_COP",
                                                 value
                                                 )
@@ -89,7 +89,7 @@ class MessageProcessor:
                     value = round(self.NASA_VAL_STORE['LVAR_IN_TOTAL_GENERATED_POWER'] / self.NASA_VAL_STORE['NASA_OUTDOOR_CONTROL_WATTMETER_ALL_UNIT_ACCUM'], 3)
 
                     if (value < 20 and value > 0):
-                        await self.protocolMessage(NASAMessage(packet_message=0x9997, packet_message_type=1), 
+                        await self.protocolMessage(NASAMessage(packet_message=0x9997, packet_message_type=1, packet_payload=0x00), 
                                                 "NASA_EHSSENTINEL_TOTAL_COP",
                                                 value
                                                 )
