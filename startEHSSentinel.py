@@ -119,10 +119,11 @@ async def serial_read(reader: asyncio.StreamReader, args, config):
     packet_size = 0
 
     while True:
-        current_byte = await reader.read(1)  # read bitewise
+        current_bytes = await reader.readline()  # read bitewise
         #data = await reader.read(1024)
         #data = await reader.readuntil(b'\x34fd')
-        if current_byte:
+        for current_byte in current_bytes:
+            current_byte = current_byte.to_bytes(1, 'big')
             if packet_started:
                 data.extend(current_byte)
                 if len(data) == 3:
@@ -139,10 +140,12 @@ async def serial_read(reader: asyncio.StreamReader, args, config):
                         if config.LOGGING['invalidPacket']:
                             logger.warning(f"Packet does not end with an x34. Size {packet_size} length {len(data)}")
                             logger.warning(f"Received hex: {[hex(x) for x in data]}")
+                            logger.warning(f"Received hex: {[hex(x) for x in current_bytes]}")
                             logger.warning(f"Received raw: {data}")
                         else:
                             logger.debug(f"Packet does not end with an x34. Size {packet_size} length {len(data)}")
                             logger.debug(f"Received hex: {[hex(x) for x in data]}")
+                            logger.debug(f"Received hex: {[hex(x) for x in current_bytes]}")
                             logger.debug(f"Received raw: {data}")
                         
                         data = bytearray()
