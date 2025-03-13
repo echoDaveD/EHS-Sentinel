@@ -92,7 +92,9 @@ Some Distributions like debian 12 dont allow to use system wide pip package inst
 
    `ExecStart = <path to python3> <Path of the script you want to run>` <- provide here to path to your folder where startEHSSentinel.py is
 
-   sample: `ExecStart = /root/EHS-Sentinel/bin/python3 /root/EHS-Sentinel/startEHSSentinel.py --configfile /root/EHS-Sentinel/config.yml`
+   sample: `ExecStart = /root/EHS-Sentinel/bin/python3 /root/EHS-Sentinel/startEHSSentinel.py --configfile /root/EHS-Sentinel/config.yml --clean-known-devices`
+
+   I recommend to use `--clean-known-devices` on the start so EHS-Sentinel will send Configuration messages for HASS Autodiscovery after every startup.
 
 10. Change your `config.yml` to absolut paths:
    `nasaRepositoryFile: /root/EHS-Sentinel/data/NasaRepository.yml`
@@ -128,11 +130,23 @@ Control mode [ressources/dashboard_controlmode_template.yaml](ressources/dashboa
 
 If you have good ideas and want to extend this feel free to create an issue or pull request, thanks!
 
+## Read Only Mode
+
 ![alt text](ressources/images/dashboard1.png)
 
 ![alt text](ressources/images/dashboard2.png)
 
 ![alt text](ressources/images/dashboard3.png)
+
+
+## Control Mode
+
+![alt text](ressources/images/dashboard_cm1.png)
+
+![alt text](ressources/images/dashboard_cm2.png)
+
+![alt text](ressources/images/dashboard_cm3.png)
+
 
 # Configuration
 
@@ -188,6 +202,7 @@ The `config.yml` file contains configuration settings for the EHS-Sentinel proje
 - **allowControl**: Allows EHS-Sentinel to Control the Heatpump. HASS Entities are writable, EHS-Sentinel listents to set Topic and write published values to th Modbus Interface.
   The Set Topic have following pattern: <topicPrefix>/entity/<NASA_NAME>/set  sample: ehsSentinel/ENUM_IN_SG_READY_MODE_STATE/set
   - Default: `False`
+
   > [!CAUTION]  
   > This functionality requires that EHS-Sentinel actively communicates with
   > the  Samsung EHS, so EHS-Sentinel intervenes here in the Modbus data 
@@ -352,7 +367,7 @@ if you want to see how many uniquie Messages have been collected in the Dumpfile
 
 ### v1.0.0 - 2025-03-xx
 - EHS-Sentinel has been heavily modified to incorporate the control mechanism
-- The read-in behavior of the modbus registers has been revised from chunks to single bytes
+- The read-in behavior of the modbus registers has been revised from chunks to single byte
 - MessageProcessor now runs asynchronously
 - MessageProducer added which takes over the writing communication with the WP
 - Configuration of HASS entities has moved from hardcoded to NASA Repository
@@ -361,12 +376,14 @@ if you want to see how many uniquie Messages have been collected in the Dumpfile
   - NASA_OUTDOOR_DEFROST_STEP DEFROST STEP 10 (b'0xa') added
   - ENUM_IN_SG_READY_MODE_STATE ACTIVE (b'0x2') added
 - New configuration point allowControl to allow control of the HES heat pump (deactivated by default).
+
   > [!CAUTION]  
   > This functionality requires that EHS-Sentinel actively communicates with
   > the  Samsung EHS, so EHS-Sentinel intervenes here in the Modbus data 
   > traffic between the components (it sends its own messages). 
   > The activation of this functionality is exclusively at your own risk. 
   > I assume no liability for any damage caused.
+
 - new configuration points in logging
   - controlMessage (default False) to pr9int out the controlled mesagges
   - invalidPacket (default False) prints out invalid messages (length not ok, x34 not at end...)

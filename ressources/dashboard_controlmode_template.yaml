@@ -430,7 +430,7 @@ views:
                 secondary_info: last-updated
               - entity: select.samsung_ehssentinel_infsv5051
                 name: Frequency Ratio Control
-              - entity: sensor.samsung_ehssentinel_infsv5061
+              - entity: select.samsung_ehssentinel_infsv5061
                 name: Ratio of hot water supply compare to heating
                 secondary_info: last-updated
               - entity: select.samsung_ehssentinel_infsv5081
