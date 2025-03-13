@@ -13,6 +13,15 @@ You need an MQTT Broker.
 For Homeassistant you need the MQTT Plugin there with enabled Auto Discovery with Discovery Topic Prefix and Birth-Messages on Discovery Topic Prefix with subtopic "status" with text "online".
 EHS-Sentinel subscribes <hass_discovery_prefix>/status Topic and if it receive an "online", then it cleans his intern known-devices topic and send the Auto Discovery Config again for any Measurment for Home Assistant.
 
+# Upgrade instructions
+
+1. Stop EHS-Sentinel
+2. *Optional* If you are using HASS: Delete the MQTT Device
+3. git pull the new release or download and extract the release zip file
+4. Look into Release Notes if there are some new configurations and check if you have to ajust your configfile
+5. Start EHS-Sentinel (I recommend to use `--clean-known-devices` on the start so EHS-Sentinel will send Configuration messages for HASS Auto Discovery after every startup.)
+6. *Optional* If you are using HASS: and not use the `--clean-known-devices` Parm on Startup, send a birthmessage manualy or restart the MQTT Adapter in HASS.
+
 # Installation
 
 ## Simple
@@ -23,7 +32,9 @@ EHS-Sentinel subscribes <hass_discovery_prefix>/status Topic and if it receive a
     `pip install -r requirements.txt`
 3. Copy the `data/config.yml` and provide your Configuration
 4. Start the Application:
-    `python3 startEHSSentinel.py --configfile config.yml`
+    `python3 startEHSSentinel.py --configfile config.yml --clean-known-devices`
+
+   I recommend to use `--clean-known-devices` on the start so EHS-Sentinel will send Configuration messages for HASS Autodiscovery after every startup.
 
 ## Systemd Service
 
@@ -36,7 +47,9 @@ EHS-Sentinel subscribes <hass_discovery_prefix>/status Topic and if it receive a
 
    `ExecStart = python3 <Path of the script you want to run>` <- provide here to path to your folder where startEHSSentinel.py is
 
-   sample: `ExecStart = python3 /root/EHS-Sentinel/startEHSSentinel.py --configfile /root/EHS-Sentinel/config.yml`
+   sample: `ExecStart = python3 /root/EHS-Sentinel/startEHSSentinel.py --configfile /root/EHS-Sentinel/config.yml --clean-known-devices`
+
+   I recommend to use `--clean-known-devices` on the start so EHS-Sentinel will send Configuration messages for HASS Autodiscovery after every startup.`
 
 5. Change your `config.yml` to absolut paths:
    `nasaRepositoryFile: /root/EHS-Sentinel/data/NasaRepository.yml`
@@ -92,7 +105,9 @@ Some Distributions like debian 12 dont allow to use system wide pip package inst
 
    `ExecStart = <path to python3> <Path of the script you want to run>` <- provide here to path to your folder where startEHSSentinel.py is
 
-   sample: `ExecStart = /root/EHS-Sentinel/bin/python3 /root/EHS-Sentinel/startEHSSentinel.py --configfile /root/EHS-Sentinel/config.yml`
+   sample: `ExecStart = /root/EHS-Sentinel/bin/python3 /root/EHS-Sentinel/startEHSSentinel.py --configfile /root/EHS-Sentinel/config.yml --clean-known-devices`
+
+   I recommend to use `--clean-known-devices` on the start so EHS-Sentinel will send Configuration messages for HASS Autodiscovery after every startup.
 
 10. Change your `config.yml` to absolut paths:
    `nasaRepositoryFile: /root/EHS-Sentinel/data/NasaRepository.yml`
@@ -121,15 +136,30 @@ Some Distributions like debian 12 dont allow to use system wide pip package inst
 
 # Home Assistant Dashboard
 
-There is a rudimentary dasdboard for Homeassistant, this can be found at: [ressources/dashboard.yaml](ressources/dashboard.yaml)
+There are two rudimentary dashboard templates for Homeassistant, 
+Read Only [ressources/dashboard_readonly_template.yaml](ressources/dashboard_readonly_template.yaml)
+
+Control mode [ressources/dashboard_controlmode_template.yaml](ressources/dashboard_controlmode_template.yaml)
 
 If you have good ideas and want to extend this feel free to create an issue or pull request, thanks!
+
+## Read Only Mode
 
 ![alt text](ressources/images/dashboard1.png)
 
 ![alt text](ressources/images/dashboard2.png)
 
 ![alt text](ressources/images/dashboard3.png)
+
+
+## Control Mode
+
+![alt text](ressources/images/dashboard_cm1.png)
+
+![alt text](ressources/images/dashboard_cm2.png)
+
+![alt text](ressources/images/dashboard_cm3.png)
+
 
 # Configuration
 
@@ -182,6 +212,16 @@ The `config.yml` file contains configuration settings for the EHS-Sentinel proje
   - Default: `data/NasaRepository.yml`
 - **protocolFile**: Path to the protocol file. (not set in Sample config.yml)
   - Example: `prot.csv`
+- **allowControl**: Allows EHS-Sentinel to Control the Heatpump. HASS Entities are writable, EHS-Sentinel listents to set Topic and write published values to th Modbus Interface.
+  The Set Topic have following pattern: <topicPrefix>/entity/<NASA_NAME>/set  sample: ehsSentinel/ENUM_IN_SG_READY_MODE_STATE/set
+  - Default: `False`
+
+> [!CAUTION]  
+> This functionality requires that EHS-Sentinel actively communicates with
+> the  Samsung EHS, so EHS-Sentinel intervenes here in the Modbus data 
+> traffic between the components (it sends its own messages). 
+> The activation of this functionality is exclusively at your own risk. 
+> I assume no liability for any damage caused.
 
 ### Logging Settings
 
@@ -194,6 +234,10 @@ The `config.yml` file contains configuration settings for the EHS-Sentinel proje
 - **proccessedMessage**: set to true, prints out a summary of which massage was processed and its value
   - Default: `False`
 - **pollerMessage**: set to true, prints out detailed poller NASAPackets
+  - Default: `False`
+- **controlMessage**: set to true, prints out detailed control Message NASAPackets
+  - Default: `False`
+- **invalidPacket**: set to true, prints out invalid packets like length not ok or end byte not 0x34...
   - Default: `False`
 
 ### Serial Connection Settings
@@ -267,6 +311,7 @@ The data points are defined in the groups section, the group is then enabled in 
 ```yaml
 general:
   nasaRepositoryFile: data/NasaRepository.yml
+  allowControl: False
 #  protocolFile: prot.csv
 logging:
   deviceAdded: True
@@ -332,6 +377,30 @@ if you want to see how many uniquie Messages have been collected in the Dumpfile
 
 
 # Changelog
+
+### v1.0.0 - 2025-03-13
+- EHS-Sentinel has been heavily modified to incorporate the control mechanism
+- The read-in behavior of the modbus registers has been revised from chunks to single byte
+- MessageProcessor now runs asynchronously
+- MessageProducer added which takes over the writing communication with the WP
+- Configuration of HASS entities has moved from hardcoded to NASA Repository
+- NASA Repository has been fundamentally changed
+  - All FSV Values, NASA_POWER, VAR_IN_TEMP_WATER_LAW_TARGET_F, NASA_INDOOR_OPMODE are allowed for writing mode
+  - NASA_OUTDOOR_DEFROST_STEP DEFROST STEP 10 (b'0xa') added
+  - ENUM_IN_SG_READY_MODE_STATE ACTIVE (b'0x2') added
+- New configuration point allowControl to allow control of the Samsung EHS heat pump (deactivated by default).
+
+> [!CAUTION]  
+> This functionality requires that EHS-Sentinel actively communicates with
+> the  Samsung EHS, so EHS-Sentinel intervenes here in the Modbus data 
+> traffic between the components (it sends its own messages). 
+> The activation of this functionality is exclusively at your own risk. 
+> I assume no liability for any damage caused.
+
+- new configuration points in logging
+  - controlMessage (default False) to print out the controlled mesagges
+  - invalidPacket (default False) prints out invalid messages (length not ok, x34 not at end...)
+- Dashboard template has been split, [ressources/dashboard_readonly_template.yaml](ressources/dashboard_readonly_template.yaml) is for readonly mode and the [ressources/dashboard_controlmode_template.yaml](ressources/dashboard_controlmode_template.yaml) for control mode
 
 ### v0.3.0 - 2025-02-27
 - Added poller functionality. EHS-Sentinel can now actively request values via Modbus

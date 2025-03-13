@@ -6,38 +6,23 @@ views:
     sections:
       - type: grid
         cards:
-          - type: tile
-            name: Operation mode
-            vertical: true
-            hide_state: false
-            show_entity_picture: false
-            grid_options:
-              columns: 6
-              rows: 2
-            entity: sensor.samsung_ehssentinel_outdooroperationstatus
-          - type: tile
-            entity: binary_sensor.samsung_ehssentinel_controlsilence
-            name: Silent Mode
-            vertical: true
-            hide_state: false
-            show_entity_picture: false
-          - type: tile
-            name: DHW Power
-            vertical: true
-            hide_state: false
-            show_entity_picture: false
-            entity: binary_sensor.samsung_ehssentinel_dhwpower
-            grid_options:
-              columns: 6
-              rows: 2
-          - type: tile
-            name: Defrost Status
-            vertical: true
-            hide_state: false
-            show_entity_picture: false
-            entity: sensor.samsung_ehssentinel_outdoordefroststep
           - type: entities
             entities:
+              - entity: sensor.samsung_ehssentinel_power
+                name: Heatpump Power
+                secondary_info: last-updated
+              - entity: sensor.samsung_ehssentinel_outdooroperationstatus
+                name: Operation Mode
+                secondary_info: last-updated
+              - entity: binary_sensor.samsung_ehssentinel_dhwpower
+                name: DHW Power
+                secondary_info: last-updated
+              - entity: binary_sensor.samsung_ehssentinel_controlsilence
+                name: Silence Mode
+                secondary_info: last-updated
+              - entity: sensor.samsung_ehssentinel_outdoordefroststep
+                name: Defrost Step
+                secondary_info: last-updated
               - entity: sensor.samsung_ehssentinel_ehssentinelheatoutput
                 name: Heat Output
                 secondary_info: last-updated
@@ -45,6 +30,9 @@ views:
               - entity: sensor.samsung_ehssentinel_ingeneratedpowerlastminute
                 name: Generated Power Last Minute
                 secondary_info: last-updated
+              - entity: sensor.samsung_ehssentinel_inflowsensorcalc
+                secondary_info: last-changed
+                name: Water Flow Speed
               - entity: sensor.samsung_ehssentinel_ehssentinelcop
                 name: COP
                 secondary_info: last-updated
@@ -64,9 +52,15 @@ views:
                 secondary_info: last-updated
                 name: Outdoor Temperatur
               - entity: sensor.samsung_ehssentinel_outdoorcomp1targethz
-                name: Compressor Frequence
+                name: Compressor Target Frequence
                 secondary_info: last-updated
                 icon: mdi:sine-wave
+              - entity: sensor.samsung_ehssentinel_outdoorcomp1runhz
+                name: Compressor Run Frequence
+                secondary_info: last-updated
+              - entity: sensor.samsung_ehssentinel_outdoorcomp1orderhz
+                name: Compressor Order Frequence
+                secondary_info: last-updated
             title: Current Data
           - type: entities
             entities:

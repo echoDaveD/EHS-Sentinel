@@ -3,38 +3,11 @@ from NASAMessage import NASAMessage
 from EHSExceptions import SkipInvalidPacketException
 import binascii
 import struct 
+from CustomLogger import logger
 
 class AddressClassEnum(Enum):
     """
     Enum class representing various address classes for NASA packets.
-    Attributes:
-        Outdoor (int): Address class for outdoor units (0x10).
-        HTU (int): Address class for HTU units (0x11).
-        Indoor (int): Address class for indoor units (0x20).
-        ERV (int): Address class for ERV units (0x30).
-        Diffuser (int): Address class for diffuser units (0x35).
-        MCU (int): Address class for MCU units (0x38).
-        RMC (int): Address class for RMC units (0x40).
-        WiredRemote (int): Address class for wired remote units (0x50).
-        PIM (int): Address class for PIM units (0x58).
-        SIM (int): Address class for SIM units (0x59).
-        Peak (int): Address class for peak units (0x5A).
-        PowerDivider (int): Address class for power divider units (0x5B).
-        OnOffController (int): Address class for on/off controller units (0x60).
-        WiFiKit (int): Address class for WiFi kit units (0x62).
-        CentralController (int): Address class for central controller units (0x65).
-        DMS (int): Address class for DMS units (0x6A).
-        JIGTester (int): Address class for JIG tester units (0x80).
-        BroadcastSelfLayer (int): Address class for broadcast self layer (0xB0).
-        BroadcastControlLayer (int): Address class for broadcast control layer (0xB1).
-        BroadcastSetLayer (int): Address class for broadcast set layer (0xB2).
-        BroadcastCS (int): Address class for broadcast CS (0xB3).
-        BroadcastControlAndSetLayer (int): Address class for broadcast control and set layer (0xB3).
-        BroadcastModuleLayer (int): Address class for broadcast module layer (0xB4).
-        BroadcastCSM (int): Address class for broadcast CSM (0xB7).
-        BroadcastLocalLayer (int): Address class for broadcast local layer (0xB8).
-        BroadcastCSML (int): Address class for broadcast CSML (0xBF).
-        Undefined (int): Address class for undefined units (0xFF).
     """
 
     Outdoor = 0x10
@@ -68,12 +41,6 @@ class AddressClassEnum(Enum):
 class PacketType(Enum):
     """
     Enum class representing different types of packets in the EHS-Sentinel system.
-    Attributes:
-        StandBy (int): Represents a standby packet type with a value of 0.
-        Normal (int): Represents a normal packet type with a value of 1.
-        Gathering (int): Represents a gathering packet type with a value of 2.
-        Install (int): Represents an install packet type with a value of 3.
-        Download (int): Represents a download packet type with a value of 4.
     """
 
     StandBy = 0
@@ -85,15 +52,6 @@ class PacketType(Enum):
 class DataType(Enum):
     """
     Enum representing different types of data operations.
-    Attributes:
-        Undefined (int): Represents an undefined data type (0).
-        Read (int): Represents a read operation (1).
-        Write (int): Represents a write operation (2).
-        Request (int): Represents a request operation (3).
-        Notification (int): Represents a notification operation (4).
-        Response (int): Represents a response operation (5).
-        Ack (int): Represents an acknowledgment (6).
-        Nack (int): Represents a negative acknowledgment (7).
     """
 
     Undefined = 0
@@ -108,56 +66,6 @@ class DataType(Enum):
 class NASAPacket:
     """
     A class to represent a NASA Packet.
-    Attributes
-    ----------
-    _packet_raw : bytearray
-        Raw packet data.
-    packet_start : int
-        Start byte of the packet.
-    packet_size : int
-        Size of the packet.
-    packet_source_address_class : AddressClassEnum
-        Source address class of the packet.
-    packet_source_channel : int
-        Source channel of the packet.
-    packet_source_address : int
-        Source address of the packet.
-    packet_dest_address_class : AddressClassEnum
-        Destination address class of the packet.
-    packet_dest_channel : int
-        Destination channel of the packet.
-    packet_dest_address : int
-        Destination address of the packet.
-    packet_information : int
-        Information field of the packet.
-    packet_version : int
-        Version of the packet.
-    packet_retry_count : int
-        Retry count of the packet.
-    packet_type : PacketType
-        Type of the packet.
-    packet_data_type : DataType
-        Data type of the packet.
-    packet_number : int
-        Number of the packet.
-    packet_capacity : int
-        Capacity of the packet.
-    packet_messages : list[NASAMessage]
-        List of messages in the packet.
-    packet_crc16 : int
-        CRC16 checksum of the packet.
-    packet_end : int
-        End byte of the packet.
-    Methods
-    -------
-    parse(packet: bytearray):
-        Parses the given packet data.
-    _extract_messages(depth: int, capacity: int, msg_rest: bytearray, return_list: list):
-        Recursively extracts messages from the packet.
-    __str__():
-        Returns a string representation of the NASAPacket.
-    __repr__():
-        Returns a string representation of the NASAPacket.
     """
 
     def __init__(self):
@@ -182,33 +90,6 @@ class NASAPacket:
         self.packet_end: int = None
 
     def parse(self, packet: bytearray):
-        """
-        Parses a given bytearray packet and extracts various fields into the object's attributes.
-        Args:
-            packet (bytearray): The packet to be parsed.
-        Raises:
-            ValueError: If the packet length is less than 14 bytes.
-        Attributes:
-            packet_start (int): The start byte of the packet.
-            packet_size (int): The size of the packet.
-            packet_source_address_class (AddressClassEnum): The source address class of the packet.
-            packet_source_channel (int): The source channel of the packet.
-            packet_source_address (int): The source address of the packet.
-            packet_dest_address_class (AddressClassEnum): The destination address class of the packet.
-            packet_dest_channel (int): The destination channel of the packet.
-            packet_dest_address (int): The destination address of the packet.
-            packet_information (bool): Information flag of the packet.
-            packet_version (int): Version of the packet.
-            packet_retry_count (int): Retry count of the packet.
-            packet_type (PacketType): Type of the packet.
-            packet_data_type (DataType): Data type of the packet.
-            packet_number (int): Number of the packet.
-            packet_capacity (int): Capacity of the packet.
-            packet_crc16 (int): CRC16 checksum of the packet.
-            packet_end (int): The end byte of the packet.
-            packet_messages (list): Extracted messages from the packet.
-        """
-
         self._packet_raw = packet
         if len(packet) < 14:
             raise ValueError("Data too short to be a valid NASAPacket")
@@ -217,6 +98,12 @@ class NASAPacket:
 
         self.packet_start = packet[0]
         self.packet_size = ((packet[1] << 8) | packet[2])
+
+        if self.packet_size+2 != len(packet):
+            logger.info(f"length not correct {self.packet_size+2} -> {len(packet)}")
+            logger.info(f"{packet.hex()}")
+            logger.info(f"{hex(packet[self.packet_size+1])}")
+
         try:
             self.packet_source_address_class = AddressClassEnum(packet[3])
         except ValueError as e:
@@ -244,20 +131,6 @@ class NASAPacket:
             raise SkipInvalidPacketException(f"Checksum for package could not be validated. Calculated: {crc_checkusm} in packet: {self.packet_crc16}: packet:{self}")
 
     def _extract_messages(self, depth: int, capacity: int, msg_rest: bytearray, return_list: list):
-        """
-        Recursively extracts messages from a bytearray and appends them to a list.
-        Args:
-            depth (int): The current depth of recursion.
-            capacity (int): The maximum allowed depth of recursion.
-            msg_rest (bytearray): The remaining bytes to be processed.
-            return_list (list): The list to which extracted messages are appended.
-        Returns:
-            list: The list of extracted messages.
-        Raises:
-            ValueError: If the message type is unknown, the capacity is invalid for a structure type message,
-                or the payload size exceeds 255 bytes.
-        """
-
         if depth > capacity or len(msg_rest) <= 2:
             return return_list
         
@@ -358,11 +231,6 @@ class NASAPacket:
         self.packet_messages = value
 
     def to_raw(self) -> bytearray:
-        """
-        Converts the NASAPacket object back to its raw byte representation.
-        Returns:
-            bytearray: The raw byte representation of the packet.
-        """
         self.packet_start = 50
         self.packet_end = 52
         

@@ -1,11 +1,14 @@
 general:
   nasaRepositoryFile: data/NasaRepository.yml
+  allowControl: False
 logging:
   deviceAdded: True
   messageNotFound: False
   packetNotFromIndoorOutdoor: False
   proccessedMessage: False
   pollerMessage: False
+  controlMessage: False
+  invalidPacket: False
 #serial:
 #  device: /dev/ttyUSB0
 #  baudrate: 9600

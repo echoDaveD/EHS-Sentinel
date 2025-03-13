@@ -2,48 +2,8 @@
 class NASAMessage:
     """
     A class to represent a NASA message.
-    Attributes
-    ----------
-    packet_message : int
-        The message packet identifier.
-    packet_message_type : int
-        The type of the message packet.
-    packet_payload : bytes
-        The payload of the message packet in bytes.
-    Methods
-    -------
-    __str__():
-        Returns a string representation of the NASAMessage instance.
-    __repr__():
-        Returns a string representation of the NASAMessage instance.
     """
-    def __init__(self, packet_message=0x000, packet_message_type=0, packet_payload=[0]):
-        """
-        Constructs all the necessary attributes for the NASAMessage object.
-        Parameters
-        ----------
-        packet_message : int, optional
-            The message packet identifier (default is 0x000).
-        packet_message_type : int, optional
-            The type of the message packet (default is 0).
-        packet_payload : list, optional
-            The payload of the message packet as a list of integers (default is [0]).
-        """
-        """
-        Returns a string representation of the NASAMessage instance.
-        Returns
-        -------
-        str
-            A string representation of the NASAMessage instance.
-        """
-        """
-        Returns a string representation of the NASAMessage instance.
-        Returns
-        -------
-        str
-            A string representation of the NASAMessage instance.
-        """
-        
+    def __init__(self, packet_message=0x000, packet_message_type=0, packet_payload=[0]):     
         self.packet_message: int = packet_message
         self.packet_message_type: int = packet_message_type
         self.packet_payload: bytes = bytes([int(hex(x), 16) for x in packet_payload])
@@ -51,12 +11,16 @@ class NASAMessage:
 
     def set_packet_message(self, value: int):
         self.packet_message = value
+        self.packet_message_type = (value & 1536) >> 9
 
     def set_packet_message_type(self, value: int):
         self.packet_message_type = value
 
     def set_packet_payload(self, value: list):
         self.packet_payload = bytes([int(hex(x), 16) for x in value])
+
+    def set_packet_payload_raw(self, value: bytes):
+        self.packet_payload = value
 
     def to_raw(self) -> bytearray:
 
@@ -87,6 +51,12 @@ class NASAMessage:
                 (msgpayload >> 16) & 0xFF,
                 (msgpayload >> 8) & 0xFF,
                 msgpayload & 0xFF
+            ]
+        elif self.packet_message_type == 3:
+            return [
+                msg_rest_0,
+                msg_rest_1,
+                *[(msgpayload >> (8 * i)) & 0xFF for i in reversed(range(len(self.packet_payload)))]
             ]
 
     def __str__(self):

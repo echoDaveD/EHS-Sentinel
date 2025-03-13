@@ -1,0 +1,16 @@
+
+### list devices
+GET https://api.smartthings.com/v1/devices
+Authorization: Bearer xx
+
+### "deviceId": "xx" "id": "samsungce.ehsFsvSettings", "version": 1
+GET https://api.smartthings.com/v1/capabilities/samsungce.ehsFsvSettings/1
+Authorization: Bearer xx
+
+### "locationId": "xx" "name": "Mein Zuhause"
+GET https://api.smartthings.com/v1/locations
+Authorization: Bearer xx
+
+###
+GET https://api.smartthings.com/v1/capabilities/samsungce.ehsFsvSettings/1/i18n/en
+Authorization: Bearer xx
