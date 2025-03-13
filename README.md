@@ -13,6 +13,15 @@ You need an MQTT Broker.
 For Homeassistant you need the MQTT Plugin there with enabled Auto Discovery with Discovery Topic Prefix and Birth-Messages on Discovery Topic Prefix with subtopic "status" with text "online".
 EHS-Sentinel subscribes <hass_discovery_prefix>/status Topic and if it receive an "online", then it cleans his intern known-devices topic and send the Auto Discovery Config again for any Measurment for Home Assistant.
 
+# Upgrade instructions
+
+1. Stop EHS-Sentinel
+2. *Optional* If you are using HASS: Delete the MQTT Device
+3. git pull the new release or download and extract the release zip file
+4. Look into Release Notes if there are some new configurations and check if you have to ajust your configfile
+5. Start EHS-Sentinel (I recommend to use `--clean-known-devices` on the start so EHS-Sentinel will send Configuration messages for HASS Auto Discovery after every startup.)
+6. *Optional* If you are using HASS: and not use the `--clean-known-devices` Parm on Startup, send a birthmessage manualy or restart the MQTT Adapter in HASS.
+
 # Installation
 
 ## Simple
@@ -23,7 +32,9 @@ EHS-Sentinel subscribes <hass_discovery_prefix>/status Topic and if it receive a
     `pip install -r requirements.txt`
 3. Copy the `data/config.yml` and provide your Configuration
 4. Start the Application:
-    `python3 startEHSSentinel.py --configfile config.yml`
+    `python3 startEHSSentinel.py --configfile config.yml --clean-known-devices`
+
+   I recommend to use `--clean-known-devices` on the start so EHS-Sentinel will send Configuration messages for HASS Autodiscovery after every startup.
 
 ## Systemd Service
 
@@ -36,7 +47,9 @@ EHS-Sentinel subscribes <hass_discovery_prefix>/status Topic and if it receive a
 
    `ExecStart = python3 <Path of the script you want to run>` <- provide here to path to your folder where startEHSSentinel.py is
 
-   sample: `ExecStart = python3 /root/EHS-Sentinel/startEHSSentinel.py --configfile /root/EHS-Sentinel/config.yml`
+   sample: `ExecStart = python3 /root/EHS-Sentinel/startEHSSentinel.py --configfile /root/EHS-Sentinel/config.yml --clean-known-devices`
+
+   I recommend to use `--clean-known-devices` on the start so EHS-Sentinel will send Configuration messages for HASS Autodiscovery after every startup.`
 
 5. Change your `config.yml` to absolut paths:
    `nasaRepositoryFile: /root/EHS-Sentinel/data/NasaRepository.yml`
@@ -365,7 +378,7 @@ if you want to see how many uniquie Messages have been collected in the Dumpfile
 
 # Changelog
 
-### v1.0.0 - 2025-03-xx
+### v1.0.0 - 2025-03-13
 - EHS-Sentinel has been heavily modified to incorporate the control mechanism
 - The read-in behavior of the modbus registers has been revised from chunks to single byte
 - MessageProcessor now runs asynchronously
@@ -375,7 +388,7 @@ if you want to see how many uniquie Messages have been collected in the Dumpfile
   - All FSV Values, NASA_POWER, VAR_IN_TEMP_WATER_LAW_TARGET_F, NASA_INDOOR_OPMODE are allowed for writing mode
   - NASA_OUTDOOR_DEFROST_STEP DEFROST STEP 10 (b'0xa') added
   - ENUM_IN_SG_READY_MODE_STATE ACTIVE (b'0x2') added
-- New configuration point allowControl to allow control of the HES heat pump (deactivated by default).
+- New configuration point allowControl to allow control of the Samsung EHS heat pump (deactivated by default).
 
   > [!CAUTION]  
   > This functionality requires that EHS-Sentinel actively communicates with
@@ -385,7 +398,7 @@ if you want to see how many uniquie Messages have been collected in the Dumpfile
   > I assume no liability for any damage caused.
 
 - new configuration points in logging
-  - controlMessage (default False) to pr9int out the controlled mesagges
+  - controlMessage (default False) to print out the controlled mesagges
   - invalidPacket (default False) prints out invalid messages (length not ok, x34 not at end...)
 - Dashboard template has been split, [ressources/dashboard_readonly_template.yaml](ressources/dashboard_readonly_template.yaml) is for readonly mode and the [ressources/dashboard_controlmode_template.yaml](ressources/dashboard_controlmode_template.yaml) for control mode
 
