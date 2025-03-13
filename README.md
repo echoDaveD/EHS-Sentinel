@@ -216,12 +216,12 @@ The `config.yml` file contains configuration settings for the EHS-Sentinel proje
   The Set Topic have following pattern: <topicPrefix>/entity/<NASA_NAME>/set  sample: ehsSentinel/ENUM_IN_SG_READY_MODE_STATE/set
   - Default: `False`
 
-  > [!CAUTION]  
-  > This functionality requires that EHS-Sentinel actively communicates with
-  > the  Samsung EHS, so EHS-Sentinel intervenes here in the Modbus data 
-  > traffic between the components (it sends its own messages). 
-  > The activation of this functionality is exclusively at your own risk. 
-  > I assume no liability for any damage caused.
+> [!CAUTION]  
+> This functionality requires that EHS-Sentinel actively communicates with
+> the  Samsung EHS, so EHS-Sentinel intervenes here in the Modbus data 
+> traffic between the components (it sends its own messages). 
+> The activation of this functionality is exclusively at your own risk. 
+> I assume no liability for any damage caused.
 
 ### Logging Settings
 
@@ -390,12 +390,12 @@ if you want to see how many uniquie Messages have been collected in the Dumpfile
   - ENUM_IN_SG_READY_MODE_STATE ACTIVE (b'0x2') added
 - New configuration point allowControl to allow control of the Samsung EHS heat pump (deactivated by default).
 
-  > [!CAUTION]  
-  > This functionality requires that EHS-Sentinel actively communicates with
-  > the  Samsung EHS, so EHS-Sentinel intervenes here in the Modbus data 
-  > traffic between the components (it sends its own messages). 
-  > The activation of this functionality is exclusively at your own risk. 
-  > I assume no liability for any damage caused.
+> [!CAUTION]  
+> This functionality requires that EHS-Sentinel actively communicates with
+> the  Samsung EHS, so EHS-Sentinel intervenes here in the Modbus data 
+> traffic between the components (it sends its own messages). 
+> The activation of this functionality is exclusively at your own risk. 
+> I assume no liability for any damage caused.
 
 - new configuration points in logging
   - controlMessage (default False) to print out the controlled mesagges
