@@ -1,3 +1,11 @@
+# ⚠️ Repository Archived – Use HACS Integration Instead
+🚫 This repository is no longer actively maintained.
+
+✅ Please use the direct [EHS Sentinel HACS Integration](https://github.com/echoDaveD/ehs_sentinel_hacs_integration) for ongoing development and updates.
+
+
+
+
 # EHS-Sentinel
 EHS Sentinel written in python which reads Samsung EHS serial Data and published it to MQTT.
 If want, you can activate the Home Assistent MQTT Auto Discovery Format, then the Messages will be sent in Home Assistent format.
